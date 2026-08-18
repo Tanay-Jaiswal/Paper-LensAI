@@ -1,0 +1,370 @@
+2026-07-18 16:41:25 | INFO     | visualizations | Visualizer initialized. Saving plots to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 16:41:25 | INFO     | trainer | Trainer initialized successfully
+2026-07-18 16:41:25 | INFO     | trainer | Models to train: linear_regression, random_forest
+2026-07-18 16:41:25 | INFO     | trainer | ============================================================
+2026-07-18 16:41:25 | INFO     | trainer | PHASE 1: Loading and Preparing Data
+2026-07-18 16:41:25 | INFO     | trainer | ============================================================
+2026-07-18 16:41:25 | INFO     | trainer | Using sample (synthetic) data for testing
+2026-07-18 16:41:25 | INFO     | trainer | Total essays loaded: 20
+2026-07-18 16:41:25 | INFO     | trainer | Cleaning essay texts...
+2026-07-18 16:41:25 | INFO     | trainer | Normalizing scores to [0, 1] range...
+2026-07-18 16:41:25 | INFO     | trainer | Splitting data: 70% train / 15% val / 15% test
+2026-07-18 16:41:51 | INFO     | visualizations | Visualizer initialized. Saving plots to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 16:41:51 | INFO     | trainer | Trainer initialized successfully
+2026-07-18 16:41:51 | INFO     | trainer | 🚀 Starting Full Training Pipeline
+2026-07-18 16:41:51 | INFO     | trainer | Models to train: linear_regression, random_forest
+2026-07-18 16:41:51 | INFO     | trainer | ============================================================
+2026-07-18 16:41:51 | INFO     | trainer | PHASE 1: Loading and Preparing Data
+2026-07-18 16:41:51 | INFO     | trainer | ============================================================
+2026-07-18 16:41:51 | INFO     | trainer | Using sample (synthetic) data for testing
+2026-07-18 16:41:51 | INFO     | trainer | Total essays loaded: 20
+2026-07-18 16:41:51 | INFO     | trainer | Cleaning essay texts...
+2026-07-18 16:41:51 | INFO     | trainer | Normalizing scores to [0, 1] range...
+2026-07-18 16:41:51 | INFO     | trainer | Splitting data: 70% train / 15% val / 15% test
+2026-07-18 16:41:51 | INFO     | trainer | Train: 14 | Val: 3 | Test: 3
+2026-07-18 16:41:51 | INFO     | trainer | ============================================================
+2026-07-18 16:41:51 | INFO     | trainer | PHASE 2: Extracting Handcrafted Features
+2026-07-18 16:41:51 | INFO     | trainer | ============================================================
+2026-07-18 16:45:29 | INFO     | trainer | Extracting features for train (14 essays)...
+2026-07-18 16:45:40 | INFO     | trainer | Extracting features for validation (3 essays)...
+2026-07-18 16:45:40 | INFO     | trainer | Extracting features for test (3 essays)...
+2026-07-18 16:45:40 | INFO     | trainer | Extracted 26 handcrafted features per essay
+2026-07-18 16:45:40 | INFO     | trainer | Features: grammar_error_count, spelling_error_count, error_rate, grammar_score, flesch_reading_ease, flesch_kincaid_grade, gunning_fog, smog_index, coleman_liau_index, automated_readability_index...
+2026-07-18 16:45:40 | INFO     | trainer | ============================================================
+2026-07-18 16:45:40 | INFO     | trainer | PHASE 3: Training Models
+2026-07-18 16:45:40 | INFO     | trainer | ============================================================
+2026-07-18 16:45:40 | INFO     | trainer | ----------------------------------------
+2026-07-18 16:45:40 | INFO     | trainer | Training Baseline Models
+2026-07-18 16:45:40 | INFO     | trainer | ----------------------------------------
+2026-07-18 16:46:22 | INFO     | trainer | Training Linear Regression...
+2026-07-18 16:46:22 | INFO     | baseline_models | LinearRegressionScorer initialized.
+2026-07-18 16:46:22 | INFO     | baseline_models | Training LinearRegression on 14 samples, 26 features…
+2026-07-18 16:46:22 | INFO     | baseline_models | Training complete. R² on train set: 1.0000
+2026-07-18 16:46:22 | INFO     | trainer |   Val QWK: -0.8000 | MAE: 0.7305
+2026-07-18 16:46:22 | INFO     | baseline_models | LinearRegressionScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\linear_regression.pkl
+2026-07-18 16:46:22 | INFO     | trainer | Training Random Forest...
+2026-07-18 16:46:22 | INFO     | baseline_models | RandomForestScorer initialized (n_estimators=200, max_depth=None, min_samples_split=5).
+2026-07-18 16:46:22 | INFO     | baseline_models | Training RandomForest on 14 samples, 26 features (n_estimators=200)…
+2026-07-18 16:46:22 | INFO     | baseline_models | Training complete. R² on train set: 0.6947
+2026-07-18 16:46:23 | INFO     | trainer |   Val QWK: 0.4000 | MAE: 0.3240
+2026-07-18 16:46:23 | INFO     | baseline_models | RandomForestScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\random_forest.pkl
+2026-07-18 16:46:23 | INFO     | trainer | ----------------------------------------
+2026-07-18 16:46:23 | INFO     | trainer | Training Baseline Models
+2026-07-18 16:46:23 | INFO     | trainer | ----------------------------------------
+2026-07-18 16:46:23 | INFO     | trainer | Training Linear Regression...
+2026-07-18 16:46:23 | INFO     | baseline_models | LinearRegressionScorer initialized.
+2026-07-18 16:46:23 | INFO     | baseline_models | Training LinearRegression on 14 samples, 26 features…
+2026-07-18 16:46:23 | INFO     | baseline_models | Training complete. R² on train set: 1.0000
+2026-07-18 16:46:23 | INFO     | trainer |   Val QWK: -0.8000 | MAE: 0.7305
+2026-07-18 16:46:23 | INFO     | baseline_models | LinearRegressionScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\linear_regression.pkl
+2026-07-18 16:46:23 | INFO     | trainer | Training Random Forest...
+2026-07-18 16:46:23 | INFO     | baseline_models | RandomForestScorer initialized (n_estimators=200, max_depth=None, min_samples_split=5).
+2026-07-18 16:46:23 | INFO     | baseline_models | Training RandomForest on 14 samples, 26 features (n_estimators=200)…
+2026-07-18 16:46:23 | INFO     | baseline_models | Training complete. R² on train set: 0.6947
+2026-07-18 16:46:23 | INFO     | trainer |   Val QWK: 0.4000 | MAE: 0.3240
+2026-07-18 16:46:23 | INFO     | baseline_models | RandomForestScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\random_forest.pkl
+2026-07-18 16:46:23 | INFO     | trainer | ============================================================
+2026-07-18 16:46:23 | INFO     | trainer | PHASE 4: Evaluating All Models on Test Set
+2026-07-18 16:46:23 | INFO     | trainer | ============================================================
+2026-07-18 16:46:23 | INFO     | trainer | Evaluating Linear Regression...
+2026-07-18 16:46:23 | INFO     | evaluator | Evaluating model: linear_regression
+2026-07-18 16:46:23 | INFO     | trainer |   QWK: 0.6667 | MAE: 0.1667 | RMSE: 0.2252 | Pearson: 0.4271
+2026-07-18 16:46:23 | INFO     | trainer | Evaluating Random Forest...
+2026-07-18 16:46:23 | INFO     | evaluator | Evaluating model: random_forest
+2026-07-18 16:46:23 | INFO     | trainer |   QWK: 0.3333 | MAE: 0.2003 | RMSE: 0.2907 | Pearson: -0.9124
+2026-07-18 16:46:23 | INFO     | trainer | 
+            Model ID         Model Name  Mean QWK  MAE (Norm)  RMSE (Norm)  Pearson Corr
+0  linear_regression  Linear Regression    0.6667      0.1667       0.2252        0.4271
+1      random_forest      Random Forest    0.3333      0.2003       0.2907       -0.9124
+2026-07-18 16:46:23 | INFO     | evaluator | Evaluation results saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results\evaluation_results.json
+2026-07-18 16:46:23 | INFO     | trainer | ============================================================
+2026-07-18 16:46:23 | INFO     | trainer | PHASE 5: Generating Visualizations
+2026-07-18 16:46:23 | INFO     | trainer | ============================================================
+2026-07-18 16:46:25 | INFO     | visualizations | Saved model comparison plot to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs\model_comparison_qwk.png
+2026-07-18 16:46:29 | INFO     | trainer | Visualizations saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 16:46:29 | INFO     | trainer | ============================================================
+2026-07-18 16:46:29 | INFO     | trainer | 🏆 TRAINING COMPLETE
+2026-07-18 16:46:29 | INFO     | trainer | Best Model: Linear Regression
+2026-07-18 16:46:29 | INFO     | trainer | Results saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results
+2026-07-18 16:46:29 | INFO     | trainer | Graphs saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 16:46:29 | INFO     | trainer | Models saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved
+2026-07-18 16:46:29 | INFO     | trainer | ============================================================
+2026-07-18 16:53:34 | INFO     | visualizations | Visualizer initialized. Saving plots to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 16:53:34 | INFO     | trainer | Trainer initialized successfully
+2026-07-18 16:53:34 | INFO     | trainer | 🚀 Starting Full Training Pipeline
+2026-07-18 16:53:34 | INFO     | trainer | Models to train: hybrid, roberta
+2026-07-18 16:53:34 | INFO     | trainer | ============================================================
+2026-07-18 16:53:34 | INFO     | trainer | PHASE 1: Loading and Preparing Data
+2026-07-18 16:53:34 | INFO     | trainer | ============================================================
+2026-07-18 16:53:34 | INFO     | trainer | Using sample (synthetic) data for testing
+2026-07-18 16:53:34 | INFO     | trainer | Total essays loaded: 20
+2026-07-18 16:53:34 | INFO     | trainer | Cleaning essay texts...
+2026-07-18 16:53:34 | INFO     | trainer | Normalizing scores to [0, 1] range...
+2026-07-18 16:53:34 | INFO     | trainer | Splitting data: 70% train / 15% val / 15% test
+2026-07-18 16:53:34 | INFO     | trainer | Train: 14 | Val: 3 | Test: 3
+2026-07-18 16:53:34 | INFO     | trainer | ============================================================
+2026-07-18 16:53:34 | INFO     | trainer | PHASE 2: Extracting Handcrafted Features
+2026-07-18 16:53:34 | INFO     | trainer | ============================================================
+2026-07-18 16:53:37 | INFO     | trainer | Extracting features for train (14 essays)...
+2026-07-18 16:53:56 | INFO     | trainer | Extracting features for validation (3 essays)...
+2026-07-18 16:53:56 | INFO     | trainer | Extracting features for test (3 essays)...
+2026-07-18 16:53:57 | INFO     | trainer | Extracted 26 handcrafted features per essay
+2026-07-18 16:53:57 | INFO     | trainer | Features: grammar_error_count, spelling_error_count, error_rate, grammar_score, flesch_reading_ease, flesch_kincaid_grade, gunning_fog, smog_index, coleman_liau_index, automated_readability_index...
+2026-07-18 16:53:57 | INFO     | trainer | ============================================================
+2026-07-18 16:53:57 | INFO     | trainer | PHASE 3: Training Models
+2026-07-18 16:53:57 | INFO     | trainer | ============================================================
+2026-07-18 16:53:57 | INFO     | trainer | ----------------------------------------
+2026-07-18 16:53:57 | INFO     | trainer | Training Hybrid Model (RoBERTa + Features + XGBoost) ⭐
+2026-07-18 16:53:57 | INFO     | trainer | ----------------------------------------
+2026-07-18 16:58:44 | INFO     | hybrid_model | Extracting transformer embeddings...
+2026-07-18 16:58:44 | INFO     | hybrid_model | Extracting handcrafted linguistic features...
+2026-07-18 16:58:50 | INFO     | hybrid_model | Extracting transformer embeddings...
+2026-07-18 16:58:50 | INFO     | hybrid_model | Extracting handcrafted linguistic features...
+2026-07-18 16:58:50 | INFO     | hybrid_model | Fitting PCA on embeddings...
+2026-07-18 16:58:50 | ERROR    | trainer | Failed to train hybrid: n_components=128 must be between 0 and min(n_samples, n_features)=14 with svd_solver='full'
+2026-07-18 16:58:50 | INFO     | trainer | ----------------------------------------
+2026-07-18 16:58:50 | INFO     | trainer | Training RoBERTa (Fine-tuned) Model
+2026-07-18 16:58:50 | INFO     | trainer | ----------------------------------------
+2026-07-18 16:58:52 | INFO     | roberta_model | RoBERTaScorer initialized (model=roberta-base, device=cpu).
+2026-07-18 16:58:55 | INFO     | roberta_model | Epoch 1: Train Loss = 0.1300 | Val Loss = 0.1578
+2026-07-18 16:58:58 | INFO     | roberta_model | Epoch 2: Train Loss = 0.1353 | Val Loss = 0.1578
+2026-07-18 16:59:00 | INFO     | roberta_model | Epoch 3: Train Loss = 0.1383 | Val Loss = 0.1578
+2026-07-18 16:59:02 | INFO     | roberta_model | Epoch 4: Train Loss = 0.1452 | Val Loss = 0.1578
+2026-07-18 16:59:05 | INFO     | roberta_model | Epoch 5: Train Loss = 0.1200 | Val Loss = 0.1578
+2026-07-18 16:59:05 | INFO     | roberta_model | RoBERTaScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\roberta_model
+2026-07-18 16:59:05 | INFO     | trainer |   Val QWK: 0.0000 | MAE: 0.3398
+2026-07-18 16:59:05 | INFO     | trainer | ============================================================
+2026-07-18 16:59:05 | INFO     | trainer | PHASE 4: Evaluating All Models on Test Set
+2026-07-18 16:59:05 | INFO     | trainer | ============================================================
+2026-07-18 16:59:05 | INFO     | trainer | Evaluating RoBERTa (Fine-tuned)...
+2026-07-18 16:59:05 | INFO     | evaluator | Evaluating model: roberta
+2026-07-18 16:59:05 | INFO     | trainer |   QWK: 0.3333 | MAE: 0.2181 | RMSE: 0.2743 | Pearson: -0.9967
+2026-07-18 16:59:06 | INFO     | trainer | 
+  Model ID            Model Name  Mean QWK  MAE (Norm)  RMSE (Norm)  Pearson Corr
+0  roberta  RoBERTa (Fine-tuned)    0.3333      0.2181       0.2743       -0.9967
+2026-07-18 16:59:06 | INFO     | evaluator | Evaluation results saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results\evaluation_results.json
+2026-07-18 16:59:06 | INFO     | trainer | ============================================================
+2026-07-18 16:59:06 | INFO     | trainer | PHASE 5: Generating Visualizations
+2026-07-18 16:59:06 | INFO     | trainer | ============================================================
+2026-07-18 16:59:07 | INFO     | visualizations | Saved model comparison plot to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs\model_comparison_qwk.png
+2026-07-18 16:59:08 | INFO     | trainer | Visualizations saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 16:59:08 | INFO     | trainer | ============================================================
+2026-07-18 16:59:08 | INFO     | trainer | 🏆 TRAINING COMPLETE
+2026-07-18 16:59:08 | INFO     | trainer | Best Model: RoBERTa (Fine-tuned)
+2026-07-18 16:59:08 | INFO     | trainer | Results saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results
+2026-07-18 16:59:08 | INFO     | trainer | Graphs saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 16:59:08 | INFO     | trainer | Models saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved
+2026-07-18 16:59:08 | INFO     | trainer | ============================================================
+2026-07-18 16:59:52 | INFO     | visualizations | Visualizer initialized. Saving plots to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 16:59:52 | INFO     | trainer | Trainer initialized successfully
+2026-07-18 16:59:52 | INFO     | trainer | 🚀 Starting Full Training Pipeline
+2026-07-18 16:59:52 | INFO     | trainer | Models to train: hybrid
+2026-07-18 16:59:52 | INFO     | trainer | ============================================================
+2026-07-18 16:59:52 | INFO     | trainer | PHASE 1: Loading and Preparing Data
+2026-07-18 16:59:52 | INFO     | trainer | ============================================================
+2026-07-18 16:59:52 | INFO     | trainer | Using sample (synthetic) data for testing
+2026-07-18 16:59:52 | INFO     | trainer | Total essays loaded: 20
+2026-07-18 16:59:52 | INFO     | trainer | Cleaning essay texts...
+2026-07-18 16:59:52 | INFO     | trainer | Normalizing scores to [0, 1] range...
+2026-07-18 16:59:52 | INFO     | trainer | Splitting data: 70% train / 15% val / 15% test
+2026-07-18 16:59:52 | INFO     | trainer | Train: 14 | Val: 3 | Test: 3
+2026-07-18 16:59:52 | INFO     | trainer | ============================================================
+2026-07-18 16:59:52 | INFO     | trainer | PHASE 2: Extracting Handcrafted Features
+2026-07-18 16:59:52 | INFO     | trainer | ============================================================
+2026-07-18 16:59:55 | INFO     | trainer | Extracting features for train (14 essays)...
+2026-07-18 17:00:04 | INFO     | trainer | Extracting features for validation (3 essays)...
+2026-07-18 17:00:05 | INFO     | trainer | Extracting features for test (3 essays)...
+2026-07-18 17:00:05 | INFO     | trainer | Extracted 26 handcrafted features per essay
+2026-07-18 17:00:05 | INFO     | trainer | Features: grammar_error_count, spelling_error_count, error_rate, grammar_score, flesch_reading_ease, flesch_kincaid_grade, gunning_fog, smog_index, coleman_liau_index, automated_readability_index...
+2026-07-18 17:00:05 | INFO     | trainer | ============================================================
+2026-07-18 17:00:05 | INFO     | trainer | PHASE 3: Training Models
+2026-07-18 17:00:05 | INFO     | trainer | ============================================================
+2026-07-18 17:00:05 | INFO     | trainer | ----------------------------------------
+2026-07-18 17:00:05 | INFO     | trainer | Training Hybrid Model (RoBERTa + Features + XGBoost) ⭐
+2026-07-18 17:00:05 | INFO     | trainer | ----------------------------------------
+2026-07-18 17:00:37 | INFO     | hybrid_model | Extracting transformer embeddings...
+2026-07-18 17:00:38 | INFO     | hybrid_model | Extracting handcrafted linguistic features...
+2026-07-18 17:00:45 | INFO     | hybrid_model | Extracting transformer embeddings...
+2026-07-18 17:00:45 | INFO     | hybrid_model | Extracting handcrafted linguistic features...
+2026-07-18 17:00:45 | INFO     | hybrid_model | Fitting PCA on embeddings...
+2026-07-18 17:00:45 | WARNING  | hybrid_model | Adjusting PCA n_components from 128 to 13 to match sample size.
+2026-07-18 17:00:45 | INFO     | hybrid_model | Scaling handcrafted features...
+2026-07-18 17:00:45 | INFO     | hybrid_model | Training XGBoost Regressor...
+2026-07-18 17:00:48 | INFO     | hybrid_model | HybridScorer pipeline saved successfully to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\hybrid_model
+2026-07-18 17:00:48 | INFO     | hybrid_model | Extracting transformer embeddings...
+2026-07-18 17:00:48 | INFO     | hybrid_model | Extracting handcrafted linguistic features...
+2026-07-18 17:00:48 | INFO     | trainer |   Val QWK: 0.0000 | MAE: 0.3597
+2026-07-18 17:00:48 | INFO     | trainer | ============================================================
+2026-07-18 17:00:48 | INFO     | trainer | PHASE 4: Evaluating All Models on Test Set
+2026-07-18 17:00:48 | INFO     | trainer | ============================================================
+2026-07-18 17:00:48 | INFO     | trainer | Evaluating Hybrid (RoBERTa + Features + XGBoost)...
+2026-07-18 17:00:48 | INFO     | hybrid_model | Extracting transformer embeddings...
+2026-07-18 17:00:48 | INFO     | hybrid_model | Extracting handcrafted linguistic features...
+2026-07-18 17:00:48 | INFO     | evaluator | Evaluating model: hybrid
+2026-07-18 17:00:48 | INFO     | trainer |   QWK: 0.3333 | MAE: 0.2193 | RMSE: 0.2629 | Pearson: -0.4627
+2026-07-18 17:00:48 | INFO     | trainer | 
+  Model ID                             Model Name  Mean QWK  MAE (Norm)  RMSE (Norm)  Pearson Corr
+0   hybrid  Hybrid (RoBERTa + Features + XGBoost)    0.3333      0.2193       0.2629       -0.4627
+2026-07-18 17:00:48 | INFO     | evaluator | Evaluation results saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results\evaluation_results.json
+2026-07-18 17:00:48 | INFO     | trainer | ============================================================
+2026-07-18 17:00:48 | INFO     | trainer | PHASE 5: Generating Visualizations
+2026-07-18 17:00:48 | INFO     | trainer | ============================================================
+2026-07-18 17:00:49 | INFO     | visualizations | Saved model comparison plot to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs\model_comparison_qwk.png
+2026-07-18 17:00:50 | INFO     | hybrid_model | Extracting transformer embeddings...
+2026-07-18 17:00:50 | INFO     | hybrid_model | Extracting handcrafted linguistic features...
+2026-07-18 17:00:51 | INFO     | trainer | Visualizations saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 17:00:51 | INFO     | trainer | ============================================================
+2026-07-18 17:00:51 | INFO     | trainer | 🏆 TRAINING COMPLETE
+2026-07-18 17:00:51 | INFO     | trainer | Best Model: Hybrid (RoBERTa + Features + XGBoost)
+2026-07-18 17:00:51 | INFO     | trainer | Results saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results
+2026-07-18 17:00:51 | INFO     | trainer | Graphs saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-07-18 17:00:51 | INFO     | trainer | Models saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved
+2026-07-18 17:00:51 | INFO     | trainer | ============================================================
+2026-08-07 15:25:35 | INFO     | visualizations | Visualizer initialized. Saving plots to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-08-07 15:25:35 | INFO     | trainer | Trainer initialized successfully
+2026-08-07 15:25:35 | INFO     | trainer | 🚀 Starting Full Training Pipeline
+2026-08-07 15:25:35 | INFO     | trainer | Models to train: cart
+2026-08-07 15:25:35 | INFO     | trainer | ============================================================
+2026-08-07 15:25:35 | INFO     | trainer | PHASE 1: Loading and Preparing Data
+2026-08-07 15:25:35 | INFO     | trainer | ============================================================
+2026-08-07 15:25:35 | INFO     | trainer | Using sample (synthetic) data for testing
+2026-08-07 15:25:35 | INFO     | trainer | Total essays loaded: 20
+2026-08-07 15:25:35 | INFO     | trainer | Cleaning essay texts...
+2026-08-07 15:25:35 | INFO     | trainer | Normalizing scores to [0, 1] range...
+2026-08-07 15:25:35 | INFO     | trainer | Splitting data: 70% train / 15% val / 15% test
+2026-08-07 15:25:35 | INFO     | trainer | Train: 14 | Val: 3 | Test: 3
+2026-08-07 15:25:35 | INFO     | trainer | ============================================================
+2026-08-07 15:25:35 | INFO     | trainer | PHASE 2: Extracting Handcrafted Features
+2026-08-07 15:25:35 | INFO     | trainer | ============================================================
+2026-08-07 15:25:38 | INFO     | trainer | Extracting features for train (14 essays)...
+2026-08-07 15:25:48 | INFO     | trainer | Extracting features for validation (3 essays)...
+2026-08-07 15:25:48 | INFO     | trainer | Extracting features for test (3 essays)...
+2026-08-07 15:25:48 | INFO     | trainer | Extracted 26 handcrafted features per essay
+2026-08-07 15:25:48 | INFO     | trainer | Features: grammar_error_count, spelling_error_count, error_rate, grammar_score, flesch_reading_ease, flesch_kincaid_grade, gunning_fog, smog_index, coleman_liau_index, automated_readability_index...
+2026-08-07 15:25:48 | INFO     | trainer | ============================================================
+2026-08-07 15:25:48 | INFO     | trainer | PHASE 3: Training Models
+2026-08-07 15:25:48 | INFO     | trainer | ============================================================
+2026-08-07 15:25:48 | INFO     | trainer | ----------------------------------------
+2026-08-07 15:25:48 | INFO     | trainer | Training Baseline Models
+2026-08-07 15:25:48 | INFO     | trainer | ----------------------------------------
+2026-08-07 15:26:58 | INFO     | trainer | Training Linear Regression...
+2026-08-07 15:26:58 | INFO     | baseline_models | LinearRegressionScorer initialized.
+2026-08-07 15:26:58 | INFO     | baseline_models | Training LinearRegression on 14 samples, 26 features…
+2026-08-07 15:26:58 | INFO     | baseline_models | Training complete. R² on train set: 1.0000
+2026-08-07 15:26:58 | INFO     | trainer |   Val QWK: -0.8000 | MAE: 0.7305
+2026-08-07 15:26:58 | INFO     | baseline_models | LinearRegressionScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\linear_regression.pkl
+2026-08-07 15:26:58 | INFO     | trainer | Training Random Forest...
+2026-08-07 15:26:58 | INFO     | baseline_models | RandomForestScorer initialized (n_estimators=200, max_depth=None, min_samples_split=5).
+2026-08-07 15:26:58 | INFO     | baseline_models | Training RandomForest on 14 samples, 26 features (n_estimators=200)…
+2026-08-07 15:26:58 | INFO     | baseline_models | Training complete. R² on train set: 0.6947
+2026-08-07 15:26:58 | INFO     | trainer |   Val QWK: 0.4000 | MAE: 0.3240
+2026-08-07 15:26:58 | INFO     | baseline_models | RandomForestScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\random_forest.pkl
+2026-08-07 15:26:58 | INFO     | trainer | Training CART (Decision Tree)...
+2026-08-07 15:26:58 | INFO     | baseline_models | CARTScorer initialized (max_depth=10, min_samples_split=5, min_samples_leaf=3).
+2026-08-07 15:26:58 | INFO     | baseline_models | Training CART on 14 samples, 26 features (max_depth=10)…
+2026-08-07 15:26:58 | INFO     | baseline_models | Training complete. R² on train set: 0.7232 | Tree depth: 3 | Leaves: 4
+2026-08-07 15:26:58 | INFO     | trainer |   Val QWK: 0.4000 | MAE: 0.2486
+2026-08-07 15:26:58 | INFO     | baseline_models | CARTScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\cart.pkl
+2026-08-07 15:26:58 | INFO     | trainer | ============================================================
+2026-08-07 15:26:58 | INFO     | trainer | PHASE 4: Evaluating All Models on Test Set
+2026-08-07 15:26:58 | INFO     | trainer | ============================================================
+2026-08-07 15:26:58 | INFO     | trainer | Evaluating Linear Regression...
+2026-08-07 15:26:58 | INFO     | evaluator | Evaluating model: linear_regression
+2026-08-07 15:26:58 | INFO     | trainer |   QWK: 0.6667 | MAE: 0.1667 | RMSE: 0.2252 | Pearson: 0.4271
+2026-08-07 15:26:58 | INFO     | trainer | Evaluating Random Forest...
+2026-08-07 15:26:58 | INFO     | evaluator | Evaluating model: random_forest
+2026-08-07 15:26:58 | INFO     | trainer |   QWK: 0.3333 | MAE: 0.2003 | RMSE: 0.2907 | Pearson: -0.9124
+2026-08-07 15:26:58 | INFO     | trainer | Evaluating CART (Decision Tree)...
+2026-08-07 15:26:58 | INFO     | trainer | 
+            Model ID         Model Name  Mean QWK  MAE (Norm)  RMSE (Norm)  Pearson Corr
+0  linear_regression  Linear Regression    0.6667      0.1667       0.2252        0.4271
+1      random_forest      Random Forest    0.3333      0.2003       0.2907       -0.9124
+2026-08-07 15:26:58 | INFO     | evaluator | Evaluation results saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results\evaluation_results.json
+2026-08-07 15:26:58 | INFO     | trainer | ============================================================
+2026-08-07 15:26:58 | INFO     | trainer | PHASE 5: Generating Visualizations
+2026-08-07 15:26:58 | INFO     | trainer | ============================================================
+2026-08-07 15:27:00 | INFO     | visualizations | Saved model comparison plot to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs\model_comparison_qwk.png
+2026-08-07 15:27:01 | WARNING  | trainer | Could not generate plots for cart: could not convert string to float: 'The importance of education cannot be overstated. Education provides individuals with the knowledge and skills necessary to succeed in life. Without proper education, many people would struggle to find meaningful employment. Furthermore, education fosters critical thinking abilities.'
+2026-08-07 15:27:01 | INFO     | trainer | Visualizations saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-08-07 15:27:01 | INFO     | trainer | ============================================================
+2026-08-07 15:27:01 | INFO     | trainer | 🏆 TRAINING COMPLETE
+2026-08-07 15:27:01 | INFO     | trainer | Best Model: Linear Regression
+2026-08-07 15:27:01 | INFO     | trainer | Results saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results
+2026-08-07 15:27:01 | INFO     | trainer | Graphs saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-08-07 15:27:01 | INFO     | trainer | Models saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved
+2026-08-07 15:27:01 | INFO     | trainer | ============================================================
+2026-08-07 15:28:07 | INFO     | visualizations | Visualizer initialized. Saving plots to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-08-07 15:28:07 | INFO     | trainer | Trainer initialized successfully
+2026-08-07 15:28:07 | INFO     | trainer | 🚀 Starting Full Training Pipeline
+2026-08-07 15:28:07 | INFO     | trainer | Models to train: cart
+2026-08-07 15:28:07 | INFO     | trainer | ============================================================
+2026-08-07 15:28:07 | INFO     | trainer | PHASE 1: Loading and Preparing Data
+2026-08-07 15:28:07 | INFO     | trainer | ============================================================
+2026-08-07 15:28:07 | INFO     | trainer | Using sample (synthetic) data for testing
+2026-08-07 15:28:07 | INFO     | trainer | Total essays loaded: 20
+2026-08-07 15:28:07 | INFO     | trainer | Cleaning essay texts...
+2026-08-07 15:28:07 | INFO     | trainer | Normalizing scores to [0, 1] range...
+2026-08-07 15:28:07 | INFO     | trainer | Splitting data: 70% train / 15% val / 15% test
+2026-08-07 15:28:07 | INFO     | trainer | Train: 14 | Val: 3 | Test: 3
+2026-08-07 15:28:07 | INFO     | trainer | ============================================================
+2026-08-07 15:28:07 | INFO     | trainer | PHASE 2: Extracting Handcrafted Features
+2026-08-07 15:28:07 | INFO     | trainer | ============================================================
+2026-08-07 15:28:10 | INFO     | trainer | Extracting features for train (14 essays)...
+2026-08-07 15:28:17 | INFO     | trainer | Extracting features for validation (3 essays)...
+2026-08-07 15:28:17 | INFO     | trainer | Extracting features for test (3 essays)...
+2026-08-07 15:28:17 | INFO     | trainer | Extracted 26 handcrafted features per essay
+2026-08-07 15:28:17 | INFO     | trainer | Features: grammar_error_count, spelling_error_count, error_rate, grammar_score, flesch_reading_ease, flesch_kincaid_grade, gunning_fog, smog_index, coleman_liau_index, automated_readability_index...
+2026-08-07 15:28:17 | INFO     | trainer | ============================================================
+2026-08-07 15:28:17 | INFO     | trainer | PHASE 3: Training Models
+2026-08-07 15:28:17 | INFO     | trainer | ============================================================
+2026-08-07 15:28:17 | INFO     | trainer | ----------------------------------------
+2026-08-07 15:28:17 | INFO     | trainer | Training Baseline Models
+2026-08-07 15:28:17 | INFO     | trainer | ----------------------------------------
+2026-08-07 15:28:21 | INFO     | trainer | Training Linear Regression...
+2026-08-07 15:28:21 | INFO     | baseline_models | LinearRegressionScorer initialized.
+2026-08-07 15:28:21 | INFO     | baseline_models | Training LinearRegression on 14 samples, 26 features…
+2026-08-07 15:28:21 | INFO     | baseline_models | Training complete. R² on train set: 1.0000
+2026-08-07 15:28:21 | INFO     | trainer |   Val QWK: -0.8000 | MAE: 0.7305
+2026-08-07 15:28:21 | INFO     | baseline_models | LinearRegressionScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\linear_regression.pkl
+2026-08-07 15:28:21 | INFO     | trainer | Training Random Forest...
+2026-08-07 15:28:21 | INFO     | baseline_models | RandomForestScorer initialized (n_estimators=200, max_depth=None, min_samples_split=5).
+2026-08-07 15:28:21 | INFO     | baseline_models | Training RandomForest on 14 samples, 26 features (n_estimators=200)…
+2026-08-07 15:28:21 | INFO     | baseline_models | Training complete. R² on train set: 0.6947
+2026-08-07 15:28:21 | INFO     | trainer |   Val QWK: 0.4000 | MAE: 0.3240
+2026-08-07 15:28:21 | INFO     | baseline_models | RandomForestScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\random_forest.pkl
+2026-08-07 15:28:21 | INFO     | trainer | Training CART (Decision Tree)...
+2026-08-07 15:28:21 | INFO     | baseline_models | CARTScorer initialized (max_depth=10, min_samples_split=5, min_samples_leaf=3).
+2026-08-07 15:28:21 | INFO     | baseline_models | Training CART on 14 samples, 26 features (max_depth=10)…
+2026-08-07 15:28:21 | INFO     | baseline_models | Training complete. R² on train set: 0.7232 | Tree depth: 3 | Leaves: 4
+2026-08-07 15:28:21 | INFO     | trainer |   Val QWK: 0.4000 | MAE: 0.2486
+2026-08-07 15:28:21 | INFO     | baseline_models | CARTScorer saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved\cart.pkl
+2026-08-07 15:28:21 | INFO     | trainer | ============================================================
+2026-08-07 15:28:21 | INFO     | trainer | PHASE 4: Evaluating All Models on Test Set
+2026-08-07 15:28:21 | INFO     | trainer | ============================================================
+2026-08-07 15:28:21 | INFO     | trainer | Evaluating Linear Regression...
+2026-08-07 15:28:21 | INFO     | evaluator | Evaluating model: linear_regression
+2026-08-07 15:28:21 | INFO     | trainer |   QWK: 0.6667 | MAE: 0.1667 | RMSE: 0.2252 | Pearson: 0.4271
+2026-08-07 15:28:21 | INFO     | trainer | Evaluating Random Forest...
+2026-08-07 15:28:21 | INFO     | evaluator | Evaluating model: random_forest
+2026-08-07 15:28:21 | INFO     | trainer |   QWK: 0.3333 | MAE: 0.2003 | RMSE: 0.2907 | Pearson: -0.9124
+2026-08-07 15:28:21 | INFO     | trainer | Evaluating CART (Decision Tree)...
+2026-08-07 15:28:21 | INFO     | evaluator | Evaluating model: cart
+2026-08-07 15:28:21 | INFO     | trainer |   QWK: 0.3333 | MAE: 0.4722 | RMSE: 0.5555 | Pearson: -0.4271
+2026-08-07 15:28:21 | INFO     | trainer | 
+            Model ID            Model Name  Mean QWK  MAE (Norm)  RMSE (Norm)  Pearson Corr
+0  linear_regression     Linear Regression    0.6667      0.1667       0.2252        0.4271
+1      random_forest         Random Forest    0.3333      0.2003       0.2907       -0.9124
+2               cart  CART (Decision Tree)    0.3333      0.4722       0.5555       -0.4271
+2026-08-07 15:28:21 | INFO     | evaluator | Evaluation results saved to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results\evaluation_results.json
+2026-08-07 15:28:21 | INFO     | trainer | ============================================================
+2026-08-07 15:28:21 | INFO     | trainer | PHASE 5: Generating Visualizations
+2026-08-07 15:28:21 | INFO     | trainer | ============================================================
+2026-08-07 15:28:22 | INFO     | visualizations | Saved model comparison plot to C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs\model_comparison_qwk.png
+2026-08-07 15:28:24 | INFO     | trainer | Visualizations saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-08-07 15:28:24 | INFO     | trainer | ============================================================
+2026-08-07 15:28:24 | INFO     | trainer | 🏆 TRAINING COMPLETE
+2026-08-07 15:28:24 | INFO     | trainer | Best Model: Linear Regression
+2026-08-07 15:28:24 | INFO     | trainer | Results saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\results
+2026-08-07 15:28:24 | INFO     | trainer | Graphs saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\outputs\graphs
+2026-08-07 15:28:24 | INFO     | trainer | Models saved to: C:\Users\imcal\OneDrive\Desktop\EssayScoringAI\models\saved
+2026-08-07 15:28:24 | INFO     | trainer | ============================================================
