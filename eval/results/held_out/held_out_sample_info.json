@@ -1,0 +1,54 @@
+{
+  "seed": 20261011,
+  "target": 45,
+  "min_per_paper": 3,
+  "population_claims": 80,
+  "sampled": 45,
+  "method": "per-paper quota by largest remainder (proportional to claim count, floor 3); within each paper, quota split across support levels by largest remainder; simple random draw inside each cell",
+  "per_paper": {
+    "acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf": {
+      "claims": 11,
+      "sampled": 6
+    },
+    "acl_2023.acl-long.100_white-box-multi-objective-adversarial-attack.pdf": {
+      "claims": 7,
+      "sampled": 4
+    },
+    "arxiv_2303.00141v2_containing-a-spread-through-sequential-learning.pdf": {
+      "claims": 13,
+      "sampled": 7
+    },
+    "arxiv_2303.00194v1_the-ionization-and-dynamics-of-the.pdf": {
+      "claims": 25,
+      "sampled": 14
+    },
+    "copernicus_acp-21-8357-2021_isotopic-constraints-on-atmospheric-sulfate-formation.pdf": {
+      "claims": 6,
+      "sampled": 3
+    },
+    "pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf": {
+      "claims": 8,
+      "sampled": 5
+    },
+    "pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf": {
+      "claims": 6,
+      "sampled": 3
+    },
+    "pmc_PMC7886193_kinetochore-independent-mechanisms-of-sister-chromosome.pdf": {
+      "claims": 4,
+      "sampled": 3
+    }
+  },
+  "support_population": {
+    "none": 27,
+    "weak": 19,
+    "strong": 22,
+    "moderate": 12
+  },
+  "support_sample": {
+    "none": 14,
+    "weak": 11,
+    "strong": 14,
+    "moderate": 6
+  }
+}

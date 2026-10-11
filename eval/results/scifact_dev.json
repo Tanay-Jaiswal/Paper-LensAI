@@ -1,0 +1,37 @@
+{
+  "dataset": "SciFact dev",
+  "n_claims": 300,
+  "rationale_selection": {
+    "n_claim_abstract_pairs": 209,
+    "paperlens": {
+      "hit@1": 0.488,
+      "hit@3": 0.813,
+      "mrr": 0.667
+    },
+    "bm25_only": {
+      "hit@1": 0.498,
+      "hit@3": 0.813,
+      "mrr": 0.673
+    },
+    "first_sentence": {
+      "hit@1": 0.057,
+      "hit@3": 0.263,
+      "mrr": 0.262
+    },
+    "random": {
+      "hit@1": 0.182,
+      "hit@3": 0.483,
+      "mrr": 0.4
+    }
+  },
+  "evidence_gap_detection": {
+    "n_with_evidence": 188,
+    "n_not_enough_info": 112,
+    "auroc_evidence_present_vs_NEI": 0.804
+  },
+  "abstract_retrieval_bm25": {
+    "n": 188,
+    "recall@10": 0.931,
+    "recall@100": 0.984
+  }
+}

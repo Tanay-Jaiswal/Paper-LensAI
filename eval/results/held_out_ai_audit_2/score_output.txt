@@ -1,0 +1,21 @@
+﻿rows labelled: 45
+claim precision (extracted sentence is a real claim of the paper): 0.822 (37/45; 95% CI 0.69-0.91)
+evidence precision, strict  (y):      0.162 (6/37; 95% CI 0.08-0.31)
+evidence precision, lenient (y or p): 0.595 (22/37; 95% CI 0.43-0.74)
+end-to-end (real claim AND evidence y), over all rows: 0.133 (6/45; 95% CI 0.06-0.26)
+by PaperLens support level (real claims with evidence shown):
+  strong    strict 0.250 (3/12; 95% CI 0.09-0.53)
+  moderate  strict 0.000 (0/5; 95% CI 0.00-0.43)
+  weak      strict 0.250 (2/8; 95% CI 0.07-0.59)
+  none      strict 0.083 (1/12; 95% CI 0.01-0.35)
+  -> the ratings are only meaningful if strict precision falls from strong to weak
+by paper (claim precision):
+  acl_2022.emnlp-main.200_setgner-general-name 0.833 (5/6; 95% CI 0.44-0.97)
+  acl_2023.acl-long.100_white-box-multi-object 1.000 (4/4; 95% CI 0.51-1.00)
+  arxiv_2303.00141v2_containing-a-spread-throu 0.714 (5/7; 95% CI 0.36-0.92)
+  arxiv_2303.00194v1_the-ionization-and-dynami 1.000 (14/14; 95% CI 0.78-1.00)
+  copernicus_acp-21-8357-2021_isotopic-constra 1.000 (3/3; 95% CI 0.44-1.00)
+  pmc_PMC7875335_overview-of-snakebite-in-braz 0.400 (2/5; 95% CI 0.12-0.77)
+  pmc_PMC7875355_assessing-the-potential-impac 0.333 (1/3; 95% CI 0.06-0.79)
+  pmc_PMC7886193_kinetochore-independent-mecha 1.000 (3/3; 95% CI 0.44-1.00)
+Sample is small; read the intervals, not the point estimates. Precision only: recall is not measured.

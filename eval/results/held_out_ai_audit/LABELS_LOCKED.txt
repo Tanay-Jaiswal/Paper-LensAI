@@ -1,0 +1,4 @@
+﻿AI-assisted label file locked before scoring
+file: held_out_audit.csv
+sha256: C66EDABDFDF566DD8741A332A48CB63EB14032E5FFBEEC1247B7FEC67C9630EE
+locked_utc: 2026-10-11T20:25:25Z

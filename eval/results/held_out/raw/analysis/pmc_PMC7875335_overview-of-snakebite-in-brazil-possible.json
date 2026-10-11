@@ -1,0 +1,846 @@
+{
+  "version": "0.1.0",
+  "document": {
+    "doc_id": "7c79bcdf1daa",
+    "title": "Overview of snakebite in Brazil: Possible drivers and a tool for risk mapping",
+    "n_pages": 18,
+    "source_name": "pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf",
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 513
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "Study parts: 1) Create a geocoded database and perform a descriptive and cluster analysis; 2) Statistical analysis to measure the association of snakebite and possible environmental and socioeconomic drivers; 3) Develop a flowchart to support decision-makers and the application of this tool in one state (Rio Grande do Sul) as an example.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "Clusters of municipalities with high numbers of snakebites are mostly found in the Amazon Legal Region.",
+        "page": 1,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "In Brazil, snakebite is a well-known public health problem and it is receiving attention from health authorities, including free of charge antivenom when the person is able to seek health care.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 59
+        },
+        {
+          "text": "Given the limited supply of antivenom worldwide and in Brazil, decision-makers need tools to help them best allocate antivenom, as well as to develop educational actions for prevention and training in medical care.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 60
+        }
+      ],
+      "approach": [
+        {
+          "text": "The objective of this study is to provide an overview of the epidemiological situation of snakebite envenoming in Brazil and explore possible drivers; as well as to create a flowchart tool to support decision-makers identify higher risk areas.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 4
+        },
+        {
+          "text": "The objective of this study is to provide an overview of the epidemiological situation of snakebite in Brazil and explore possible environmental and socioeconomic drivers; and based on this information, to create an instrument to support decision-makers to define higher risk areas for interventions and apply it in one state of Brazil (Rio Grande do Sul) as an example.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 62
+        }
+      ],
+      "results": [
+        {
+          "text": "In 2017, the World Health Organization (WHO) included snakebite envenoming in its list of neglected tropical diseases and in 2019 its ‘Strategy for a globally coordinated response to a priority neglected tropical disease’ was approved [3, 7], with the aim of reducing mortality and disability from snakebite envenoming by 50% before 2030.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 37
+        },
+        {
+          "text": "Even though Brazil has been producing antivenom for more than 100 years, currently the amount available for government purchase is reduced due to restrictions in the productive capacity of the laboratories.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 47
+        },
+        {
+          "text": "Considering the diversity in biomes in Brazil, the richness of snakes species, as well as the gaps in socioeconomic indicators across areas, we suggest that a One Health approach [20, 21] could be employed to improve understanding of the complexity of snakebite in Brazil, and to support decision-makers in their risk characterization.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 61
+        }
+      ],
+      "limitations": [
+        {
+          "text": "However, this does not necessarily mean that this protection is being enforced, and illegal prospecting, land grabbing, and deforestation are frequently reported in the Legal Amazon Region [51–53].",
+          "page": 13,
+          "section": "discussion",
+          "sentence_id": 246
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 1,
+      "text": "Snakebite envenoming affects close to 2.7 million people globally every year.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "2.7"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 21,
+          "page": 2,
+          "section": "other",
+          "quote": "It is estimated that snakebite envenoming affects around 2.7 million people every year worldwide.",
+          "score": 0.933,
+          "shared_numbers": [
+            "2.7"
+          ],
+          "shared_terms": [
+            "2.7",
+            "affect",
+            "envenom",
+            "every",
+            "million",
+            "people",
+            "snakebite",
+            "year"
+          ]
+        },
+        {
+          "sentence_id": 165,
+          "page": 7,
+          "section": "other",
+          "quote": "Number of snakebite envenoming in the period, average cases per year, rate per 100,000 population, number of deaths, average deaths per year, and fatality",
+          "score": 0.127,
+          "shared_numbers": [],
+          "shared_terms": [
+            "envenom",
+            "snakebite",
+            "year"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.933,
+      "flags": [],
+      "confidence": 0.8
+    },
+    {
+      "id": "C2",
+      "sentence_id": 3,
+      "text": "There is an urgent need to identify higher risk areas for antivenom distribution, and to develop prevention activities.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 23,
+          "page": 2,
+          "section": "other",
+          "quote": "With a vast territory and limited production of antivenom, there is need to identify higher risk areas for its distribution and to develop preventative actions.",
+          "score": 0.437,
+          "shared_numbers": [],
+          "shared_terms": [
+            "antivenom",
+            "area",
+            "develop",
+            "distribution",
+            "higher",
+            "identify",
+            "need",
+            "risk"
+          ]
+        },
+        {
+          "sentence_id": 243,
+          "page": 13,
+          "section": "discussion",
+          "quote": "The Ministry of Health of Brazil has identified the need to strengthen the availability of antivenom in the indigenous territories and has initiated a pilot project to provide antivenom to these areas where there is cold chain infrastructure [50].",
+          "score": 0.251,
+          "shared_numbers": [],
+          "shared_terms": [
+            "antivenom",
+            "area",
+            "identify",
+            "need",
+            "there"
+          ]
+        },
+        {
+          "sentence_id": 265,
+          "page": 14,
+          "section": "discussion",
+          "quote": "The distribution and maintenance of the antivenom supply in remote areas is crucial.",
+          "score": 0.206,
+          "shared_numbers": [],
+          "shared_terms": [
+            "antivenom",
+            "area",
+            "distribution"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.437,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C3",
+      "sentence_id": 4,
+      "text": "The objective of this study is to provide an overview of the epidemiological situation of snakebite envenoming in Brazil and explore possible drivers; as well as to create a flowchart tool to support decision-makers identify higher risk areas.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 24,
+          "page": 2,
+          "section": "other",
+          "quote": "The objective of this study is to provide an overview of the epidemiological situation of snakebite envenoming in Brazil and explore possible environmental and socioeconomic factors related to snakebites.",
+          "score": 0.361,
+          "shared_numbers": [],
+          "shared_terms": [
+            "brazil",
+            "envenom",
+            "epidemiological",
+            "explore",
+            "objective",
+            "overview",
+            "possible",
+            "provide"
+          ]
+        },
+        {
+          "sentence_id": 25,
+          "page": 2,
+          "section": "other",
+          "quote": "On the basis of this information, a flowchart tool to support decision-makers identify higher risk areas was created and applied in one state as an example.",
+          "score": 0.235,
+          "shared_numbers": [],
+          "shared_terms": [
+            "area",
+            "decision-maker",
+            "flowchart",
+            "higher",
+            "identify",
+            "risk",
+            "support",
+            "tool"
+          ]
+        },
+        {
+          "sentence_id": 124,
+          "page": 6,
+          "section": "other",
+          "quote": "Flowchart to support decision-makers on snakebite risk by municipality in Brazil.",
+          "score": 0.205,
+          "shared_numbers": [],
+          "shared_terms": [
+            "brazil",
+            "decision-maker",
+            "flowchart",
+            "risk",
+            "snakebite",
+            "support"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.361,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C4",
+      "sentence_id": 13,
+      "text": "This creates a complex situation both for better understanding of the association of environmental and socioeconomic factors with snakebites and for the distribution and maintenance of antivenom to remote areas.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 31,
+          "page": 2,
+          "section": "other",
+          "quote": "This creates a complex situation both for better understanding of the association of environmental and socioeconomic factors with snakebites and for the distribution and maintenance of antivenom to remote areas.",
+          "score": 0.68,
+          "shared_numbers": [],
+          "shared_terms": [
+            "antivenom",
+            "area",
+            "associ",
+            "better",
+            "complex",
+            "creat",
+            "distribution",
+            "environmental"
+          ]
+        },
+        {
+          "sentence_id": 265,
+          "page": 14,
+          "section": "discussion",
+          "quote": "The distribution and maintenance of the antivenom supply in remote areas is crucial.",
+          "score": 0.323,
+          "shared_numbers": [],
+          "shared_terms": [
+            "antivenom",
+            "area",
+            "distribution",
+            "maintenance",
+            "remote"
+          ]
+        },
+        {
+          "sentence_id": 24,
+          "page": 2,
+          "section": "other",
+          "quote": "The objective of this study is to provide an overview of the epidemiological situation of snakebite envenoming in Brazil and explore possible environmental and socioeconomic factors related to snakebites.",
+          "score": 0.207,
+          "shared_numbers": [],
+          "shared_terms": [
+            "environmental",
+            "factor",
+            "situ",
+            "snakebit",
+            "socioeconomic"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.68,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C5",
+      "sentence_id": 37,
+      "text": "In 2017, the World Health Organization (WHO) included snakebite envenoming in its list of neglected tropical diseases and in 2019 its ‘Strategy for a globally coordinated response to a priority neglected tropical disease’ was approved [3, 7], with the aim of reducing mortality and disability from snakebite envenoming by 50% before 2030.",
+      "page": 2,
+      "section": "introduction",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "50"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 128,
+          "page": 7,
+          "section": "other",
+          "quote": "Table row: Amazonas; Pop.\n2015: 3,938,336; No.\nsnakebites: 8,035; Avg.\ncases: 1,607; Rate per\n100,000: 40.80; No.\ndeaths: 50; Avg.\ndeaths: 10; %\ndeaths: 0.62",
+          "score": 0.468,
+          "shared_numbers": [
+            "50"
+          ],
+          "shared_terms": [
+            "3",
+            "50"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.468,
+      "flags": [],
+      "confidence": 0.76
+    },
+    {
+      "id": "C6",
+      "sentence_id": 264,
+      "text": "With a total area of 8,515,767.049 km2 and more than 5,500 municipalities, for Brazil this not only involves a very large amount of antivenom (in 2017, 234,194 ampoules were distributed to 2,212 hospitals free of charge), but the fact that the majority of cases are in areas with forest major habitat type with lower GDP and a lower percentage of urbanization, creates additional challenges for service delivery.",
+      "page": 14,
+      "section": "discussion",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "8515767",
+        "5500",
+        "234194",
+        "2212"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 65,
+          "page": 4,
+          "section": "other",
+          "quote": "Brazil as a territory of 8,515,767.049 km2 is divided in 26 states and one Federal District (first subnational level), and 5,570 municipalities at the second subnational level, ranging from 3.565 km2 to 159,533.328 km2.",
+          "score": 0.21,
+          "shared_numbers": [
+            "8515767"
+          ],
+          "shared_terms": [
+            "2",
+            "5",
+            "515",
+            "767.049",
+            "8",
+            "brazil",
+            "km",
+            "municipality"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.21,
+      "flags": [],
+      "confidence": 1.0
+    },
+    {
+      "id": "C7",
+      "sentence_id": 266,
+      "text": "In the Legal Amazon Region, transportation to larger cities often takes several hours by boat, which increases the chances that a significant number of snakebite victims could have difficulty reaching a hospital with antivenom in time, leading to disability or death.",
+      "page": 14,
+      "section": "discussion",
+      "claim_type": "assertion",
+      "hedged": true,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.74
+    },
+    {
+      "id": "C8",
+      "sentence_id": 269,
+      "text": "This study brings evidence that saving the lives of snakebite victims in Brazil is a major activity of the health system, and the fact that the majority of cases are in areas with forest major habitat type with lower GDP and a lower percentage of urbanization, creates additional challenges for service delivery.",
+      "page": 14,
+      "section": "conclusion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 264,
+          "page": 14,
+          "section": "discussion",
+          "quote": "With a total area of 8,515,767.049 km2 and more than 5,500 municipalities, for Brazil this not only involves a very large amount of antivenom (in 2017, 234,194 ampoules were distributed to 2,212 hospitals free of charge), but the fact that the majority of cases are in areas with forest major habitat type with lower GDP and a lower percentage of urbanization, creates additional challenges for service delivery.",
+          "score": 0.279,
+          "shared_numbers": [],
+          "shared_terms": [
+            "additional",
+            "area",
+            "brazil",
+            "cas",
+            "challeng",
+            "creat",
+            "delivery",
+            "fact"
+          ]
+        },
+        {
+          "sentence_id": 27,
+          "page": 2,
+          "section": "other",
+          "quote": "The multivariable statistics analysis showed association of snakebite with environmental factors (type of major habitat, tropical or non-tropical; temperature; precipitation; elevation) and socioeconomic (lower percentage of urbanization; lower GDP per capita); also, a weaker relation with forest loss, and with venomous snake richness.",
+          "score": 0.155,
+          "shared_numbers": [],
+          "shared_terms": [
+            "forest",
+            "gdp",
+            "habitat",
+            "lower",
+            "major",
+            "percentage",
+            "snakebite",
+            "type"
+          ]
+        },
+        {
+          "sentence_id": 220,
+          "page": 12,
+          "section": "discussion",
+          "quote": "There are some descriptive studies pointing out that some of the victims of snakebite accidents in the state of the Amazon were local loggers or others who lived off the extraction of products from the forest [4, 5]; however, the association of snakebite with forest loss in Brazil is a new finding.",
+          "score": 0.146,
+          "shared_numbers": [],
+          "shared_terms": [
+            "brazil",
+            "forest",
+            "liv",
+            "snakebite",
+            "study",
+            "victim"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.279,
+      "flags": [],
+      "confidence": 0.66
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 8,
+    "support": {
+      "strong": 2,
+      "moderate": 2,
+      "weak": 3,
+      "none": 1
+    }
+  },
+  "reproducibility": {
+    "score": 42.1,
+    "band": "low",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 4,
+            "section": "other",
+            "quote": "This data is publicly available on the government website.",
+            "sentence_id": 70
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "ArcGIS and R zonal statistics by municipality (minimum, mean, maximum, standard deviation, range) were calculated for the elevation, temperature, and precipitation variables using a ‘raster’ package.",
+            "sentence_id": 92
+          },
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "For the statistical analysis to measure the association of snakebite with possible drivers, first a univariate analysis was run with 12 variables being explored, and nine were preselected based on relative risk (RR) and 95% confidence inter",
+            "sentence_id": 99
+          },
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "Variance inflation factors (VIF) were estimated to verify the relations among all selected independent variables and to check for potential collinearity.",
+            "sentence_id": 100
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 9,
+            "section": "other",
+            "quote": "Comparing the median rates of high and low incidence by the explanatory variables and the t-test p-value (Table B in S3 Text), it could be suggested that most of the variables presented significant differences between the two groups; only e",
+            "sentence_id": 182
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe each baseline, its source and how it was tuned."
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 4,
+            "section": "other",
+            "quote": "The variable major habitat type (biome categories) was obtained from FAO [29] Terrestrial Ecoregions of the World database and map with a bio-geographic regionalization of the Earth’s terrestrial biodiversity, and from WWF [30].",
+            "sentence_id": 79
+          },
+          {
+            "page": 4,
+            "section": "other",
+            "quote": "In the major habitat type map, the delimitation of the Legal Amazon Region of Brazil was also included, which shows similarity to the Tropical and Subtropical Moist Broadleaf Forests (TSMBF) major habitat.",
+            "sentence_id": 80
+          },
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "Clusters of municipalities with high number of cases with positive autocorrelation are presented in the map, as well as clusters of low number of cases.",
+            "sentence_id": 98
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 14,
+            "section": "discussion",
+            "quote": "In the Legal Amazon Region, transportation to larger cities often takes several hours by boat, which increases the chances that a significant number of snakebite victims could have difficulty reaching a hospital with antivenom in time, lead",
+            "sentence_id": 266
+          }
+        ],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "front",
+            "quote": "PLoS Negl Trop Dis 15(1): e0009044. https://doi.org/10.1371/journal. pntd.0009044 Editor: Ulrich Kuch, Goethe University, GERMANY Received: May 21, 2020 Accepted: December 18, 2020 Published: January 29, 2021 Copyright: © 2021 Schneider et ",
+            "sentence_id": 16
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 13,
+            "section": "discussion",
+            "quote": "One of the possible limitations of this study is the use of aggregated data by municipality, as ecological studies are commonly associated with ecological fallacy [56].",
+            "sentence_id": 253
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 2.0,
+        "score": 66.7
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 3.5,
+        "score": 63.6
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 0.5,
+        "score": 12.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.5,
+        "score": 25.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.5,
+        "score": 100.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "comparison_without_baselines",
+      "severity": "high",
+      "message": "Comparative claims are made but baselines are not described.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G3",
+      "kind": "number_not_in_results",
+      "severity": "high",
+      "message": "Reported value(s) 2.7 never appear in the experiments/results text or tables (possible abstract-body mismatch, or derived value that is not shown).",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Snakebite envenoming affects close to 2.7 million people globally every year."
+    },
+    {
+      "id": "G4",
+      "kind": "number_not_in_results",
+      "severity": "high",
+      "message": "Reported value(s) 50 never appear in the experiments/results text or tables (possible abstract-body mismatch, or derived value that is not shown).",
+      "page": 2,
+      "claim_id": "C5",
+      "quote": "In 2017, the World Health Organization (WHO) included snakebite envenoming in its list of neglected tropical diseases and in 2019 its ‘Strategy for a globally coordinated response to a priority neglected tropical dise..."
+    },
+    {
+      "id": "G5",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C2",
+      "quote": "There is an urgent need to identify higher risk areas for antivenom distribution, and to develop prevention activities."
+    },
+    {
+      "id": "G6",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C3",
+      "quote": "The objective of this study is to provide an overview of the epidemiological situation of snakebite envenoming in Brazil and explore possible drivers; as well as to create a flowchart tool to support decision-makers i..."
+    },
+    {
+      "id": "G7",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 14,
+      "claim_id": "C7",
+      "quote": "In the Legal Amazon Region, transportation to larger cities often takes several hours by boat, which increases the chances that a significant number of snakebite victims could have difficulty reaching a hospital with ..."
+    },
+    {
+      "id": "G8",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 14,
+      "claim_id": "C8",
+      "quote": "This study brings evidence that saving the lives of snakebite victims in Brazil is a major activity of the health system, and the fact that the majority of cases are in areas with forest major habitat type with lower ..."
+    }
+  ],
+  "datasets": [],
+  "metrics": []
+}

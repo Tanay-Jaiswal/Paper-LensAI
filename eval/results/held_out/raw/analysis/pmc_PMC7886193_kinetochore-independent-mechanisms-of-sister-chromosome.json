@@ -1,0 +1,700 @@
+{
+  "version": "0.1.0",
+  "document": {
+    "doc_id": "70e0be7f13cb",
+    "title": "Kinetochore-independent mechanisms of sister chromosome separation",
+    "n_pages": 23,
+    "source_name": "pmc_PMC7886193_kinetochore-independent-mechanisms-of-sister-chromosome.pdf",
+    "warnings": [],
+    "n_sentences": 745
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "To identify the mechanisms driving acentric separation, we screened 117 RNAi gene knockdowns for synthetic lethality with acentric chromosome fragments.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "Intriguingly, live imaging revealed that knockdowns of EB1, Map205, and Greatwall preferentially disrupted the sliding mode of sister acentric separation.",
+        "page": 1,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "Despite these mechanisms, if the DNA damage remains, the checkpoints are overridden, and the cell exits metaphase [4].",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 30
+        },
+        {
+          "text": "However, it remains unclear how sister acentrics are held together on the metaphase plate well after the main chromosome mass has separated.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 41
+        }
+      ],
+      "approach": [
+        {
+          "text": "Based on our analysis of EB1 localization and knockdown phenotypes, we propose that in the absence of a kinetochore, microtubule plus-end dynamics provide the force to resolve DNA catenations required for sister separation.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 11
+        }
+      ],
+      "results": [
+        {
+          "text": "Additional imagebased screening revealed that reductions in Topoisomerase II levels disrupted sister acentric separation.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 9
+        },
+        {
+          "text": "Induction of I-CreI expression results in the formation of acentrics in over 80% of third instar larval neuroblast cells [12].",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 38
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Due to the finding that the tether does not appear to provide segregation forces on the acentrics [15], sliding is likely driven by lateral microtubule interactions and possibly motor proteins.",
+          "page": 15,
+          "section": "discussion",
+          "sentence_id": 378
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 9,
+      "text": "Additional imagebased screening revealed that reductions in Topoisomerase II levels disrupted sister acentric separation.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 310,
+          "page": 12,
+          "section": "discussion",
+          "quote": "This conclusion is supported by our finding that reductions in the Topoisomerase II levels specifically disrupt acentric sister separation.",
+          "score": 0.424,
+          "shared_numbers": [],
+          "shared_terms": [
+            "acentric",
+            "disrupt",
+            "ii",
+            "level",
+            "reduction",
+            "separ",
+            "sister",
+            "topoisomerase"
+          ]
+        },
+        {
+          "sentence_id": 353,
+          "page": 14,
+          "section": "discussion",
+          "quote": "Live imaging also revealed reducing levels of Topoisomerase II severely disrupted sister acentric separation.",
+          "score": 0.418,
+          "shared_numbers": [],
+          "shared_terms": [
+            "acentric",
+            "disrupt",
+            "ii",
+            "level",
+            "reveal",
+            "separ",
+            "sister",
+            "topoisomerase"
+          ]
+        },
+        {
+          "sentence_id": 370,
+          "page": 15,
+          "section": "discussion",
+          "quote": "We suspect that reduced Topoisomerase II levels disrupt sister separation of the acentrics more profoundly than that of intact chromosomes because the latter primarily rely on kinetochore forces to resolve DNA catenations.",
+          "score": 0.277,
+          "shared_numbers": [],
+          "shared_terms": [
+            "acentric",
+            "disrupt",
+            "ii",
+            "level",
+            "separ",
+            "sister",
+            "topoisomerase"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.424,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C2",
+      "sentence_id": 11,
+      "text": "Based on our analysis of EB1 localization and knockdown phenotypes, we propose that in the absence of a kinetochore, microtubule plus-end dynamics provide the force to resolve DNA catenations required for sister separation.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 382,
+          "page": 15,
+          "section": "discussion",
+          "quote": "EB1 and Map205 may be required to establish microtubule interactions with the acentric, while in the absence of a kinetochore high levels of Topoisomerase are needed to resolve DNA catenations between sisters.",
+          "score": 0.3,
+          "shared_numbers": [],
+          "shared_terms": [
+            "1",
+            "absence",
+            "caten",
+            "dna",
+            "eb",
+            "kinetochore",
+            "microtubule",
+            "requir"
+          ]
+        },
+        {
+          "sentence_id": 305,
+          "page": 12,
+          "section": "discussion",
+          "quote": "Catenations are concentrated at the centromeric DNA and opposing kinetochore microtubule interactions likely provide the resolving force [57–61].",
+          "score": 0.237,
+          "shared_numbers": [],
+          "shared_terms": [
+            "caten",
+            "dna",
+            "force",
+            "kinetochore",
+            "microtubule",
+            "provide"
+          ]
+        },
+        {
+          "sentence_id": 311,
+          "page": 12,
+          "section": "discussion",
+          "quote": "As described below, our studies suggest both plus-end and lateral microtubule interactions with the acentrics provide the alternative force driving sister separation.",
+          "score": 0.206,
+          "shared_numbers": [],
+          "shared_terms": [
+            "force",
+            "microtubule",
+            "plus-end",
+            "provide",
+            "separ",
+            "sister"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.3,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C3",
+      "sentence_id": 346,
+      "text": "The most distinguishing feature of this form of separation is the high frequency in which sister acentrics aligned with their telomeres opposed (33% compared to 14% and 0% for sliding and unzipping separation, respectively) (Fig 3F).",
+      "page": 14,
+      "section": "discussion",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "33",
+        "14",
+        "0",
+        "3"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 132,
+          "page": 6,
+          "section": "other",
+          "quote": "14% and 33% of acentric sisters that separated by sliding and dissociating, respectively, aligned with their telomeres opposed.",
+          "score": 0.48,
+          "shared_numbers": [
+            "14",
+            "33"
+          ],
+          "shared_terms": [
+            "14",
+            "33",
+            "acentric",
+            "align",
+            "oppos",
+            "respectively",
+            "sister",
+            "slid"
+          ]
+        },
+        {
+          "sentence_id": 342,
+          "page": 14,
+          "section": "discussion",
+          "quote": "In contrast to separation by sliding, telomeres are always aligned in sisters that separate by unzipping (Fig 3E and 3F).",
+          "score": 0.361,
+          "shared_numbers": [
+            "3"
+          ],
+          "shared_terms": [
+            "3",
+            "align",
+            "f",
+            "fig",
+            "separ",
+            "sister",
+            "slid",
+            "telomer"
+          ]
+        },
+        {
+          "sentence_id": 275,
+          "page": 11,
+          "section": "other",
+          "quote": "Sliding is the most frequent occurring 49% of the time, with unzipping and simultaneous dissociation occurring at frequencies of 31% and 20%, respectively (Fig 3E).",
+          "score": 0.263,
+          "shared_numbers": [
+            "3"
+          ],
+          "shared_terms": [
+            "3",
+            "fig",
+            "frequency",
+            "respectively",
+            "slid",
+            "unzipp"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.48,
+      "flags": [],
+      "confidence": 0.65
+    },
+    {
+      "id": "C4",
+      "sentence_id": 369,
+      "text": "Reducing the levels of Topoisomerase II leads to a significant increase in failed separation of sister acentrics, supporting the conclusion that once cohesin is removed sister acentrics remain held together through DNA catenation.",
+      "page": 15,
+      "section": "discussion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 304,
+          "page": 12,
+          "section": "discussion",
+          "quote": "An explanation for this delay comes from studies of intact chromosomes demonstrating that once cohesin is removed, sister acentrics remain held together through DNA catenations [52,55,56].",
+          "score": 0.302,
+          "shared_numbers": [],
+          "shared_terms": [
+            "acentric",
+            "caten",
+            "cohesin",
+            "dna",
+            "held",
+            "once",
+            "remain",
+            "remov"
+          ]
+        },
+        {
+          "sentence_id": 59,
+          "page": 3,
+          "section": "results",
+          "quote": "Once cohesin is removed, microtubules drive sister separation [30,31].",
+          "score": 0.255,
+          "shared_numbers": [],
+          "shared_terms": [
+            "cohesin",
+            "once",
+            "remov",
+            "separ",
+            "sister"
+          ]
+        },
+        {
+          "sentence_id": 310,
+          "page": 12,
+          "section": "discussion",
+          "quote": "This conclusion is supported by our finding that reductions in the Topoisomerase II levels specifically disrupt acentric sister separation.",
+          "score": 0.254,
+          "shared_numbers": [],
+          "shared_terms": [
+            "acentric",
+            "conclusion",
+            "ii",
+            "level",
+            "separ",
+            "sister",
+            "support",
+            "topoisomerase"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.302,
+      "flags": [],
+      "confidence": 0.74
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 4,
+    "support": {
+      "strong": 1,
+      "moderate": 0,
+      "weak": 3,
+      "none": 0
+    }
+  },
+  "reproducibility": {
+    "score": 36.8,
+    "band": "low",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Name every dataset with version/source and state how to obtain it."
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "results",
+            "quote": "In accord with previous studies [12], live analysis of the resulting X chromosome acentrics in the larval neuroblasts reveals that sister separation of the acentrics occurs on average 148 seconds (± 44, N = 19) after separation of the intac",
+            "sentence_id": 52
+          },
+          {
+            "page": 3,
+            "section": "results",
+            "quote": "Bars represent mean and standard deviations.",
+            "sentence_id": 69
+          },
+          {
+            "page": 4,
+            "section": "other",
+            "quote": "Error bars represent standard deviations of fluorescence intensities at all points tested.",
+            "sentence_id": 96
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "Asterisks represent statistical significance ( P = 0.0008) determined by two-sided Mann-Whitney tests.",
+            "sentence_id": 124
+          },
+          {
+            "page": 6,
+            "section": "other",
+            "quote": "These differences were statistically significant as determined by two-sided Mann-Whitney tests (P = 0.0008 and P = 0.0008, respectively).",
+            "sentence_id": 137
+          },
+          {
+            "page": 6,
+            "section": "other",
+            "quote": "We did not detect any difference in the timing of acentric sister separation by unzipping or dissociating (P = 0.25 as determined by a two-sided Mann-Whitney test).",
+            "sentence_id": 138
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 10,
+            "section": "other",
+            "quote": "However, the average velocity of acentrics while segregating during anaphase was significantly slower in gwl mutant background compared to acentrics in wildtype background (P = 0.006; Mann-Whitney test) (Table 4).",
+            "sentence_id": 250
+          },
+          {
+            "page": 11,
+            "section": "other",
+            "quote": "Of those sister acentrics that successfully separated, knockdowns of Map205, EB1, and Greatwall resulted in a decreased frequency of separation via sliding (17%, 25%, 45%, respectively) compared to the control (58%) (Fig 5).",
+            "sentence_id": 277
+          },
+          {
+            "page": 11,
+            "section": "other",
+            "quote": "Additionally, Topoisomerase II resulted in a decreased the frequency of acentric separation via unzipping (10%) compared to the control (26%) (Fig 5).",
+            "sentence_id": 278
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 6,
+            "section": "other",
+            "quote": "Lethality of heat-shocked (I-CreI induced) and non-heat-shocked (I-CreI not induced) F1 progeny bearing both constructs were assayed.",
+            "sentence_id": 147
+          },
+          {
+            "page": 18,
+            "section": "other",
+            "quote": "(XLSX) S2 Table. nod loss-of-function mutant does not disrupt the accuracy of acentric sister separation.",
+            "sentence_id": 438
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 17,
+            "section": "other",
+            "quote": "Third instar progeny with genotype Act5-Gal4/+; I-CreI, Sb/UAS-RNAi were collected from parental genotypes Act5-Gal4/CyO-GFP; I-CreI, Sb/TM6B and were heat shocked for 1.5 hours at 37˚C (unless otherwise indicated).",
+            "sentence_id": 407
+          },
+          {
+            "page": 17,
+            "section": "other",
+            "quote": "Control progeny with genotype Act5-Gal4/+; Sb/UAS-RNAi from parents with the genotype Act5-Gal4/CyO-GFP; Sb/TM6B and UAS-R- NAi were heat-shocked for 1.5 hours at 37˚C.",
+            "sentence_id": 410
+          },
+          {
+            "page": 17,
+            "section": "other",
+            "quote": "Live analysis of acentric behavior in Drosophila third instar neuroblasts As previously described, acentric chromosome fragments were induced by I-CreI expression (under heat shock 70 promoter) in 3rd instar larvae by a 1-hour 37˚C heat sho",
+            "sentence_id": 411
+          }
+        ],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "front",
+            "quote": "PLoS Genet 17(1): e1009304. https://doi.org/ 10.1371/journal.pgen.1009304 Editor: R. Scott Hawley, Stowers Institute for Medical Research, UNITED STATES Received: August 11, 2020 Accepted: December 8, 2020 Published: January 29, 2021 Copyri",
+            "sentence_id": 15
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Add a limitations section naming settings where the method fails."
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 3.5,
+        "score": 63.6
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.5,
+        "score": 25.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.5,
+        "score": 100.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 0.0,
+        "score": 0.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "no_limitations",
+      "severity": "medium",
+      "message": "No limitations section or discussion of failure cases was found.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Additional imagebased screening revealed that reductions in Topoisomerase II levels disrupted sister acentric separation."
+    },
+    {
+      "id": "G4",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 15,
+      "claim_id": "C4",
+      "quote": "Reducing the levels of Topoisomerase II leads to a significant increase in failed separation of sister acentrics, supporting the conclusion that once cohesin is removed sister acentrics remain held together through DN..."
+    }
+  ],
+  "datasets": [],
+  "metrics": []
+}

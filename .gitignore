@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/store/
+data/scifact/
+data/papers/*.pdf
+data/Papers/*.pdf
+data/held_out_papers/*.pdf
+report/

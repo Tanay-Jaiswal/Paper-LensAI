@@ -1,0 +1,1164 @@
+{
+  "version": "0.1.0",
+  "document": {
+    "doc_id": "e502e8b008bb",
+    "title": "SetGNER: General Named Entity Recognition as Entity Set Generation",
+    "n_pages": 12,
+    "source_name": "acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf",
+    "warnings": [],
+    "n_sentences": 342
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "Given an input sentence, the model first encodes the sentence in word-level and detects potential entity mentions based on the encoder’s output, then reconstructs entity mentions from the detected entity heads in parallel.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "Inverse Generation Training) outperforms stateof-the-art generative NER models by a large margin on two discontinuous NER datasets, two nested NER datasets and one flat NER dataset.",
+        "page": 1,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "Motivated by the observation that the target output of NER is essentially a set of sequences, we propose a novel entity set generation framework for general NER scenes in this paper.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 2
+        },
+        {
+          "text": "Besides, the auxiliary Inverse Generation Training task is found to further improve the model’s performance on the five datasets.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 9
+        }
+      ],
+      "approach": [
+        {
+          "text": "• We also come up with a novel auxiliary learning task — Inverse Generation Training, to help the encoder of our model capture better right-to-left semantic structure.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 41
+        },
+        {
+          "text": "Since the forward generation task is biased towards the left-to-right semantic structure, we propose to help our model learn better right-to-left semantic structure via inverse generation training.",
+          "page": 5,
+          "section": "method",
+          "sentence_id": 85
+        }
+      ],
+      "results": [
+        {
+          "text": "Inverse Generation Training) outperforms stateof-the-art generative NER models by a large margin on two discontinuous NER datasets, two nested NER datasets and one flat NER dataset.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 8
+        },
+        {
+          "text": "Existing frameworks for general NER fall into three categories: (1) span-based models; (2) sequence-to-sequence (seq2seq) models; (3) models based on other techniques like hyper-graphs and shift-reduce parsers.",
+          "page": 1,
+          "section": "introduction",
+          "sentence_id": 16
+        },
+        {
+          "text": "• Experiment results show that our model outperforms SOTA seq2seq NER models by a large margin on two discontinuous NER datasets, two nested NER datasets and one flat NER dataset, while being 3 times faster than SOTA seq2seq NER models.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 42
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Another limitation of SetGNER is that when generating the set of entity sequences, there is not interaction between target sequences starting with different head words.",
+          "page": 9,
+          "section": "limitations",
+          "sentence_id": 185
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 1,
+      "text": "Recently, joint recognition of flat, nested and discontinuous entities has received increasing attention.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 43,
+          "page": 2,
+          "section": "other",
+          "quote": "We uniformly formulate the task of recognizing flat / nested / discontinuous entities as a pointer-based Entity Set Generation problem.",
+          "score": 0.24,
+          "shared_numbers": [],
+          "shared_terms": [
+            "discontinuou",
+            "entity",
+            "flat",
+            "nest"
+          ]
+        },
+        {
+          "sentence_id": 90,
+          "page": 5,
+          "section": "experiments",
+          "quote": "We experiment on two discontinuous NER datasets CADEC and ShARe13, two nested NER datasets ACE04 and ACE05, and one flat NER dataset CoNLL03.",
+          "score": 0.223,
+          "shared_numbers": [],
+          "shared_terms": [
+            "discontinuou",
+            "flat",
+            "nest"
+          ]
+        },
+        {
+          "sentence_id": 136,
+          "page": 7,
+          "section": "experiments",
+          "quote": "The experiment is conducted on the test sets of two discontinuous NER datasets and two nested NER datasets, where the overlaps between entities are common.",
+          "score": 0.21,
+          "shared_numbers": [],
+          "shared_terms": [
+            "discontinuou",
+            "entity",
+            "nest"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.24,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C2",
+      "sentence_id": 2,
+      "text": "Motivated by the observation that the target output of NER is essentially a set of sequences, we propose a novel entity set generation framework for general NER scenes in this paper.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 71,
+          "page": 4,
+          "section": "method",
+          "quote": "Figure 2: An overview of the proposed Entity Set Generation framework.",
+          "score": 0.182,
+          "shared_numbers": [],
+          "shared_terms": [
+            "entity",
+            "framework",
+            "gener",
+            "set"
+          ]
+        },
+        {
+          "sentence_id": 134,
+          "page": 7,
+          "section": "experiments",
+          "quote": "We conduct a series of experiments to analyze the advantage of our Entity Set Generation model over seq2seq NER models and the benefit of Inverse Generation Training.",
+          "score": 0.175,
+          "shared_numbers": [],
+          "shared_terms": [
+            "entity",
+            "gener",
+            "ner",
+            "set"
+          ]
+        },
+        {
+          "sentence_id": 141,
+          "page": 7,
+          "section": "experiments",
+          "quote": "This means Entity Set Generation is superior to seq2seq on the recognition of overlapped entities.",
+          "score": 0.162,
+          "shared_numbers": [],
+          "shared_terms": [
+            "entity",
+            "gener",
+            "set"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.182,
+      "flags": [],
+      "confidence": 0.86
+    },
+    {
+      "id": "C3",
+      "sentence_id": 3,
+      "text": "Different from sequence-to-sequence NER methods, our method does not force the entities to be generated in a predefined order and can get rid of the problem of error propagation and inefficient decoding.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 143,
+          "page": 8,
+          "section": "experiments",
+          "quote": "and Error Propagation We conduct case study on the CADEC dataset to verify that SetGNER (w/o Inverse Generation Training) can overcome the Entity Order Confounder and the Error Propagation problem that seq2seq NER models suffer from.",
+          "score": 0.262,
+          "shared_numbers": [],
+          "shared_terms": [
+            "entity",
+            "error",
+            "ner",
+            "order",
+            "problem",
+            "propag"
+          ]
+        },
+        {
+          "sentence_id": 148,
+          "page": 8,
+          "section": "experiments",
+          "quote": "And SetGNER can get rid of this incorrect bias.",
+          "score": 0.213,
+          "shared_numbers": [],
+          "shared_terms": [
+            "get",
+            "rid"
+          ]
+        },
+        {
+          "sentence_id": 150,
+          "page": 8,
+          "section": "experiments",
+          "quote": "In contrast, such a phenomenon of error propagation does not occur in our model.",
+          "score": 0.191,
+          "shared_numbers": [],
+          "shared_terms": [
+            "error",
+            "propag"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.262,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C4",
+      "sentence_id": 4,
+      "text": "Distinguished from the set-prediction NER framework, our method treats each entity as a sequence and is capable of recognizing discontinuous mentions.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 136,
+          "page": 7,
+          "section": "experiments",
+          "quote": "The experiment is conducted on the test sets of two discontinuous NER datasets and two nested NER datasets, where the overlaps between entities are common.",
+          "score": 0.186,
+          "shared_numbers": [],
+          "shared_terms": [
+            "discontinuou",
+            "entity",
+            "ner"
+          ]
+        },
+        {
+          "sentence_id": 108,
+          "page": 5,
+          "section": "experiments",
+          "quote": "Table 1 shows the overall results of SetGNER’s performance on discontinuous NER datasets.",
+          "score": 0.169,
+          "shared_numbers": [],
+          "shared_terms": [
+            "discontinuou",
+            "ner"
+          ]
+        },
+        {
+          "sentence_id": 43,
+          "page": 2,
+          "section": "other",
+          "quote": "We uniformly formulate the task of recognizing flat / nested / discontinuous entities as a pointer-based Entity Set Generation problem.",
+          "score": 0.169,
+          "shared_numbers": [],
+          "shared_terms": [
+            "discontinuou",
+            "entity",
+            "recogniz"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.186,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C5",
+      "sentence_id": 6,
+      "text": "To let the encoder of our model capture better rightto-left semantic structure, we also propose an auxiliary Inverse Generation Training task.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 85,
+          "page": 5,
+          "section": "method",
+          "quote": "Since the forward generation task is biased towards the left-to-right semantic structure, we propose to help our model learn better right-to-left semantic structure via inverse generation training.",
+          "score": 0.421,
+          "shared_numbers": [],
+          "shared_terms": [
+            "better",
+            "gener",
+            "inverse",
+            "model",
+            "propose",
+            "semantic",
+            "structure",
+            "task"
+          ]
+        },
+        {
+          "sentence_id": 153,
+          "page": 8,
+          "section": "experiments",
+          "quote": "We hypothesize that Inverse Generation Training is effective in teaching our encoder the right-toleft semantic structure.",
+          "score": 0.359,
+          "shared_numbers": [],
+          "shared_terms": [
+            "encoder",
+            "gener",
+            "inverse",
+            "semantic",
+            "structure",
+            "train"
+          ]
+        },
+        {
+          "sentence_id": 122,
+          "page": 6,
+          "section": "experiments",
+          "quote": "Besides, Inverse Generation Training also boosts the model’s performance on the two datasets.",
+          "score": 0.2,
+          "shared_numbers": [],
+          "shared_terms": [
+            "gener",
+            "inverse",
+            "model",
+            "train"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.421,
+      "flags": [],
+      "confidence": 0.86
+    },
+    {
+      "id": "C6",
+      "sentence_id": 7,
+      "text": "Extensive experiments show that our model (w/o.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 127,
+          "page": 7,
+          "section": "experiments",
+          "quote": "Model CADEC ACE04 P R F1 P R F1 Yan et al. (2021) [BART-Large] 70.08 71.21 70.64 87.27 86.41 86.84 Zhang et al. (2022) [T5-Base] 71.35 71.86 71.60 86.36 84.54 85.44 SetGNER [BART-Large] 74.57 71.78 73.15 87.61 86.69 87.15 w/o Word-level Representation 74.62 71.66 72.59 (-0.56) 87.21 86.60 86.91 (-0.24) w/o Adapted Position Embedding 68.27 66.07 67.18 (-5.97) 76.38 74.09 75.37 (-11.8) w/o Entity Part Classification 73.66 71.72 72.75 (-0.40) 87.18 86.53 86.94 (-0.21) w/o Occurrence Detection 74.70 63.36 69.09 (-4.06) 87.79 70.53 73.46 (-13.7) Table 4: Results of ablation study on CADEC and ACE04.",
+          "score": 0.328,
+          "shared_numbers": [],
+          "shared_terms": [
+            "model",
+            "o",
+            "w"
+          ]
+        },
+        {
+          "sentence_id": 143,
+          "page": 8,
+          "section": "experiments",
+          "quote": "and Error Propagation We conduct case study on the CADEC dataset to verify that SetGNER (w/o Inverse Generation Training) can overcome the Entity Order Confounder and the Error Propagation problem that seq2seq NER models suffer from.",
+          "score": 0.326,
+          "shared_numbers": [],
+          "shared_terms": [
+            "model",
+            "o",
+            "w"
+          ]
+        },
+        {
+          "sentence_id": 134,
+          "page": 7,
+          "section": "experiments",
+          "quote": "We conduct a series of experiments to analyze the advantage of our Entity Set Generation model over seq2seq NER models and the benefit of Inverse Generation Training.",
+          "score": 0.273,
+          "shared_numbers": [],
+          "shared_terms": [
+            "experiment",
+            "model"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.328,
+      "flags": [],
+      "confidence": 0.86
+    },
+    {
+      "id": "C7",
+      "sentence_id": 8,
+      "text": "Inverse Generation Training) outperforms stateof-the-art generative NER models by a large margin on two discontinuous NER datasets, two nested NER datasets and one flat NER dataset.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 90,
+          "page": 5,
+          "section": "experiments",
+          "quote": "We experiment on two discontinuous NER datasets CADEC and ShARe13, two nested NER datasets ACE04 and ACE05, and one flat NER dataset CoNLL03.",
+          "score": 0.366,
+          "shared_numbers": [],
+          "shared_terms": [
+            "dataset",
+            "discontinuou",
+            "flat",
+            "ner",
+            "nest",
+            "one",
+            "two"
+          ]
+        },
+        {
+          "sentence_id": 136,
+          "page": 7,
+          "section": "experiments",
+          "quote": "The experiment is conducted on the test sets of two discontinuous NER datasets and two nested NER datasets, where the overlaps between entities are common.",
+          "score": 0.295,
+          "shared_numbers": [],
+          "shared_terms": [
+            "dataset",
+            "discontinuou",
+            "ner",
+            "nest",
+            "two"
+          ]
+        },
+        {
+          "sentence_id": 122,
+          "page": 6,
+          "section": "experiments",
+          "quote": "Besides, Inverse Generation Training also boosts the model’s performance on the two datasets.",
+          "score": 0.278,
+          "shared_numbers": [],
+          "shared_terms": [
+            "dataset",
+            "gener",
+            "inverse",
+            "model",
+            "train",
+            "two"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.366,
+      "flags": [],
+      "confidence": 0.83
+    },
+    {
+      "id": "C8",
+      "sentence_id": 9,
+      "text": "Besides, the auxiliary Inverse Generation Training task is found to further improve the model’s performance on the five datasets.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 122,
+          "page": 6,
+          "section": "experiments",
+          "quote": "Besides, Inverse Generation Training also boosts the model’s performance on the two datasets.",
+          "score": 0.433,
+          "shared_numbers": [],
+          "shared_terms": [
+            "besid",
+            "dataset",
+            "gener",
+            "inverse",
+            "model",
+            "performance",
+            "s",
+            "train"
+          ]
+        },
+        {
+          "sentence_id": 125,
+          "page": 6,
+          "section": "experiments",
+          "quote": "When leveraging Inverse Generation Training, our model achieves SOTA performance on this NER benchmark.",
+          "score": 0.266,
+          "shared_numbers": [],
+          "shared_terms": [
+            "gener",
+            "inverse",
+            "model",
+            "performance",
+            "train"
+          ]
+        },
+        {
+          "sentence_id": 123,
+          "page": 6,
+          "section": "experiments",
+          "quote": "Table 3 shows the results of our model’s performance on the CoNLL03 dataset.",
+          "score": 0.246,
+          "shared_numbers": [],
+          "shared_terms": [
+            "dataset",
+            "model",
+            "performance",
+            "s"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.433,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C9",
+      "sentence_id": 39,
+      "text": "To sum up, our main contributions include: • We propose SetGNER, a novel Entity Set Generation framework for general NER scenes.",
+      "page": 2,
+      "section": "introduction",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 71,
+          "page": 4,
+          "section": "method",
+          "quote": "Figure 2: An overview of the proposed Entity Set Generation framework.",
+          "score": 0.177,
+          "shared_numbers": [],
+          "shared_terms": [
+            "entity",
+            "framework",
+            "gener",
+            "set"
+          ]
+        },
+        {
+          "sentence_id": 110,
+          "page": 5,
+          "section": "experiments",
+          "quote": "After introducing Inverse Generation Training into our framework, the F1 scores of SetGNER further increase by +0.39 and +0.28.",
+          "score": 0.174,
+          "shared_numbers": [],
+          "shared_terms": [
+            "framework",
+            "gener",
+            "setgner"
+          ]
+        },
+        {
+          "sentence_id": 134,
+          "page": 7,
+          "section": "experiments",
+          "quote": "We conduct a series of experiments to analyze the advantage of our Entity Set Generation model over seq2seq NER models and the benefit of Inverse Generation Training.",
+          "score": 0.172,
+          "shared_numbers": [],
+          "shared_terms": [
+            "entity",
+            "gener",
+            "ner",
+            "set"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.177,
+      "flags": [],
+      "confidence": 0.64
+    },
+    {
+      "id": "C10",
+      "sentence_id": 41,
+      "text": "• We also come up with a novel auxiliary learning task — Inverse Generation Training, to help the encoder of our model capture better right-to-left semantic structure.",
+      "page": 2,
+      "section": "introduction",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 85,
+          "page": 5,
+          "section": "method",
+          "quote": "Since the forward generation task is biased towards the left-to-right semantic structure, we propose to help our model learn better right-to-left semantic structure via inverse generation training.",
+          "score": 0.433,
+          "shared_numbers": [],
+          "shared_terms": [
+            "better",
+            "gener",
+            "help",
+            "inverse",
+            "learn",
+            "model",
+            "right-to-left",
+            "semantic"
+          ]
+        },
+        {
+          "sentence_id": 153,
+          "page": 8,
+          "section": "experiments",
+          "quote": "We hypothesize that Inverse Generation Training is effective in teaching our encoder the right-toleft semantic structure.",
+          "score": 0.304,
+          "shared_numbers": [],
+          "shared_terms": [
+            "encoder",
+            "gener",
+            "inverse",
+            "semantic",
+            "structure",
+            "train"
+          ]
+        },
+        {
+          "sentence_id": 122,
+          "page": 6,
+          "section": "experiments",
+          "quote": "Besides, Inverse Generation Training also boosts the model’s performance on the two datasets.",
+          "score": 0.177,
+          "shared_numbers": [],
+          "shared_terms": [
+            "gener",
+            "inverse",
+            "model",
+            "train"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.433,
+      "flags": [],
+      "confidence": 0.82
+    },
+    {
+      "id": "C11",
+      "sentence_id": 42,
+      "text": "• Experiment results show that our model outperforms SOTA seq2seq NER models by a large margin on two discontinuous NER datasets, two nested NER datasets and one flat NER dataset, while being 3 times faster than SOTA seq2seq NER models.",
+      "page": 2,
+      "section": "introduction",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "3"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 162,
+          "page": 8,
+          "section": "experiments",
+          "quote": "As shown in Table 7, SetGNER is about 3 times faster than the seq2seq NER model, thanks to the distributed nature of our design.",
+          "score": 0.653,
+          "shared_numbers": [
+            "3"
+          ],
+          "shared_terms": [
+            "2",
+            "3",
+            "faster",
+            "model",
+            "ner",
+            "seq",
+            "tim"
+          ]
+        },
+        {
+          "sentence_id": 187,
+          "page": 9,
+          "section": "limitations",
+          "quote": "Last but not least, although SetGNER is about 3 times faster than the SOTA seq2seq NER model (Yan et al., 2021), it consumes more memory.",
+          "score": 0.611,
+          "shared_numbers": [
+            "3"
+          ],
+          "shared_terms": [
+            "2",
+            "3",
+            "faster",
+            "model",
+            "ner",
+            "seq",
+            "sota",
+            "tim"
+          ]
+        },
+        {
+          "sentence_id": 97,
+          "page": 5,
+          "section": "experiments",
+          "quote": "We report the average performance on 3 random seeds.",
+          "score": 0.472,
+          "shared_numbers": [
+            "3"
+          ],
+          "shared_terms": [
+            "3"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.653,
+      "flags": [],
+      "confidence": 0.84
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 11,
+    "support": {
+      "strong": 1,
+      "moderate": 0,
+      "weak": 6,
+      "none": 4
+    }
+  },
+  "reproducibility": {
+    "score": 60.9,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 8,
+            "section": "experiments",
+            "quote": "Concretely, right-boundary accuracy (# correct boundaries / # correct left-boundaries) and right-boundary recall (# correct right-boundaries / # golden right-boundaries) are measured on four benchmark datasets.",
+            "sentence_id": 155
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "For CADEC and ShARe13, we follow the same data split used in Dai et al. (2020); Yan et al. (2021).",
+            "sentence_id": 92
+          },
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "For ACE04 and ACE05, we use the same data split as in Muis and Lu (2017); Yu et al. (2020).",
+            "sentence_id": 93
+          }
+        ],
+        "advice": "State exact split sizes/seeds and what was used for tuning."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "Zhang et al. (2022) analyze two kinds of incorrect bias in the seq2seq NER models, i.e. pre-context confounder (when generating a word of an entity, a model can be affected by pre-generated words that has no causal relation with the word to",
+            "sentence_id": 37
+          },
+          {
+            "page": 3,
+            "section": "method",
+            "quote": "The input sentence [w0, w1, ..., wN−1] is first tokenized into [⟨s⟩, t1, t2, ..., tN′ , ⟨/s⟩] using BPE (Sennrich et al., 2016) tokenizer, where N′ is the length of content tokens.",
+            "sentence_id": 55
+          },
+          {
+            "page": 3,
+            "section": "method",
+            "quote": "We denote the tokenized sentence as X.",
+            "sentence_id": 56
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "We use AdamW optimizer with different learning rates for encoder and decoder.",
+            "sentence_id": 100
+          },
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "Linear learning rate scheduling is employed.",
+            "sentence_id": 101
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "We report the average performance on 3 random seeds.",
+            "sentence_id": 97
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report standard deviation or confidence intervals, not single numbers."
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Back 'significant' claims with a named test and p-value or CI."
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "method",
+            "quote": "We then calculate the contextual representation of the tokenized sentence using pre-trained BART (Lewis et al., 2020) encoder: H = Encoder(X) (1) where H ∈ R|X|×d and d is the dimension of our model.",
+            "sentence_id": 57
+          },
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "We initialize model parameters from pre-trained BART-Large, which consists of 12 transformer blocks for encoder and 12 transformer blocks for decoder.",
+            "sentence_id": 98
+          },
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "We compare our model principally with SOTA generative NER models and the set prediction NER model.",
+            "sentence_id": 104
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 6,
+            "section": "experiments",
+            "quote": "We conduct ablation study on CADEC and ACE04 to verify the effectiveness of different components",
+            "sentence_id": 126
+          },
+          {
+            "page": 7,
+            "section": "experiments",
+            "quote": "Model CADEC ACE04 P R F1 P R F1 Yan et al. (2021) [BART-Large] 70.08 71.21 70.64 87.27 86.41 86.84 Zhang et al. (2022) [T5-Base] 71.35 71.86 71.60 86.36 84.54 85.44 SetGNER [BART-Large] 74.57 71.78 73.15 87.61 86.69 87.15 w/o Word-level Rep",
+            "sentence_id": 127
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "Strict evaluation metrics is applied, where an entity is confirmed correct only if its boundary and type label are both recognized correctly.",
+            "sentence_id": 95
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 8,
+            "section": "experiments",
+            "quote": "Using a Nvidia RTX 3090 GPU.",
+            "sentence_id": 159
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 9,
+            "section": "limitations",
+            "quote": "Since both the encoding module and decoding module of SetGNER work in the word-level, SetGNER requires the input sentence to be tokenized into words beforehand.",
+            "sentence_id": 180
+          },
+          {
+            "page": 9,
+            "section": "limitations",
+            "quote": "However, for many language, e.g.",
+            "sentence_id": 181
+          },
+          {
+            "page": 9,
+            "section": "limitations",
+            "quote": "Chinese and Japanese, how to conduct word segmentation and whether it is necessary to do so are still open questions.",
+            "sentence_id": 182
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 5.0,
+        "earned": 4.0,
+        "score": 80.0
+      },
+      "Method": {
+        "weight": 2.0,
+        "earned": 2.0,
+        "score": 100.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 2.0,
+        "score": 36.4
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 4.0,
+        "score": 100.0
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 1.0,
+        "score": 50.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Recently, joint recognition of flat, nested and discontinuous entities has received increasing attention."
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C3",
+      "quote": "Different from sequence-to-sequence NER methods, our method does not force the entities to be generated in a predefined order and can get rid of the problem of error propagation and inefficient decoding."
+    },
+    {
+      "id": "G4",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C4",
+      "quote": "Distinguished from the set-prediction NER framework, our method treats each entity as a sequence and is capable of recognizing discontinuous mentions."
+    },
+    {
+      "id": "G5",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C5",
+      "quote": "To let the encoder of our model capture better rightto-left semantic structure, we also propose an auxiliary Inverse Generation Training task."
+    },
+    {
+      "id": "G6",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C6",
+      "quote": "Extensive experiments show that our model (w/o."
+    },
+    {
+      "id": "G7",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C7",
+      "quote": "Inverse Generation Training) outperforms stateof-the-art generative NER models by a large margin on two discontinuous NER datasets, two nested NER datasets and one flat NER dataset."
+    },
+    {
+      "id": "G8",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C8",
+      "quote": "Besides, the auxiliary Inverse Generation Training task is found to further improve the model’s performance on the five datasets."
+    }
+  ],
+  "datasets": [
+    "CADEC",
+    "CoNLL03",
+    "NER"
+  ],
+  "metrics": [
+    "accuracy",
+    "F1",
+    "precision",
+    "recall"
+  ]
+}

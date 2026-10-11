@@ -1,0 +1,845 @@
+{
+  "version": "0.1.0",
+  "document": {
+    "doc_id": "e92c8834bac6",
+    "title": "Assessing the potential impact of transmission during prolonged viral shedding on the effect of lockdown relaxation on COVID-19",
+    "n_pages": 19,
+    "source_name": "pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf",
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 423
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "We then test the predictive power of this model for different durations and levels of prolonged infectiousness using the incidence data after the introduction of relaxation in Switzerland, and compare it with a model without the chronically infected population to represent the models conventionally used.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "We show that in case of a gradual easing on the lockdown measures, the predictions of the model including the chronically infected population vary considerably from those obtained under a model in which prolonged infectiousness is not taken into account.",
+        "page": 1,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "Although the existence of a chronically infected population still remains largely hypothetical, we believe that our results provide tentative evidence to consider a chronically infected population as an alternative modeling approach to better interpret the transmission dynamics of COVID-19.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 7
+        },
+        {
+          "text": "Considering that the duration of infectiousness is a critical parameter in dynamical models used for predictive purposes, it is important to consider the epidemiological plausibility of a a more heavy tailed generation time distribution than the reported distributions in the literature and investigate its impact on model outcomes.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 39
+        }
+      ],
+      "approach": [
+        {
+          "text": "Based on this, we develop a generalized Susceptible-Exposed-Infected-Resistant (SEIR) model including an additional compartment of chronically infected individuals who can stay infectious for a longer duration than the reported generation time, but with infectivity reduced to varying degrees.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 3
+        },
+        {
+          "text": "Using the incidence and fatality data from different regions of Italy and different states of the U.S., we first show that our model is also a plausible candidate for explaining the data observed prior to the easing of the lockdown measures (relaxation) for a variety of combinations of prolonged duration and level of infectiousness assumed for the chronically infected population.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 45
+        }
+      ],
+      "results": [
+        {
+          "text": "We show that in case of a gradual easing on the lockdown measures, the predictions of the model including the chronically infected population vary considerably from those obtained under a model in which prolonged infectiousness is not taken into account.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 6
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Second, even if the presence of a chronically infected population cannot be proven, its introduction to the model structure has a considerable impact on the relaxation outcomes.",
+          "page": 13,
+          "section": "discussion",
+          "sentence_id": 206
+        },
+        {
+          "text": "Assuming a relatively short generation time for a model that does not consider a prolonged viral shedding window results in more optimistic projections about epidemic control, as clearly demonstrated in Fig 3.",
+          "page": 13,
+          "section": "discussion",
+          "sentence_id": 211
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 2,
+      "text": "There is increasing evidence supporting a prolonged viral shedding window for COVID-19, but the transmissibility in this phase is unclear.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 14,
+          "page": 2,
+          "section": "other",
+          "quote": "Although there is increasing evidence supporting a prolonged viral shedding window for COVID-19, it is currently unclear to what extent prolonged transmission also occurs.",
+          "score": 0.603,
+          "shared_numbers": [],
+          "shared_terms": [
+            "19",
+            "covid",
+            "evidence",
+            "increas",
+            "prolong",
+            "shedd",
+            "support",
+            "there"
+          ]
+        },
+        {
+          "sentence_id": 229,
+          "page": 14,
+          "section": "discussion",
+          "quote": "Therefore, even if a prolonged viral shedding window exists for COVID-19, it would not be possible to quantify the precise level or the duration of prolonged infectiousness by using model fitting purely.",
+          "score": 0.295,
+          "shared_numbers": [],
+          "shared_terms": [
+            "19",
+            "covid",
+            "prolong",
+            "shedd",
+            "viral",
+            "window"
+          ]
+        },
+        {
+          "sentence_id": 213,
+          "page": 13,
+          "section": "discussion",
+          "quote": "We still lack a full understanding of the viral shedding window of COVID-19, and therefore might have a biased opinion on the number of infectious individuals in the community.",
+          "score": 0.267,
+          "shared_numbers": [],
+          "shared_terms": [
+            "19",
+            "covid",
+            "shedd",
+            "viral",
+            "window"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.603,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C2",
+      "sentence_id": 3,
+      "text": "Based on this, we develop a generalized Susceptible-Exposed-Infected-Resistant (SEIR) model including an additional compartment of chronically infected individuals who can stay infectious for a longer duration than the reported generation time, but with infectivity reduced to varying degrees.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "generalization",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 15,
+          "page": 2,
+          "section": "other",
+          "quote": "Here we investigate the plausibility of a population of chronically infected individuals who can stay infectious for a longer duration than the reported generation time, but with infectivity reduced to varying degrees.",
+          "score": 0.429,
+          "shared_numbers": [],
+          "shared_terms": [
+            "chronically",
+            "degre",
+            "dur",
+            "gener",
+            "individual",
+            "infect",
+            "infectiou",
+            "infectivity"
+          ]
+        },
+        {
+          "sentence_id": 55,
+          "page": 4,
+          "section": "other",
+          "quote": "Our purpose by including another step before recovery, i.e., the chronically infected compartment, is to model a scenario such that the primarily infected individuals transition to a state where they are less infectious but they may stay infectious and be diagnosed for a longer duration than the generation time, i.e. continue spreading the infection with reduced transmissibility.",
+          "score": 0.257,
+          "shared_numbers": [],
+          "shared_terms": [
+            "chronically",
+            "compartment",
+            "dur",
+            "gener",
+            "includ",
+            "individual",
+            "infect",
+            "infectiou"
+          ]
+        },
+        {
+          "sentence_id": 201,
+          "page": 13,
+          "section": "discussion",
+          "quote": "Our results show that including a chronically infected population, i.e., individuals that are less infectious but infectious for a longer duration, is not a possibility that can be easily rejected from an epidemiological perspective.",
+          "score": 0.214,
+          "shared_numbers": [],
+          "shared_terms": [
+            "chronically",
+            "dur",
+            "includ",
+            "individual",
+            "infect",
+            "infectiou",
+            "longer"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.429,
+      "flags": [],
+      "confidence": 1.0
+    },
+    {
+      "id": "C3",
+      "sentence_id": 4,
+      "text": "Using the incidence and fatality data from different countries, we first show that such an assumption also yields a plausible model in explaining the data observed prior to the easing of the lockdown measures (relaxation).",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 200,
+          "page": 13,
+          "section": "discussion",
+          "quote": "impact and predictive capabilities on the outcomes of a gradual easing on the lockdown measures (relaxation) given different assumptions on the infectiousness level and duration of a chronically infected population.",
+          "score": 0.247,
+          "shared_numbers": [],
+          "shared_terms": [
+            "assumption",
+            "different",
+            "eas",
+            "lockdown",
+            "measur",
+            "relax"
+          ]
+        },
+        {
+          "sentence_id": 116,
+          "page": 7,
+          "section": "other",
+          "quote": "During model fitting, we use all the data points until the introduction of the easing on the lockdown measures (relaxation).",
+          "score": 0.231,
+          "shared_numbers": [],
+          "shared_terms": [
+            "data",
+            "eas",
+            "lockdown",
+            "measur",
+            "model",
+            "relax"
+          ]
+        },
+        {
+          "sentence_id": 204,
+          "page": 13,
+          "section": "discussion",
+          "quote": "The data that has been observed until relaxation can be explained equally well by the model with prolonged viral shedding for a variety of different levels and durations of prolonged infectiousness as by the model without prolonged viral shedding.",
+          "score": 0.204,
+          "shared_numbers": [],
+          "shared_terms": [
+            "data",
+            "different",
+            "explain",
+            "model",
+            "observ",
+            "relax"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.247,
+      "flags": [],
+      "confidence": 0.86
+    },
+    {
+      "id": "C4",
+      "sentence_id": 6,
+      "text": "We show that in case of a gradual easing on the lockdown measures, the predictions of the model including the chronically infected population vary considerably from those obtained under a model in which prolonged infectiousness is not taken into account.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 207,
+          "page": 13,
+          "section": "discussion",
+          "quote": "In case of a gradual easing on the lockdown measures, the predictions of the model including the chronically infected population vary considerably from those obtained under a model in which prolonged infectiousness is not taken into account.",
+          "score": 0.7,
+          "shared_numbers": [],
+          "shared_terms": [
+            "account",
+            "case",
+            "chronically",
+            "considerably",
+            "eas",
+            "gradual",
+            "includ",
+            "infect"
+          ]
+        },
+        {
+          "sentence_id": 17,
+          "page": 2,
+          "section": "other",
+          "quote": "Moreover, in case of a gradual easing on the lockdown measures, the predictions of the model including the chronically infected population vary considerably from the predictions of the conventional epidemiological models.",
+          "score": 0.495,
+          "shared_numbers": [],
+          "shared_terms": [
+            "case",
+            "chronically",
+            "considerably",
+            "eas",
+            "gradual",
+            "includ",
+            "infect",
+            "lockdown"
+          ]
+        },
+        {
+          "sentence_id": 200,
+          "page": 13,
+          "section": "discussion",
+          "quote": "impact and predictive capabilities on the outcomes of a gradual easing on the lockdown measures (relaxation) given different assumptions on the infectiousness level and duration of a chronically infected population.",
+          "score": 0.295,
+          "shared_numbers": [],
+          "shared_terms": [
+            "chronically",
+            "eas",
+            "gradual",
+            "infect",
+            "infectiousnes",
+            "lockdown",
+            "measur",
+            "popul"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.7,
+      "flags": [],
+      "confidence": 0.86
+    },
+    {
+      "id": "C5",
+      "sentence_id": 7,
+      "text": "Although the existence of a chronically infected population still remains largely hypothetical, we believe that our results provide tentative evidence to consider a chronically infected population as an alternative modeling approach to better interpret the transmission dynamics of COVID-19.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 18,
+          "page": 2,
+          "section": "other",
+          "quote": "Although it is not possible to either prove or disprove the existence of a hypothetical population purely by modeling, our results provide tentative evidence to consider a chronically infected population as an alternative modeling approach in assessing the transmission dynamics of COVID-19.",
+          "score": 0.426,
+          "shared_numbers": [],
+          "shared_terms": [
+            "19",
+            "alternative",
+            "although",
+            "approach",
+            "chronically",
+            "consider",
+            "covid",
+            "dynamic"
+          ]
+        },
+        {
+          "sentence_id": 239,
+          "page": 14,
+          "section": "discussion",
+          "quote": "Our results only provide tentative evidence to consider a chronically infected population as an alternative modeling approach in addressing the knowledge gap on the transmission dynamics of COVID-19.",
+          "score": 0.395,
+          "shared_numbers": [],
+          "shared_terms": [
+            "19",
+            "alternative",
+            "approach",
+            "chronically",
+            "consider",
+            "covid",
+            "dynamic",
+            "evidence"
+          ]
+        },
+        {
+          "sentence_id": 225,
+          "page": 14,
+          "section": "discussion",
+          "quote": "There are still several open questions regarding the transmission dynamics of COVID-19, meaning that there are many other alternatives of modification a modeler could consider depending on the research question in hand.",
+          "score": 0.191,
+          "shared_numbers": [],
+          "shared_terms": [
+            "19",
+            "consider",
+            "covid",
+            "dynamic",
+            "still",
+            "transmission"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.426,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C6",
+      "sentence_id": 195,
+      "text": "Predictions for the model with the best predictive power (rc = 95%), for the model with rc = 100%, and the model without the Ic compartment (model w/ o Ic) are highlighted in blue, red, and pink, respectively.",
+      "page": 12,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "95",
+        "100"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 183,
+          "page": 11,
+          "section": "other",
+          "quote": "Points in the gray areas represent the models that are providing a better fit more frequently than f) the model without the Ic compartment (model w/o Ic) and g) the model with rc = 100%. b) Prediction results of the first 5 models (rc = {93%, 94%, 95%, 96%, 97%}) with the lowest RMSE value (best predictive power), model with",
+          "score": 0.667,
+          "shared_numbers": [
+            "100",
+            "95"
+          ],
+          "shared_terms": [
+            "100",
+            "95",
+            "best",
+            "compartment",
+            "ic",
+            "model",
+            "o",
+            "power"
+          ]
+        },
+        {
+          "sentence_id": 162,
+          "page": 9,
+          "section": "other",
+          "quote": "For 60 days after the last data point observed, the model with the best predictive power (model with rc = 95%) predicts a median of 1439 daily confirmed cases, whereas model with rc = 100% predicts a median of 126, and model without the Ic compartment (model w/o Ic) predicts a median of 190 daily confirmed cases (Fig 3b, T = 60), indicating a discrepancy by one order of magnitude.",
+          "score": 0.605,
+          "shared_numbers": [
+            "100",
+            "95"
+          ],
+          "shared_terms": [
+            "100",
+            "95",
+            "best",
+            "compartment",
+            "ic",
+            "model",
+            "o",
+            "power"
+          ]
+        },
+        {
+          "sentence_id": 170,
+          "page": 10,
+          "section": "other",
+          "quote": "Fitting results for rc = 100% are drawn in red, and the fitting results for the model without the Ic compartment (model w/o Ic) are drawn in pink.",
+          "score": 0.589,
+          "shared_numbers": [
+            "100"
+          ],
+          "shared_terms": [
+            "100",
+            "compartment",
+            "ic",
+            "model",
+            "o",
+            "pink",
+            "rc",
+            "red"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.667,
+      "flags": [],
+      "confidence": 0.62
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 6,
+    "support": {
+      "strong": 1,
+      "moderate": 2,
+      "weak": 2,
+      "none": 1
+    }
+  },
+  "reproducibility": {
+    "score": 65.8,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "front",
+            "quote": "Data Availability Statement: All relevant data are within the manuscript, its Supporting Information files and at https://github.com/burcutepekule/ covid_prolonged_shedding.",
+            "sentence_id": 11
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 8,
+            "section": "other",
+            "quote": "Only Swiss data is used to test the predictive power of different models because it is the only country to our knowledge where both the estimates on the effective reproductive number and the data on the hospitalized and the ICU patients are",
+            "sentence_id": 145
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 7,
+            "section": "other",
+            "quote": "On the other hand, they do not incorporate the variance on the model estimates emerging from the probabilistic nature of the fitting procedure.",
+            "sentence_id": 119
+          },
+          {
+            "page": 7,
+            "section": "other",
+            "quote": "To investigate how often one model performs better than another, we bootstrap estimates from both models within their 95% confidence intervals, and calculate the probability of one model having a greater error value than another model.",
+            "sentence_id": 120
+          },
+          {
+            "page": 8,
+            "section": "other",
+            "quote": "Because the uncertainty on the parameter estimates will propagate to the future predictions, prediction results will have wider confidence intervals than the fitting results.",
+            "sentence_id": 142
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 7,
+            "section": "other",
+            "quote": "To investigate how often one model performs better than another, we bootstrap estimates from both models within their 95% confidence intervals, and calculate the probability of one model having a greater error value than another model.",
+            "sentence_id": 120
+          },
+          {
+            "page": 7,
+            "section": "other",
+            "quote": "Bootstrapping is performed via randomly subsampling simulated time series outputs with replacement for a given model.",
+            "sentence_id": 121
+          },
+          {
+            "page": 7,
+            "section": "other",
+            "quote": "We calculate the probability of one model having a greater CRMSE value than another model by comparing the CRMSE values of each bootstrapped sample for a given pair of models.",
+            "sentence_id": 124
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "We then test the predictive power of this model for different durations and levels of prolonged infectiousness using the incidence data after the introduction of relaxation in Switzerland, and compare it with a model without the chronically",
+            "sentence_id": 5
+          },
+          {
+            "page": 6,
+            "section": "other",
+            "quote": "Therefore, the first model without the chronically infected population is included in the comparison to represent the models which are conventionally used.",
+            "sentence_id": 105
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "In additon to this uncertainty, several studies estimating the generation time suffer from short follow-up times, selection bias, and recall bias, which might miss the individual cases with prolonged shedding durations.",
+            "sentence_id": 38
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "front",
+            "quote": "PLoS Comput Biol 17(1): e1008609. https://doi.org/10.1371/ journal.pcbi.1008609 Editor: Alex Perkins, University of Notre Dame, UNITED STATES Received: June 15, 2020 Accepted: December 7, 2020 Published: January 29, 2021 Copyright: © 2021 T",
+            "sentence_id": 10
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 13,
+            "section": "discussion",
+            "quote": "Using simplified compartmental models such as the one in this study has certain limitations.",
+            "sentence_id": 215
+          },
+          {
+            "page": 14,
+            "section": "discussion",
+            "quote": "One methodological limitation of pure model fitting is the parameter identification problem, especially in the early stages of an epidemic [35].",
+            "sentence_id": 227
+          },
+          {
+            "page": 14,
+            "section": "discussion",
+            "quote": "Another potential limitation is the dependency of the goodness of fit of a given model on the quantification of the impact of relaxation, which inevitably affects the model selection procedure.",
+            "sentence_id": 231
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 2.0,
+        "score": 66.7
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 3.5,
+        "score": 63.6
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.5,
+        "score": 100.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C2",
+      "quote": "Based on this, we develop a generalized Susceptible-Exposed-Infected-Resistant (SEIR) model including an additional compartment of chronically infected individuals who can stay infectious for a longer duration than th..."
+    },
+    {
+      "id": "G2",
+      "kind": "generalization_narrow_evidence",
+      "severity": "medium",
+      "message": "Generalisation/robustness claim, but only 0 evaluation dataset(s) detected (none named).",
+      "page": 1,
+      "claim_id": "C2",
+      "quote": "Based on this, we develop a generalized Susceptible-Exposed-Infected-Resistant (SEIR) model including an additional compartment of chronically infected individuals who can stay infectious for a longer duration than th..."
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C3",
+      "quote": "Using the incidence and fatality data from different countries, we first show that such an assumption also yields a plausible model in explaining the data observed prior to the easing of the lockdown measures (relaxat..."
+    },
+    {
+      "id": "G4",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C5",
+      "quote": "Although the existence of a chronically infected population still remains largely hypothetical, we believe that our results provide tentative evidence to consider a chronically infected population as an alternative mo..."
+    }
+  ],
+  "datasets": [],
+  "metrics": []
+}

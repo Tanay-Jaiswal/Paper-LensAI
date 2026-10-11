@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PaperLens AI</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>PaperLens <span>AI</span></h1>
+  <p>Research evidence &amp; reproducibility auditor</p>
+</header>
+<main>
+  <section id="intake" class="card">
+    <div class="row">
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept="application/pdf" hidden>
+        <strong>Drop a paper PDF here</strong> or click to choose
+      </label>
+      <div class="side">
+        <button id="demo">Load demo papers</button>
+        <div id="status" role="status"></div>
+      </div>
+    </div>
+    <div id="recent"></div>
+  </section>
+
+  <section id="workspace" hidden>
+    <div class="card head">
+      <div>
+        <h2 id="title"></h2>
+        <div id="meta" class="muted"></div>
+      </div>
+      <div class="actions">
+        <a id="dl-md" class="btn" href="#">Markdown</a>
+        <a id="dl-json" class="btn" href="#">JSON</a>
+      </div>
+    </div>
+    <div id="warnings"></div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="summary" class="on">Summary</button>
+      <button data-tab="ledger">Evidence Ledger</button>
+      <button data-tab="repro">Reproducibility</button>
+      <button data-tab="gaps">Evidence gaps</button>
+      <button data-tab="compare">Compare</button>
+    </nav>
+    <div id="tab-summary" class="tab card"></div>
+    <div id="tab-ledger" class="tab" hidden>
+      <div class="split">
+        <div class="card" id="ledger"></div>
+        <div class="card" id="viewer"><p class="muted">Select a claim to see its source page with the claim and its evidence highlighted.</p></div>
+      </div>
+    </div>
+    <div id="tab-repro" class="tab card" hidden></div>
+    <div id="tab-gaps" class="tab card" hidden></div>
+    <div id="tab-compare" class="tab card" hidden></div>
+  </section>
+</main>
+<footer>Scores reflect what a paper states and cites; they are heuristics for a human reviewer, not verdicts.</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

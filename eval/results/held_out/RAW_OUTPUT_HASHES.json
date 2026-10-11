@@ -1,0 +1,15 @@
+{
+  "run_utc": "2026-10-11T19:48:47Z",
+  "files": {
+    "analysis/acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.json": "6a3c8c2b5be96c624a3e8f6a2473633068a15d2093be66e78a1106e7bcb6f1c6",
+    "analysis/acl_2023.acl-long.100_white-box-multi-objective-adversarial-attack.json": "7b873d4170b24ab13673e282305109dfa4a312f86b4e64404d05c02b47f318fa",
+    "analysis/arxiv_2303.00141v2_containing-a-spread-through-sequential-learning.json": "4d2d5bd56c94ab536365e77dff8f8822adbdb0b77926310520822f8c947969be",
+    "analysis/arxiv_2303.00194v1_the-ionization-and-dynamics-of-the.json": "5c030e1f12ac4001733e22da7e391e43cc784c206c362b115734142fb8d6b13b",
+    "analysis/copernicus_acp-21-8357-2021_isotopic-constraints-on-atmospheric-sulfate-formation.json": "e0b098c5ea751a87196c5c26731dab433958ddd3bf8c08257addb7859d0ce99e",
+    "analysis/pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.json": "365752692b8dcaa387db687fc3cc4f50a5eb922aa0ed6a4125b4dff88fdbae11",
+    "analysis/pmc_PMC7875355_assessing-the-potential-impact-of-transmission.json": "64f16d363f6d30c2ccc1ff0f272c98fd7e7c595af5534ffa532afacce6bdc8fd",
+    "analysis/pmc_PMC7886193_kinetochore-independent-mechanisms-of-sister-chromosome.json": "8ac9a366927401ec17cbc46ec6d1d3504b6b245c6de506f32377a084dadc0131",
+    "real_papers_audit.csv": "e83cc33cb8d9fe4d9c8a1dd116118b4ccd2a1c121cdf71f9f7800f5b2114e41d",
+    "real_papers_summary.json": "c766a84422c0966683ff29d5187cea92a457bec27a7291bb89ec89431f9732f0"
+  }
+}
