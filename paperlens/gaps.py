@@ -39,7 +39,9 @@ def detect_gaps(doc: Document, claims: list[Claim], rubric: dict) -> list[Gap]:
         if c.claim_type in ("contribution",) and not c.numbers:
             continue
         # 1. unsupported quantitative / comparative claims
-        if c.claim_type != "contribution" and c.support in ("none", "weak"):
+        if c.evidence_status == "no_searchable_text":
+            pass  # the document could not be searched: a parsing problem, not a gap in the paper
+        elif c.claim_type != "contribution" and c.support in ("none", "weak"):
             quant = c.claim_type in ("result", "comparison")
             add("unsupported_claim", ("high" if c.support == "none" else "medium") if quant else "medium",
                 "No strong supporting passage found in the paper body for this claim"

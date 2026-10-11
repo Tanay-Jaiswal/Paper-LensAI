@@ -24,7 +24,7 @@ def to_markdown(a: Analysis) -> str:
             "| ID | Claim | Page | Type | Support | Best evidence |", "|---|---|---|---|---|---|"]
     for c in a.claims:
         ev = c.evidence[0] if c.evidence else None
-        evs = f"p.{ev.page}: {ev.quote[:90]}…" if ev and c.support != "none" else "—"
+        evs = f"p.{ev.page}: {ev.quote[:90]}…" if ev else (c.evidence_note or "No supporting evidence found")
         out.append(f"| {c.id} | {c.text} | {c.page} | {c.claim_type} | {BADGE[c.support]} | {evs} |".replace("\n", " "))
     out += ["", f"## Reproducibility: {a.rubric['score']}/100", "", f"_{a.rubric['formula']}_", "",
             "| Item | Status | Weight | Evidence |", "|---|---|---|---|"]

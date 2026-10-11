@@ -5,7 +5,7 @@ PyMuPDF). None of it is text from a real paper; the real PDFs are not needed to 
 """
 import pymupdf
 
-from paperlens.claims import _claim_score, _eligible_evidence, extract_claims
+from paperlens.claims import _claim_score, extract_claims, link_evidence
 from paperlens.ingest import (_build, _clean, _is_numbered_heading, _line_text, _margin_lines, _next_section,
                               _title, canonical_section)
 from paperlens.models import Claim, Document, Sentence
@@ -158,7 +158,9 @@ def test_meta_sentences_and_fragments_are_not_evidence():
              Sentence(3, "Table row: 10 µ", 5, "results", kind="table"),
              Sentence(4, "The custom-named section also reports 91.2% accuracy overall.", 6, "other")]
     claim = Claim("C1", 0, sents[0].text, 1, "abstract", "result", False, ["91.2"])
-    assert [s.id for s in _eligible_evidence(Document("d", "t", 6, sents), claim)] == [1, 4]
+    # since 0.2.0-dev meta sentences and fragments are rejected by the suitability filter, not by the candidate pool
+    link_evidence(Document("d", "t", 6, sents), [claim])
+    assert sorted(e.sentence_id for e in claim.evidence) == [1, 4]
 
 
 def test_margin_sidebar_detected_but_text_column_is_not():

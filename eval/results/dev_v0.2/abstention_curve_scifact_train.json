@@ -1,0 +1,127 @@
+{
+  "dataset": "SciFact train",
+  "note": "top passage vs expert rationale sentences; see module docstring",
+  "curve": [
+    {
+      "min_lexical": 0.0,
+      "min_lexical_with_quantity": 0.0,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 919,
+      "correct": 296,
+      "coverage": 1.0,
+      "precision": 0.322,
+      "recall": 0.525
+    },
+    {
+      "min_lexical": 0.1,
+      "min_lexical_with_quantity": 0.1,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 801,
+      "correct": 293,
+      "coverage": 0.872,
+      "precision": 0.366,
+      "recall": 0.52
+    },
+    {
+      "min_lexical": 0.15,
+      "min_lexical_with_quantity": 0.12,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 719,
+      "correct": 275,
+      "coverage": 0.782,
+      "precision": 0.382,
+      "recall": 0.488
+    },
+    {
+      "min_lexical": 0.2,
+      "min_lexical_with_quantity": 0.12,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 600,
+      "correct": 252,
+      "coverage": 0.653,
+      "precision": 0.42,
+      "recall": 0.447
+    },
+    {
+      "min_lexical": 0.25,
+      "min_lexical_with_quantity": 0.12,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 486,
+      "correct": 229,
+      "coverage": 0.529,
+      "precision": 0.471,
+      "recall": 0.406
+    },
+    {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 395,
+      "correct": 198,
+      "coverage": 0.43,
+      "precision": 0.501,
+      "recall": 0.351
+    },
+    {
+      "min_lexical": 0.35,
+      "min_lexical_with_quantity": 0.12,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 306,
+      "correct": 166,
+      "coverage": 0.333,
+      "precision": 0.542,
+      "recall": 0.294
+    },
+    {
+      "min_lexical": 0.4,
+      "min_lexical_with_quantity": 0.12,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 242,
+      "correct": 139,
+      "coverage": 0.263,
+      "precision": 0.574,
+      "recall": 0.246
+    },
+    {
+      "min_lexical": 0.5,
+      "min_lexical_with_quantity": 0.12,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 157,
+      "correct": 96,
+      "coverage": 0.171,
+      "precision": 0.611,
+      "recall": 0.17
+    },
+    {
+      "min_lexical": 0.6,
+      "min_lexical_with_quantity": 0.12,
+      "pairs": 919,
+      "pairs_with_rationale": 564,
+      "returned": 105,
+      "correct": 66,
+      "coverage": 0.114,
+      "precision": 0.629,
+      "recall": 0.117
+    }
+  ],
+  "at_module_constants": {
+    "min_lexical": 0.3,
+    "min_lexical_with_quantity": 0.12,
+    "pairs": 919,
+    "pairs_with_rationale": 564,
+    "returned": 395,
+    "correct": 198,
+    "coverage": 0.43,
+    "precision": 0.501,
+    "recall": 0.351
+  }
+}

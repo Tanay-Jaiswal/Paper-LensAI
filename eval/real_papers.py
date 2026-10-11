@@ -84,6 +84,8 @@ def run(folder: str, out_dir: str):
             "n_claims": len(a.claims),
             "claim_sections": dict(Counter(c.section for c in a.claims)),
             "support": dict(Counter(c.support for c in a.claims)),
+            "evidence_status": dict(Counter(getattr(c, "evidence_status", "") or "n/a" for c in a.claims)),
+            "rejected_candidates": dict(sum((Counter(getattr(c, "rejected", {})) for c in a.claims), Counter())),
             "claim_text_on_cited_page": dict(Counter(claim_chk)),
             "evidence_quote_on_cited_page": dict(Counter(x for x in ev_chk if x)),
             "reproducibility_score": a.rubric.get("score"),
@@ -95,6 +97,7 @@ def run(folder: str, out_dir: str):
             ev = c.evidence[0] if c.evidence else None
             rows.append({"paper": pdf.name, "claim_id": c.id, "claim": c.text, "claim_page": c.page, "claim_section": c.section,
                          "type": c.claim_type, "support": c.support,
+                         "evidence_status": getattr(c, "evidence_status", ""),
                          "evidence_page": ev.page if ev else "", "evidence_section": ev.section if ev else "",
                          "evidence": ev.quote if ev else "",
                          "auto_claim_on_cited_page": cc, "auto_evidence_on_cited_page": ec,

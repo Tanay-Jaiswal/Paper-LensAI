@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from . import __version__
-from .claims import build_ledger
+from .claims import THRESHOLDS, build_ledger
 from .gaps import detect_gaps, detected_datasets
 from .ingest import parse_pdf
 from .models import Claim, Document, Gap
@@ -31,7 +31,10 @@ class Analysis:
             "document": self.doc.to_dict(),
             "summary": self.summary,
             "ledger": [c.to_dict() for c in self.claims],
-            "ledger_stats": {"n_claims": len(self.claims), "support": support},
+            "ledger_stats": {"n_claims": len(self.claims), "support": support,
+                             "evidence_status": {k: sum(1 for c in self.claims if c.evidence_status == k)
+                                                 for k in ("found", "no_supporting_evidence", "no_searchable_text")},
+                             "thresholds": THRESHOLDS},
             "reproducibility": self.rubric,
             "gaps": [g.to_dict() for g in self.gaps],
             "datasets": self.datasets,

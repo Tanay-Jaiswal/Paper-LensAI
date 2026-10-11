@@ -47,6 +47,7 @@ class EvidenceLink:
     score: float
     shared_numbers: list[str] = field(default_factory=list)
     shared_terms: list[str] = field(default_factory=list)
+    lexical: float = 0.0       # normalised BM25 of the passage for the claim (the abstention test uses this)
 
 
 @dataclass
@@ -64,6 +65,9 @@ class Claim:
     support_score: float = 0.0
     flags: list[str] = field(default_factory=list)
     confidence: float = 0.0    # confidence that this sentence is a genuine claim
+    evidence_status: str = ""  # found | no_supporting_evidence | no_searchable_text (see claims.STATUS_TEXT)
+    evidence_note: str = ""    # text shown when no passage is returned
+    rejected: dict[str, int] = field(default_factory=dict)   # why top-ranked candidates were not returned
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

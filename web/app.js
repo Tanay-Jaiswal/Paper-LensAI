@@ -74,7 +74,7 @@ function openClaim(id) {
   document.querySelectorAll("tr.claim").forEach((t) => t.classList.toggle("sel", t.dataset.id === id));
   const ev = c.evidence.filter((e) => c.support !== "none" || e.score > 0.15);
   let h = `<h3>${esc(c.id)} <span class="pill ${c.support}">${c.support}</span></h3><blockquote>${esc(c.text)}<div class="cite">p.${c.page}, ${esc(c.section)}</div></blockquote>`;
-  if (!ev.length) h += "<p><strong>No supporting passage found in the paper body.</strong></p>";
+  if (!ev.length) h += `<p><strong>${esc(c.evidence_note || "No supporting evidence found")}.</strong></p>`;
   ev.forEach((e, i) => {
     h += `<p><strong>Evidence ${i + 1}</strong> <span class="cite">p.${e.page}, ${esc(e.section)}, score ${e.score}` +
       (e.shared_numbers.length ? `, shared numbers: ${esc(e.shared_numbers.join(", "))}` : "") + `</span></p><blockquote>${esc(e.quote)}</blockquote>`;
