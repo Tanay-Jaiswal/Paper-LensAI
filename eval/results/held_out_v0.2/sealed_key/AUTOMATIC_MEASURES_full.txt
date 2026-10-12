@@ -1,0 +1,20 @@
+papers run: 11; crashed: 0; extracted claims: 33
+AUTOMATIC measures over all extracted claims (how often PaperLens answers, not whether it is right)
+  coverage (claims with a returned passage):       0.697 (23/33; 95% CI 0.53-0.83)
+  abstention rate (no supporting evidence found):  0.303 (10/33; 95% CI 0.17-0.47)
+  unsearchable rate (no body text extracted):      0.000 (0/33; 95% CI 0.00-0.10)
+  support strong / moderate / weak / none:         6 / 4 / 13 / 10
+  claim text found on its cited page:              {'y': 33}
+  top evidence quote found on its cited page:      {'y': 23}
+per paper: pages, claims, with passage, abstained, strong/moderate/weak/none, warnings
+  acl_2023.emnlp-main.250_atformer-a-learned-performan  15   2   0   2  0/0/0/2  0 warning(s)
+  acl_2024.acl-long.150_itd-large-language-models-can-  13   5   4   1  1/0/3/1  0 warning(s)
+  acl_2024.naacl-long.50_neurocache-efficient-vector-r  14   2   1   1  0/1/0/1  0 warning(s)
+  arxiv_2403.00204v1_la-4-co-4-x-x.pdf                  25   5   5   0  0/1/4/0  0 warning(s)
+  arxiv_2403.00209v2_chartreformer-natural-language-dr  18   2   0   2  0/0/0/2  1 warning(s)
+  arxiv_2403.00458v2_electric-vehicle-pricing-and-batt  55   0   0   0  0/0/0/0  1 warning(s)
+  arxiv_2403.00947v1_history-dependence-shapes-causal-  24   2   1   1  0/0/1/1  0 warning(s)
+  doi_10.5194-gmd-16-3029-2023_technical-descriptions-  53   5   2   3  0/0/2/3  2 warning(s)
+  doi_10.7554-elife.76927_the-rna-helicase-ddx39b-acti  25   1   1   0  0/0/1/0  1 warning(s)
+  pmc_PMC9810159_effectiveness-of-a-peer-educator-coor  16   7   7   0  4/2/1/0  0 warning(s)
+  pmc_PMC9815661_a-dsrna-binding-mutant-reveals-only.p  28   2   2   0  1/0/1/0  0 warning(s)

@@ -469,3 +469,26 @@ Nothing below has been run. It is the procedure to follow once the owner decides
 What exists today, by kind: synthetic tests (pass); human-labelled public data, SciFact (ranking no better than BM25;
 abstention curve in 6.3); automatic counts on 16 development papers; AI-assisted labels on development papers (6.5) and on
 the old held-out sample for 0.1.0 (section 5). Human-verified results for PaperLens output: none.
+
+## 8. Second held-out evaluation: 0.2.0-dev on 11 unseen papers (automatic measures only; precision not yet computed)
+
+Carried out on 2026-10-12 under a protocol written and frozen before any paper was searched for
+(`eval/results/held_out_v0.2/PROTOCOL.md`; freeze `FREEZE_MANIFEST.json`, tag `v0.2.0-dev-frozen-heldout2`; threshold 0.30).
+The first held-out evaluation (section 4) and its audits (section 5) were not touched or re-used. Full account, failures
+and reproduction commands: `eval/results/held_out_v0.2/RESULTS.md`.
+
+- 13 candidates planned by fixed first-match rules, 11 obtained (4 arXiv, 3 ACL Anthology, 2 PLOS, 1 eLife, 1 Copernicus;
+  286 pages; all CC BY). Two downloads failed and were not replaced.
+- One run, raw outputs hashed and committed before anything was read. 0 crashes.
+- **33 claims extracted**, far fewer than expected (the plan was to sample 60); one 55-page paper yielded none.
+- Automatic: a passage was returned for 23 of 33 claims (0.697; 95% CI 0.53-0.83); 10 abstentions (0.303; 0.17-0.47); no
+  "search not possible". All 33 claim texts and all 23 evidence quotes were found on their cited pages.
+- A blinded sheet with all 33 claims awaits the owner's labels (`held_out_audit.csv`). **No precision figure exists.** No
+  label was produced by the tool or by an AI assistant.
+
+For comparison only, and not paired: on the first held-out set version 0.1.0 returned a passage for 78 of 80 claims. The
+two runs are on different papers.
+
+Limits: evidence precision will rest on at most 23 passages (interval about plus or minus 0.2); 11 papers from five kinds
+of source; abstention correctness and claim recall are not measured. Problems seen in the run are listed, unfixed and
+uninvestigated, in `eval/results/held_out_v0.2/KNOWN_BUGS.md`.

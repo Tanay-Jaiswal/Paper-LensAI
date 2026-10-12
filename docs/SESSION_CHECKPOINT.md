@@ -39,7 +39,19 @@ Written by the session working in the repository, after running the commands in 
 - The web UI and the "not assessed" handling on a real scanned paper.
 - Each fix on its own (no ablation).
 
-## Next steps, in order
+## Second held-out evaluation (added 2026-10-12, later the same day)
+- Done under a frozen protocol: `eval/results/held_out_v0.2/` (PROTOCOL.md, FREEZE_MANIFEST.json, SELECTION_LOG.json,
+  raw/, RAW_OUTPUT_HASHES.json, held_out_audit.csv, sealed_key/, RESULTS.md, KNOWN_BUGS.md); papers in
+  `data/held_out_v0.2_papers/`; tag `v0.2.0-dev-frozen-heldout2`. Threshold kept at 0.30 by the owner's decision.
+- PASS: freeze verified before and after the run; 11 of 13 planned papers obtained; 0 crashes; raw outputs match their
+  hashes; first held-out set and both AI audit folders unchanged.
+- Automatic only: 33 claims, a passage for 23 (0.697), 10 abstentions.
+- NOT VERIFIED: every precision figure. The sheet (33 rows) is blank and waits for the owner's labels.
+- These 11 papers are now used: do not tune on them. `sealed_key/` and `raw/` stay closed until labelling is finished.
+- Next action: the owner labels `eval/results/held_out_v0.2/held_out_audit.csv` following AUDIT_INSTRUCTIONS.md, then
+  `python -m eval.held_out_v2 score eval/results/held_out_v0.2`.
+
+## Next steps, in order (written before the second held-out evaluation)
 1. Owner: keep `MIN_LEXICAL` at 0.30 or choose another value from the SciFact train curve alone (docs/EVALUATION.md 6.3).
 2. Owner: label the existing held-out sheet by hand (never filled in by the assistant).
 3. Optional: a fresh blind labeller for the development pairs, including the one unlabelled pair.
@@ -47,6 +59,8 @@ Written by the session working in the repository, after running the commands in 
    unseen set). Do not download anything before that.
 
 ## Must remain untouched
+`eval/results/held_out_v0.2/` and `data/held_out_v0.2_papers/` (the second held-out evaluation; only the three label
+columns of its sheet are to be filled, by the owner), tag `v0.2.0-dev-frozen-heldout2`, and:
 `eval/results/held_out/` (including the key, sample info and `raw/`), `eval/results/held_out_ai_audit/`,
 `eval/results/held_out_ai_audit_2/`, `data/held_out_papers`, the tag `v0.1.0-frozen-heldout`, the 0.1.0 result files in
 `eval/results/`, and sections 1 to 5 of docs/EVALUATION.md.
