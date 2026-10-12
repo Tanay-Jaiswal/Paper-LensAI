@@ -492,3 +492,27 @@ two runs are on different papers.
 Limits: evidence precision will rest on at most 23 passages (interval about plus or minus 0.2); 11 papers from five kinds
 of source; abstention correctness and claim recall are not measured. Problems seen in the run are listed, unfixed and
 uninvestigated, in `eval/results/held_out_v0.2/KNOWN_BUGS.md`.
+
+### 8.1 AI-assisted audit of the second held-out sheet (not human ground truth)
+
+At the owner's request the 33 rows were labelled twice by AI on 2026-10-12: by the assistant that ran the evaluation, and
+independently by a fresh-context labeller that saw only the instructions, the blank sheet and the PDFs. Files, rationales,
+disagreements and limitations: `eval/results/held_out_v0.2_ai_audit/AI_AUDIT_README.md`. The blank sheet, the sealed key and
+the raw outputs were not modified, and the key was not read; the official scorer was not run, so there is no breakdown by
+support level. **The human audit defined by the protocol is still open.**
+
+| Measure (AI-assisted, 95% CI) | Pass 1 | Pass 2 | Conservative consensus |
+|---|---|---|---|
+| Claim precision | 0.818 (27/33) | 0.788 (26/33) | 0.788 (26/33; 0.62-0.89) |
+| Coverage on real claims | 0.741 (20/27) | 0.731 (19/26) | 0.731 (19/26; 0.54-0.86) |
+| Evidence precision, strict | 0.250 (5/20) | 0.316 (6/19) | 0.211 (4/19; 0.09-0.43) |
+| Evidence precision, lenient | 0.900 (18/20) | 0.895 (17/19) | 0.842 (16/19; 0.62-0.94) |
+| Real claims with a fully supporting passage | 0.185 (5/27) | 0.231 (6/26) | 0.154 (4/26; 0.06-0.34) |
+
+The passes agree on `is_real_claim` in 32 of 33 rows (kappa 0.90) and on `evidence_correct` in 14 of 19 (kappa 0.51).
+
+Reading: on unseen papers most returned passages still do not fully support their claim (strict precision 0.21 to 0.32);
+most are partial, and 2 or 3 of about 20 are wrong. Against the AI-assisted figures for 0.1.0 on the first held-out set
+(strict 0.16, lenient 0.62; section 5) the lenient figure is higher, but the strict intervals overlap almost completely and
+the two audits are on different papers, so an improvement in strict precision is **not shown**. Two AI passes, both Claude,
+are not human validation; pass 1 was made by the assistant that wrote the fixes.

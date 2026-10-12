@@ -51,6 +51,16 @@ Written by the session working in the repository, after running the commands in 
 - Next action: the owner labels `eval/results/held_out_v0.2/held_out_audit.csv` following AUDIT_INSTRUCTIONS.md, then
   `python -m eval.held_out_v2 score eval/results/held_out_v0.2`.
 
+## AI-assisted audit of the second held-out sheet (added 2026-10-12)
+- `eval/results/held_out_v0.2_ai_audit/` (README there): two AI passes and a conservative consensus over all 33 rows.
+  AI-assisted, NOT human: claim precision 0.79 to 0.82; strict evidence precision 0.21 to 0.32; lenient 0.84 to 0.90.
+- PASS: all three files validate (33 rows, order and original columns unchanged, permitted labels only).
+- The blank human sheet is unchanged and still unlabelled; the sealed key was not read; the official scorer was not run.
+- NOT VERIFIED: any human-labelled figure; precision by support level; that the fresh-context labeller opened nothing
+  outside its permitted files (its own statement; Git shows it changed no existing file).
+- Next action: the owner labels the blank sheet BEFORE opening the AI audit files, then runs the scorer. Any further
+  change to PaperLens needs another unseen set; do not tune on these 11 papers or on these labels.
+
 ## Next steps, in order (written before the second held-out evaluation)
 1. Owner: keep `MIN_LEXICAL` at 0.30 or choose another value from the SciFact train curve alone (docs/EVALUATION.md 6.3).
 2. Owner: label the existing held-out sheet by hand (never filled in by the assistant).
