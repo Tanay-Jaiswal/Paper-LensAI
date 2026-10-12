@@ -31,8 +31,17 @@ pip install -r requirements.txt
 python -m paperlens serve            # open http://127.0.0.1:8000  (click "Load demo papers" for an instant tour)
 python -m paperlens analyze paper.pdf --out report          # JSON + Markdown + HTML report
 python -m paperlens compare a.pdf b.pdf --out report
-python -m pytest -q                  # automated tests
+python -m pytest -q                  # automated tests (106 on the development branch)
 ```
+
+Run every command with the virtual environment active (or as `.venv\Scripts\python.exe -m ...`): the system Python does not
+have the dependencies.
+
+**Versions.** `0.1.0` is tag `v0.1.0-frozen-heldout`, the version run on the held-out papers. Branch
+`dev/evidence-linking-v0.2` is `0.2.0-dev`: the ledger can now answer "No supporting evidence found" instead of attaching
+the best-scoring passage, numbers match only when they measure the same quantity, and unsuitable passages are filtered.
+It has been evaluated on development data only (`docs/EVALUATION.md` section 6); it returns fewer wrong passages and
+covers fewer claims.
 
 Python 3.10+ required. macOS/Linux: same commands with `source .venv/bin/activate`.
 
@@ -43,6 +52,8 @@ python -m eval.run_eval --n 100                       # controlled synthetic ben
 python -m eval.scifact_eval --download                # real data: SciFact dev (needs internet)
 python -m eval.real_papers data/Papers eval/results   # real PDFs: diagnostics + human audit sheet (see data/Papers/README.md)
 python -m eval.held_out_audit score eval/results/held_out   # held-out audit: works only after a person has labelled the sheet
+python -m eval.abstention_curve --split train --out eval/results/dev_v0.2      # 0.2.0-dev: abstention threshold vs precision/coverage
+python -m eval.real_papers data/Papers eval/results/dev_v0.2                   # 0.2.0-dev results are kept apart from 0.1.0
 ```
 
 Read `docs/EVALUATION.md` before quoting any number: it states exactly what each benchmark does and does not show.
@@ -54,10 +65,11 @@ paperlens/   ingest.py claims.py reproducibility.py gaps.py summarize.py compare
 web/         single-page UI (no build step)
 eval/        synth.py (PDF generator) run_eval.py scifact_eval.py audit.py results/
 tests/       pytest suite
-docs/        ARCHITECTURE.md EVALUATION.md RELATED_WORK.md LIMITATIONS.md
+docs/        ARCHITECTURE.md EVALUATION.md RELATED_WORK.md KNOWN_LIMITATIONS.md EVIDENCE_LINKING_FIX_PLAN.md
+             TEST_REPORT.md SESSION_CHECKPOINT.md
 ```
 
 ## Known limitations (short list)
 
 Scanned PDFs (no OCR), heavily multi-column layouts where PDF text order is scrambled, non-English papers, claims
-expressed without cue words, and evidence living only in figures. Full list in `docs/LIMITATIONS.md`.
+expressed without cue words, and evidence living only in figures. Full list in `docs/KNOWN_LIMITATIONS.md`.

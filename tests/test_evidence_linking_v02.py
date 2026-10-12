@@ -180,7 +180,7 @@ def test_quantity_parsing_details():
 
 
 def test_percentage_versus_fraction_is_a_known_miss():
-    # documented limit (docs/LIMITATIONS.md): 91.2% and 0.912 are the same quantity but are not reconciled
+    # documented limit (docs/KNOWN_LIMITATIONS.md): 91.2% and 0.912 are the same quantity but are not reconciled
     assert _matched("The accuracy is 91.2%.", "The accuracy is 0.912.") == []
 
 

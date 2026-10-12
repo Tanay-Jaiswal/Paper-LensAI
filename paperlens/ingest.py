@@ -171,6 +171,9 @@ def _page_lines(page) -> list[tuple]:
     return out
 
 
+UNREADABLE_WARNING = "Very little extractable text: the PDF may be scanned. OCR is not enabled."
+
+
 def _margin_lines(lines: list[tuple], page_width: float) -> set[int]:
     """Indices of lines in a narrow strip left of the main text column (publisher sidebars, line numbers)."""
     if len(lines) < 8:
@@ -290,7 +293,7 @@ def _build(pdf, doc_id: str, name: str) -> Document:
             size_chars[round(ln[1], 1)] += len(ln[0])
     total_chars = sum(len(ln[0]) for pg in pages for ln in pg["lines"])
     if total_chars < 40 * max(1, len(pdf)):
-        warnings.append("Very little extractable text: the PDF may be scanned. OCR is not enabled.")
+        warnings.append(UNREADABLE_WARNING)
     body = size_chars.most_common(1)[0][0] if size_chars else 10.0   # size carrying the most characters
 
     title = _clean(_title(pages[0], name))[0].strip() if pages else name

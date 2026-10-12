@@ -49,4 +49,4 @@ stored content-addressed, ids validated by regex. The UI uses `textContent`/esca
 
 Constraints were *free, offline, deterministic, testable*. Every output here can be traced to a rule and a quote, which suits an
 auditing tool. An LLM verifier (NLI or Claude via API) can be added behind `claims.link_evidence` to upgrade "lexical support" to
-"entailment"; see `docs/LIMITATIONS.md` for the planned extension point.
+"entailment"; see `docs/KNOWN_LIMITATIONS.md` for the planned extension point.

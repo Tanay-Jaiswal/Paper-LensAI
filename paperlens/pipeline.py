@@ -8,7 +8,7 @@ from pathlib import Path
 from . import __version__
 from .claims import THRESHOLDS, build_ledger
 from .gaps import detect_gaps, detected_datasets
-from .ingest import parse_pdf
+from .ingest import UNREADABLE_WARNING, parse_pdf
 from .models import Claim, Document, Gap
 from .reproducibility import assess
 from .summarize import summarize
@@ -42,6 +42,8 @@ class Analysis:
         }
 
 
+NOT_ASSESSED = "not assessed"
+
 METRIC_TERMS = ["accuracy", "F1", "BLEU", "ROUGE-L", "ROUGE", "mAP", "AUC", "precision", "recall", "WER", "perplexity",
                 "exact match", "MRR", "NDCG", "RMSE", "MAE", "IoU", "top-1", "top-5", "pass@1"]
 
@@ -59,7 +61,16 @@ def detect_metrics(doc: Document) -> list[str]:
 def analyze_document(doc: Document) -> Analysis:
     claims = build_ledger(doc)
     rubric = assess(doc)
-    gaps = detect_gaps(doc, claims, rubric)
+    if UNREADABLE_WARNING in doc.warnings:
+        # almost no text came out of the PDF: "no code link" or a score of 0 would describe the extraction, not the paper
+        rubric["band"] = NOT_ASSESSED
+        rubric["disclaimer"] = ("Not assessed: too little text could be extracted from this PDF, so the score below "
+                                "says nothing about the paper. " + rubric["disclaimer"])
+        gaps = [Gap("G1", "document_unreadable", "high",
+                    "Too little text could be extracted from this PDF (it may be scanned). Claims, evidence, the "
+                    "reproducibility rubric and evidence gaps could not be assessed.")]
+    else:
+        gaps = detect_gaps(doc, claims, rubric)
     return Analysis(doc, summarize(doc), claims, rubric, gaps, sorted(detected_datasets(doc)), detect_metrics(doc))
 
 

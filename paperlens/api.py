@@ -15,6 +15,7 @@ from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, Res
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from . import __version__
 from .compare import compare
 from .pipeline import Analysis, analyze_pdf
 from .report import to_html, to_markdown
@@ -24,7 +25,7 @@ WEB_DIR = Path(__file__).resolve().parent.parent / "web"
 MAX_BYTES = 25 * 1024 * 1024
 ID_RE = re.compile(r"^[a-f0-9]{8,32}$")
 
-app = FastAPI(title="PaperLens AI", version="0.1.0")
+app = FastAPI(title="PaperLens AI", version=__version__)
 _cache: dict[str, Analysis] = {}
 _lock = threading.Lock()
 
@@ -107,8 +108,11 @@ def page_image(aid: str, page: int, highlight: str = "", zoom: float = 1.4):
     a = _load(aid)
     if not 1 <= page <= a.doc.n_pages:
         raise HTTPException(404, "No such page")
-    pdf = pymupdf.open(_path(aid) / "paper.pdf")
-    pg = pdf[page - 1]
+    with pymupdf.open(_path(aid) / "paper.pdf") as pdf:     # closed on exit: an open handle locks the file on Windows
+        return Response(_render_page(pdf[page - 1], a, page, highlight, zoom), media_type="image/png")
+
+
+def _render_page(pg, a: Analysis, page: int, highlight: str, zoom: float) -> bytes:
     ids = [int(x) for x in highlight.split(",") if x.strip().isdigit()][:12]
     by_id = {s.id: s for s in a.doc.sentences}
     colors = [(1, 0.85, 0.2), (0.4, 0.8, 1), (0.6, 1, 0.5)]
@@ -125,9 +129,8 @@ def page_image(aid: str, page: int, highlight: str = "", zoom: float = 1.4):
             annot = pg.add_highlight_annot(r)
             annot.set_colors(stroke=colors[n % 3])
             annot.update()
-    zoom = max(0.6, min(zoom, 3.0))
-    png = pg.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom)).tobytes("png")
-    return Response(png, media_type="image/png")
+    zoom = max(0.6, min(zoom, 3.0)) if zoom == zoom else 1.4     # zoom=nan falls back to the default
+    return pg.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom)).tobytes("png")
 
 
 @app.get("/api/analyses/{aid}/report.{fmt}")

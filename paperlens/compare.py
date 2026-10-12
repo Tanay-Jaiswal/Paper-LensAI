@@ -80,6 +80,10 @@ def compare(a: Analysis, b: Analysis, align_threshold: float = 0.35) -> dict:
         verdict.append("No evaluation dataset is shared, so reported numbers are not directly comparable.")
     else:
         verdict.append(f"Shared dataset(s): {', '.join(shared_ds)}; numbers can be compared if splits and metrics match.")
+    unread = [n for n, x in (("A", a), ("B", b)) if x.rubric.get("band") == "not assessed"]
+    if unread:
+        verdict = [f"Paper {' and '.join(unread)} could not be read (too little extractable text), so the two papers "
+                   "cannot be compared."]
     return {
         "a": {"title": a.doc.title, "pages": a.doc.n_pages, "repro_score": ra_s, "evidence_score": sa,
               "n_claims": len(a.claims), "high_gaps": ga},

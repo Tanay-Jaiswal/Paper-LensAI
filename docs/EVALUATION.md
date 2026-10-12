@@ -282,7 +282,10 @@ What changed (plan and risks: `docs/EVIDENCE_LINKING_FIX_PLAN.md`): (1) abstenti
 passes a relevance test, otherwise the claim shows "No supporting evidence found" (or "Evidence search not possible" when
 no body text was extracted); (2) a number counts only when value, unit and/or neighbouring words agree; (3) passages that
 cannot substantiate a claim (label-only captions, fragments, step headings, symbol dumps, boilerplate, near-copies of the
-claim) are rejected with a recorded reason.
+claim) are rejected with a recorded reason. In addition, abstract, introduction and conclusion sentences are now searched
+(0.1.0 excluded them outright): one is returned only if it adds a specific or unit-bearing figure the claim does not
+contain, is not itself an extracted claim, and no body passage was preferred. Body passages are ranked separately, so
+this can add a passage but cannot change which body passage is returned.
 
 ### 6.1 Kinds of evidence in this section
 
@@ -350,19 +353,24 @@ of this version.
 
 | Measure (145 extracted claims) | 0.1.0 | 0.2.0-dev |
 |---|---|---|
-| Claims with at least one returned passage | 142 | 81 |
-| Abstentions ("No supporting evidence found") | n/a | 64 |
+| Claims with at least one returned passage | 142 | 83 |
+| Abstentions ("No supporting evidence found") | n/a | 62 |
 | "Evidence search not possible" | n/a | 0 |
-| Support strong / moderate / weak / none | 44 / 32 / 32 / 37 | 29 / 22 / 30 / 64 |
-| Top evidence quote found on its cited page (yes / no) | 135 / 7 | 80 / 1 |
+| Support strong / moderate / weak / none | 44 / 32 / 32 / 37 | 29 / 23 / 31 / 62 |
+| Top evidence quote found on its cited page (yes / no) | 135 / 7 | 82 / 1 |
 | Claim text found on its cited page (yes / no) | 144 / 1 | 144 / 1 |
-| Gaps reported (all kinds); `unsupported_claim` | 112; 56 | 138; 81 |
+| Gaps reported (all kinds); `unsupported_claim` | 112; 56 | 137; 80 |
 | Crashes | 0 | 0 |
 
-**Worse:** 25 more `unsupported_claim` flags. A flag now also appears whenever the linker abstains, and section 6.5
-indicates that some of those claims do have support in the paper. Rejected candidates by reason (candidates, not claims):
-below the relevance threshold 2189, table row without a matching value 578, fragment 124, symbols or numbers 86, label-only
-caption 85, boilerplate 23, summary section 13, table row for another quantity 5, restatement 1.
+**Worse:** 24 more `unsupported_claim` flags. A flag now also appears whenever the linker abstains, and section 6.5
+indicates that some of those claims do have support in the paper. Top evidence by section: results 45, other 16,
+discussion 10, experiments 8, method 2, introduction 1, conclusion 1. The two passages from the introduction and
+conclusion belong to sentences that were not labelled real claims, so they do not enter section 6.5; read by the AI
+assistant, one is related but indirect and one is not support. Searching the claim zone therefore added almost nothing on
+these papers. Rejected candidates by reason (candidates, not claims, counted over a wider scan than before): below the
+relevance threshold 2491, abstract/introduction/conclusion sentence without new data 2256, table row without a matching
+value 624, fragment 265, label-only caption 108, symbols or numbers 88, boilerplate 88, summary section 21, step or proof
+heading 15, table row for another quantity 5, restatement 1.
 
 ### 6.5 The 16 development papers: AI-assisted evidence labels (not human; not unseen)
 
@@ -375,7 +383,8 @@ Read this before the table.
 - The 16 papers were used to tune the parser and linker of 0.1.0, and the fixes were developed while looking at their
   output. These numbers say nothing about unseen papers.
 - After the labels were locked the code changed (section 6.2). One top passage of the final version therefore has no
-  label; it is left out of precision and counted. It was not labelled afterwards.
+  label; it is left out of precision and counted. It was not labelled afterwards. (It is a results sentence giving the
+  same two percentages as its claim, so it is probably correct; the ranges in the table cover both cases.)
 
 97 of the 145 extracted claims were labelled real claims. On those 97:
 
@@ -417,8 +426,46 @@ What the comparison shows, within the limits above:
 
 ### 6.7 Automated tests for 0.2.0-dev
 
-`python -m pytest -q`: **101 passed** (the 44 tests of 0.1.0 plus 57 in `tests/test_evidence_linking_v02.py`, all on
-synthetic sentences). One existing test was edited, `test_meta_sentences_and_fragments_are_not_evidence`: it used to check
+`python -m pytest -q`: **106 passed** (the 44 tests of 0.1.0, 59 in `tests/test_evidence_linking_v02.py` on synthetic
+sentences, and 3 API tests for unreadable, corrupt and encrypted PDFs and for the new ledger fields). Commands and outcomes
+are in `docs/TEST_REPORT.md`. One existing test was edited, `test_meta_sentences_and_fragments_are_not_evidence`: it used to check
 that front-matter and fragment sentences are absent from the candidate pool, and now checks that they are absent from the
 evidence returned by `link_evidence`, because 0.2.0-dev rejects them in the suitability filter. The same sentences must
 still be excluded and the same two must still be returned, so the test was not weakened.
+
+### 6.8 Other changes on this branch (not evidence linking)
+
+- A PDF with almost no extractable text (a scan, an empty file) used to get a reproducibility score of 0 "low" and gaps
+  such as "No code link is given". It now gets the band "not assessed", one gap `document_unreadable`, and a comparison
+  that says the paper could not be read. Checked on a synthetic empty PDF; no scanned real paper was tested.
+- The page-image endpoint now closes the PDF after rendering; `zoom=nan` falls back to the default.
+- The API reports the package version instead of a fixed "0.1.0".
+- Checked in a browser against the two built-in synthetic demo papers: upload/demo, ledger, the "No supporting evidence
+  found" text on an abstained claim, page images with highlights, gaps and comparison all rendered. No real paper was
+  tested in the browser.
+
+## 7. Next validation plan for the revised version (not started)
+
+Nothing below has been run. It is the procedure to follow once the owner decides the fixes are stable.
+
+1. **Freeze first.** Decide `MIN_LEXICAL` from the SciFact train curve alone and write down why. Commit, tag the commit,
+   and record `python -m eval.freeze write <new folder>/FREEZE.json`. No code change after that counts for this test.
+2. **Freeze the procedure before any data is fetched:** the selection rule for papers, the number of papers and sampled
+   claims, the seed, the labelling instructions (reuse `AUDIT_INSTRUCTIONS.md` unchanged), the measures (claim precision,
+   coverage, strict and lenient evidence precision, share of real claims with fully supporting evidence, precision per
+   support level, all with 95% intervals), and what result would count as "no better than 0.1.0".
+3. **A new unseen set.** The 8 existing held-out papers cannot be reused: the fixes were motivated by their failures.
+   Candidate open-access sources, the same kinds as before so that results are comparable: ACL Anthology (CC BY),
+   arXiv papers under a CC licence, PLOS journals (CC BY), the PubMed Central open-access subset. Choose by a rule fixed in
+   advance (for example the first N papers of a stated venue and month that are not in `data/Papers` or
+   `data/held_out_papers`), not by looking at them. Nothing has been downloaded.
+4. **Run both versions on the same new papers** (0.1.0 from the tag, 0.2.0 frozen), pool their top passages into one
+   blind sheet with the version hidden (`eval/dev_pairs.py` does this), and label once.
+5. **Labels.** Human labels by the owner are the only ground truth. An AI-assisted pass may be added but must be
+   reported separately, made by a labeller that did not write the code, and never merged with human labels.
+6. **Report** every measure with its interval, the abstention cost next to the precision gain, and the failure cases,
+   in a new numbered section. Earlier sections stay as they are.
+
+What exists today, by kind: synthetic tests (pass); human-labelled public data, SciFact (ranking no better than BM25;
+abstention curve in 6.3); automatic counts on 16 development papers; AI-assisted labels on development papers (6.5) and on
+the old held-out sample for 0.1.0 (section 5). Human-verified results for PaperLens output: none.

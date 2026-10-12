@@ -131,3 +131,22 @@ Nothing is excluded by section alone: captions, appendices and discussion text r
   test for this version; a fresh set is required.
 - Compound claims, recalibrating the support levels and section-labelling robustness (items 4 to 6 of the earlier list) are
   out of scope.
+
+## Implementation status (2026-10-12)
+
+The plan above is unchanged. What was done, and where it differs from the plan:
+
+| Item | Status |
+|---|---|
+| Fix 1 abstention, status field, report/UI text | implemented; tested |
+| Fix 2 quantity matching | implemented; tested. Added after the plan: `1e-3` and `10^-3`, the unit of a range or error bar, `89.1% F1` vs `89.1 F1` |
+| Fix 3 suitability filter | implemented; tested. The symbol-density rule was corrected (it rejected results sentences dense with figures) |
+| Threshold from SciFact train, checked not re-tuned on dev | **deviation found and undone**: the constant had been raised to 0.35 after a sweep on the development labels; it is 0.30 again (docs/EVALUATION.md 6.3) |
+| Dev labels by a labeller with the version hidden | **deviation**: labelled by the session that wrote the fixes, from text alone; no fresh blind labeller |
+| "Nothing is excluded by section alone" | abstract, introduction and conclusion were still excluded outright in the first implementation; now searched under a strict rule |
+| Regression tests for each fix | 59 tests in `tests/test_evidence_linking_v02.py` |
+| Synthetic, SciFact, development-paper reruns | done; results in docs/EVALUATION.md section 6 |
+
+Outcome on development data: fewer wrong passages (35 to 11 by AI-assisted labels), lower coverage (0.979 to 0.619), and
+no increase in claims shown with fully supporting evidence. The goal stated at the top, "more often correct, even if fewer
+claims get a passage", is met only in that sense.
