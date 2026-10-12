@@ -50,8 +50,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, os.environ.get("PAPERLENS_SRC") or str(ROOT))
-sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT))                                   # `eval` package
+if os.environ.get("PAPERLENS_SRC"):
+    sys.path.insert(0, os.environ["PAPERLENS_SRC"])             # takes precedence for `paperlens`
 from eval import layout_synth  # noqa: E402
 from paperlens.pipeline import analyze_pdf  # noqa: E402
 
@@ -271,7 +272,8 @@ def run(out: str | None, keep: str | None, only: str | None) -> dict:
     agg["ambiguity_safe"] = _mean([m["ambiguity_safe"] for m in ambiguous])
     nonamb = [m for m in allm if m["ambiguity_safe"] != m["ambiguity_safe"]]
     agg["false_layout_warnings"] = sum(m["layout_warning"] for m in nonamb)
-    res = {"version": __import__("paperlens").__version__, "documents": results, "per_category": per_cat, "aggregate": agg}
+    import paperlens
+    res = {"version": paperlens.__version__, "paperlens_file": str(Path(paperlens.__file__).parent).replace("\\", "/"), "documents": results, "per_category": per_cat, "aggregate": agg}
     if out:
         Path(out).parent.mkdir(parents=True, exist_ok=True)
         Path(out).write_text(json.dumps(res, indent=1, ensure_ascii=False, default=lambda x: None), encoding="utf-8")
