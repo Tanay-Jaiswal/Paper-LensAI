@@ -330,6 +330,45 @@ def _cols(n: int, gutter: float, y0: float = Y0, y1: float = Y1, x0: float = 56.
     return [Region(n, x0, y0, x0 + w, y1), Region(n, x0 + w + gutter, y0, x1, y1)]
 
 
+def _cols_w(n: int, widths, gutter: float, y0: float = Y0, y1: float = Y1, x0: float = 56.0):
+    out, x = [], x0
+    for w in widths:
+        out.append(Region(n, x, y0, x + w, y1))
+        x += w + gutter
+    return out
+
+
+def tpl_three(gutter=14.0, top_full: float = 300.0):
+    w = (500.0 - 2 * gutter) / 3
+    def t(n):
+        if n == 1:
+            return [Region(n, 56, Y0, 556, top_full, no_flow=True, tag="full")] + _cols_w(n, [w] * 3, gutter, top_full + 10)
+        return _cols_w(n, [w] * 3, gutter)
+    return t
+
+
+def tpl_unequal(gutter=24.0, top_full: float = 300.0):
+    widths = [300.0, 500.0 - 300.0 - gutter]
+    def t(n):
+        if n == 1:
+            return [Region(n, 56, Y0, 556, top_full, no_flow=True, tag="full")] + _cols_w(n, widths, gutter, top_full + 10)
+        return _cols_w(n, widths, gutter)
+    return t
+
+
+def tpl_sparse(gutter=24.0, top_full: float = 300.0):
+    """Page 2 has a full left column and only two lines in the right one (the end of a section, a short float)."""
+    def t(n):
+        if n == 1:
+            return [Region(n, 56, Y0, 556, top_full, no_flow=True, tag="full")] + _cols(n, gutter, top_full + 10)
+        if n == 2:
+            c = _cols(n, gutter)
+            c[1].y1 = Y0 + 24
+            return c
+        return _cols(n, gutter)
+    return t
+
+
 def tpl_single(n):
     return [Region(n, 56, Y0, 556, Y1, tag="full")]
 
@@ -528,6 +567,10 @@ LAYOUTS = [
     ("L08_mixed_blocks_y", "mixed_columns", "blocks_y", dict(tpl="mixed", fill=4)),
     ("L09_tight_natural", "tight_gutter", "natural", dict(tpl="two_tight", fill=3)),
     ("L09_tight_blocks_y", "tight_gutter", "blocks_y", dict(tpl="two_tight", fill=3)),
+    # stress layouts, added after the first baseline run to test limits the parser was not written against
+    ("L11_threecol_blocks_y", "stress_three_columns", "blocks_y", dict(tpl="three", fill=4)),
+    ("L12_unequal_blocks_y", "stress_unequal_columns", "blocks_y", dict(tpl="unequal", fill=3)),
+    ("L13_sparse_column_blocks_y", "stress_sparse_column", "blocks_y", dict(tpl="sparse", fill=3)),
     ("L10_grid_lines_y", "ambiguous", "lines_y", dict(tpl="grid")),
 ]
 
@@ -565,9 +608,11 @@ def make(doc_id: str) -> tuple[bytes, dict]:
         pos = next(i for i, it in enumerate(items) if it.bid == "meth1")
         items.insert(pos + 1, Item("para", span_text, section="method", tag="full", bid="spanning0"))
     tpl = {"single": tpl_single, "two": tpl_two(), "spanning": tpl_spanning(), "mixed": tpl_mixed(),
-           "two_tight": tpl_two(gutter=6.0)}[kw["tpl"]]
+           "two_tight": tpl_two(gutter=6.0), "three": tpl_three(), "unequal": tpl_unequal(),
+           "sparse": tpl_sparse()}[kw["tpl"]]
     two = kw["tpl"] != "single"
-    flow = Flow(tpl, body=9.0 if two else 10.0, lead=11.0 if two else 12.5)
+    flow = Flow(tpl, body=8.5 if kw["tpl"] == "three" else 9.0 if two else 10.0,
+                lead=10.2 if kw["tpl"] == "three" else 11.0 if two else 12.5)
     if kw.get("pagebreak") and not two:
         # leave only the heading's own line at the bottom of page 1 by padding its region before it
         pass
