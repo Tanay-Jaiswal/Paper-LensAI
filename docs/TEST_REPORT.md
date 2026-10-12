@@ -59,3 +59,21 @@ held-out papers.
 | `PY -m eval.freeze verify eval/results/held_out/FREEZE.json` on this branch | reports 10 changed files, as intended: the held-out results do not describe this version |
 | `dev_pairs_labelled.csv` against `DEV_LABELS_LOCKED.txt` | matches |
 | PDFs tracked by Git | 0; largest tracked file 140 KB |
+
+## 0.3.0-dev (2026-10-12, branch `dev/partial-support-v0.3`)
+
+| Command | Outcome |
+|---|---|
+| `PY -m pytest -q` before any change | 106 passed |
+| `PY -m eval.real_papers data/Papers <scratch>` before any change | output file identical (sha256) to `eval/results/dev_v0.2/real_papers_audit.csv` |
+| `PY -m pytest -q tests/test_compound_claims_v03.py`, first run | 7 passed, **6 failed**: two synthetic fixture sentences were shorter than the 6-content-word rule and were rejected as fragments; one assertion in a test was wrong. Fixtures lengthened and the assertion removed; code unchanged |
+| `PY -m pytest -q` after the version bump | 118 passed, **1 failed**: `test_api_cli` pins the version string; updated to `0.3.0-dev` |
+| `PY -m pytest -q` final | **119 passed, 0 failed, 0 skipped** (1 third-party deprecation warning) |
+| `PY -m eval.real_papers data/Papers eval/results/dev_v0.3` | 16 papers, 0 crashed, 145 claims; audit rows identical to 0.2.0-dev |
+| `PY -m eval.dev_pairs score-labelled eval/results/dev_v0.2/real_papers_audit.csv eval/results/dev_v0.3/real_papers_audit.csv eval/results/dev_v0.2` | both columns: coverage 0.619, strict 0.407 (24/59), lenient 0.814, wrong 11; same top passage for 60 of 60 |
+| `PY -m eval.run_eval --n 100 --seed 7` and `--seed 99`, `--out eval/results/dev_v0.3/seedN` | identical to `dev_v0.2` apart from timings |
+| `PY -m eval.scifact_eval --out eval/results/dev_v0.3` | identical to `dev_v0.2` apart from timings (hit@1 0.493, AUROC 0.810) |
+| `PY -m eval.quantity_coverage data/Papers eval/results/dev_v0.3 eval/results/dev_v0.2/dev_pairs_labelled.csv` | figures matched by the returned passages 78 -> 84 of 143; claims fully covered 20 -> 22 of 51 |
+
+Not run: the official held-out scorers, `eval/dev_threshold_sweep.py`, the web UI in a browser (the UI line added in
+`web/app.js` is untested), and anything on either held-out folder.

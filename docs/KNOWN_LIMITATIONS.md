@@ -56,3 +56,15 @@ Measured on development data only; see `docs/EVALUATION.md` section 6.
 - **Unreadable PDFs are detected by character count only** (fewer than 40 characters per page). A scan with a text layer
   of garbage, or a paper where only some pages are images, is not detected.
 - **No unseen-data result exists for this version**, and no human-labelled result exists for any version.
+
+## Added for 0.3.0-dev (compound claims)
+
+Measured on development data only; see `docs/EVALUATION.md` section 9.
+
+- **Coverage counts figures, not meaning.** "3 of 3 claimed figures matched" says the numbers reappear with a compatible
+  unit or neighbouring word. It does not say the passages support the claim, and no one has labelled passage sets.
+- **Only figures are tracked.** A compound claim without numbers ("state of the art on both A and B") gets no coverage
+  line; 16 of the 24 partial top passages on the development papers belong to such claims.
+- **Figures below 10 without a decimal are ignored** in coverage, so "eleven tasks" or "6 targets" is never reported missing.
+- **The rating ignores coverage.** A claim can be `strong` with one of four figures matched; read the coverage line.
+- **Most claimed figures are still unmatched:** 59 of 143 on the development papers after the change.

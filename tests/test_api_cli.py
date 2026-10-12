@@ -97,7 +97,7 @@ def test_corrupt_encrypted_and_odd_requests_fail_cleanly(client, make_pdf):
 
 def test_ledger_json_served_by_the_api_has_the_evidence_status_fields(client, make_pdf):
     j = client.post("/api/analyze", files={"file": ("b.pdf", make_pdf(2, unsupported=1)[0].read_bytes(), "application/pdf")}).json()
-    assert j["version"] == "0.2.0-dev"
+    assert j["version"] == "0.3.0-dev"
     assert sum(j["ledger_stats"]["evidence_status"].values()) == j["ledger_stats"]["n_claims"]
     for c in j["ledger"]:
         assert c["evidence_status"] in ("found", "no_supporting_evidence", "no_searchable_text")

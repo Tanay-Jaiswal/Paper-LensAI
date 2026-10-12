@@ -1,0 +1,229 @@
+{
+  "n_papers": 100,
+  "seed": 99,
+  "scope": "synthetic template papers; plumbing/regression check, not real-world performance",
+  "rubric": {
+    "micro_precision": 1.0,
+    "micro_recall": 1.0,
+    "micro_f1": 1.0,
+    "per_item": {
+      "code": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 59,
+        "fp": 0,
+        "fn": 0
+      },
+      "data": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 52,
+        "fp": 0,
+        "fn": 0
+      },
+      "hyper": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 60,
+        "fp": 0,
+        "fn": 0
+      },
+      "seeds": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 54,
+        "fp": 0,
+        "fn": 0
+      },
+      "variance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 53,
+        "fp": 0,
+        "fn": 0
+      },
+      "stat_test": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 59,
+        "fp": 0,
+        "fn": 0
+      },
+      "hardware": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 62,
+        "fp": 0,
+        "fn": 0
+      },
+      "software": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 55,
+        "fp": 0,
+        "fn": 0
+      },
+      "splits": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 44,
+        "fp": 0,
+        "fn": 0
+      },
+      "baselines": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 65,
+        "fp": 0,
+        "fn": 0
+      },
+      "ablation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 64,
+        "fp": 0,
+        "fn": 0
+      },
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 51,
+        "fp": 0,
+        "fn": 0
+      },
+      "limitations": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 58,
+        "fp": 0,
+        "fn": 0
+      },
+      "license": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 59,
+        "fp": 0,
+        "fn": 0
+      }
+    }
+  },
+  "claims": {
+    "headline_claim_recall": 0.996,
+    "claim_page_accuracy": 1.0,
+    "extra_claims_per_paper": 0.0
+  },
+  "evidence_linking": {
+    "supported_claims": 159,
+    "top1_evidence_hit_rate": 1.0,
+    "evidence_page_accuracy": 1.0,
+    "supported_rated_strong_or_moderate": 1.0,
+    "unsupported_rated_none_or_weak": 1.0,
+    "n_unsupported": 80
+  },
+  "gap_detection": {
+    "unsupported_claim": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 80,
+      "fp": 0,
+      "fn": 0,
+      "tn": 20
+    },
+    "number_not_in_results": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "tn": 80
+    },
+    "superlative_without_baselines": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "tn": 94
+    },
+    "superlative_unsupported": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 14,
+      "fp": 0,
+      "fn": 0,
+      "tn": 86
+    },
+    "significance_without_test": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "tn": 93
+    },
+    "generalization_narrow_evidence": {
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1": 0.974,
+      "tp": 38,
+      "fp": 0,
+      "fn": 2,
+      "tn": 60
+    },
+    "improvement_without_variance": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "fn": 0,
+      "tn": 80
+    },
+    "no_code": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 41,
+      "fp": 0,
+      "fn": 0,
+      "tn": 59
+    },
+    "no_limitations": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 42,
+      "fp": 0,
+      "fn": 0,
+      "tn": 58
+    },
+    "no_hyperparameters": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 40,
+      "fp": 0,
+      "fn": 0,
+      "tn": 60
+    }
+  }
+}

@@ -236,8 +236,8 @@ def is_relevant(lex: float, matched: list[str], min_lexical: float | None = None
 
 
 def _has_result_numbers(nums) -> bool:
-    """True if the claim cites a figure that evidence should reproduce (decimal or >= 10)."""
-    return any("." in n or float(n) >= 10 for n in nums)
+    """True if the claim cites a figure that evidence should reproduce (decimal, exponent or >= 10)."""
+    return any("." in n or "e" in n or float(n) >= 10 for n in nums)
 
 
 def _claim_quantities(claim_text: str, claim_numbers: list[str] | None):
@@ -294,7 +294,7 @@ def select_passages(claim_text: str, claim_numbers: list[str], pool: list[Senten
     """
     ctoks = set(tokenize(claim_text))
     cvals = {q.value for q in quantities_in(claim_text)}
-    best, rejected = [], {}
+    accepted, rejected = [], {}
     # body passages are ranked on their own and considered before abstract/introduction/conclusion ones, so that
     # searching the claim zone can add a passage but never changes which body passage is returned
     body = rank_passages(claim_text, claim_numbers, [s for s in pool if s.section not in CLAIM_ZONE])[:CANDIDATES_SCANNED]
@@ -305,18 +305,65 @@ def select_passages(claim_text: str, claim_numbers: list[str], pool: list[Senten
         if not why and not is_relevant(lex, shared, min_lexical, min_lexical_with_quantity):
             why = "below_relevance_threshold"
         if why:
-            rejected[why] = rejected.get(why, 0) + 1
+            if len(accepted) < k:      # counted as before: only the candidates ranked above the k-th accepted one
+                rejected[why] = rejected.get(why, 0) + 1
             continue
-        best.append(cand)
-        if len(best) >= k:
-            break
-    return best, rejected
+        accepted.append(cand)
+    return _complementary(accepted, k), rejected
+
+
+def _complementary(accepted: list, k: int) -> list:
+    """Choose k of the accepted passages: the best one, then those that add claim quantities not yet covered.
+
+    A compound claim ("80.5% on A, 86.7% on B and 93.2 on C") is rarely restated in one sentence. The top passage is
+    still the best-ranked one; the remaining places go first to passages that match a claimed quantity no chosen
+    passage matches yet, and only then to the next passages by rank. Every passage has already passed the relevance
+    and suitability tests, so this changes which accepted passages are shown, never whether one is accepted.
+    """
+    if len(accepted) <= 1:
+        return accepted[:k]
+    chosen, rest = [accepted[0]], list(accepted[1:])
+    covered = set(accepted[0][2])
+    while rest and len(chosen) < k:
+        gains = [len(set(c[2]) - covered) for c in rest]
+        i = gains.index(max(gains)) if max(gains) > 0 else 0      # index() takes the best-ranked among equals
+        covered |= set(rest[i][2])
+        chosen.append(rest.pop(i))
+    return chosen
+
+
+def quantity_coverage(claim_text: str, claim_numbers: list[str], matched_per_passage: list[list[str]]) -> dict:
+    """Which of the figures a claim cites were found in its returned passages.
+
+    Only figures that evidence should reproduce are counted (a decimal, an exponent, or 10 and above; the same rule
+    as `_has_result_numbers`). `top` is what the first passage alone matches; `found` is the union over all returned
+    passages; `missing` are claimed figures that no returned passage matches.
+    """
+    claimed = sorted({q.value for q in _claim_quantities(claim_text, claim_numbers) if _has_result_numbers([q.value])})
+    found = sorted(set(claimed) & {v for m in matched_per_passage for v in m})
+    top = sorted(set(claimed) & set(matched_per_passage[0])) if matched_per_passage else []
+    return {"claimed": claimed, "top": top, "found": found, "missing": sorted(set(claimed) - set(found))}
+
+
+def coverage_text(cov: dict) -> str:
+    """One line for reports: how many of the claimed figures the returned passages match ('' if none are claimed)."""
+    if not cov or not cov.get("claimed"):
+        return ""
+    n, k = len(cov["claimed"]), len(cov["found"])
+    if k == n:
+        return f"all {n} claimed figures matched" if n > 1 else "the claimed figure is matched"
+    return f"{k} of {n} claimed figures matched; not found: {', '.join(cov['missing'])}"
+
+
+_LINK_FLAGS = ("no_body_passages", "partial_quantity_coverage")
 
 
 def link_evidence(doc: Document, claims: list[Claim], k: int = 3) -> list[Claim]:
     claim_sentences = frozenset(c.sentence_id for c in claims)
     for claim in claims:
         claim.evidence, claim.rejected = [], {}
+        claim.flags = [f for f in claim.flags if f not in _LINK_FLAGS]     # relinking must not accumulate flags
+        claim.quantity_coverage = quantity_coverage(claim.text, claim.numbers, [])
         pool = _eligible_evidence(doc, claim, claim_sentences)
         has_body = any(s.section in EVIDENCE_SECTIONS for s in pool)
         if not pool:
@@ -336,6 +383,9 @@ def link_evidence(doc: Document, claims: list[Claim], k: int = 3) -> list[Claim]
             claim.evidence.append(EvidenceLink(s.id, s.page, s.section, s.text, round(total, 3),
                                                shared, terms[:8], round(lex, 3)))
         claim.evidence_status, claim.evidence_note = STATUS_FOUND, ""
+        claim.quantity_coverage = quantity_coverage(claim.text, claim.numbers, [b[2] for b in best])
+        if claim.quantity_coverage["missing"]:
+            claim.flags.append("partial_quantity_coverage")    # a compound claim: some figures have no returned passage
         top = best[0]
         claim.support_score = round(top[0], 3)
         cnums = set(claim.numbers)

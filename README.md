@@ -40,8 +40,11 @@ have the dependencies.
 **Versions.** `0.1.0` is tag `v0.1.0-frozen-heldout`, the version run on the held-out papers. Branch
 `dev/evidence-linking-v0.2` is `0.2.0-dev`: the ledger can now answer "No supporting evidence found" instead of attaching
 the best-scoring passage, numbers match only when they measure the same quantity, and unsuitable passages are filtered.
-It has been evaluated on development data only (`docs/EVALUATION.md` section 6); it returns fewer wrong passages and
-covers fewer claims.
+On development data it returns fewer wrong passages and covers fewer claims (`docs/EVALUATION.md` section 6); it was
+frozen as tag `v0.2.0-dev-frozen-heldout2` and run on 11 unseen papers, whose human labels are still missing (section 8).
+Branch `dev/partial-support-v0.3` is `0.3.0-dev`: for a claim that cites several figures the three returned passages are
+chosen to cover different figures, and the ledger says which claimed figures were not found (section 9; development
+data only, top-passage precision unchanged).
 
 Python 3.10+ required. macOS/Linux: same commands with `source .venv/bin/activate`.
 
@@ -54,6 +57,7 @@ python -m eval.real_papers data/Papers eval/results   # real PDFs: diagnostics +
 python -m eval.held_out_audit score eval/results/held_out   # held-out audit: works only after a person has labelled the sheet
 python -m eval.abstention_curve --split train --out eval/results/dev_v0.2      # 0.2.0-dev: abstention threshold vs precision/coverage
 python -m eval.real_papers data/Papers eval/results/dev_v0.2                   # 0.2.0-dev results are kept apart from 0.1.0
+python -m eval.quantity_coverage data/Papers eval/results/dev_v0.3 eval/results/dev_v0.2/dev_pairs_labelled.csv   # 0.3.0-dev: figures covered per claim
 ```
 
 Read `docs/EVALUATION.md` before quoting any number: it states exactly what each benchmark does and does not show.

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import html
 
+from .claims import coverage_text
 from .pipeline import Analysis
 
 BADGE = {"strong": "🟢 strong", "moderate": "🟡 moderate", "weak": "🟠 weak", "none": "🔴 none"}
@@ -25,6 +26,9 @@ def to_markdown(a: Analysis) -> str:
     for c in a.claims:
         ev = c.evidence[0] if c.evidence else None
         evs = f"p.{ev.page}: {ev.quote[:90]}…" if ev else (c.evidence_note or "No supporting evidence found")
+        cov = coverage_text(c.quantity_coverage) if ev else ""
+        if cov and c.quantity_coverage["missing"]:
+            evs += f" ({cov})"
         out.append(f"| {c.id} | {c.text} | {c.page} | {c.claim_type} | {BADGE[c.support]} | {evs} |".replace("\n", " "))
     out += ["", f"## Reproducibility: {a.rubric['score']}/100", "", f"_{a.rubric['formula']}_", "",
             "| Item | Status | Weight | Evidence |", "|---|---|---|---|"]

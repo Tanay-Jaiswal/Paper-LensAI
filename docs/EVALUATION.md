@@ -516,3 +516,66 @@ most are partial, and 2 or 3 of about 20 are wrong. Against the AI-assisted figu
 (strict 0.16, lenient 0.62; section 5) the lenient figure is higher, but the strict intervals overlap almost completely and
 the two audits are on different papers, so an improvement in strict precision is **not shown**. Two AI passes, both Claude,
 are not human validation; pass 1 was made by the assistant that wrote the fixes.
+
+## 9. Development version 0.3.0-dev: compound claims (development data only)
+
+Branch `dev/partial-support-v0.3`, started from `45b2ca2`. Nothing here was measured on unseen papers, and the two
+held-out sets and their labels were not used. The labels quoted are the AI-assisted development labels of section 6.5
+(not human, not unseen), and they describe the **top passage only**.
+
+### 9.1 Diagnosis: why a returned passage is only partial support
+
+The 0.2.0-dev run on the 16 development papers has 24 top passages labelled `p` (partial) among 59 labelled ones.
+Reading the labeller's notes for all 24:
+
+| Cause | Count | Example note |
+|---|---|---|
+| Compound claim: the passage supports one of several figures, tasks or parts | 13 | "one of three scores", "only the training-time part" |
+| The passage describes the experiment, points to a table, or gives one example, without stating the result | 7 | "describes the experiment, no result", "pointer to Table 4" |
+| The passage restates the claim without data | 4 | "near-restatement without data" |
+
+Compound claims are the largest single cause. Of the 24, 8 are claims that cite figures and 16 are not. For claims
+with figures, the top passage matching every claimed figure separates the labels well: `y` 11, `p` 1, `n` 1 when it
+does; `y` 6, `p` 7, `n` 7 when it does not (`eval/results/dev_v0.3/quantity_coverage.json`).
+
+### 9.2 Change
+
+- `claims._complementary`: the first returned passage is unchanged (best-ranked accepted passage). The second and third
+  places go first to accepted passages that match a claimed figure not yet matched, then to the next by rank. No passage
+  is accepted that 0.2.0-dev would have rejected.
+- `claims.quantity_coverage`, stored on every claim as `quantity_coverage` (`claimed`, `top`, `found`, `missing`), and a
+  `partial_quantity_coverage` flag when a claimed figure has no returned passage. The Markdown report and the web UI
+  show "k of n claimed figures matched; not found: ...".
+- Support levels, thresholds and the abstention rule are unchanged.
+
+### 9.3 Results (16 development papers; `python -m eval.quantity_coverage data/Papers eval/results/dev_v0.3 eval/results/dev_v0.2/dev_pairs_labelled.csv`)
+
+51 claims cite figures and have a passage; they cite 143 figures.
+
+| Automatic count | 0.2.0-dev selection | 0.3.0-dev selection |
+|---|---|---|
+| Claimed figures matched by the top passage | 68 / 143 | 68 / 143 (same passage) |
+| Claimed figures matched by the three returned passages | 78 / 143 | 84 / 143 |
+| Claims with every figure matched by the returned passages | 20 / 51 | 22 / 51 |
+
+These are counts of matched figures, **not evidence precision**: nobody has judged whether a set of passages supports
+a claim. 59 of 143 claimed figures are still matched by no returned passage, and 10 claims with figures have a top
+passage that matches none.
+
+Unchanged, as intended (`eval/results/dev_v0.3/dev_precision_coverage_v0.2_vs_v0.3.txt`): all 145 audit rows are
+identical to 0.2.0-dev, so coverage 0.619 (60/97), strict precision 0.407 (24/59), lenient 0.814 (48/59), wrong
+passages 11, abstentions and the support distribution are the same. Synthetic seeds 7 and 99 and SciFact dev are
+identical to section 6 apart from run times. There is no regression and **no gain in top-passage precision**.
+
+**Experiment not adopted.** Requiring the top passage to match every claimed figure before rating a claim `strong`
+would move 5 labelled claims from `strong` to `moderate`: 3 labelled `y`, 1 `p`, 1 `n`. Strict precision of `strong`
+would go from 15/20 to 12/15, well inside the interval. The evidence does not justify changing the rating rule, so
+coverage is reported next to the rating instead of altering it. A test pins this.
+
+### 9.4 Not measured, not fixed
+
+- Whether the complementary passages are correct. They pass the same tests as any returned passage, whose strict
+  precision on these papers is about 0.4.
+- The 16 partial passages of claims without figures (experiment descriptions, pointers, restatements, one of several
+  named tasks). Nothing in this version addresses them.
+- Anything on unseen papers. A third unseen set would be needed to evaluate this version.

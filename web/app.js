@@ -75,6 +75,11 @@ function openClaim(id) {
   const ev = c.evidence.filter((e) => c.support !== "none" || e.score > 0.15);
   let h = `<h3>${esc(c.id)} <span class="pill ${c.support}">${c.support}</span></h3><blockquote>${esc(c.text)}<div class="cite">p.${c.page}, ${esc(c.section)}</div></blockquote>`;
   if (!ev.length) h += `<p><strong>${esc(c.evidence_note || "No supporting evidence found")}.</strong></p>`;
+  const cov = c.quantity_coverage;
+  if (ev.length && cov && cov.claimed && cov.claimed.length) {
+    h += `<p class="cite">${cov.found.length} of ${cov.claimed.length} claimed figures matched by the passages below` +
+      (cov.missing.length ? `; not found: ${esc(cov.missing.join(", "))}` : "") + `</p>`;
+  }
   ev.forEach((e, i) => {
     h += `<p><strong>Evidence ${i + 1}</strong> <span class="cite">p.${e.page}, ${esc(e.section)}, score ${e.score}` +
       (e.shared_numbers.length ? `, shared numbers: ${esc(e.shared_numbers.join(", "))}` : "") + `</span></p><blockquote>${esc(e.quote)}</blockquote>`;

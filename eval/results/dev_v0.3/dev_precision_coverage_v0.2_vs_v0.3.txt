@@ -1,0 +1,22 @@
+== baseline: 145 claims extracted, 97 labelled real
+  coverage (real claims with a returned passage): 0.619 (60/97; 95% CI 0.52-0.71)
+  UNLABELLED returned pairs left out of the precision rows below: 1; with them strict precision would lie between 0.400 and 0.417
+  evidence precision, strict  (y):      0.407 (24/59; 95% CI 0.29-0.53)
+  evidence precision, lenient (y or p): 0.814 (48/59; 95% CI 0.70-0.89)
+  real claims with fully supporting evidence:  0.247 (24/97; 95% CI 0.17-0.34)
+  returned passages labelled wrong (n): 11
+    strong    strict 0.750 (15/20; 95% CI 0.53-0.89)
+    moderate  strict 0.200 (3/15; 95% CI 0.07-0.45)
+    weak      strict 0.250 (6/24; 95% CI 0.12-0.45)
+== new: 145 claims extracted, 97 labelled real
+  coverage (real claims with a returned passage): 0.619 (60/97; 95% CI 0.52-0.71)
+  UNLABELLED returned pairs left out of the precision rows below: 1; with them strict precision would lie between 0.400 and 0.417
+  evidence precision, strict  (y):      0.407 (24/59; 95% CI 0.29-0.53)
+  evidence precision, lenient (y or p): 0.814 (48/59; 95% CI 0.70-0.89)
+  real claims with fully supporting evidence:  0.247 (24/97; 95% CI 0.17-0.34)
+  returned passages labelled wrong (n): 11
+    strong    strict 0.750 (15/20; 95% CI 0.53-0.89)
+    moderate  strict 0.200 (3/15; 95% CI 0.07-0.45)
+    weak      strict 0.250 (6/24; 95% CI 0.12-0.45)
+== real claims: same top passage in both versions: 60; passage only in the new version: 0
+== abstentions introduced by the new version on real claims: 0 (baseline passage was y: 0, p: 0, n: 0)

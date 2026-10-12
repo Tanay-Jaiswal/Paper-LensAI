@@ -1,0 +1,1522 @@
+[
+  {
+    "paper": "acl_2020.acl-main.442_beyond-accuracy-behavioral-testing-of-nlp.pdf",
+    "seconds": 2.23,
+    "title_extracted": "Beyond Accuracy: Behavioral Testing of NLP Models with CheckList",
+    "pages_paperlens": 11,
+    "pages_pymupdf": 11,
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 396,
+    "sections": {
+      "other": 193,
+      "references": 110,
+      "introduction": 54,
+      "related": 15,
+      "conclusion": 10,
+      "abstract": 6,
+      "discussion": 5,
+      "acknowledgments": 2,
+      "front": 1
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "2 CheckList",
+      "2.1 Capabilities",
+      "2.2 Test Types",
+      "2.3 Generating Test Cases at Scale",
+      "Templates",
+      "Expanding Templates",
+      "Open source",
+      "3 Testing SOTA models with CheckList",
+      "Sentiment Analysis",
+      "Quora Question Pair",
+      "Machine Comprehension",
+      "Discussion",
+      "4 User Evaluation",
+      "5 Related Work",
+      "6 Conclusion",
+      "Acknowledgments",
+      "References"
+    ],
+    "kinds": {
+      "text": 362,
+      "table": 30,
+      "caption": 1,
+      "meta": 3
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 2,
+    "claim_sections": {
+      "abstract": 2
+    },
+    "support": {
+      "none": 1,
+      "weak": 1
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 1,
+      "found": 1
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 52,
+      "table_row_without_matching_value": 52,
+      "claim_zone_without_new_data": 14
+    },
+    "claim_text_on_cited_page": {
+      "y": 2
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 1
+    },
+    "reproducibility_score": 47.8,
+    "rubric_not_applicable": [],
+    "n_gaps": 3,
+    "gap_kinds": {
+      "no_hyperparameters": 1,
+      "unsupported_claim": 1,
+      "generalization_narrow_evidence": 1
+    },
+    "datasets": [],
+    "metrics": [
+      "accuracy"
+    ]
+  },
+  {
+    "paper": "acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf",
+    "seconds": 2.64,
+    "title_extracted": "Fact or Fiction: Verifying Scientific Claims",
+    "pages_paperlens": 17,
+    "pages_pymupdf": 17,
+    "warnings": [],
+    "n_sentences": 505,
+    "sections": {
+      "references": 221,
+      "other": 105,
+      "experiments": 89,
+      "introduction": 38,
+      "background": 19,
+      "related": 14,
+      "abstract": 7,
+      "conclusion": 7,
+      "acknowledgments": 3,
+      "front": 2
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "2 Background and task deﬁnition",
+      "3 The SCIFACT dataset",
+      "Corpus",
+      "3.1 Data source and corpus construction",
+      "3.2 Claim writing",
+      "3.3 Claim veriﬁcation",
+      "4 The SCIFACT task",
+      "5 VERISCI: Baseline model",
+      "6 Experiments",
+      "6.1 Pipeline components",
+      "6.2 Full task",
+      "6.3 Verifying claims about COVID-19",
+      "6.4 Error analysis",
+      "Fact checking and rationalized NLP models",
+      "8 Conclusion and future work",
+      "Acknowledgments",
+      "References",
+      "Model implementation details",
+      "Training the RATIONALESELECTION",
+      "Training the LABELPREDICTION",
+      "Additional training details",
+      "Hyperparameter search",
+      "Statistical analysis",
+      "Dataset collection and corpus statistics",
+      "Source journals",
+      "Distractor abstracts",
+      "Converting citances to claims",
+      "Multiple rationales",
+      "Claim writing",
+      "Claim negations",
+      "Annotation interfaces and guidelines"
+    ],
+    "kinds": {
+      "text": 482,
+      "caption": 15,
+      "meta": 7,
+      "table": 1
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 9,
+    "claim_sections": {
+      "abstract": 4,
+      "introduction": 5
+    },
+    "support": {
+      "none": 8,
+      "weak": 1
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 8,
+      "found": 1
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 238,
+      "fragment": 26,
+      "boilerplate": 6,
+      "caption_label_only": 25,
+      "claim_zone_without_new_data": 220,
+      "step_or_proof_heading": 15,
+      "symbols_or_numbers": 7,
+      "table_row_without_matching_value": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 9
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 1
+    },
+    "reproducibility_score": 65.2,
+    "rubric_not_applicable": [],
+    "n_gaps": 11,
+    "gap_kinds": {
+      "no_hyperparameters": 1,
+      "unsupported_claim": 5,
+      "number_not_in_results": 4,
+      "no_limitations": 1
+    },
+    "datasets": [
+      "CORD-19",
+      "FEVER"
+    ],
+    "metrics": [
+      "accuracy",
+      "F1"
+    ]
+  },
+  {
+    "paper": "acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf",
+    "seconds": 1.73,
+    "title_extracted": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+    "pages_paperlens": 16,
+    "pages_pymupdf": 16,
+    "warnings": [],
+    "n_sentences": 577,
+    "sections": {
+      "references": 332,
+      "other": 67,
+      "experiments": 62,
+      "results": 49,
+      "related": 35,
+      "introduction": 23,
+      "abstract": 5,
+      "conclusion": 3,
+      "front": 1
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "2 Related Work",
+      "2.1 Unsupervised Feature-based Approaches",
+      "2.2 Unsupervised Fine-tuning Approaches",
+      "2.3 Transfer Learning from Supervised Data",
+      "3 BERT",
+      "Model Architecture",
+      "Input/Output Representations",
+      "3.1 Pre-training BERT",
+      "Next Sentence Prediction (NSP)",
+      "3.2 Fine-tuning BERT",
+      "4 Experiments",
+      "4.1 GLUE",
+      "4.2 SQuAD v1.1",
+      "4.3 SQuAD v2.0",
+      "4.4 SWAG",
+      "5 Ablation Studies",
+      "5.1 Effect of Pre-training Tasks",
+      "5.2 Effect of Model Size",
+      "5.3 Feature-based Approach with BERT",
+      "6 Conclusion",
+      "References",
+      "Deep Bidirectional Transformers for",
+      "Additional Details for BERT",
+      "Illustration of the Pre-training Tasks",
+      "Masked LM and the Masking Procedure",
+      "Next Sentence Prediction",
+      "Pre-training Procedure",
+      "Fine-tuning Procedure",
+      "OpenAI GPT",
+      "Tasks",
+      "Detailed Experimental Setup",
+      "Detailed Descriptions for the GLUE",
+      "MNLI",
+      "QQP",
+      "QNLI",
+      "SST-2",
+      "CoLA",
+      "STS-B",
+      "MRPC",
+      "RTE",
+      "WNLI",
+      "Additional Ablation Studies",
+      "Effect of Number of Training Steps",
+      "Procedures"
+    ],
+    "kinds": {
+      "text": 557,
+      "table": 7,
+      "meta": 10,
+      "caption": 3
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 5,
+    "claim_sections": {
+      "abstract": 3,
+      "introduction": 1,
+      "conclusion": 1
+    },
+    "support": {
+      "weak": 1,
+      "none": 3,
+      "moderate": 1
+    },
+    "evidence_status": {
+      "found": 2,
+      "no_supporting_evidence": 3
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 130,
+      "fragment": 23,
+      "claim_zone_without_new_data": 120,
+      "boilerplate": 2,
+      "symbols_or_numbers": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 5
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 2
+    },
+    "reproducibility_score": 87.0,
+    "rubric_not_applicable": [],
+    "n_gaps": 6,
+    "gap_kinds": {
+      "number_not_in_results": 1,
+      "unsupported_claim": 3,
+      "superlative_unsupported": 2
+    },
+    "datasets": [
+      "CoNLL-2003",
+      "GLUE",
+      "MultiNLI",
+      "SQuAD",
+      "SST-2",
+      "SWAG",
+      "TriviaQA"
+    ],
+    "metrics": [
+      "accuracy",
+      "F1",
+      "perplexity"
+    ]
+  },
+  {
+    "paper": "acl_P02-1040_bleu-a-method-for-automatic-evaluation.pdf",
+    "seconds": 0.73,
+    "title_extracted": "BLEU: a Method for Automatic Evaluation of Machine Translation",
+    "pages_paperlens": 8,
+    "pages_pymupdf": 8,
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 233,
+    "sections": {
+      "other": 181,
+      "introduction": 25,
+      "references": 14,
+      "conclusion": 8,
+      "abstract": 4,
+      "front": 1
+    },
+    "headings": [
+      "Abstract",
+      "1.1 Rationale",
+      "1.2 Viewpoint",
+      "2 The Baseline BLEU Metric",
+      "2.1.2 Ranking systems using only modiﬁed",
+      "2.2 Sentence length",
+      "Example 3:",
+      "2.2.1 The trouble with recall",
+      "Example 4:",
+      "2.2.2 Sentence brevity penalty",
+      "3 The BLEU Evaluation",
+      "4 The Human Evaluation",
+      "4.1 Monolingual group pairwise judgments",
+      "5 BLEU vs The Human Evaluation",
+      "6 Conclusion",
+      "References"
+    ],
+    "kinds": {
+      "text": 208,
+      "meta": 8,
+      "caption": 8,
+      "table": 9
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 2,
+    "claim_sections": {
+      "abstract": 2
+    },
+    "support": {
+      "none": 2
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 2
+    },
+    "rejected_candidates": {
+      "table_row_without_matching_value": 18,
+      "caption_label_only": 4,
+      "below_relevance_threshold": 31,
+      "boilerplate": 4,
+      "fragment": 23,
+      "claim_zone_without_new_data": 40
+    },
+    "claim_text_on_cited_page": {
+      "y": 2
+    },
+    "evidence_quote_on_cited_page": {},
+    "reproducibility_score": 42.1,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 2,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf",
+    "seconds": 6.26,
+    "title_extracted": "Observation of a New Particle in the Search for the Standard Model Higgs Boson with the ATLAS Detector at the LHC",
+    "pages_paperlens": 38,
+    "pages_pymupdf": 38,
+    "warnings": [],
+    "n_sentences": 861,
+    "sections": {
+      "other": 327,
+      "references": 259,
+      "results": 218,
+      "introduction": 25,
+      "conclusion": 14,
+      "abstract": 11,
+      "acknowledgments": 6,
+      "front": 1
+    },
+    "headings": [
+      "Abstract",
+      "1. Introduction",
+      "2. The ATLAS detector",
+      "3. Signal and background simulation samples",
+      "4.2. Background estimation",
+      "4.4. Results",
+      "5.5. Background modelling",
+      "5.7. Results",
+      "6.2. Background normalisation and control samples",
+      "6.4. Results",
+      "7. Statistical procedure",
+      "8. Correlated systematic uncertainties",
+      "9. Results",
+      "ATLAS 2011 - 2012",
+      "10. Conclusion",
+      "Acknowledgements",
+      "References",
+      "The ATLAS Collaboration"
+    ],
+    "kinds": {
+      "text": 839,
+      "meta": 1,
+      "caption": 12,
+      "table": 9
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 6,
+    "claim_sections": {
+      "abstract": 3,
+      "conclusion": 3
+    },
+    "support": {
+      "strong": 4,
+      "moderate": 2
+    },
+    "evidence_status": {
+      "found": 6
+    },
+    "rejected_candidates": {
+      "symbols_or_numbers": 12,
+      "below_relevance_threshold": 79,
+      "table_row_without_matching_value": 4,
+      "claim_zone_without_new_data": 30,
+      "caption_label_only": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 5,
+      "n": 1
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 5,
+      "n": 1
+    },
+    "reproducibility_score": 39.5,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 3,
+    "gap_kinds": {
+      "no_code": 1,
+      "number_not_in_results": 1,
+      "no_limitations": 1
+    },
+    "datasets": [],
+    "metrics": [
+      "precision"
+    ]
+  },
+  {
+    "paper": "arxiv_1412.6980v9_adam-a-method-for-stochastic-optimization.pdf",
+    "seconds": 1.44,
+    "title_extracted": "ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION",
+    "pages_paperlens": 15,
+    "pages_pymupdf": 15,
+    "warnings": [],
+    "n_sentences": 297,
+    "sections": {
+      "other": 84,
+      "experiments": 64,
+      "references": 59,
+      "appendix": 31,
+      "introduction": 24,
+      "related": 14,
+      "abstract": 8,
+      "conclusion": 7,
+      "acknowledgments": 5,
+      "front": 1
+    },
+    "headings": [
+      "ABSTRACT",
+      "1 INTRODUCTION",
+      "2 ALGORITHM",
+      "3 INITIALIZATION BIAS CORRECTION",
+      "4 CONVERGENCE ANALYSIS",
+      "5 RELATED WORK",
+      "RMSProp:",
+      "AdaGrad:",
+      "6 EXPERIMENTS",
+      "7 EXTENSIONS",
+      "8 CONCLUSION",
+      "9 ACKNOWLEDGMENTS",
+      "REFERENCES",
+      "10 APPENDIX"
+    ],
+    "kinds": {
+      "text": 289,
+      "meta": 1,
+      "caption": 4,
+      "table": 3
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 3,
+    "claim_sections": {
+      "abstract": 3
+    },
+    "support": {
+      "none": 1,
+      "weak": 2
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 1,
+      "found": 2
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 68,
+      "table_row_without_matching_value": 7,
+      "fragment": 11,
+      "caption_label_only": 4,
+      "claim_zone_without_new_data": 81,
+      "boilerplate": 3,
+      "symbols_or_numbers": 3
+    },
+    "claim_text_on_cited_page": {
+      "y": 3
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 2
+    },
+    "reproducibility_score": 34.8,
+    "rubric_not_applicable": [],
+    "n_gaps": 6,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1,
+      "no_splits": 1,
+      "unsupported_claim": 2,
+      "superlative_unsupported": 1
+    },
+    "datasets": [
+      "CIFAR-10",
+      "IMDB",
+      "MNIST"
+    ],
+    "metrics": []
+  },
+  {
+    "paper": "arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf",
+    "seconds": 2.57,
+    "title_extracted": "Deep Residual Learning for Image Recognition",
+    "pages_paperlens": 12,
+    "pages_pymupdf": 12,
+    "warnings": [],
+    "n_sentences": 683,
+    "sections": {
+      "references": 274,
+      "experiments": 209,
+      "other": 127,
+      "introduction": 43,
+      "related": 18,
+      "abstract": 11,
+      "front": 1
+    },
+    "headings": [
+      "Abstract",
+      "1. Introduction",
+      "2. Related Work",
+      "3.1. Residual Learning",
+      "3.2. Identity Mapping by Shortcuts",
+      "3.3. Network Architectures",
+      "3.4. Implementation",
+      "4.1. ImageNet Classiﬁcation",
+      "4.2. CIFAR-10 and Analysis",
+      "4.3. Object Detection on PASCAL and MS COCO",
+      "References",
+      "PASCAL VOC",
+      "MS COCO",
+      "ImageNet Detection"
+    ],
+    "kinds": {
+      "text": 568,
+      "caption": 23,
+      "meta": 8,
+      "table": 84
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 7,
+    "claim_sections": {
+      "abstract": 5,
+      "introduction": 2
+    },
+    "support": {
+      "none": 2,
+      "weak": 2,
+      "strong": 3
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 2,
+      "found": 5
+    },
+    "rejected_candidates": {
+      "fragment": 35,
+      "below_relevance_threshold": 133,
+      "claim_zone_without_new_data": 116,
+      "boilerplate": 7,
+      "caption_label_only": 3,
+      "table_row_without_matching_value": 3
+    },
+    "claim_text_on_cited_page": {
+      "y": 7
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 5
+    },
+    "reproducibility_score": 56.5,
+    "rubric_not_applicable": [],
+    "n_gaps": 4,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1,
+      "unsupported_claim": 2
+    },
+    "datasets": [
+      "CIFAR-10",
+      "COCO",
+      "ImageNet",
+      "MNIST"
+    ],
+    "metrics": [
+      "accuracy",
+      "mAP",
+      "top-1",
+      "top-5"
+    ]
+  },
+  {
+    "paper": "arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf",
+    "seconds": 2.62,
+    "title_extracted": "Observation of Gravitational Waves from a Binary Black Hole Merger",
+    "pages_paperlens": 16,
+    "pages_pymupdf": 16,
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract.",
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 444,
+    "sections": {
+      "references": 202,
+      "other": 201,
+      "introduction": 21,
+      "abstract": 10,
+      "acknowledgments": 5,
+      "conclusion": 4,
+      "front": 1
+    },
+    "headings": [
+      "I. INTRODUCTION",
+      "II. OBSERVATION",
+      "III. DETECTORS",
+      "IV. DETECTOR VALIDATION",
+      "V. SEARCHES",
+      "VI. SOURCE DISCUSSION",
+      "VII. OUTLOOK",
+      "VIII. CONCLUSION",
+      "ACKNOWLEDGMENTS",
+      "References"
+    ],
+    "kinds": {
+      "text": 441,
+      "meta": 2,
+      "caption": 1
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 6,
+    "claim_sections": {
+      "abstract": 6
+    },
+    "support": {
+      "moderate": 2,
+      "strong": 3,
+      "weak": 1
+    },
+    "evidence_status": {
+      "found": 6
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 33,
+      "fragment": 2,
+      "claim_zone_without_new_data": 22,
+      "boilerplate": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 6
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 6
+    },
+    "reproducibility_score": 34.2,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 3,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1,
+      "unsupported_claim": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "arxiv_1706.03762v7_attention-is-all-you-need.pdf",
+    "seconds": 1.38,
+    "title_extracted": "Attention Is All You Need",
+    "pages_paperlens": 15,
+    "pages_pymupdf": 15,
+    "warnings": [],
+    "n_sentences": 328,
+    "sections": {
+      "other": 119,
+      "references": 112,
+      "results": 52,
+      "abstract": 14,
+      "introduction": 11,
+      "background": 9,
+      "conclusion": 8,
+      "front": 2,
+      "acknowledgments": 1
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "2 Background",
+      "3 Model Architecture",
+      "Encoder:",
+      "3.2 Attention",
+      "3.2.1 Scaled Dot-Product Attention",
+      "3.2.2 Multi-Head Attention",
+      "3.2.3 Applications of Attention in our Model",
+      "3.3 Position-wise Feed-Forward Networks",
+      "3.4 Embeddings and Softmax",
+      "3.5 Positional Encoding",
+      "4 Why Self-Attention",
+      "5 Training",
+      "5.1 Training Data and Batching",
+      "5.2 Hardware and Schedule",
+      "5.3 Optimizer",
+      "5.4 Regularization",
+      "Residual Dropout",
+      "Label Smoothing",
+      "6.1 Machine Translation",
+      "6.2 Model Variations",
+      "6.3 English Constituency Parsing",
+      "7 Conclusion",
+      "Acknowledgements",
+      "References",
+      "Attention Visualizations"
+    ],
+    "kinds": {
+      "text": 300,
+      "meta": 9,
+      "caption": 7,
+      "table": 12
+    },
+    "pages_with_no_sentences": [
+      14
+    ],
+    "n_claims": 10,
+    "claim_sections": {
+      "abstract": 6,
+      "introduction": 1,
+      "conclusion": 3
+    },
+    "support": {
+      "weak": 5,
+      "none": 3,
+      "strong": 1,
+      "moderate": 1
+    },
+    "evidence_status": {
+      "found": 7,
+      "no_supporting_evidence": 3
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 149,
+      "fragment": 18,
+      "caption_label_only": 14,
+      "table_row_without_matching_value": 57,
+      "claim_zone_without_new_data": 128,
+      "boilerplate": 50
+    },
+    "claim_text_on_cited_page": {
+      "y": 10
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 7
+    },
+    "reproducibility_score": 63.0,
+    "rubric_not_applicable": [],
+    "n_gaps": 17,
+    "gap_kinds": {
+      "significance_without_test": 3,
+      "number_not_in_results": 1,
+      "unsupported_claim": 7,
+      "no_limitations": 1,
+      "superlative_unsupported": 4,
+      "generalization_narrow_evidence": 1
+    },
+    "datasets": [],
+    "metrics": [
+      "F1",
+      "BLEU",
+      "precision"
+    ]
+  },
+  {
+    "paper": "arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf",
+    "seconds": 15.2,
+    "title_extracted": "Language Models are Few-Shot Learners",
+    "pages_paperlens": 75,
+    "pages_pymupdf": 75,
+    "warnings": [],
+    "n_sentences": 1586,
+    "sections": {
+      "results": 738,
+      "other": 573,
+      "method": 90,
+      "introduction": 69,
+      "limitations": 40,
+      "related": 38,
+      "front": 15,
+      "abstract": 12,
+      "conclusion": 6,
+      "acknowledgments": 5
+    },
+    "headings": [
+      "Abstract",
+      "2 Approach",
+      "3 Results",
+      "6 Broader Impacts",
+      "Additional Samples from GPT-3",
+      "1 Introduction",
+      "2.1 Model and Architectures",
+      "2.2 Training Dataset",
+      "2.3 Training Process",
+      "2.4 Evaluation",
+      "3.1 Language Modeling, Cloze, and Completion Tasks",
+      "3.1.1 Language Modeling",
+      "3.1.2 LAMBADA",
+      "3.1.3 HellaSwag",
+      "3.1.4 StoryCloze",
+      "3.2 Closed Book Question Answering",
+      "3.3 Translation",
+      "3.4 Winograd-Style Tasks",
+      "3.5 Common Sense Reasoning",
+      "3.6 Reading Comprehension",
+      "3.7 SuperGLUE",
+      "3.8 NLI",
+      "3.9 Synthetic and Qualitative Tasks",
+      "3.9.1 Arithmetic",
+      "3.9.2 Word Scrambling and Manipulation Tasks",
+      "3.9.3 SAT Analogies",
+      "3.9.4 News Article Generation",
+      "3.9.5 Learning and Using Novel Words",
+      "3.9.6 Correcting English Grammar",
+      "4 Measuring and Preventing Memorization Of Benchmarks",
+      "5 Limitations",
+      "6.1 Misuse of Language Models",
+      "6.1.1 Potential Misuse Applications",
+      "6.1.2 Threat Actor Analysis",
+      "6.1.3 External Incentive Structures",
+      "6.2 Fairness, Bias, and Representation",
+      "6.2.1 Gender",
+      "6.2.2 Race",
+      "Most Favored Descriptive Words",
+      "6.2.3 Religion",
+      "6.2.4 Future Bias and Fairness Challenges",
+      "6.3 Energy Usage",
+      "7 Related Work",
+      "8 Conclusion",
+      "Acknowledgements",
+      "Contributions",
+      "Details of Common Crawl Filtering",
+      "Details of Model Training",
+      "Details of Test Set Contamination Studies",
+      "Overlap methodology",
+      "Overlap results",
+      "Total Compute Used to Train Language Models",
+      "Human Quality Assessment of Synthetic News Articles",
+      "Results on All Tasks for All Model Sizes"
+    ],
+    "kinds": {
+      "text": 1527,
+      "meta": 30,
+      "caption": 29
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 11,
+    "claim_sections": {
+      "abstract": 6,
+      "introduction": 5
+    },
+    "support": {
+      "none": 4,
+      "strong": 3,
+      "weak": 1,
+      "moderate": 3
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 4,
+      "found": 7
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 194,
+      "boilerplate": 12,
+      "fragment": 6,
+      "claim_zone_without_new_data": 144,
+      "caption_label_only": 16,
+      "symbols_or_numbers": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 11
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 7
+    },
+    "reproducibility_score": 87.0,
+    "rubric_not_applicable": [],
+    "n_gaps": 9,
+    "gap_kinds": {
+      "unsupported_claim": 5,
+      "number_not_in_results": 1,
+      "superlative_unsupported": 3
+    },
+    "datasets": [
+      "ANLI",
+      "Books2",
+      "Crawl",
+      "HellaSwag",
+      "LAMBADA",
+      "MultiNLI",
+      "NLI",
+      "NLP",
+      "PIQA",
+      "SQuAD",
+      "SuperGLUE",
+      "TriviaQA",
+      "WebText",
+      "Winograd",
+      "Winogrande"
+    ],
+    "metrics": [
+      "accuracy",
+      "F1",
+      "BLEU",
+      "perplexity"
+    ]
+  },
+  {
+    "paper": "plos_pbio.1002106_the-extent-and-consequences-of-p.pdf",
+    "seconds": 1.56,
+    "title_extracted": "The Extent and Consequences of P-Hacking in Science",
+    "pages_paperlens": 15,
+    "pages_pymupdf": 15,
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 432,
+    "sections": {
+      "references": 178,
+      "other": 123,
+      "introduction": 88,
+      "abstract": 18,
+      "acknowledgments": 16,
+      "front": 9
+    },
+    "headings": [
+      "Abstract",
+      "Introduction",
+      "Text-Mining",
+      "The Consequences of P-Hacking for Meta-analyses",
+      "Summary and Conclusions",
+      "Supporting Information",
+      "Acknowledgments",
+      "References"
+    ],
+    "kinds": {
+      "text": 366,
+      "meta": 32,
+      "caption": 1,
+      "table": 33
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 16,
+    "claim_sections": {
+      "abstract": 8,
+      "introduction": 8
+    },
+    "support": {
+      "none": 12,
+      "strong": 3,
+      "moderate": 1
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 12,
+      "found": 4
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 170,
+      "fragment": 22,
+      "table_row_without_matching_value": 285,
+      "claim_zone_without_new_data": 302,
+      "symbols_or_numbers": 3
+    },
+    "claim_text_on_cited_page": {
+      "y": 16
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 4
+    },
+    "reproducibility_score": 34.2,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 14,
+    "gap_kinds": {
+      "no_code": 1,
+      "comparison_without_baselines": 1,
+      "unsupported_claim": 11,
+      "no_limitations": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "plos_pmed.0020124_why-most-published-research-findings-are.pdf",
+    "seconds": 1.23,
+    "title_extracted": "Why Most Published Research Findings Are False",
+    "pages_paperlens": 6,
+    "pages_pymupdf": 6,
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 337,
+    "sections": {
+      "other": 183,
+      "references": 117,
+      "front": 31,
+      "abstract": 6
+    },
+    "headings": [
+      "Summary",
+      "It can be proven that",
+      "Bias",
+      "Teams",
+      "Corollaries",
+      "Corollary 1: The smaller the studies",
+      "Corollary 2: The smaller the effect",
+      "Corollary 3: The greater the number",
+      "Corollary 4: The greater the",
+      "Corollary 6: The hotter a",
+      "Most Research Findings Are False",
+      "Most Fields",
+      "Measures of the Prevailing Bias",
+      "How Can We Improve",
+      "References"
+    ],
+    "kinds": {
+      "text": 313,
+      "meta": 1,
+      "table": 22,
+      "caption": 1
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 2,
+    "claim_sections": {
+      "abstract": 2
+    },
+    "support": {
+      "weak": 2
+    },
+    "evidence_status": {
+      "found": 2
+    },
+    "rejected_candidates": {
+      "fragment": 6,
+      "below_relevance_threshold": 42,
+      "table_row_without_matching_value": 9,
+      "summary_section": 8
+    },
+    "claim_text_on_cited_page": {
+      "y": 2
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 2
+    },
+    "reproducibility_score": 34.2,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 4,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1,
+      "unsupported_claim": 2
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf",
+    "seconds": 2.21,
+    "title_extracted": "Comparison of High-Intensity Interval Training and Moderate-to-Vigorous Continuous Training for Cardiometabolic Health and Exercise Enjoyment in Obese Young Women: A Randomized Controlled Trial",
+    "pages_paperlens": 16,
+    "pages_pymupdf": 16,
+    "warnings": [],
+    "n_sentences": 466,
+    "sections": {
+      "references": 200,
+      "results": 76,
+      "discussion": 66,
+      "method": 62,
+      "introduction": 32,
+      "abstract": 12,
+      "front": 9,
+      "other": 9
+    },
+    "headings": [
+      "Objective",
+      "Methods",
+      "Results",
+      "Conclusion",
+      "Introduction",
+      "Subjects",
+      "Experimental protocol",
+      "Blood sampling",
+      "Body composition analysis",
+      "O2peak test",
+      "High-intensity interval exercise training protocol",
+      "Moderate-to-vigorous intensity continuous exercise training protocol",
+      "Training intensity and energy expenditure during training",
+      "Record of diet and extra physical activity",
+      "Measures of blood lipids and sexual hormones",
+      "Statistical analysis",
+      "Training data",
+      "Diet and extra physical activities",
+      "O2peak)",
+      "Body composition",
+      "Blood lipids and sexual hormones",
+      "Physical activity enjoyment scale (PAES) during the intervention",
+      "Correlations between variables",
+      "Discussion",
+      "Supporting Information",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 377,
+      "meta": 52,
+      "table": 36,
+      "caption": 1
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 20,
+    "claim_sections": {
+      "abstract": 5,
+      "introduction": 3,
+      "discussion": 12
+    },
+    "support": {
+      "moderate": 4,
+      "strong": 3,
+      "weak": 6,
+      "none": 7
+    },
+    "evidence_status": {
+      "found": 13,
+      "no_supporting_evidence": 7
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 399,
+      "table_row_without_matching_value": 106,
+      "claim_zone_without_new_data": 290,
+      "fragment": 25,
+      "symbols_or_numbers": 4,
+      "table_row_for_another_quantity": 5,
+      "boilerplate": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 20
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 13
+    },
+    "reproducibility_score": 60.5,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 17,
+    "gap_kinds": {
+      "no_code": 1,
+      "number_not_in_results": 3,
+      "unsupported_claim": 13
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf",
+    "seconds": 2.26,
+    "title_extracted": "Global Prevalence of Chronic Kidney Disease – A Systematic Review and Meta-Analysis",
+    "pages_paperlens": 18,
+    "pages_pymupdf": 18,
+    "warnings": [
+      "126 number(s) contain a character this PDF's font does not map to text (often the decimal point). They are shown with '�' and excluded from numeric matching."
+    ],
+    "n_sentences": 806,
+    "sections": {
+      "references": 560,
+      "discussion": 64,
+      "results": 60,
+      "front": 46,
+      "method": 36,
+      "introduction": 18,
+      "abstract": 12,
+      "other": 8,
+      "acknowledgments": 2
+    },
+    "headings": [
+      "Abstract",
+      "Introduction",
+      "Search strategy and selection criteria",
+      "Study selection and data extraction",
+      "Statistical analysis and quality assessment",
+      "Results",
+      "Prevalence",
+      "Univariate meta-regres-",
+      "Geography",
+      "Gender",
+      "Quality",
+      "Discussion",
+      "Supporting Information",
+      "Acknowledgments",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 687,
+      "meta": 109,
+      "table": 10
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 12,
+    "claim_sections": {
+      "abstract": 5,
+      "introduction": 2,
+      "discussion": 5
+    },
+    "support": {
+      "none": 7,
+      "strong": 3,
+      "moderate": 2
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 7,
+      "found": 5
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 200,
+      "fragment": 24,
+      "table_row_without_matching_value": 50,
+      "symbols_or_numbers": 55,
+      "claim_zone_without_new_data": 200,
+      "restates_claim": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 12
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 5
+    },
+    "reproducibility_score": 39.5,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 10,
+    "gap_kinds": {
+      "no_code": 1,
+      "unsupported_claim": 7,
+      "number_not_in_results": 1,
+      "significance_without_test": 1
+    },
+    "datasets": [
+      "PubMed"
+    ],
+    "metrics": [
+      "precision"
+    ]
+  },
+  {
+    "paper": "pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf",
+    "seconds": 2.05,
+    "title_extracted": "The Impacts of Oil Palm on Recent Deforestation and Biodiversity Loss",
+    "pages_paperlens": 19,
+    "pages_pymupdf": 19,
+    "warnings": [],
+    "n_sentences": 547,
+    "sections": {
+      "references": 179,
+      "results": 122,
+      "method": 79,
+      "discussion": 75,
+      "introduction": 48,
+      "abstract": 16,
+      "front": 12,
+      "other": 8,
+      "conclusion": 6,
+      "acknowledgments": 2
+    },
+    "headings": [
+      "Abstract",
+      "Introduction",
+      "Site Analysis",
+      "Oil Palm Vulnerable Forest Assessment",
+      "Biodiversity Assessment for Vulnerable Forest Areas",
+      "Results",
+      "Regional Trends",
+      "Country Trends",
+      "Vulnerable Forest Assessment",
+      "Biodiversity Analysis",
+      "Discussion",
+      "Monitoring using satellite imagery",
+      "Impact of historic land use",
+      "Vulnerability of forests to future oil palm development",
+      "Prioritizing vulnerable forests for conservation",
+      "Conclusions",
+      "Supporting Information",
+      "Acknowledgments",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 476,
+      "meta": 22,
+      "caption": 1,
+      "table": 48
+    },
+    "pages_with_no_sentences": [
+      9,
+      14
+    ],
+    "n_claims": 9,
+    "claim_sections": {
+      "abstract": 6,
+      "introduction": 1,
+      "discussion": 2
+    },
+    "support": {
+      "none": 4,
+      "weak": 3,
+      "strong": 2
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 4,
+      "found": 5
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 140,
+      "table_row_without_matching_value": 20,
+      "claim_zone_without_new_data": 134,
+      "fragment": 4,
+      "boilerplate": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 9
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 5
+    },
+    "reproducibility_score": 36.8,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 9,
+    "gap_kinds": {
+      "no_code": 1,
+      "unsupported_claim": 7,
+      "number_not_in_results": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf",
+    "seconds": 4.62,
+    "title_extracted": "Accurate De Novo Prediction of Protein Contact Map by Ultra-Deep Learning Model",
+    "pages_paperlens": 34,
+    "pages_pymupdf": 34,
+    "warnings": [],
+    "n_sentences": 839,
+    "sections": {
+      "results": 412,
+      "references": 157,
+      "method": 119,
+      "conclusion": 60,
+      "introduction": 30,
+      "other": 25,
+      "front": 21,
+      "abstract": 15
+    },
+    "headings": [
+      "Motivation",
+      "Method",
+      "Results",
+      "Availability",
+      "Author Summary",
+      "Introduction",
+      "Deep learning model for contact prediction",
+      "Overall performance",
+      "Contact-assisted protein folding",
+      "Blind test in CAMEO",
+      "PDB ID:2nc8)",
+      "Conclusion and Discussion",
+      "Deep learning model details",
+      "Training and test data",
+      "Protein features",
+      "Programs to compare and evaluation metrics",
+      "Calculation of meff",
+      "Template-based modeling (TBM) of the test proteins",
+      "Supporting Information",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 705,
+      "meta": 37,
+      "table": 83,
+      "caption": 14
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 25,
+    "claim_sections": {
+      "abstract": 8,
+      "introduction": 1,
+      "conclusion": 16
+    },
+    "support": {
+      "none": 8,
+      "moderate": 7,
+      "strong": 4,
+      "weak": 6
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 8,
+      "found": 17
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 433,
+      "summary_section": 13,
+      "fragment": 40,
+      "claim_zone_without_new_data": 415,
+      "caption_label_only": 40,
+      "table_row_without_matching_value": 11
+    },
+    "claim_text_on_cited_page": {
+      "y": 25
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 17
+    },
+    "reproducibility_score": 73.9,
+    "rubric_not_applicable": [],
+    "n_gaps": 19,
+    "gap_kinds": {
+      "unsupported_claim": 14,
+      "number_not_in_results": 3,
+      "superlative_unsupported": 1,
+      "generalization_narrow_evidence": 1
+    },
+    "datasets": [
+      "CAMEO",
+      "CASP"
+    ],
+    "metrics": [
+      "accuracy",
+      "F1"
+    ]
+  }
+]

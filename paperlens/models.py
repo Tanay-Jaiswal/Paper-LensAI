@@ -68,6 +68,8 @@ class Claim:
     evidence_status: str = ""  # found | no_supporting_evidence | no_searchable_text (see claims.STATUS_TEXT)
     evidence_note: str = ""    # text shown when no passage is returned
     rejected: dict[str, int] = field(default_factory=dict)   # why top-ranked candidates were not returned
+    # claimed / top / found / missing figures (see claims.quantity_coverage); empty lists for a claim without figures
+    quantity_coverage: dict[str, list[str]] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

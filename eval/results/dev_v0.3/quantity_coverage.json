@@ -1,0 +1,46 @@
+{
+  "totals": {
+    "claims_with_figures": 51,
+    "figures_claimed": 143,
+    "figures_top": 68,
+    "figures_rank_order_set": 78,
+    "figures_complementary_set": 84,
+    "claims_fully_covered_by_top": 18,
+    "claims_fully_covered_rank_order_set": 20,
+    "claims_fully_covered_complementary_set": 22,
+    "claims_top_matches_nothing": 10
+  },
+  "top_label_by_coverage": {
+    "top_covers_all": {
+      "": 5,
+      "y": 11,
+      "n": 1,
+      "p": 1
+    },
+    "top_misses_some": {
+      "p": 7,
+      "y": 6,
+      "": 13,
+      "n": 7
+    },
+    "set_covers_all": {
+      "": 7,
+      "y": 11,
+      "p": 3,
+      "n": 1
+    },
+    "set_misses_some": {
+      "p": 5,
+      "y": 6,
+      "": 11,
+      "n": 7
+    },
+    "no_figures": {
+      "p": 16,
+      "n": 3,
+      "y": 7,
+      "": 6
+    }
+  },
+  "note": "labels (y/p/n, '' = not a real claim or unlabelled) are AI-assisted and describe the top passage only"
+}
