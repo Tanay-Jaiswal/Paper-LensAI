@@ -129,7 +129,7 @@ def extract_claims(doc: Document, max_claims: int = 25, min_score: float = 0.62)
 # A passage is returned only if it is RELEVANT (Fix 1) and SUITABLE (Fix 3). Numbers count only when the quantity
 # matches, not the bare literal (Fix 2). All thresholds are here, in one place, and are reported with every ledger.
 
-MIN_LEXICAL = 0.35                 # normalised BM25 a passage needs when it shares no quantity with the claim
+MIN_LEXICAL = 0.30                 # normalised BM25 a passage needs when it shares no quantity with the claim
 #                                    (chosen from the precision/coverage curves in docs/EVALUATION.md section 6)
 MIN_LEXICAL_WITH_QUANTITY = 0.12   # ... when it does share at least one matched quantity
 MIN_CONTENT_TOKENS = 6             # shorter passages are headings or fragments
@@ -235,7 +235,7 @@ def _claim_quantities(claim_text: str, claim_numbers: list[str] | None):
     qs = quantities_in(claim_text)
     if claim_numbers:      # the caller's list (years already removed) restricts which numbers count
         keep = set(claim_numbers)
-        qs = [q for q in qs if q.value in keep or q.value.split("e")[0] in keep]
+        qs = [q for q in qs if q.value in keep or "e" in q.value]
     return qs
 
 

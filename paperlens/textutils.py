@@ -110,8 +110,12 @@ _UNIT_ALIASES = {
 _METRIC_UNITS = {"bleu", "rouge", "f1", "accuracy", "auc", "map", "wer", "perplexity", "mrr", "ndcg"}
 _SCI = r"(?:\s?[×·]\s?10\s?\^?\s?(?P<exp>[−\-–]?\d{1,3})|\s?x\s?10\s?(?:\^\s?|(?=[−\-–]))(?P<exp2>[−\-–]?\d{1,3})|e(?P<exp3>[−\-–]?\d{1,3})\b)"
 _QTOKEN_RE = re.compile(
+    r"(?P<pow>(?<![\w.])10\s?\^\s?\{?(?P<pexp>[−\-–]?\d{1,3})\}?)|"        # a bare power of ten: 10^-3 is 1e-3
     r"(?P<num>(?<![\w.])(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?))" + _SCI + r"?(?P<pct>\s?%)?"
     r"|(?P<word>[A-Za-z×][A-Za-z0-9\-]*)")
+
+
+_RANGE_LINK = re.compile(r"\s*(?:[-–−]|to|and|or|±|\+/-|\+-)\s*")
 
 
 class Quantity:
@@ -141,7 +145,8 @@ class Quantity:
 
 def _clean_numeric_noise(text: str) -> str:
     text = re.sub(r"\d+(?:" + UNMAPPED + r"\d+)+\s?%?", " ", text)
-    text = re.sub(r"[A-Za-z][A-Za-z0-9]*-\d+(?:\.\d+)?\b", lambda m: re.sub(r"\d", "#", m.group(0)), text)  # CIFAR-10 stays a word
+    # CIFAR-10 stays a word; the look-behind keeps the exponent of 1e-3 from being read as a name
+    text = re.sub(r"(?<![0-9])[A-Za-z][A-Za-z0-9]*-\d+(?:\.\d+)?\b", lambda m: re.sub(r"\d", "#", m.group(0)), text)
     text = _VERSION_RE.sub(" ", text)
     text = _CITE_RE.sub(" ", text)
     return re.sub(r"\b(?:Table|Tab\.|Figure|Fig\.|Section|Sec\.|Eq\.|Equation|Appendix)\s*\d+(?:\.\d+)*", " ", text)
@@ -150,8 +155,13 @@ def _clean_numeric_noise(text: str) -> str:
 def quantities_in(text: str, window: int = 2) -> list[Quantity]:
     """Numbers in `text` with their unit and nearby words. Years (1900-2099 with no unit) are dropped."""
     toks = []   # (kind, value, unit_from_token)
-    for m in _QTOKEN_RE.finditer(_clean_numeric_noise(text)):
-        if m.group("num"):
+    spans = []  # where each token sits in the cleaned text
+    text = _clean_numeric_noise(text)
+    for m in _QTOKEN_RE.finditer(text):
+        spans.append(m.span())
+        if m.group("pow"):
+            toks.append(("num", f"1e{int(m.group('pexp').replace('−', '-').replace('–', '-'))}", ""))
+        elif m.group("num"):
             raw = m.group("num").replace(",", "")
             if "." in raw:
                 raw = raw.rstrip("0").rstrip(".")
@@ -161,13 +171,21 @@ def quantities_in(text: str, window: int = 2) -> list[Quantity]:
             toks.append(("num", raw, "%" if m.group("pct") else ""))
         else:
             toks.append(("word", m.group("word").lower(), ""))
+    units = {}
+    for i, (kind, val, unit) in enumerate(toks):
+        if kind == "num":
+            nxt = toks[i + 1][1] if i + 1 < len(toks) and toks[i + 1][0] == "word" else ""
+            units[i] = unit or _UNIT_ALIASES.get(nxt, "")
+    # a range or an error bar states its unit once, after the last number: "3.5 to 4.2%", "125.3 ± 0.6 GeV"
+    nums = sorted(units)
+    for a, b in zip(nums[-2::-1], nums[:0:-1]):
+        if not units[a] and units[b] and _RANGE_LINK.fullmatch(text[spans[a][1]:spans[b][0]]):
+            units[a] = units[b]
     out = []
     for i, (kind, val, unit) in enumerate(toks):
         if kind != "num":
             continue
-        nxt = toks[i + 1][1] if i + 1 < len(toks) and toks[i + 1][0] == "word" else ""
-        if not unit and nxt in _UNIT_ALIASES:
-            unit = _UNIT_ALIASES[nxt]
+        unit = units[i]
         left = [t[1] for t in toks[max(0, i - 2 * window):i] if t[0] == "word" and t[1] not in STOPWORDS][-window:]
         right = [t[1] for t in toks[i + 1:i + 1 + 2 * window] if t[0] == "word" and t[1] not in STOPWORDS][:window]
         if not unit:
