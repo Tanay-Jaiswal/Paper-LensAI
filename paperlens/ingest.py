@@ -81,6 +81,7 @@ _HEAD_WORDS = {"conclusion": "conclusion", "conclusions": "conclusion", "conclud
                "limitations": "limitations", "methods": "method", "methodology": "method",
                "architecture": "method"}
 _HEAD_STOP = {"the", "a", "an", "our", "of", "and", "on", "for", "in", "to", "with", "vs", "vs.", "main", "overall"}
+_CAPTION_START = re.compile(r"^(?:Table|Figure|Fig\.|FIG\.)\s*\d+\s*[:.]")
 _SENTENCE_END = re.compile(r"[.?!:;)\]\"”’']\s*$")
 ABSTRACT_END_GAP = 2.0             # white band (in font sizes) after abstract text that ends the abstract
 ABSTRACT_MAX_SENTENCES = 30        # a longer "abstract" means its end was probably missed: warn, do not guess
@@ -446,6 +447,55 @@ def _tables(page) -> list[tuple[tuple, list[str]]]:
     return found
 
 
+FIGURE_PAD = 2.0
+FIGURE_GAP = 6.0          # drawing items closer than this belong to one figure
+FIGURE_MIN_ITEMS = 4
+FIGURE_MIN_SIZE = (60.0, 40.0)
+
+
+def _figure_boxes(page, table_boxes=()) -> list[tuple]:
+    """Bounding boxes of figures: clusters of vector drawing items and images. Text inside such a box (axis labels,
+    legends, diagram boxes) is figure content, not prose, and must not be glued into sentences. The caption sits outside.
+    Clusters that are only thin horizontal rules (a ruled table), page-sized backgrounds and found tables are not figures."""
+    try:
+        rects = [tuple(d["rect"]) for d in page.get_drawings() if d.get("rect") is not None]
+        rects += [tuple(i["bbox"]) for i in page.get_image_info()]
+    except Exception:
+        return []
+    area = page.rect.width * page.rect.height
+    rects = [r for r in rects if (r[2] - r[0]) * (r[3] - r[1]) < 0.5 * area and (r[2] - r[0] > 0.2 or r[3] - r[1] > 0.2)]
+    clusters: list[list] = []                  # [bbox, n_items, n_non_rule_items]
+    for r in sorted(rects):
+        thin = (r[3] - r[1]) < 1.5 and (r[2] - r[0]) > 4 * (r[3] - r[1])
+        hit = [c for c in clusters if r[0] <= c[0][2] + FIGURE_GAP and r[2] >= c[0][0] - FIGURE_GAP
+               and r[1] <= c[0][3] + FIGURE_GAP and r[3] >= c[0][1] - FIGURE_GAP]
+        box = list(r)
+        n, m = 1, 0 if thin else 1
+        for c in hit:
+            clusters.remove(c)
+            box = [min(box[0], c[0][0]), min(box[1], c[0][1]), max(box[2], c[0][2]), max(box[3], c[0][3])]
+            n, m = n + c[1], m + c[2]
+        clusters.append([tuple(box), n, m])
+    out = []
+    for box, n, m in clusters:
+        w, h = box[2] - box[0], box[3] - box[1]
+        if n < FIGURE_MIN_ITEMS or m < 2 or w < FIGURE_MIN_SIZE[0] or h < FIGURE_MIN_SIZE[1] or w * h > 0.7 * area:
+            continue
+        if any(_overlap(box, tb) > 0.5 for tb in table_boxes):
+            continue
+        out.append(box)
+    return out
+
+
+def _overlap(a, b) -> float:
+    """Share of the smaller box that the two boxes have in common."""
+    w = min(a[2], b[2]) - max(a[0], b[0])
+    h = min(a[3], b[3]) - max(a[1], b[1])
+    if w <= 0 or h <= 0:
+        return 0.0
+    return w * h / min((a[2] - a[0]) * (a[3] - a[1]), (b[2] - b[0]) * (b[3] - b[1]))
+
+
 def _inside(bbox, box, pad=2.0) -> bool:
     cx, cy = (bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2
     return box[0] - pad <= cx <= box[2] + pad and box[1] - pad <= cy <= box[3] + pad
@@ -695,7 +745,10 @@ def _build(pdf, doc_id: str, name: str) -> Document:
     for pno, page in enumerate(pdf, start=1):
         tables = _tables(page)
         lines = [ln for ln in _page_lines(page) if not any(_inside(ln[5], tb[0]) for tb in tables)]
-        pages.append({"pno": pno, "tables": tables, "lines": lines,
+        figs = _figure_boxes(page, [tb[0] for tb in tables])
+        figtext = [ln for ln in lines if any(_inside(ln[5], fb, FIGURE_PAD) for fb in figs)]
+        lines = [ln for ln in lines if not any(ln is f for f in figtext)]
+        pages.append({"pno": pno, "tables": tables, "lines": lines, "figtext": figtext,
                       "width": page.rect.width, "height": page.rect.height})
     repeated = _running_headers(pages)
     prev_toc = False
@@ -728,6 +781,8 @@ def _build(pdf, doc_id: str, name: str) -> Document:
     chunks: list[tuple[list[Sentence], float]] = []    # front-matter paragraphs of page 1, in order, with font size
 
     buf: list[str] = []                       # text of the running paragraph; may carry over a page break
+    st["held"] = None                          # (lines, page, size) of a sentence interrupted by a caption
+    st["cap_block"] = None
     st["buf_page"] = None                      # page on which the first text in `buf` started
     st["carried"] = False                      # `buf` holds the unfinished last sentence of the previous page
 
@@ -769,6 +824,16 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                 buf.append(tail)
                 st["buf_page"] = first_page if not sents else pno
                 st["carried"] = True
+
+        def release_held():
+            """Close the caption that interrupted a sentence and put the sentence back into the running text."""
+            held = st["held"]
+            st["held"] = None
+            if not held:
+                return
+            flush()
+            buf.extend(held[0])
+            st["buf_page"], st["buf_size"] = held[1], held[2]
 
         if pg["toc"]:
             # a contents page lists every heading again: keep its text as front matter, read no structure from it
@@ -852,6 +917,7 @@ def _build(pdf, doc_id: str, name: str) -> Document:
             if found and found[0] == "head":
                 _, n, htext, canon = found
                 htext = _clean(htext)[0].strip()
+                release_held()
                 flush()
                 st["section"] = _next_section(st, htext, canon, size, bold, pno)
                 st["heading"] = htext
@@ -860,6 +926,7 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                 i += n - 1
                 continue
             if found:                              # pull quote: repeats body text in display type
+                release_held()
                 flush()
                 flush(section="front" if st["section"] == "abstract" else None, force_kind="meta", lines=[found[2]])
                 if st["section"] == "abstract":
@@ -871,9 +938,19 @@ def _build(pdf, doc_id: str, name: str) -> Document:
             elif st["section"] == "front" and buf and prev_size is not None and (
                     abs(size - prev_size) > 0.3 or y - prev_y > 1.7 * size or y < prev_y - 2 * size):
                 flush()                            # title, authors, dates and the abstract are separate paragraphs
+            new_block = block_no != prev_block
             prev_block, prev_size, prev_y = block_no, size, y
             if st["section"] == "front" and size > body + 2:
                 continue  # title lines
+            if st["held"] and block_no != st["cap_block"]:
+                release_held()                     # the caption is over: the interrupted sentence goes on
+            elif _CAPTION_START.match(text) and len(text) > 20 and new_block and buf and not st["held"]                     and not _SENTENCE_END.search(buf[-1]):
+                # a figure or table caption in the middle of a sentence (a figure floats between two columns): the
+                # caption is its own text; the sentence it interrupted continues after it
+                st["held"] = (list(buf), st["buf_page"], st["buf_size"])
+                buf.clear()
+                st["cap_block"] = block_no
+                st["buf_page"] = pno
             if st["carried"]:
                 st["carried"] = False
                 if buf and not (text[:1].islower() or buf[-1].endswith((",", ";"))):
@@ -884,11 +961,14 @@ def _build(pdf, doc_id: str, name: str) -> Document:
             buf.append(dropcap + text)
             dropcap = ""
         emit_tables(1e9)
+        release_held()
         flush(keep_tail=pno < len(pages))
         if notes:
             flush(force_kind="meta", lines=notes)
         if pg["margin"]:
             flush(section="front", force_kind="meta", lines=[ln[0] for ln in pg["margin"]])
+        if pg["figtext"]:                          # labels inside figures: kept, but never a claim or evidence
+            flush(force_kind="meta", lines=[ln[0] for ln in pg["figtext"]])
 
     if not any(s.section == "abstract" for s in sentences) and sentences and UNREADABLE_WARNING not in warnings:
         picked = _headless_abstract(chunks)

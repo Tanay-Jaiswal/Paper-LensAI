@@ -769,3 +769,57 @@ were seen (ATLAS figure legend, SciFact figure text). Seed-7 synthetic and SciFa
 - Real three-column, rotated, scanned-with-OCR-text and right-to-left layouts; text in figures.
 - Unruled tables whose cells sit side by side are read in the PDF's order and can be glued to nearby text.
 - The sparse-column case above, and any column with fewer than 3 lines.
+
+## 12. Development version 0.5.1-dev: figure text, and a valid comparison on real development papers
+
+Branch `dev/reading-order-v0.5`, continued from `7b3485f`. Development papers and synthetic PDFs only; no held-out data.
+Labels quoted are AI-assisted (written by the session that edits the parser, so not independent) and are not human ground truth.
+
+### 12.1 The two splices: root causes and fixes (`paperlens/ingest.py`)
+
+| Case | What entered the claim | Cause | Fix |
+|---|---|---|---|
+| SciFact page 1, Figure 1 | the diagram's labels ("Decision: SUPPORTS Fact-checker Corpus ...") up to the caption | the parser had no notion of a figure: text inside a drawing was read as prose and glued into one sentence that ended at the caption | `_figure_boxes`: clusters of vector drawing items and images (4+ items, 60 x 40 pt or more, not only thin horizontal rules, not a found table, under 70% of the page); lines inside such a box are kept as `meta` sentences (never a claim or evidence). Captions lie outside the box and stay captions |
+| ATLAS page 21, Figure 12 | the caption of a figure that floats at the top of the second column, glued to "The excess is driven" at the end of the first column | a sentence that continues from one column to the next had a caption in between; the running text had no terminal punctuation, so the caption lines were appended to it | a caption that starts its own block in the middle of an unfinished sentence is held aside, closed as its own caption, and the sentence continues after it (`release_held`) |
+
+Before: both were extracted as claims (one `none`, one `moderate`) with figure text inside. After: the SciFact labels are `meta`, the caption is a caption and the
+ATLAS sentence reads "The excess is driven by the two channels with the highest mass resolution, ... channel." with the caption separate; neither is a claim.
+No exception names a paper or a string. A first version of the caption rule also fired on a table reference wrapped onto its own line ("... as shown in" / "Table 1.")
+and cost the synthetic table layout 2% recall (caught by `tests/test_layout_bench.py`); it now needs a block of its own and more than a bare label.
+Tests: `tests/test_figure_text.py` (6; the first two fail when the two fixes are disabled; negatives: rules-only table, page background, header rule, text under a figure,
+a wrapped "Table 1.").
+
+Not fixed: unruled-table text glued to a nearby sentence (ResNet: "avg pool output size: 1 avg pool We evaluate our method on ..."), and any figure drawn without vector items or images.
+
+### 12.2 Claim identity across versions (`eval/claim_map.py`)
+
+Claim ids renumber between runs, so identity is `sha1(paper | claim text)` as in `eval.dev_pairs`; a pair is `sha1(paper | claim | passage)`.
+`python -m eval.claim_map map <old> <new> <labels> <out_dir>` writes a mapping report (`eval/results/dev_v0.5.1/label_map/claim_map.csv`: old and new text, relation
+`identical / partially_changed / materially_changed / removed / added`, whether the old evidence judgment is still valid, whether a fresh label is needed) and a blank sheet of
+only the items that need labels. Nothing carries over except for identical text; a changed passage of an identical claim keeps the claim label but needs a new pair label;
+a passage of a claim labelled "not a claim" needs none. `merge` writes a **new** labels file (refuses conflicts, rows not marked AI-assisted, and overwriting). The original
+`eval/results/dev_v0.2/dev_pairs_labelled.csv` is unchanged (its sha256 equals `DEV_LABELS_LOCKED.txt`; a test checks it).
+
+0.4.0-dev (147 claims) to 0.5.1-dev (144): 141 identical, 3 partially changed (a fragment completed to its sentence, or a clause added), 0 materially changed, 3 removed (two
+labelled not-a-claim, one never labelled), 0 added. 139 claim labels and 54 pair judgments stay valid. Fresh labels were needed for 5 claims and 7 passages; all 12 were
+judged (claims: `y` 4, `n` 1; two of the four `y` are the completed versions of fragments that were already `y`, two are LIGO claims that were never labelled; passages: `y` 2, `p` 4, `n` 1) and kept in `fresh_labels_ai_assisted.csv` with their reasons; the merged file is `dev_pairs_labelled_merged.csv`.
+
+### 12.3 Comparison (`python -m eval.claim_map compare ...`, `comparison.json`)
+
+On the 141 claims that are identical in both versions (same denominators; 97 real claims, 59 returned passages each, no unlabelled item):
+
+| | 0.4.0-dev | 0.5.1-dev |
+|---|---|---|
+| coverage (real claims with a passage) | 59/97 = 0.608 | 59/97 = 0.608 |
+| strict precision (y) | 22/59 = 0.373 (95% CI 0.26 to 0.50) | 22/59 = 0.373 (0.26 to 0.50) |
+| lenient precision (y or p) | 48/59 = 0.814 (0.70 to 0.89) | 47/59 = 0.797 (0.68 to 0.88) |
+| same top passage | 135 of 141 | |
+
+The one lenient loss is a claim in the Attention paper whose top passage changed from a partial one to an unrelated one; there are no gains. **No improvement or loss is demonstrated**
+(one passage out of 59, intervals overlap completely). Whole claim sets, each version alone: 0.5.1-dev has 144 claims, 99 real, 61 returned, strict 23/61 = 0.377, lenient 49/61 = 0.803, coverage 61/99;
+0.4.0-dev's whole-set figures are not computed because one removed claim has no label (the tool refuses to guess). The whole-set numbers have different denominators from the
+0.4.0-dev numbers quoted in section 10 (3 claims then unlabelled), so they are not comparable with them.
+
+Confounders: the 12 fresh labels were written knowing the system output and by the session that edited the parser; the old labels by the session that wrote 0.2.0-dev; neither is human;
+59 passages is a small denominator; the 5 fragment-to-sentence claims are new items that were previously judged on their fragments. Synthetic seed 7 and SciFact dev are identical to 0.4.0-dev.
+Synthetic reading-order benchmark: unchanged by the figure fixes (macro 1.00, `L13` still 0.92 for order).

@@ -110,3 +110,21 @@ Not run: official held-out scorers, `eval/dev_threshold_sweep.py`, anything on e
 | Browser (built-in pane, `python -m paperlens serve`, scratch data folder) with synthetic `L02_twocol_lines_y`, `L04_pagebreak_twocol`, `L10_grid_lines_y` | extraction in reading order; claim C1 "strong", evidence on page 2, "2 of 2 claimed figures matched", two page images loaded; grid layout shows the layout warning in the warning bar. Claims of the synthetic documents were checked through the API for all three |
 
 Not run: official held-out scorers, `eval/dev_threshold_sweep.py`, anything on the held-out folders.
+
+## 0.5.1-dev (2026-10-13, branch `dev/reading-order-v0.5`)
+
+| Command | Outcome |
+|---|---|
+| `PY -m pytest -q` at the start (`7b3485f`) | 175 passed |
+| reproduction (scratch script, development PDFs) | ATLAS p21 claim "The excess is driven SM Best fit ... Figure 12: ..." and SciFact p1 "Decision: SUPPORTS Fact-checker Corpus More severe ..." both present as `text` sentences |
+| `PY -m pytest -q tests/test_figure_text.py` with `_figure_boxes` and the caption rule disabled | the two reproduction tests fail (the other four are negatives); with the fixes: 6 passed |
+| first full run after the fixes | 179 passed, **1 failed**: `L05_tables_natural` block recall 0.977 (< 0.99); cause: a table reference wrapped onto its own line ("Table 1.") was taken for a caption; rule tightened, test added |
+| a hung `python -` process from a malformed shell command was killed | no effect on files |
+| `PY -m pytest -q` final | **189 passed, 0 failed** (14 new: 6 figure text, 8 claim map) |
+| `PY -m eval.real_papers data/Papers eval/results/dev_v0.5.1` | 16 papers, 0 crashed, 144 claims; `eval.structure_dev`: abstract 16/16, headings 83/85 (unchanged) |
+| `PY -m eval.claim_map map ...dev_v0.4... ...dev_v0.5.1... ...dev_v0.2/dev_pairs_labelled.csv eval/results/dev_v0.5.1/label_map` | 141 identical, 3 partially changed, 3 removed; 12 items need fresh labels |
+| `PY -m eval.claim_map merge` then `compare` | strict 22/59 vs 22/59, lenient 48/59 vs 47/59 on the 141 common claims |
+| `PY -m eval.layout_bench --out eval/results/layout_bench/after_0.5.1-dev.json` | identical aggregate to 0.5.0-dev |
+| `PY -m eval.run_eval --n 100 --seed 7`, `PY -m eval.scifact_eval` | identical to 0.4.0-dev except timings |
+
+Not run: the application in the browser this sprint (parser-only change on top of the sprint-4 check), official held-out scorers, anything on the held-out folders.

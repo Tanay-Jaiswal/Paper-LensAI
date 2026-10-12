@@ -99,3 +99,10 @@ Synthetic layouts and development papers only; `docs/EVALUATION.md` section 11.
 - **Sentences over page breaks** are joined only when the next page starts with a lower-case word or the text ends in a comma or semicolon;
   a sentence continued after a table, a heading or a figure at the top of the next page stays split.
 - A synthetic score of 1.00 is not evidence for real papers: the layouts and the parser were written by the same session.
+
+## Added for 0.5.1-dev (figure text, label carry-over)
+
+- **Figure detection needs vector items or images.** A figure drawn as one big image is found, but a figure made of text only, or a cluster of fewer than 4 items, is not; its labels stay prose.
+  Rules-only tables are deliberately not figures. Text of unruled tables can still be glued to the nearest sentence (ResNet development paper).
+- **A caption inside an unfinished sentence** is separated only when it starts its own block and has more than a bare label.
+- **Labels are AI-assisted.** `eval/claim_map.py` carries a label only across identical claim text; every other claim needs a fresh label, which so far came from the session that edited the parser.

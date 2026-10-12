@@ -83,3 +83,4 @@ docs/        ARCHITECTURE.md EVALUATION.md RELATED_WORK.md KNOWN_LIMITATIONS.md 
 
 Scanned PDFs (no OCR), heavily multi-column layouts where PDF text order is scrambled, non-English papers, claims
 expressed without cue words, and evidence living only in figures. Full list in `docs/KNOWN_LIMITATIONS.md`.
+Version `0.5.1-dev` (same branch): text inside figures is kept out of sentences and claims, a caption that interrupts a sentence no longer joins it, and `eval/claim_map.py` carries development labels between versions only for unchanged claim text (`docs/EVALUATION.md` section 12).
