@@ -158,17 +158,22 @@ _STEP_RE = re.compile(r"^\(?\d*\)?\s*(?:Step|Case|Claim|Lemma|Proof|Theorem|Prop
 _CAPTION_PREFIX = re.compile(r"^(?:Table|Figure|Fig\.|FIG\.)\s*\d+\s*[:.]?\s*", re.I)
 
 
-def _eligible_evidence(doc: Document, claim: Claim) -> list[Sentence]:
+def _eligible_evidence(doc: Document, claim: Claim, claim_sentences: frozenset = frozenset()) -> list[Sentence]:
     """Body sentences that may be searched at all. Unsuitable ones are filtered later, with a reason."""
     out = []
     for s in doc.sentences:
-        if s.id == claim.sentence_id or s.section not in EVIDENCE_SECTIONS:
+        if s.id == claim.sentence_id or (s.section not in EVIDENCE_SECTIONS and s.section not in CLAIM_ZONE):
             continue
-        # a claim restated elsewhere in the claims zone is not independent evidence
-        if s.section in ("abstract", "introduction", "conclusion"):
-            continue
+        if s.id in claim_sentences and s.section in CLAIM_ZONE:
+            continue      # another headline claim is not evidence for this one
         out.append(s)
     return out
+
+
+# Abstract, introduction and conclusion are where claims are made. A sentence there is searched, but it is returned
+# only when it adds a figure the claim does not contain (otherwise it is the claim again, in other words), and it ranks
+# below body text.
+CLAIM_ZONE = {"abstract": 0.2, "introduction": 0.2, "conclusion": 0.2}
 
 
 def _non_prose_share(text: str) -> float:
@@ -206,6 +211,9 @@ def evidence_unsuitable(s: Sentence, claim_tokens: set, claim_values: set, match
     if s.kind == "caption" and not matched:
         if len(tokenize(_CAPTION_PREFIX.sub("", s.text))) < CAPTION_MIN_TOKENS or lex < CAPTION_MIN_LEXICAL:
             return "caption_label_only"
+    if s.section in CLAIM_ZONE and not any((q.specific or q.unit) and q.value not in claim_values
+                                           for q in quantities_in(s.text)):
+        return "claim_zone_without_new_data"     # a list number or a bare small count is not data
     if s.section not in ("results", "experiments"):
         tset = set(toks)
         containment = len(claim_tokens & tset) / (len(claim_tokens) or 1)
@@ -265,7 +273,7 @@ def rank_passages(claim_text: str, claim_numbers: list[str], pool: list[Sentence
         shared = match_quantities(cqs, quantities_in(s.text)) if cqs else []
         frac = (sum(weights[v] for v in shared) / wsum) if cqs else 0.0
         overlap = jaccard(qset, set(docs[i]))
-        prior = EVIDENCE_SECTIONS.get(s.section, 0.3)
+        prior = EVIDENCE_SECTIONS.get(s.section, CLAIM_ZONE.get(s.section, 0.3))
         if s.kind == "table":
             prior = max(prior, 0.9)
         total = 0.55 * min(lex, 1.0) + 0.35 * frac + 0.10 * prior + 0.1 * overlap
@@ -287,7 +295,11 @@ def select_passages(claim_text: str, claim_numbers: list[str], pool: list[Senten
     ctoks = set(tokenize(claim_text))
     cvals = {q.value for q in quantities_in(claim_text)}
     best, rejected = [], {}
-    for cand in rank_passages(claim_text, claim_numbers, pool)[:CANDIDATES_SCANNED]:
+    # body passages are ranked on their own and considered before abstract/introduction/conclusion ones, so that
+    # searching the claim zone can add a passage but never changes which body passage is returned
+    body = rank_passages(claim_text, claim_numbers, [s for s in pool if s.section not in CLAIM_ZONE])[:CANDIDATES_SCANNED]
+    zone = rank_passages(claim_text, claim_numbers, [s for s in pool if s.section in CLAIM_ZONE])[:CANDIDATES_SCANNED]
+    for cand in body + zone:
         total, lex, shared, s, terms = cand
         why = evidence_unsuitable(s, ctoks, cvals, shared, lex)
         if not why and not is_relevant(lex, shared, min_lexical, min_lexical_with_quantity):
@@ -302,9 +314,11 @@ def select_passages(claim_text: str, claim_numbers: list[str], pool: list[Senten
 
 
 def link_evidence(doc: Document, claims: list[Claim], k: int = 3) -> list[Claim]:
+    claim_sentences = frozenset(c.sentence_id for c in claims)
     for claim in claims:
         claim.evidence, claim.rejected = [], {}
-        pool = _eligible_evidence(doc, claim)
+        pool = _eligible_evidence(doc, claim, claim_sentences)
+        has_body = any(s.section in EVIDENCE_SECTIONS for s in pool)
         if not pool:
             claim.support, claim.support_score = "none", 0.0
             claim.evidence_status, claim.evidence_note = STATUS_UNSEARCHABLE, STATUS_TEXT[STATUS_UNSEARCHABLE]
@@ -313,7 +327,10 @@ def link_evidence(doc: Document, claims: list[Claim], k: int = 3) -> list[Claim]
         best, claim.rejected = select_passages(claim.text, claim.numbers, pool, k)
         if not best:
             claim.support, claim.support_score = "none", 0.0
-            claim.evidence_status, claim.evidence_note = STATUS_NONE, STATUS_TEXT[STATUS_NONE]
+            status = STATUS_NONE if has_body else STATUS_UNSEARCHABLE      # only an abstract or conclusion was extracted
+            claim.evidence_status, claim.evidence_note = status, STATUS_TEXT[status]
+            if not has_body:
+                claim.flags.append("no_body_passages")
             continue
         for total, lex, shared, s, terms in best:
             claim.evidence.append(EvidenceLink(s.id, s.page, s.section, s.text, round(total, 3),

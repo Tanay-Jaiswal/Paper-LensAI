@@ -1,7 +1,7 @@
 [
   {
     "paper": "acl_2020.acl-main.442_beyond-accuracy-behavioral-testing-of-nlp.pdf",
-    "seconds": 2.23,
+    "seconds": 2.26,
     "title_extracted": "Beyond Accuracy: Behavioral Testing of NLP Models with CheckList",
     "pages_paperlens": 11,
     "pages_pymupdf": 11,
@@ -62,7 +62,8 @@
     },
     "rejected_candidates": {
       "below_relevance_threshold": 52,
-      "table_row_without_matching_value": 6
+      "table_row_without_matching_value": 52,
+      "claim_zone_without_new_data": 14
     },
     "claim_text_on_cited_page": {
       "y": 2
@@ -85,7 +86,7 @@
   },
   {
     "paper": "acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf",
-    "seconds": 2.68,
+    "seconds": 2.69,
     "title_extracted": "Fact or Fiction: Verifying Scientific Claims",
     "pages_paperlens": 17,
     "pages_pymupdf": 17,
@@ -159,10 +160,12 @@
       "found": 1
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 230,
-      "fragment": 17,
-      "boilerplate": 4,
-      "caption_label_only": 9,
+      "below_relevance_threshold": 238,
+      "fragment": 26,
+      "boilerplate": 6,
+      "caption_label_only": 25,
+      "claim_zone_without_new_data": 220,
+      "step_or_proof_heading": 15,
       "symbols_or_numbers": 7,
       "table_row_without_matching_value": 2
     },
@@ -192,7 +195,7 @@
   },
   {
     "paper": "acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf",
-    "seconds": 1.74,
+    "seconds": 1.82,
     "title_extracted": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
     "pages_paperlens": 16,
     "pages_pymupdf": 16,
@@ -281,7 +284,8 @@
     },
     "rejected_candidates": {
       "below_relevance_threshold": 130,
-      "fragment": 13,
+      "fragment": 23,
+      "claim_zone_without_new_data": 120,
       "boilerplate": 2,
       "symbols_or_numbers": 2
     },
@@ -316,7 +320,7 @@
   },
   {
     "paper": "acl_P02-1040_bleu-a-method-for-automatic-evaluation.pdf",
-    "seconds": 0.75,
+    "seconds": 0.82,
     "title_extracted": "BLEU: a Method for Automatic Evaluation of Machine Translation",
     "pages_paperlens": 8,
     "pages_pymupdf": 8,
@@ -370,9 +374,10 @@
     "rejected_candidates": {
       "table_row_without_matching_value": 18,
       "caption_label_only": 4,
-      "below_relevance_threshold": 29,
-      "boilerplate": 2,
-      "fragment": 7
+      "below_relevance_threshold": 31,
+      "boilerplate": 4,
+      "fragment": 23,
+      "claim_zone_without_new_data": 40
     },
     "claim_text_on_cited_page": {
       "y": 2
@@ -393,7 +398,7 @@
   },
   {
     "paper": "arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf",
-    "seconds": 6.32,
+    "seconds": 6.24,
     "title_extracted": "Observation of a New Particle in the Search for the Standard Model Higgs Boson with the ATLAS Detector at the LHC",
     "pages_paperlens": 38,
     "pages_pymupdf": 38,
@@ -450,8 +455,9 @@
     },
     "rejected_candidates": {
       "symbols_or_numbers": 12,
-      "below_relevance_threshold": 50,
+      "below_relevance_threshold": 79,
       "table_row_without_matching_value": 4,
+      "claim_zone_without_new_data": 30,
       "caption_label_only": 2
     },
     "claim_text_on_cited_page": {
@@ -536,9 +542,11 @@
     "rejected_candidates": {
       "below_relevance_threshold": 68,
       "table_row_without_matching_value": 7,
-      "fragment": 7,
+      "fragment": 11,
       "caption_label_only": 4,
-      "symbols_or_numbers": 1
+      "claim_zone_without_new_data": 81,
+      "boilerplate": 3,
+      "symbols_or_numbers": 3
     },
     "claim_text_on_cited_page": {
       "y": 3
@@ -565,7 +573,7 @@
   },
   {
     "paper": "arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf",
-    "seconds": 2.61,
+    "seconds": 2.56,
     "title_extracted": "Deep Residual Learning for Image Recognition",
     "pages_paperlens": 12,
     "pages_pymupdf": 12,
@@ -618,8 +626,9 @@
       "found": 5
     },
     "rejected_candidates": {
-      "fragment": 20,
-      "below_relevance_threshold": 114,
+      "fragment": 35,
+      "below_relevance_threshold": 133,
+      "claim_zone_without_new_data": 116,
       "boilerplate": 7,
       "caption_label_only": 3,
       "table_row_without_matching_value": 3
@@ -653,7 +662,7 @@
   },
   {
     "paper": "arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf",
-    "seconds": 2.65,
+    "seconds": 2.63,
     "title_extracted": "Observation of Gravitational Waves from a Binary Black Hole Merger",
     "pages_paperlens": 16,
     "pages_pymupdf": 16,
@@ -702,8 +711,10 @@
       "found": 6
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 28,
-      "fragment": 1
+      "below_relevance_threshold": 33,
+      "fragment": 2,
+      "claim_zone_without_new_data": 22,
+      "boilerplate": 1
     },
     "claim_text_on_cited_page": {
       "y": 6
@@ -727,7 +738,7 @@
   },
   {
     "paper": "arxiv_1706.03762v7_attention-is-all-you-need.pdf",
-    "seconds": 1.39,
+    "seconds": 1.41,
     "title_extracted": "Attention Is All You Need",
     "pages_paperlens": 15,
     "pages_pymupdf": 15,
@@ -800,10 +811,11 @@
     },
     "rejected_candidates": {
       "below_relevance_threshold": 149,
-      "fragment": 10,
+      "fragment": 18,
       "caption_label_only": 14,
       "table_row_without_matching_value": 57,
-      "boilerplate": 2
+      "claim_zone_without_new_data": 128,
+      "boilerplate": 50
     },
     "claim_text_on_cited_page": {
       "y": 10
@@ -831,7 +843,7 @@
   },
   {
     "paper": "arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf",
-    "seconds": 15.35,
+    "seconds": 15.38,
     "title_extracted": "Language Models are Few-Shot Learners",
     "pages_paperlens": 75,
     "pages_pymupdf": 75,
@@ -927,10 +939,11 @@
       "found": 7
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 177,
-      "boilerplate": 3,
-      "fragment": 3,
-      "caption_label_only": 9,
+      "below_relevance_threshold": 194,
+      "boilerplate": 12,
+      "fragment": 6,
+      "claim_zone_without_new_data": 144,
+      "caption_label_only": 16,
       "symbols_or_numbers": 2
     },
     "claim_text_on_cited_page": {
@@ -973,7 +986,7 @@
   },
   {
     "paper": "plos_pbio.1002106_the-extent-and-consequences-of-p.pdf",
-    "seconds": 1.54,
+    "seconds": 1.61,
     "title_extracted": "The Extent and Consequences of P-Hacking in Science",
     "pages_paperlens": 15,
     "pages_pymupdf": 15,
@@ -1021,9 +1034,10 @@
       "found": 4
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 101,
-      "fragment": 3,
+      "below_relevance_threshold": 170,
+      "fragment": 22,
       "table_row_without_matching_value": 285,
+      "claim_zone_without_new_data": 302,
       "symbols_or_numbers": 3
     },
     "claim_text_on_cited_page": {
@@ -1049,7 +1063,7 @@
   },
   {
     "paper": "plos_pmed.0020124_why-most-published-research-findings-are.pdf",
-    "seconds": 1.23,
+    "seconds": 1.19,
     "title_extracted": "Why Most Published Research Findings Are False",
     "pages_paperlens": 6,
     "pages_pymupdf": 6,
@@ -1100,7 +1114,8 @@
     "rejected_candidates": {
       "fragment": 6,
       "below_relevance_threshold": 42,
-      "table_row_without_matching_value": 9
+      "table_row_without_matching_value": 9,
+      "summary_section": 8
     },
     "claim_text_on_cited_page": {
       "y": 2
@@ -1124,7 +1139,7 @@
   },
   {
     "paper": "pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf",
-    "seconds": 2.11,
+    "seconds": 2.22,
     "title_extracted": "Comparison of High-Intensity Interval Training and Moderate-to-Vigorous Continuous Training for Cardiometabolic Health and Exercise Enjoyment in Obese Young Women: A Randomized Controlled Trial",
     "pages_paperlens": 16,
     "pages_pymupdf": 16,
@@ -1193,11 +1208,12 @@
       "no_supporting_evidence": 7
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 315,
+      "below_relevance_threshold": 399,
       "table_row_without_matching_value": 106,
+      "claim_zone_without_new_data": 290,
+      "fragment": 25,
       "symbols_or_numbers": 4,
       "table_row_for_another_quantity": 5,
-      "fragment": 9,
       "boilerplate": 1
     },
     "claim_text_on_cited_page": {
@@ -1281,10 +1297,11 @@
       "found": 5
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 180,
-      "fragment": 14,
+      "below_relevance_threshold": 200,
+      "fragment": 24,
       "table_row_without_matching_value": 50,
       "symbols_or_numbers": 55,
+      "claim_zone_without_new_data": 200,
       "restates_claim": 1
     },
     "claim_text_on_cited_page": {
@@ -1314,7 +1331,7 @@
   },
   {
     "paper": "pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf",
-    "seconds": 2.09,
+    "seconds": 2.1,
     "title_extracted": "The Impacts of Oil Palm on Recent Deforestation and Biodiversity Loss",
     "pages_paperlens": 19,
     "pages_pymupdf": 19,
@@ -1371,25 +1388,26 @@
       "discussion": 2
     },
     "support": {
-      "none": 5,
-      "weak": 2,
+      "none": 4,
+      "weak": 3,
       "strong": 2
     },
     "evidence_status": {
-      "no_supporting_evidence": 5,
-      "found": 4
+      "no_supporting_evidence": 4,
+      "found": 5
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 127,
+      "below_relevance_threshold": 140,
       "table_row_without_matching_value": 20,
-      "boilerplate": 2,
-      "fragment": 2
+      "claim_zone_without_new_data": 134,
+      "fragment": 4,
+      "boilerplate": 2
     },
     "claim_text_on_cited_page": {
       "y": 9
     },
     "evidence_quote_on_cited_page": {
-      "y": 4
+      "y": 5
     },
     "reproducibility_score": 36.8,
     "rubric_not_applicable": [
@@ -1407,7 +1425,7 @@
   },
   {
     "paper": "pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf",
-    "seconds": 4.54,
+    "seconds": 4.66,
     "title_extracted": "Accurate De Novo Prediction of Protein Contact Map by Ultra-Deep Learning Model",
     "pages_paperlens": 34,
     "pages_pymupdf": 34,
@@ -1460,19 +1478,20 @@
       "conclusion": 16
     },
     "support": {
-      "none": 9,
-      "moderate": 6,
+      "none": 8,
+      "moderate": 7,
       "strong": 4,
       "weak": 6
     },
     "evidence_status": {
-      "no_supporting_evidence": 9,
-      "found": 16
+      "no_supporting_evidence": 8,
+      "found": 17
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 397,
+      "below_relevance_threshold": 433,
       "summary_section": 13,
-      "fragment": 12,
+      "fragment": 40,
+      "claim_zone_without_new_data": 415,
       "caption_label_only": 40,
       "table_row_without_matching_value": 11
     },
@@ -1480,13 +1499,13 @@
       "y": 25
     },
     "evidence_quote_on_cited_page": {
-      "y": 16
+      "y": 17
     },
     "reproducibility_score": 73.9,
     "rubric_not_applicable": [],
-    "n_gaps": 20,
+    "n_gaps": 19,
     "gap_kinds": {
-      "unsupported_claim": 15,
+      "unsupported_claim": 14,
       "number_not_in_results": 3,
       "superlative_unsupported": 1,
       "generalization_narrow_evidence": 1

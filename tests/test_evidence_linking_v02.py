@@ -283,12 +283,35 @@ def test_only_false_matches_means_abstention():
     assert claim.evidence == [] and claim.evidence_status == "no_supporting_evidence"
 
 
-def test_abstract_and_conclusion_are_never_returned_as_evidence_for_a_claim():
-    # Design choice kept from 0.1.0, stated here so it is not mistaken for a guarantee the other way: sentences in the
-    # abstract, introduction and conclusion are treated as claims, so even a valid conclusion sentence is not returned.
+def test_abstract_and_conclusion_count_only_when_they_add_data():
+    # 0.1.0 never searched the abstract, introduction or conclusion. They are now searched, but a sentence there is
+    # returned only if it gives a figure the claim does not contain; otherwise it is the claim again in other words.
     body = [("In conclusion the encoder reaches 91.3 F1 on the benchmark in all our retrieval experiments.", "conclusion"),
             ("We show that the encoder reaches 91.3 F1 on the benchmark for retrieval.", "abstract"),
-            ("Retrieval with the encoder reaches 91.3 F1 on the benchmark test split.", "results")] + _fill()
+            ("Retrieval with the encoder reaches 91.3 F1 on the benchmark test split.", "results"),
+            ("In conclusion the encoder reaches 91.3 F1 on the benchmark, against 84.6 F1 for the baseline.", "conclusion")] + _fill()
     doc, claim = _doc(CLAIM, body, claim_section="introduction")
     link_evidence(doc, [claim])
-    assert [e.sentence_id for e in claim.evidence] == [3]
+    assert [e.sentence_id for e in claim.evidence] == [3, 4]          # body text first, then the conclusion with new data
+    assert claim.rejected.get("claim_zone_without_new_data") == 2
+
+
+def test_conclusion_with_new_data_is_evidence_when_the_body_has_none():
+    body = [("In conclusion the encoder reaches 91.3 F1 on the benchmark, against 84.6 F1 for the baseline.", "conclusion")] + _fill()
+    doc, claim = _doc(CLAIM, body)
+    link_evidence(doc, [claim])
+    assert [e.section for e in claim.evidence] == ["conclusion"] and claim.evidence_status == "found"
+
+
+def test_another_headline_claim_is_not_evidence():
+    # found by the synthetic benchmark: two abstract claims with the same score were returned as evidence for each other
+    a = "On the first corpus, the tagger reaches 89.4 F1, a gain of 1.8 over the baseline."
+    b = "On the second corpus, the tagger reaches 89.4 F1, a gain of 3.5 over the baseline."
+    sents = [Sentence(0, a, 1, "abstract"), Sentence(1, b, 1, "abstract"),
+             Sentence(2, "As shown, the tagger obtains 89.4 F1 on the first corpus, compared with 87.6 for the baseline.", 4, "results")]
+    sents += [Sentence(3 + i, t, 3, "method") for i, t in enumerate(FILLER)]
+    claims = [Claim("C1", 0, a, 1, "abstract", "result", False, numbers_in(a)),
+              Claim("C2", 1, b, 1, "abstract", "result", False, numbers_in(b))]
+    link_evidence(Document("synthetic", "t", 5, sents), claims)
+    assert [e.sentence_id for e in claims[0].evidence] == [2]
+    assert all(e.sentence_id != 0 for e in claims[1].evidence)
