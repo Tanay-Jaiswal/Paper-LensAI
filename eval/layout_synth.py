@@ -206,6 +206,25 @@ def _wrap(text: str, width: float, size: float, bold: bool) -> list[str]:
     return lines
 
 
+NL = chr(10)      # marks the end of a reference entry inside a token list
+
+
+def _take_line(tokens: list[str], width: float, size: float, bold: bool) -> tuple[str, int]:
+    """The next line that fits `width` and the number of tokens it uses; a newline token ends a line early."""
+    font = BOLD if bold else FONT
+    cur, used = "", 0
+    while used < len(tokens):
+        t = tokens[used]
+        if t == NL:
+            used += 1
+            break
+        trial = f"{cur} {t}" if cur else t
+        if cur and pymupdf.get_text_length(trial, fontname=font, fontsize=size) > width:
+            break
+        cur, used = trial, used + 1
+    return cur, used
+
+
 class Flow:
     """Places items into regions in reading order and records exactly what went where."""
 
@@ -285,11 +304,14 @@ class Flow:
             self._record(it, reg.page, "")
             self.y += h + 6
             return
-        lines = _wrap(it.text.replace("\n", "\n").replace("\n", " \n "), reg.x1 - reg.x0, size, bold) \
-            if it.kind != "reference" else self._wrap_refs(it, reg, size)
+        tokens: list[str] = []
+        for k, entry in enumerate(it.text.split(NL)):
+            tokens += ([] if k == 0 else [NL]) + entry.split(" ")
         unit_lines: list[str] = []
-        first_page = reg.page
-        for n_ln, ln in enumerate(lines):
+        pos = n_ln = 0
+        while pos < len(tokens):
+            # every region has its own width, so a paragraph that flows on is wrapped again for the new region
+            line, used = _take_line(tokens[pos:], reg.x1 - reg.x0, size, bold)
             if (self.y + lead > reg.y1 + 0.01) or (it.split_lines and n_ln == it.split_lines and unit_lines):
                 if unit_lines:
                     self.units.append(Unit(reg.page, reg.x0, self.y - lead * len(unit_lines), unit_lines, size, bold,
@@ -298,7 +320,10 @@ class Flow:
                     unit_lines = []
                 self._advance()
                 reg = self.regions[self.ri]
-            unit_lines.append(ln)
+                continue
+            unit_lines.append(line)
+            pos += used
+            n_ln += 1
             self.y += lead
         if unit_lines:
             self.units.append(Unit(reg.page, reg.x0, self.y - lead * len(unit_lines), unit_lines, size, bold,
@@ -537,13 +562,13 @@ def _grid_layout(seed: int, stream: str):
     for name, (x, y) in cells.items():
         head = f"Note {name}"
         units.append(Unit(1, x, y - 22, [head], 11, True, f"h_{name}", "heading"))
-        blocks.append({"id": f"h_{name}", "kind": "heading", "section": "other", "text": head,
+        blocks.append({"id": f"h_{name}", "kind": "heading", "section": "", "text": head,
                        "units": [{"page": 1, "text": head}], "quantities": [], "rows": []})
         text = c.paragraph(6)
         lines = _wrap(text, colw, 9.5, False)[:12]
         text = " ".join(lines)
         units.append(Unit(1, x, y, lines, 9.5, False, f"note{name}", "para"))
-        blocks.append({"id": f"note{name}", "kind": "para", "section": "other", "text": text,
+        blocks.append({"id": f"note{name}", "kind": "para", "section": "", "text": text,
                        "units": [{"page": 1, "text": text}], "quantities": [], "rows": []})
     return units, blocks, c
 
@@ -586,7 +611,7 @@ def make(doc_id: str) -> tuple[bytes, dict]:
         pdf = draw(pdf_units, 1, stream, seed, {"pagenum": True})
         truth = {"id": doc_id, "category": category, "stream": stream, "seed": seed, "n_pages": 1,
                  "title": by["title"]["text"], "blocks": blocks, "claims": [],
-                 "headings": [{"text": b["text"], "section": ""} for b in blocks if b["kind"] == "heading"],
+                 "headings": [],          # "Note A" ... are labels of independent notes, not section headings
                  "multi_unit_blocks": [], "ambiguous": True,
                  "accepted_orders": [["noteA", "noteB", "noteC", "noteD"], ["noteA", "noteC", "noteB", "noteD"]],
                  "excluded": [{"id": "pagenum1", "kind": "pagenum", "section": "", "text": "1",
