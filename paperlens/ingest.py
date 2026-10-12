@@ -81,12 +81,16 @@ _HEAD_WORDS = {"conclusion": "conclusion", "conclusions": "conclusion", "conclud
                "limitations": "limitations", "methods": "method", "methodology": "method",
                "architecture": "method"}
 _HEAD_STOP = {"the", "a", "an", "our", "of", "and", "on", "for", "in", "to", "with", "vs", "vs.", "main", "overall"}
+_SENTENCE_END = re.compile(r"[.?!:;)\]\"”’']\s*$")
+ABSTRACT_END_GAP = 2.0             # white band (in font sizes) after abstract text that ends the abstract
 ABSTRACT_MAX_SENTENCES = 30        # a longer "abstract" means its end was probably missed: warn, do not guess
 NO_ABSTRACT_HEADING = "No 'Abstract' heading detected; treated the first prose paragraph of page 1 as the abstract."
 NO_ABSTRACT = ("No abstract could be identified (no 'Abstract' heading and no prose paragraph before the first "
                "section heading); claims are taken from the other sections only.")
 # Publisher front-matter and identifiers: kept (the rubric reads them) but never a claim or evidence.
-_FOOTNOTE_START = re.compile(r"^(?:[∗*†‡§¶]|\d{1,2}(?=[A-Z][a-z]))")
+_FOOTNOTE_START = re.compile(r"^(?:[∗*†‡§¶]|\d{1,2}\s?(?=[A-Z][a-z]))")
+_META_START = re.compile(r"^(?:Citation|Editor|Academic Editor|Received|Accepted|Published|Copyright|Funding|"
+                         r"Competing [Ii]nterests?|Abbreviations)\s*:")   # a small-print box of publisher data
 _META_RE = re.compile(r"^(?:Citation|Editor|Academic Editor|Received|Accepted|Published|Copyright|Funding|"
                       r"Competing [Ii]nterests|Abbreviations)\s*:|\bdoi:\s?10\.\d{4}|doi\.org/10\.\d{4}|©|"
                       r"\bOPEN ACCESS\b|^arXiv:\d{4}\.\d{4,5}")
@@ -183,7 +187,8 @@ def _running_headers(pages) -> set[str]:
         for t in {re.sub(r"\d+", "#", ln[0]) for ln in pg["lines"] if h and (ln[3] < 0.08 * h or ln[3] > 0.92 * h)}:
             edge[t] = edge.get(t, 0) + 1
     out = {t for t, c in counts.items() if c >= max(3, int(0.5 * n)) and len(t) < 90}
-    return out | {t for t, c in edge.items() if c >= max(3, -(-n // 5)) and len(t) < 90}
+    # alternating heads ("Author names" / "Short title") appear on every other page: two sightings are enough there
+    return out | {t for t, c in edge.items() if c >= max(2, -(-n // 5)) and len(t) < 90 and len(re.findall("[A-Za-z]", t)) >= 4}
 
 
 def _clean(text: str) -> tuple[str, int]:
@@ -218,7 +223,7 @@ def _line_text(spans) -> str:
 
 
 def _page_lines(page) -> list[tuple]:
-    """Horizontal text lines of a page as (text, size, bold, y0, block_no, bbox, italic), in reading order."""
+    """Horizontal text lines of a page as (text, size, bold, y0, block_no, bbox, italic, spans), in stream order."""
     out: list[tuple] = []
     d = page.get_text("dict")
     for block in d.get("blocks", []):
@@ -247,13 +252,158 @@ def _page_lines(page) -> list[tuple]:
                 if same_line and (_NUM_ONLY.match(p[0]) or (_APX_ONLY.match(p[0]) and p[2] == bold
                                                              and abs(p[1] - size) <= 0.5 and text[:1].isupper())):
                     out[-1] = (f"{p[0]} {text}", max(size, p[1]), bold and p[2], min(p[3], bb[1]), p[4],
-                               (p[5][0], min(p[5][1], bb[1]), bb[2], max(p[5][3], bb[3])), italic and p[6])
+                               (p[5][0], min(p[5][1], bb[1]), bb[2], max(p[5][3], bb[3])), italic and p[6],
+                               p[7] + spans)
                     continue
-            out.append((text, size, bold, bb[1], block["number"], bb, italic))
+            out.append((text, size, bold, bb[1], block["number"], bb, italic, spans))
     return out
 
 
+def _make_line(spans: list, block_no: int) -> tuple:
+    """A line tuple from a subset of another line's spans (used when a line is cut at a column gutter)."""
+    text = _line_text(spans).strip().translate(_LIGATURES)
+    n = sum(len(s["text"].strip()) for s in spans) or 1
+    bold = sum(len(s["text"].strip()) for s in spans if (s["flags"] & 16) or _BOLD_FONT.search(s["font"])) >= 0.75 * n
+    ital = sum(len(s["text"].strip()) for s in spans if (s["flags"] & 2) or _ITALIC_FONT.search(s["font"])) >= 0.75 * n
+    bb = (min(s["bbox"][0] for s in spans), min(s["bbox"][1] for s in spans),
+          max(s["bbox"][2] for s in spans), max(s["bbox"][3] for s in spans))
+    return (text, max(s["size"] for s in spans), bold, bb[1], block_no, bb, ital, spans)
+
+
+# ---- column-aware reading order ----------------------------------------------------------------------------------
+# The content stream of a PDF need not follow the reading order (word processors and some converters write lines or
+# blocks sorted by position; layout tools write them in any order). The order is rebuilt from geometry, XY-cut style:
+#   1. a vertical gutter (a strip of at least GUTTER_MIN points that no text crosses, with at least FLANK_MIN_LINES
+#      prose lines on each side) splits the region into columns, read left to right;
+#   2. otherwise the region is cut horizontally at its widest white band; the strips are read top to bottom;
+#   3. a region that can be cut no further keeps its stream order if that order already runs downwards, and is
+#      sorted by position otherwise.
+# A page that has no gutter anywhere is left exactly as the PDF delivers it. If a white band crosses the whole
+# width of a region that also has a gutter, rows or columns are both defensible: the rows are read first and the
+# page is reported as ambiguous.
+GUTTER_MIN = 4.0
+FLANK_MIN_LINES = 3
+FLANK_MIN_CHARS = 25
+BAND_MIN = 1.5            # white band, in font sizes, across a region that also has a gutter
+
+
+def _median(xs):
+    xs = sorted(xs)
+    return xs[len(xs) // 2] if xs else 0.0
+
+
+def _vertical_cut(lines: list[tuple]):
+    """(left, right) if a column gutter splits `lines`, else None. Lines that cross the gutter between their spans
+    are cut in two; no line has a span over the gutter by construction."""
+    iv = sorted((sp["bbox"][0], sp["bbox"][2]) for ln in lines for sp in ln[7])
+    gaps, end = [], iv[0][1]
+    for a, b in iv[1:]:
+        if a - end >= GUTTER_MIN:
+            gaps.append((end, a))
+        end = max(end, b)
+    best = None
+    for g0, g1 in gaps:
+        left = [[sp for sp in ln[7] if sp["bbox"][2] <= g0 + 0.01] for ln in lines]
+        right = [[sp for sp in ln[7] if sp["bbox"][0] >= g1 - 0.01] for ln in lines]
+        ln_l = [(i, sps) for i, sps in enumerate(left) if sps]
+        ln_r = [(i, sps) for i, sps in enumerate(right) if sps]
+        if len(ln_l) < FLANK_MIN_LINES or len(ln_r) < FLANK_MIN_LINES:
+            continue
+        if _median([sum(len(sp["text"].strip()) for sp in sps) for _, sps in ln_l]) < FLANK_MIN_CHARS                 or _median([sum(len(sp["text"].strip()) for sp in sps) for _, sps in ln_r]) < FLANK_MIN_CHARS:
+            continue                                # a table or a list of short items, not two text columns
+        if best is None or g1 - g0 > best[0]:
+            best = (g1 - g0, left, right)
+    if not best:
+        return None
+    _, left, right = best
+    out_l, out_r = [], []
+    for ln, ls, rs in zip(lines, left, right):
+        if ls and rs:
+            out_l.append(_make_line(ls, ln[4]))
+            out_r.append(_make_line(rs, ln[4]))
+        elif ls:
+            out_l.append(ln)
+        else:
+            out_r.append(ln)
+    return out_l, out_r
+
+
+def _white_bands(lines: list[tuple], min_gap: float):
+    """[(gap, y_cut)] for every horizontal white band >= min_gap between two groups of lines."""
+    order = sorted(lines, key=lambda ln: ln[5][1])
+    bands, reach = [], order[0][5][3]
+    for ln in order[1:]:
+        if ln[5][1] - reach >= min_gap:
+            bands.append((ln[5][1] - reach, (reach + ln[5][1]) / 2))
+        reach = max(reach, ln[5][3])
+    return bands
+
+
+def _leaf(lines: list[tuple]) -> list[tuple]:
+    """Stream order if it already runs downwards (a superscript may sit a little higher), position order otherwise."""
+    for a, b in zip(lines, lines[1:]):
+        if b[5][1] < a[5][1] - 0.7 * a[1]:
+            if _side_by_side(lines):
+                return lines                        # columns we could not separate: sorting would interleave them
+            return sorted(lines, key=lambda ln: (round(ln[5][1]), ln[5][0]))
+    return lines
+
+
+def _order_region(lines: list[tuple], info: dict) -> list[tuple]:
+    if len(lines) < 2:
+        return lines
+    size = _median([ln[1] for ln in lines]) or 10.0
+    cut = _vertical_cut(lines) if len(lines) >= 2 * FLANK_MIN_LINES else None
+    if cut:
+        # a band across both columns with plenty of text above and below it (a page number alone does not count):
+        # read the rows first, and say that columns would be an equally valid reading
+        for gap, cy in sorted(_white_bands(lines, BAND_MIN * size), reverse=True):
+            top = [ln for ln in lines if ln[5][3] <= cy + 0.01]
+            bot = [ln for ln in lines if ln[5][3] > cy + 0.01]
+            # both columns must have text on both sides of the band; a column that ends above it is simply finished
+            both = all(sum(1 for ln in side if ln[5][3] <= cy + 0.01) >= FLANK_MIN_LINES
+                       and sum(1 for ln in side if ln[5][3] > cy + 0.01) >= FLANK_MIN_LINES for side in cut)
+            if both and len(top) >= 2 * FLANK_MIN_LINES and len(bot) >= 2 * FLANK_MIN_LINES:
+                info["ambiguous"] = True
+                return _order_region(top, info) + _order_region(bot, info)
+        info["columns"] = True
+        return _order_region(cut[0], info) + _order_region(cut[1], info)
+    bands = _white_bands(lines, 0.3 * size)
+    if bands:
+        cy = max(bands)[1]
+        top = [ln for ln in lines if ln[5][3] <= cy + 0.01]
+        bot = [ln for ln in lines if ln[5][3] > cy + 0.01]
+        if top and bot:
+            return _order_region(top, info) + _order_region(bot, info)
+    return _leaf(lines)
+
+
+def _reorder_columns(lines: list[tuple]) -> tuple[list[tuple], dict]:
+    """Lines of a page in reading order, and {"columns": bool, "ambiguous": bool}."""
+    info = {"columns": False, "ambiguous": False}
+    if len(lines) < 2 * FLANK_MIN_LINES:
+        return lines, info
+    out = _order_region(lines, info)
+    if info["columns"] or info["ambiguous"]:
+        return out, info
+    if _side_by_side(lines):
+        return lines, info                          # columns we could not separate: keep the PDF's order
+    return _leaf(lines), info                       # one column: an out-of-order stream is sorted by position
+
+
+def _side_by_side(lines: list[tuple]) -> bool:
+    """Do two lines share a baseline band with a horizontal gap between them (columns, table rows)?"""
+    for i, a in enumerate(lines):
+        for b in lines[i + 1:]:
+            overlap = min(a[5][3], b[5][3]) - max(a[5][1], b[5][1])
+            if overlap > 0.5 * min(a[5][3] - a[5][1], b[5][3] - b[5][1]) and                     (b[5][0] - a[5][2] >= GUTTER_MIN or a[5][0] - b[5][2] >= GUTTER_MIN):
+                return True
+    return False
+
+
 UNREADABLE_WARNING = "Very little extractable text: the PDF may be scanned. OCR is not enabled."
+AMBIGUOUS_LAYOUT = ("Layout warning: on page(s) {pages} the text blocks form a grid, so the reading order (rows or "
+                    "columns) is ambiguous. Rows were read first; sentences were not mixed across blocks.")
 
 
 def _margin_lines(lines: list[tuple], page_width: float) -> set[int]:
@@ -558,11 +708,15 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                   if not (pg["lines"][i][2] and canonical_section(pg["lines"][i][0], exact=True))}
         pg["margin"] = [ln for i, ln in enumerate(pg["lines"]) if i in margin]
         pg["lines"] = [ln for i, ln in enumerate(pg["lines"]) if i not in margin]
+        pg["lines"], pg["layout"] = _reorder_columns(pg["lines"])
         for ln in pg["lines"]:
             size_chars[round(ln[1], 1)] += len(ln[0])
     total_chars = sum(len(ln[0]) for pg in pages for ln in pg["lines"])
     if total_chars < 40 * max(1, len(pdf)):
         warnings.append(UNREADABLE_WARNING)
+    amb = [pg["pno"] for pg in pages if pg["layout"]["ambiguous"]]
+    if amb:
+        warnings.append(AMBIGUOUS_LAYOUT.format(pages=", ".join(map(str, amb))))
     body = size_chars.most_common(1)[0][0] if size_chars else 10.0   # size carrying the most characters
 
     title = _clean(_title(pages[0], name))[0].strip() if pages else name
@@ -573,41 +727,62 @@ def _build(pdf, doc_id: str, name: str) -> Document:
           "buf_size": 0.0}
     chunks: list[tuple[list[Sentence], float]] = []    # front-matter paragraphs of page 1, in order, with font size
 
+    buf: list[str] = []                       # text of the running paragraph; may carry over a page break
+    st["buf_page"] = None                      # page on which the first text in `buf` started
+    st["carried"] = False                      # `buf` holds the unfinished last sentence of the previous page
+
     for pg in pages:
         pno, tables, lines = pg["pno"], pg["tables"], pg["lines"]
-        buf: list[str] = []
 
-        def flush(section=None, force_kind=None):
-            if not buf:
+        def flush(section=None, force_kind=None, lines=None, keep_tail=False):
+            """Turn the running text (or `lines`) into sentences. With keep_tail an unfinished last sentence stays in
+            `buf` so that it can be completed on the next page; its page is the page where it started."""
+            src = buf if lines is None else lines
+            if not src:
                 return
-            text, n_bad = _clean(_join_lines(buf))
+            text, n_bad = _clean(_join_lines(src))
             st["unmapped"] += n_bad
-            buf.clear()
+            first_page = st["buf_page"] or pno if lines is None else pno
+            if lines is None:
+                buf.clear()
+                st["buf_page"] = None
+                st["carried"] = False
             sec = section or st["section"]
+            sents = split_sentences(text)
+            tail = ""
+            if keep_tail and sents and sec not in ("references", "front") and not _SENTENCE_END.search(sents[-1]):
+                tail = sents.pop()
             made = []
-            for sent in split_sentences(text):
+            for k, sent in enumerate(sents):
                 if len(sent) < 25 and not re.search(r"\d", sent):
                     continue
                 kind = force_kind or ("caption" if re.match(r"^(Table|Figure|Fig\.|FIG\.)\s*\d+", sent)
                                       else "meta" if _META_RE.search(sent) else "text")
-                sentences.append(Sentence(st["sid"], sent, pno, sec, st["heading"], kind))
+                sentences.append(Sentence(st["sid"], sent, first_page if k == 0 else pno, sec, st["heading"], kind))
                 made.append(sentences[-1])
                 st["sid"] += 1
                 if sec == "abstract":
                     st["abs_n"] += 1
             if sec == "front" and pno == 1 and not force_kind and made:
                 chunks.append((made, st["buf_size"]))
+            if tail:
+                buf.append(tail)
+                st["buf_page"] = first_page if not sents else pno
+                st["carried"] = True
 
         if pg["toc"]:
             # a contents page lists every heading again: keep its text as front matter, read no structure from it
-            buf.extend(ln[0] for ln in lines)
-            flush(section="front", force_kind="meta")
+            flush()
+            flush(section="front", force_kind="meta", lines=[ln[0] for ln in lines])
             continue
 
         pending_tables = sorted(tables, key=lambda t: t[0][1])
 
-        def emit_tables(until_y):
-            while pending_tables and pending_tables[0][0][1] <= until_y:
+        def emit_tables(until_y, xc=None):
+            """Tables are placed before the first line below their top edge in their own column (in the reading
+            order a column-wise page has no single vertical position)."""
+            while pending_tables and pending_tables[0][0][1] <= until_y and (
+                    xc is None or pending_tables[0][0][0] - 6 <= xc <= pending_tables[0][0][2] + 6):
                 _, rows = pending_tables.pop(0)
                 flush()
                 if st["section"] == "references":
@@ -621,13 +796,14 @@ def _build(pdf, doc_id: str, name: str) -> Document:
 
         prev_block = last_block = note_block = None
         prev_size = prev_y = note_y = None
+        dropcap = ""
         notes: list[str] = []
         no_head: set[int] = set()
         i = 0
         while i < len(lines):
             text, size, bold, y, block_no = lines[i][:5]
             i += 1
-            emit_tables(y)
+            emit_tables(y, (lines[i - 1][5][0] + lines[i - 1][5][2]) / 2)
             if re.fullmatch(r"\d{1,3}", text) and (y < 60 or y > 700):
                 continue  # page number
             if block_no != last_block:
@@ -635,7 +811,7 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                 # a small-print block in the lower half that opens with a footnote mark (author notes, URLs), and
                 # the small print below it (venue line, "Author contributions listed at end of paper.")
                 small_low = size <= body - 0.9 and y > 0.5 * pg["height"]
-                note_block = block_no if small_low and (_FOOTNOTE_START.match(text)
+                note_block = block_no if small_low and (_FOOTNOTE_START.match(text) or _META_START.match(text)
                                                         or (note_y is not None and y > note_y)) else None
                 if note_block is not None and note_y is None:
                     note_y = y
@@ -652,6 +828,7 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                     flush()
                     st["section"], st["heading"], st["top"] = "abstract", m.group(1), (size, True, False)
                     buf.append(m.group(2))
+                    st["buf_page"] = pno
                     st["buf_size"], prev_block, prev_size, prev_y = size, block_no, size, y
                     continue
                 if _KEYWORDS_LINE.match(text):
@@ -661,6 +838,16 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                     if st["section"] == "abstract":
                         st["section"], st["heading"] = "other", ""
                     continue
+            if len(text) == 1 and text.isupper() and size >= 2.5 * body:
+                # a drop cap: the first letter of the next line; it also starts the body, so an abstract ends here
+                if st["section"] == "abstract":
+                    flush()
+                    st["section"], st["heading"] = "other", ""
+                dropcap = text
+                continue
+            if st["section"] == "abstract" and (st["abs_n"] >= 2 or len(buf) >= 6) and i >= 2                     and lines[i - 1][5][1] - lines[i - 2][5][3] > ABSTRACT_END_GAP * size                     and lines[i - 1][5][0] <= lines[i - 2][5][2]:
+                flush()                            # a wide white band after the abstract text: the body starts below
+                st["section"], st["heading"] = "other", ""
             found = _heading_at(lines, i - 1, st, body, pno, no_head)
             if found and found[0] == "head":
                 _, n, htext, canon = found
@@ -674,8 +861,7 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                 continue
             if found:                              # pull quote: repeats body text in display type
                 flush()
-                buf.append(found[2])
-                flush(section="front" if st["section"] == "abstract" else None, force_kind="meta")
+                flush(section="front" if st["section"] == "abstract" else None, force_kind="meta", lines=[found[2]])
                 if st["section"] == "abstract":
                     st["section"], st["heading"] = "other", ""      # display text ends the abstract
                 i += found[1] - 1
@@ -688,17 +874,21 @@ def _build(pdf, doc_id: str, name: str) -> Document:
             prev_block, prev_size, prev_y = block_no, size, y
             if st["section"] == "front" and size > body + 2:
                 continue  # title lines
+            if st["carried"]:
+                st["carried"] = False
+                if buf and not (text[:1].islower() or buf[-1].endswith((",", ";"))):
+                    flush()                        # the unfinished sentence was not continued: close it on its page
             if not buf:
                 st["buf_size"] = size
-            buf.append(text)
-        flush()
+                st["buf_page"] = pno
+            buf.append(dropcap + text)
+            dropcap = ""
         emit_tables(1e9)
+        flush(keep_tail=pno < len(pages))
         if notes:
-            buf.extend(notes)
-            flush(force_kind="meta")
+            flush(force_kind="meta", lines=notes)
         if pg["margin"]:
-            buf.extend(ln[0] for ln in pg["margin"])
-            flush(section="front", force_kind="meta")
+            flush(section="front", force_kind="meta", lines=[ln[0] for ln in pg["margin"]])
 
     if not any(s.section == "abstract" for s in sentences) and sentences and UNREADABLE_WARNING not in warnings:
         picked = _headless_abstract(chunks)

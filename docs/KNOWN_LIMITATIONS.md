@@ -84,3 +84,18 @@ Measured on development data only; `docs/EVALUATION.md` section 10.
   "conclusion", "discussion", ...); other names stay `other`, which is searched for evidence at a low prior.
 - Appendix detection needs the letter sequence A, B, C after a conclusion, references or acknowledgments; appendices
   labelled otherwise stay `other`.
+
+## Added for 0.5.0-dev (reading order)
+
+Synthetic layouts and development papers only; `docs/EVALUATION.md` section 11.
+
+- **Columns are found from geometry**, not understood. A gutter needs 3+ prose lines on each side; a column that ends in one
+  or two lines is not separated, and the PDF's own order is kept (the synthetic `L13` layout gets reading order 0.92 for this reason). It is not flagged.
+- **Rows before columns when in doubt.** A white band across both columns (a figure, a boxed note, a grid) makes the page
+  ambiguous: rows are read first and a `Layout warning` is attached. A two-column page whose columns happen to share such a band
+  is read as rows and would be wrong if the text really flows down the columns.
+- **Tables and figure text.** Ruled tables are found by PyMuPDF; unruled tables and text inside figures are read as lines
+  and can be glued to the sentence next to them (two such claims were seen on development papers).
+- **Sentences over page breaks** are joined only when the next page starts with a lower-case word or the text ends in a comma or semicolon;
+  a sentence continued after a table, a heading or a figure at the top of the next page stays split.
+- A synthetic score of 1.00 is not evidence for real papers: the layouts and the parser were written by the same session.

@@ -93,3 +93,20 @@ Not run: the official held-out scorers, `eval/dev_threshold_sweep.py`, the web U
 | Browser (built-in pane, `python -m paperlens serve`, data folder in a scratch directory) | LIGO development paper: abstract warning shown, 9 claims; claim detail shows page, section, "1 of 3 claimed figures matched; not found: 1e-21, 250" and three loaded page images. GPT-3 (75 pages) was analysed through the API only, not opened in the browser; no missing-section paper was opened in the browser |
 
 Not run: official held-out scorers, `eval/dev_threshold_sweep.py`, anything on either held-out folder.
+
+## 0.5.0-dev (2026-10-12/13, branch `dev/reading-order-v0.5`)
+
+| Command | Outcome |
+|---|---|
+| `PY -m pytest -q` at the start (`d4862d2`) | 136 passed |
+| `PAPERLENS_SRC=<copy of d4862d2> PY -m eval.layout_bench --out eval/results/layout_bench/baseline_d4862d2.json` | 21 documents, 0 crashed; macro block recall 0.92, order 0.93, paragraph reconstruction 0.75, 52 spliced sentences. Run twice, identical. An earlier baseline file of this branch had been produced with the *patched* parser (import order bug in `layout_bench`), was found when its numbers came out perfect, and was replaced; the first 18 layouts were also run before any parser change and match the replacement |
+| first run of the patched parser on real development papers | **crash** (`IndexError` in the page-carry code on an empty buffer) found only when the 16 real development papers were parsed (`eval.structure_dev`), not by the synthetic layouts; fixed, and the real-PDF comparison is not part of the test suite |
+| `PY -m pytest -q tests/test_layout_bench.py` first run | 1 failed: generator truth for the grid layout listed "Note A" as a section heading (changed the truth, not the parser); then a test of running heads used a body line that repeated after digit normalisation (test fixed) |
+| `PY -m eval.layout_bench --out eval/results/layout_bench/after_0.5.0-dev.json` | 21 documents, 0 crashed; macro 1.00 on all metrics except paragraph reconstruction 0.99 and order 0.996 (`L13`); 0 spliced; 1 layout warning (the grid) and 0 false warnings |
+| `PY -m pytest -q` final | **175 passed, 0 failed** (39 new tests in `tests/test_layout_bench.py`; the version test updated to `0.5.0-dev`); about 170 s |
+| `PY -m eval.structure_dev data/Papers eval/dev_structure_labels.json eval/results/dev_v0.5` | abstract 16/16, 16/16; headings 83/85, precision 83/113 (unchanged) |
+| `PY -m eval.real_papers data/Papers eval/results/dev_v0.5` | 16 papers, 0 crashed, 146 claims; `score-labelled` not run (unlabelled claims); compared by script: strict 21/54, lenient 43/54 on still-labelled rows (24/60, 49/60 before), 135 of 141 common claims keep the top passage |
+| `PY -m eval.run_eval --n 100 --seed 7`, `PY -m eval.scifact_eval` to `eval/results/dev_v0.5` | identical to `dev_v0.4` apart from timings |
+| Browser (built-in pane, `python -m paperlens serve`, scratch data folder) with synthetic `L02_twocol_lines_y`, `L04_pagebreak_twocol`, `L10_grid_lines_y` | extraction in reading order; claim C1 "strong", evidence on page 2, "2 of 2 claimed figures matched", two page images loaded; grid layout shows the layout warning in the warning bar. Claims of the synthetic documents were checked through the API for all three |
+
+Not run: official held-out scorers, `eval/dev_threshold_sweep.py`, anything on the held-out folders.

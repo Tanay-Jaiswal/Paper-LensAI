@@ -48,6 +48,9 @@ data only, top-passage precision unchanged).
 Branch `dev/section-detection-v0.4` is `0.4.0-dev`: abstract and section-heading detection was reworked (appendices,
 wrapped and italic headings, contents pages, headless abstracts, an honest "no abstract" warning); development data only
 (`docs/EVALUATION.md` section 10).
+Branch `dev/reading-order-v0.5` is `0.5.0-dev`: reading order is rebuilt from page geometry for multi-column pages, sentences that
+run over a page break are kept whole, and a grid-like page is reported as ambiguous. `python -m eval.layout_bench` measures this on 21
+synthetic layouts (`docs/EVALUATION.md` section 11); the result is a synthetic one, not an accuracy figure for real papers.
 
 Python 3.10+ required. macOS/Linux: same commands with `source .venv/bin/activate`.
 

@@ -648,3 +648,124 @@ and SciFact dev are identical to 0.3.0-dev apart from run times.
 - Multi-column order depends on PyMuPDF; no layout engine was added, and no test uses a 3-column or rotated layout.
 - Heading precision against a labelled set (only 3 papers have bookmarks).
 - Run-in headings inside a paragraph ("Methods. We ...").
+
+## 11. Development version 0.5.0-dev: reading order on synthetic layouts (synthetic and development data only)
+
+Branch `dev/reading-order-v0.5`, started from `d4862d2`. Held-out data, raw outputs, keys and labels were not opened or
+used. The benchmark is **synthetic**: the text is template-made and the layouts were drawn by the same session that
+changed the parser, so a perfect score here shows that the parser handles these geometries and nothing about real
+papers. Three stress layouts were added after seeing the first results, to test limits the parser was not written against.
+
+### 11.1 How the documents and their truth are made (`eval/layout_synth.py`)
+
+1. A seeded generator writes a *logical document* (title, front matter, abstract with two result claims, numbered
+   sections, optional table, figure and captions, references) and, for each claim, the sentence in the results section that
+   states the same figures. Every document id has a fixed seed (a hash of the id).
+2. A flow engine places the blocks line by line into page regions (columns, full-width areas, grids), using PyMuPDF only to
+   measure text widths. A paragraph that does not fit continues in the next region, re-wrapped for that region's width.
+   Mid-sentence page breaks, an orphaned heading at the end of a page, running headers, page numbers and footnotes are
+   produced on purpose.
+3. Only the order in which lines reach the content stream varies (`stream`): `natural` (reading order), `blocks_y`
+   (blocks sorted by vertical position), `lines_y` (lines sorted by vertical position, so two columns alternate line by
+   line) or `shuffled`. A parser that trusts the stream order is right only for the first.
+4. The truth file `<id>.truth.json` is written from the logical document and the positions the engine chose: `blocks`
+   (id, kind, section, text, `units` = the pieces of the block with their page, quantities, table rows) in reading order,
+   `claims` (sentence, block, page, evidence sentence, evidence block and page), `headings`, `excluded` furniture,
+   `ambiguous` and `accepted_orders` for the grid. Nothing is copied from parser output; `tests/test_layout_bench.py`
+   checks that the generator does not import the parser and that two generations are byte-identical (`MANIFEST.json`
+   holds the sha256 of every PDF and truth file). The PDFs are generated on demand and are not committed.
+
+Layouts (21 documents, 13 categories): single column (control); two columns with the stream natural, block-sorted, line-sorted
+and shuffled; two columns with full-width paragraphs; page boundaries (sentence cut across a page, heading alone at the bottom,
+single and two-column); captions and tables between text; scientific quantities and units; furniture (alternating running heads,
+page numbers, footnotes, references); mixed single and double column pages; 6 pt gutter; a 2 x 2 grid of independent notes
+(ambiguous); and the stress layouts: three columns, unequal columns, a nearly empty second column.
+
+### 11.2 Metrics (`eval/layout_bench.py`; the definitions are in its docstring)
+
+Matching uses letters and digits only. Block recall and precision are character shares; reading order is the share of
+block pairs, among blocks covered at least 50%, whose first sentence appears in the true order (the best of the accepted
+orders for the ambiguous layout); paragraph reconstruction needs the matched sentences of a block to equal it exactly
+with no foreign sentence in between; page attribution uses the page where the sentence starts. A missing block counts
+as missing, never out of the denominator. Not-applicable metrics (no table, no claim) are left out of the mean of that metric only.
+
+### 11.3 Results (`python -m eval.layout_bench --out <file>`; baseline = the parser of `d4862d2` via `PAPERLENS_SRC`)
+
+Macro mean over 21 documents, baseline / after:
+
+| Metric | baseline `d4862d2` | 0.5.0-dev |
+|---|---|---|
+| block recall | 0.92 | 1.00 |
+| block precision | 0.92 | 1.00 |
+| reading-order accuracy | 0.93 | 1.00 |
+| paragraph reconstruction | 0.75 | 0.99 |
+| page attribution | 1.00 | 1.00 |
+| claim recall | 0.95 | 1.00 |
+| claim page correct | 1.00 | 1.00 |
+| evidence passage correct (inside the designated block, right page) | 0.79 | 1.00 |
+| heading recall | 0.90 | 1.00 |
+| section accuracy | 0.78 | 1.00 |
+| abstract precision | 0.74 | 1.00 |
+| abstract recall | 0.95 | 1.00 |
+| quantity recall | 1.00 | 1.00 |
+| table row recall | 1.00 | 1.00 |
+| title exact | 1.00 | 1.00 |
+| ambiguous layout handled safely (no splice, or flagged) | 0.00 | 1.00 |
+| spliced sentences (text of two blocks in one sentence) | 52 | 0 |
+| running header / page number / footnote returned as text | 1 | 0 |
+| extracted claims that splice two blocks | 7 | 0 |
+| evidence passages that splice two blocks | 0 | 0 |
+| layout warnings on layouts that are not ambiguous | 0 | 0 |
+
+Per category (documents), baseline / after:
+
+| Category | block recall | reading order | paragraph recon | spliced | evidence |
+|---|---|---|---|---|---|
+| single_column (1) | 1.00 / 1.00 | 1.00 / 1.00 | 0.89 / 1.00 | 0 / 0 | 1.00 / 1.00 |
+| two_column (4) | 0.87 / 1.00 | 0.82 / 1.00 | 0.75 / 1.00 | 26 / 0 | 0.67 / 1.00 |
+| two_column_spanning (2) | 0.99 / 1.00 | 0.98 / 1.00 | 0.65 / 1.00 | 1 / 0 | 1.00 / 1.00 |
+| page_boundaries (2) | 1.00 / 1.00 | 0.97 / 1.00 | 0.78 / 1.00 | 0 / 0 | 0.50 / 1.00 |
+| captions_tables (2) | 0.98 / 1.00 | 0.95 / 1.00 | 0.91 / 1.00 | 2 / 0 | 0.50 / 1.00 |
+| quantities (2) | 0.99 / 1.00 | 0.95 / 1.00 | 0.86 / 1.00 | 1 / 0 | 1.00 / 1.00 |
+| furniture (1) | 1.00 / 1.00 | 1.00 / 1.00 | 0.67 / 1.00 | 1 / 0 | 1.00 / 1.00 |
+| mixed_columns (1) | 1.00 / 1.00 | 0.92 / 1.00 | 0.89 / 1.00 | 0 / 0 | 1.00 / 1.00 |
+| tight_gutter (2) | 1.00 / 1.00 | 0.96 / 1.00 | 0.83 / 1.00 | 0 / 0 | 0.50 / 1.00 |
+| stress_three_columns (1) | 0.98 / 1.00 | 0.89 / 1.00 | 0.56 / 1.00 | 1 / 0 | 1.00 / 1.00 |
+| stress_unequal_columns (1) | 1.00 / 1.00 | 0.92 / 1.00 | 0.89 / 1.00 | 0 / 0 | 1.00 / 1.00 |
+| stress_sparse_column (1) | 0.98 / 1.00 | 0.89 / 0.92 | 0.78 / 0.89 | 1 / 0 | 1.00 / 1.00 |
+| ambiguous (1) | 0.00 / 1.00 | n/a / 1.00 | 0.00 / 1.00 | 19 / 0 | n/a / n/a |
+
+Files: `eval/results/layout_bench/baseline_d4862d2.json`, `after_0.5.0-dev.json`. Both runs reproduce (the baseline was run twice
+with identical output; its file records which `paperlens` it imported). Remaining imperfection: `L13_sparse_column_blocks_y`
+(reading order 0.92, paragraph reconstruction 0.89): a right column with a single line is not separable from the left, so the PDF's
+own order is kept and the line lands in the wrong place. Nothing is flagged for it.
+
+### 11.4 What changed (`paperlens/ingest.py`)
+
+- Column-aware reading order (`_reorder_columns`, XY-cut): a gutter of at least 4 pt that no text crosses, with 3 or more prose
+  lines (25+ characters) on each side, splits a region into columns; otherwise the region is cut at its widest white band and
+  read top to bottom; a region that cannot be cut keeps the PDF's order if it runs downwards. A page without a gutter is left
+  as delivered. A white band across both columns with 3+ lines of each above and below makes the page ambiguous: rows are read
+  first and the document carries a `Layout warning`.
+- A sentence that runs over a page break is completed on the next page and gets the page where it started (it used to be cut
+  in two and the tail dropped when shorter than 25 characters).
+- Tables are placed in the column they sit in; drop caps are joined to their word and end a summary box; a wide white band after the
+  abstract ends it; small-print publisher boxes and footnote marks followed by a space are notes; running heads that alternate
+  between pages are removed after two sightings.
+
+### 11.5 Effect on the 16 development papers (real PDFs, no ground truth beyond earlier AI-assisted labels)
+
+Abstract start/end 16/16 and 16/16 (unchanged), bookmarked headings 83/85 (unchanged). The line order changed on 59 of 320 pages (page-number lines ignored; the first difference is usually a publisher header or footer line, or figure text,
+moving to the geometric position; not otherwise classified). The sentence count per paper changed by -8 to +10 (fragments split by a page break are now
+whole sentences). Evidence pipeline: 147 to 146 claims; 141 common, 135 of them with the same top passage; 6 old claims dropped
+(2 labelled real: both were fragments of sentences that now appear whole and unlabelled) and 5 new ones (all unlabelled). On rows that still have a
+label: strict 21/54, lenient 43/54 (before 24/60 and 49/60); the 7 claims and 4 returned passages that lost their label are not scored,
+so no change in evidence precision can be claimed in either direction. Two new splices of figure text into a claim on real papers
+were seen (ATLAS figure legend, SciFact figure text). Seed-7 synthetic and SciFact dev identical.
+
+### 11.6 Not measured, not fixed
+
+- Nothing on unseen papers; the held-out failures (few claims from some layouts) were not reproduced or examined.
+- Real three-column, rotated, scanned-with-OCR-text and right-to-left layouts; text in figures.
+- Unruled tables whose cells sit side by side are read in the PDF's order and can be glued to nearby text.
+- The sparse-column case above, and any column with fewer than 3 lines.
