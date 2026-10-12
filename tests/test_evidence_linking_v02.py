@@ -163,6 +163,9 @@ def test_same_number_different_quantity_does_not_match(claim, passage):
     ("The measured mass is 125.3 ± 0.6 GeV.", "We find a mass of 125.3±0.6 GeV.", ["0.6", "125.3"]),
     ("The measured mass is 125.3 +/- 0.6 GeV.", "We find a mass of 125.3 ± 0.6 GeV.", ["0.6", "125.3"]),
     ("The outflow reaches a velocity of 200 km/s.", "The outflow velocity is 200 km/s.", ["200"]),
+    # a score written as a percentage, and a range whose unit is named before its first number
+    ("The tagger achieves 89.1% F1 on the corpus.", "The tagger obtains 89.1 F1 on the corpus.", ["89.1"]),
+    ("Our approach improves F1 on the corpus from 85.6 to 89.1.", "The tagger obtains 89.1 F1 on the corpus.", ["89.1"]),
 ])
 def test_same_quantity_in_another_format_matches(claim, passage, values):
     assert _matched(claim, passage) == values
@@ -234,6 +237,18 @@ def test_unsuitable_passages_are_rejected_with_a_reason(sentence, reason):
 ])
 def test_legitimate_passages_are_kept(sentence):
     assert _verdict(CLAIM, sentence) == ""
+
+
+def test_results_sentence_dense_with_figures_is_not_mistaken_for_a_number_dump():
+    # found by the synthetic benchmark: short function words were counted as non-prose and this kind of sentence,
+    # the best evidence there is, was rejected as "symbols_or_numbers"
+    text = "As shown in Table 1, the tagger obtains 89.1 F1 on the corpus, compared with 86.2 for T5, an improvement of 2.9 points."
+    claim_text = "The tagger achieves 89.1% F1 on the corpus, outperforming T5 by 2.9 points."
+    assert _verdict(claim_text, Sentence(1, text, 5, "results")) == ""
+    doc, claim = _doc(claim_text, [(text, "results")] + _fill())
+    link_evidence(doc, [claim])
+    assert claim.evidence and claim.evidence[0].sentence_id == 1
+    assert claim.evidence[0].shared_numbers == ["2.9", "89.1"] and claim.support == "strong"
 
 
 def test_caption_without_the_number_needs_a_full_statement_and_high_overlap():

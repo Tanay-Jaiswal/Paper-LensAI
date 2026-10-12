@@ -29,3 +29,27 @@
 
 `claims.rank_passages` returns scored passages; `link_evidence` turns them into a support level. A verifier (NLI model or an LLM) can re-score the
 top-3 passages there and replace the lexical thresholds, keeping the same ledger schema and UI.
+
+## Added for 0.2.0-dev (evidence linking)
+
+Measured on development data only; see `docs/EVALUATION.md` section 6.
+
+- **Abstention costs coverage.** On the 16 development papers a passage is returned for 81 of 145 claims (142 before). By
+  AI-assisted labels about one third of the removed passages were fully or partly supporting. True evidence phrased in
+  other words is lost, because the relevance test is lexical.
+- **More `unsupported_claim` flags.** Every abstention on a result or comparison claim raises the flag (81, up from 56 on
+  the development papers). "No supporting evidence found" means the linker found none, not that the paper has none.
+- **Most returned passages are still not full support.** AI-assisted strict precision on the development papers is about
+  0.41; `moderate` and `weak` ratings are right in a quarter of cases or fewer.
+- **One global threshold** (`MIN_LEXICAL` = 0.30) taken from a curve on short biomedical abstracts (SciFact). The curve has
+  no natural cut-off, the value is a judgement, and it may suit long papers or other fields badly.
+- **Quantity matching is rule-based.** The unit list is finite. A true match with no unit and no shared neighbouring word
+  is missed. `91.2%` and `0.912` are not reconciled. Superscripts flattened by the PDF (`10−9` printed as `109`) are read
+  correctly only in the explicit `×10` and `10^` forms. A unit is carried across "to", "and", "or", "-" and "±" between two
+  numbers, which can be wrong for lists such as "12 patients and 30".
+- **Suitability rules can reject real evidence.** Equation-heavy results (more than half the tokens without two adjacent
+  letters) are dropped; a one-sentence result in a discussion section that repeats the claim without a new number is
+  treated as a restatement; a caption without the claimed number needs high word overlap to be kept.
+- **Abstract, introduction and conclusion sentences are never returned as evidence**, even when valid. This is unchanged
+  from 0.1.0 (they are treated as the place where claims are made).
+- **No unseen-data result exists for this version**, and no human-labelled result exists for any version.

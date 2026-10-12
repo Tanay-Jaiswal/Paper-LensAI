@@ -138,6 +138,8 @@ class Quantity:
             return False
         shared_context = bool(self.context & other.context)
         if self.unit and other.unit:
+            if {self.unit, other.unit} & {"%"} and {self.unit, other.unit} & _METRIC_UNITS:
+                return shared_context  # "89.1% F1" and "89.1 F1": a score written as a percentage; the words must agree
             # same unit: enough for a specific value; a round small value also needs a shared word
             return self.unit == other.unit and (self.specific or shared_context)
         return shared_context          # at most one side names a unit: the surrounding words must agree
@@ -181,6 +183,9 @@ def quantities_in(text: str, window: int = 2) -> list[Quantity]:
     for a, b in zip(nums[-2::-1], nums[:0:-1]):
         if not units[a] and units[b] and _RANGE_LINK.fullmatch(text[spans[a][1]:spans[b][0]]):
             units[a] = units[b]
+    for a, b in zip(nums, nums[1:]):       # ... or before the first one: "improves F1 from 85.6 to 89.1"
+        if units[a] and not units[b] and _RANGE_LINK.fullmatch(text[spans[a][1]:spans[b][0]]):
+            units[b] = units[a]
     out = []
     for i, (kind, val, unit) in enumerate(toks):
         if kind != "num":

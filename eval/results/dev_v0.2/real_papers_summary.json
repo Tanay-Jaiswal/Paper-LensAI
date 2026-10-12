@@ -1,7 +1,7 @@
 [
   {
     "paper": "acl_2020.acl-main.442_beyond-accuracy-behavioral-testing-of-nlp.pdf",
-    "seconds": 2.18,
+    "seconds": 2.23,
     "title_extracted": "Beyond Accuracy: Behavioral Testing of NLP Models with CheckList",
     "pages_paperlens": 11,
     "pages_pymupdf": 11,
@@ -53,19 +53,23 @@
       "abstract": 2
     },
     "support": {
-      "none": 2
+      "none": 1,
+      "weak": 1
     },
     "evidence_status": {
-      "no_supporting_evidence": 2
+      "no_supporting_evidence": 1,
+      "found": 1
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 54,
+      "below_relevance_threshold": 52,
       "table_row_without_matching_value": 6
     },
     "claim_text_on_cited_page": {
       "y": 2
     },
-    "evidence_quote_on_cited_page": {},
+    "evidence_quote_on_cited_page": {
+      "y": 1
+    },
     "reproducibility_score": 47.8,
     "rubric_not_applicable": [],
     "n_gaps": 3,
@@ -81,7 +85,7 @@
   },
   {
     "paper": "acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf",
-    "seconds": 2.57,
+    "seconds": 2.68,
     "title_extracted": "Fact or Fiction: Verifying Scientific Claims",
     "pages_paperlens": 17,
     "pages_pymupdf": 17,
@@ -188,7 +192,7 @@
   },
   {
     "paper": "acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf",
-    "seconds": 1.69,
+    "seconds": 1.74,
     "title_extracted": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
     "pages_paperlens": 16,
     "pages_pymupdf": 16,
@@ -267,15 +271,16 @@
       "conclusion": 1
     },
     "support": {
-      "none": 4,
+      "weak": 1,
+      "none": 3,
       "moderate": 1
     },
     "evidence_status": {
-      "no_supporting_evidence": 4,
-      "found": 1
+      "found": 2,
+      "no_supporting_evidence": 3
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 131,
+      "below_relevance_threshold": 130,
       "fragment": 13,
       "boilerplate": 2,
       "symbols_or_numbers": 2
@@ -284,7 +289,7 @@
       "y": 5
     },
     "evidence_quote_on_cited_page": {
-      "y": 1
+      "y": 2
     },
     "reproducibility_score": 87.0,
     "rubric_not_applicable": [],
@@ -311,7 +316,7 @@
   },
   {
     "paper": "acl_P02-1040_bleu-a-method-for-automatic-evaluation.pdf",
-    "seconds": 0.72,
+    "seconds": 0.75,
     "title_extracted": "BLEU: a Method for Automatic Evaluation of Machine Translation",
     "pages_paperlens": 8,
     "pages_pymupdf": 8,
@@ -388,7 +393,7 @@
   },
   {
     "paper": "arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf",
-    "seconds": 6.15,
+    "seconds": 6.32,
     "title_extracted": "Observation of a New Particle in the Search for the Standard Model Higgs Boson with the ATLAS Detector at the LHC",
     "pages_paperlens": 38,
     "pages_pymupdf": 38,
@@ -444,10 +449,10 @@
       "found": 6
     },
     "rejected_candidates": {
-      "symbols_or_numbers": 15,
-      "below_relevance_threshold": 48,
+      "symbols_or_numbers": 12,
+      "below_relevance_threshold": 50,
       "table_row_without_matching_value": 4,
-      "caption_label_only": 1
+      "caption_label_only": 2
     },
     "claim_text_on_cited_page": {
       "y": 5,
@@ -475,7 +480,7 @@
   },
   {
     "paper": "arxiv_1412.6980v9_adam-a-method-for-stochastic-optimization.pdf",
-    "seconds": 1.4,
+    "seconds": 1.44,
     "title_extracted": "ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION",
     "pages_paperlens": 15,
     "pages_pymupdf": 15,
@@ -521,25 +526,25 @@
       "abstract": 3
     },
     "support": {
-      "none": 2,
-      "weak": 1
+      "none": 1,
+      "weak": 2
     },
     "evidence_status": {
-      "no_supporting_evidence": 2,
-      "found": 1
+      "no_supporting_evidence": 1,
+      "found": 2
     },
     "rejected_candidates": {
       "below_relevance_threshold": 68,
       "table_row_without_matching_value": 7,
       "fragment": 7,
       "caption_label_only": 4,
-      "symbols_or_numbers": 2
+      "symbols_or_numbers": 1
     },
     "claim_text_on_cited_page": {
       "y": 3
     },
     "evidence_quote_on_cited_page": {
-      "y": 1
+      "y": 2
     },
     "reproducibility_score": 34.8,
     "rubric_not_applicable": [],
@@ -560,7 +565,7 @@
   },
   {
     "paper": "arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf",
-    "seconds": 2.56,
+    "seconds": 2.61,
     "title_extracted": "Deep Residual Learning for Image Recognition",
     "pages_paperlens": 12,
     "pages_pymupdf": 12,
@@ -604,18 +609,17 @@
       "introduction": 2
     },
     "support": {
-      "none": 3,
-      "strong": 3,
-      "weak": 1
+      "none": 2,
+      "weak": 2,
+      "strong": 3
     },
     "evidence_status": {
-      "no_supporting_evidence": 3,
-      "found": 4
+      "no_supporting_evidence": 2,
+      "found": 5
     },
     "rejected_candidates": {
       "fragment": 20,
       "below_relevance_threshold": 114,
-      "symbols_or_numbers": 1,
       "boilerplate": 7,
       "caption_label_only": 3,
       "table_row_without_matching_value": 3
@@ -624,7 +628,7 @@
       "y": 7
     },
     "evidence_quote_on_cited_page": {
-      "y": 4
+      "y": 5
     },
     "reproducibility_score": 56.5,
     "rubric_not_applicable": [],
@@ -649,7 +653,7 @@
   },
   {
     "paper": "arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf",
-    "seconds": 2.68,
+    "seconds": 2.65,
     "title_extracted": "Observation of Gravitational Waves from a Binary Black Hole Merger",
     "pages_paperlens": 16,
     "pages_pymupdf": 16,
@@ -698,8 +702,7 @@
       "found": 6
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 53,
-      "symbols_or_numbers": 3,
+      "below_relevance_threshold": 28,
       "fragment": 1
     },
     "claim_text_on_cited_page": {
@@ -724,7 +727,7 @@
   },
   {
     "paper": "arxiv_1706.03762v7_attention-is-all-you-need.pdf",
-    "seconds": 1.35,
+    "seconds": 1.39,
     "title_extracted": "Attention Is All You Need",
     "pages_paperlens": 15,
     "pages_pymupdf": 15,
@@ -796,10 +799,10 @@
       "no_supporting_evidence": 3
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 193,
-      "fragment": 12,
-      "caption_label_only": 17,
-      "table_row_without_matching_value": 66,
+      "below_relevance_threshold": 149,
+      "fragment": 10,
+      "caption_label_only": 14,
+      "table_row_without_matching_value": 57,
       "boilerplate": 2
     },
     "claim_text_on_cited_page": {
@@ -828,7 +831,7 @@
   },
   {
     "paper": "arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf",
-    "seconds": 15.19,
+    "seconds": 15.35,
     "title_extracted": "Language Models are Few-Shot Learners",
     "pages_paperlens": 75,
     "pages_pymupdf": 75,
@@ -924,11 +927,11 @@
       "found": 7
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 178,
+      "below_relevance_threshold": 177,
       "boilerplate": 3,
       "fragment": 3,
       "caption_label_only": 9,
-      "symbols_or_numbers": 3
+      "symbols_or_numbers": 2
     },
     "claim_text_on_cited_page": {
       "y": 11
@@ -970,7 +973,7 @@
   },
   {
     "paper": "plos_pbio.1002106_the-extent-and-consequences-of-p.pdf",
-    "seconds": 1.5,
+    "seconds": 1.54,
     "title_extracted": "The Extent and Consequences of P-Hacking in Science",
     "pages_paperlens": 15,
     "pages_pymupdf": 15,
@@ -1046,7 +1049,7 @@
   },
   {
     "paper": "plos_pmed.0020124_why-most-published-research-findings-are.pdf",
-    "seconds": 1.2,
+    "seconds": 1.23,
     "title_extracted": "Why Most Published Research Findings Are False",
     "pages_paperlens": 6,
     "pages_pymupdf": 6,
@@ -1089,23 +1092,21 @@
       "abstract": 2
     },
     "support": {
-      "none": 1,
-      "weak": 1
+      "weak": 2
     },
     "evidence_status": {
-      "no_supporting_evidence": 1,
-      "found": 1
+      "found": 2
     },
     "rejected_candidates": {
       "fragment": 6,
-      "below_relevance_threshold": 44,
+      "below_relevance_threshold": 42,
       "table_row_without_matching_value": 9
     },
     "claim_text_on_cited_page": {
       "y": 2
     },
     "evidence_quote_on_cited_page": {
-      "y": 1
+      "y": 2
     },
     "reproducibility_score": 34.2,
     "rubric_not_applicable": [
@@ -1123,7 +1124,7 @@
   },
   {
     "paper": "pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf",
-    "seconds": 2.08,
+    "seconds": 2.11,
     "title_extracted": "Comparison of High-Intensity Interval Training and Moderate-to-Vigorous Continuous Training for Cardiometabolic Health and Exercise Enjoyment in Obese Young Women: A Randomized Controlled Trial",
     "pages_paperlens": 16,
     "pages_pymupdf": 16,
@@ -1183,18 +1184,18 @@
     },
     "support": {
       "moderate": 4,
-      "weak": 4,
-      "strong": 2,
-      "none": 10
+      "strong": 3,
+      "weak": 6,
+      "none": 7
     },
     "evidence_status": {
-      "found": 10,
-      "no_supporting_evidence": 10
+      "found": 13,
+      "no_supporting_evidence": 7
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 327,
-      "table_row_without_matching_value": 111,
-      "symbols_or_numbers": 21,
+      "below_relevance_threshold": 315,
+      "table_row_without_matching_value": 106,
+      "symbols_or_numbers": 4,
       "table_row_for_another_quantity": 5,
       "fragment": 9,
       "boilerplate": 1
@@ -1203,25 +1204,25 @@
       "y": 20
     },
     "evidence_quote_on_cited_page": {
-      "y": 10
+      "y": 13
     },
     "reproducibility_score": 60.5,
     "rubric_not_applicable": [
       "splits",
       "hyper"
     ],
-    "n_gaps": 18,
+    "n_gaps": 17,
     "gap_kinds": {
       "no_code": 1,
       "number_not_in_results": 3,
-      "unsupported_claim": 14
+      "unsupported_claim": 13
     },
     "datasets": [],
     "metrics": []
   },
   {
     "paper": "pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf",
-    "seconds": 2.25,
+    "seconds": 2.33,
     "title_extracted": "Global Prevalence of Chronic Kidney Disease – A Systematic Review and Meta-Analysis",
     "pages_paperlens": 18,
     "pages_pymupdf": 18,
@@ -1280,10 +1281,10 @@
       "found": 5
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 176,
+      "below_relevance_threshold": 180,
       "fragment": 14,
       "table_row_without_matching_value": 50,
-      "symbols_or_numbers": 61,
+      "symbols_or_numbers": 55,
       "restates_claim": 1
     },
     "claim_text_on_cited_page": {
@@ -1313,7 +1314,7 @@
   },
   {
     "paper": "pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf",
-    "seconds": 2.1,
+    "seconds": 2.09,
     "title_extracted": "The Impacts of Oil Palm on Recent Deforestation and Biodiversity Loss",
     "pages_paperlens": 19,
     "pages_pymupdf": 19,
@@ -1379,7 +1380,7 @@
       "found": 4
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 156,
+      "below_relevance_threshold": 127,
       "table_row_without_matching_value": 20,
       "boilerplate": 2,
       "fragment": 2
@@ -1406,7 +1407,7 @@
   },
   {
     "paper": "pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf",
-    "seconds": 4.84,
+    "seconds": 4.54,
     "title_extracted": "Accurate De Novo Prediction of Protein Contact Map by Ultra-Deep Learning Model",
     "pages_paperlens": 34,
     "pages_pymupdf": 34,
@@ -1459,28 +1460,27 @@
       "conclusion": 16
     },
     "support": {
-      "none": 12,
+      "none": 9,
       "moderate": 6,
       "strong": 4,
-      "weak": 3
+      "weak": 6
     },
     "evidence_status": {
-      "no_supporting_evidence": 12,
-      "found": 13
+      "no_supporting_evidence": 9,
+      "found": 16
     },
     "rejected_candidates": {
-      "below_relevance_threshold": 400,
+      "below_relevance_threshold": 397,
       "summary_section": 13,
       "fragment": 12,
       "caption_label_only": 40,
-      "symbols_or_numbers": 2,
       "table_row_without_matching_value": 11
     },
     "claim_text_on_cited_page": {
       "y": 25
     },
     "evidence_quote_on_cited_page": {
-      "y": 13
+      "y": 16
     },
     "reproducibility_score": 73.9,
     "rubric_not_applicable": [],

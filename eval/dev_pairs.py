@@ -2,6 +2,9 @@
 
     python -m eval.dev_pairs pool  <baseline_audit.csv> <new_audit.csv> <out_dir>   # writes dev_pairs_blank.csv (version hidden, shuffled)
     python -m eval.dev_pairs score <baseline_audit.csv> <new_audit.csv> <out_dir>   # needs dev_pairs_labelled.csv
+    python -m eval.dev_pairs score-labelled <baseline_audit.csv> <new_audit.csv> <out_dir>
+        # as score, but a returned pair that was never labelled (the code changed after the labels were locked) is
+        # left out of precision and counted, with the range precision could take if it were labelled
 
 The pooled sheet lists each distinct claim once (label is_real_claim) and each distinct (claim, top passage) pair once
 (label evidence_correct), in random order and without saying which version produced a pair or how it was rated, so one
@@ -65,7 +68,7 @@ def _wilson(k, n):
     return f"{p:.3f} ({k}/{n}; 95% CI {max(0, c - h):.2f}-{min(1, c + h):.2f})"
 
 
-def score(base, new, out_dir):
+def score(base, new, out_dir, allow_unlabelled=False):
     lab = {(r["kind"], r["id"]): r["label"].strip().lower() for r in _read(Path(out_dir) / "dev_pairs_labelled.csv")}
     bad = [k for k, v in lab.items() if v not in (("y", "n") if k[0] == "claim" else ("y", "p", "n", ""))]
     if bad or any(v == "" for k, v in lab.items() if k[0] == "claim"):
@@ -76,13 +79,20 @@ def score(base, new, out_dir):
         real = [r for r in rows if lab[("claim", _cid(r))] == "y"]
         ret = [r for r in real if r["evidence"].strip()]
         missing = [r for r in ret if lab.get(("pair", _pid(r)), "") == ""]
-        if missing:
+        if missing and not allow_unlabelled:
             print(f"NOT SCORED ({name}): {len(missing)} returned pairs of real claims have no label")
             return 1
+        n_ret = len(ret)
+        ret = [r for r in ret if lab.get(("pair", _pid(r)), "") != ""]
         y = sum(lab[("pair", _pid(r))] == "y" for r in ret)
         yp = sum(lab[("pair", _pid(r))] in ("y", "p") for r in ret)
         print(f"== {name}: {len(rows)} claims extracted, {len(real)} labelled real")
-        print("  coverage (real claims with a returned passage): " + _wilson(len(ret), len(real)))
+        print("  coverage (real claims with a returned passage): " + _wilson(n_ret, len(real)))
+        if missing:
+            k = len(missing)
+            print(f"  UNLABELLED returned pairs left out of the precision rows below: {k}; with them strict precision "
+                  f"would lie between {sum(lab[('pair', _pid(r))] == 'y' for r in ret) / n_ret:.3f} and "
+                  f"{(sum(lab[('pair', _pid(r))] == 'y' for r in ret) + k) / n_ret:.3f}")
         print("  evidence precision, strict  (y):      " + _wilson(y, len(ret)))
         print("  evidence precision, lenient (y or p): " + _wilson(yp, len(ret)))
         print("  real claims with fully supporting evidence:  " + _wilson(y, len(real)))
@@ -94,6 +104,9 @@ def score(base, new, out_dir):
     b = {_cid(r): r for r in _read(base)}
     n = {_cid(r): r for r in _read(new)}
     drop = [k for k in b if lab[("claim", k)] == "y" and b[k]["evidence"].strip() and not n[k]["evidence"].strip()]
+    gain = [k for k in b if lab[("claim", k)] == "y" and not b[k]["evidence"].strip() and n[k]["evidence"].strip()]
+    same = sum(1 for k in b if lab[("claim", k)] == "y" and b[k]["evidence"].strip() and b[k]["evidence"] == n[k]["evidence"])
+    print(f"== real claims: same top passage in both versions: {same}; passage only in the new version: {len(gain)}")
     kinds = {v: sum(lab[("pair", _pid(b[k]))] == v for k in drop) for v in ("y", "p", "n")}
     print(f"== abstentions introduced by the new version on real claims: {len(drop)} "
           f"(baseline passage was y: {kinds['y']}, p: {kinds['p']}, n: {kinds['n']})")
@@ -103,4 +116,6 @@ def score(base, new, out_dir):
 if __name__ == "__main__":
     if len(sys.argv) == 5 and sys.argv[1] in ("pool", "score"):
         sys.exit({"pool": pool, "score": score}[sys.argv[1]](*sys.argv[2:]))
+    if len(sys.argv) == 5 and sys.argv[1] == "score-labelled":
+        sys.exit(score(*sys.argv[2:], allow_unlabelled=True))
     print(__doc__)

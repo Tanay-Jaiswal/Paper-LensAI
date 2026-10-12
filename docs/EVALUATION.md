@@ -269,3 +269,156 @@ precision is still not computed.
 rubric formula and quotes, every gap rule (positive and negative case), comparison, API (upload, page render, reports, validation, dedup),
 CLI, the SciFact evaluation code path on a fixture, and the synthetic regression floor. 14 in `tests/test_real_layout_fixes.py` cover the
 real-paper fixes of section 3.2 using small synthetic edge cases (hand-made spans and one-page PDFs), not text from real papers.
+
+## 6. Development version 0.2.0-dev (evidence linking; development data only)
+
+Branch `dev/evidence-linking-v0.2`, code version `0.2.0-dev`. Sections 1 to 5 describe version 0.1.0 (tag
+`v0.1.0-frozen-heldout`) and are unchanged. **Nothing in this section is a held-out result.** The 8 held-out papers were
+not re-run, their key and raw outputs were not opened, and because the three fixes were motivated by failure types seen in
+the held-out audit, those papers can no longer serve as an unseen test for this version. All files are in
+`eval/results/dev_v0.2/`.
+
+What changed (plan and risks: `docs/EVIDENCE_LINKING_FIX_PLAN.md`): (1) abstention: a passage is returned only if it
+passes a relevance test, otherwise the claim shows "No supporting evidence found" (or "Evidence search not possible" when
+no body text was extracted); (2) a number counts only when value, unit and/or neighbouring words agree; (3) passages that
+cannot substantiate a claim (label-only captions, fragments, step headings, symbol dumps, boilerplate, near-copies of the
+claim) are rejected with a recorded reason.
+
+### 6.1 Kinds of evidence in this section
+
+| Kind | What it is here | Human-verified? |
+|---|---|---|
+| Synthetic | templated PDFs with planted facts (seeds 7, 99); synthetic unit-test fixtures | by construction |
+| Human-labelled public data | SciFact train/dev rationale sentences (biomedical abstracts) | yes, by the SciFact authors |
+| Automatic checks on real papers | counts on the 16 development papers; no judgement of correctness | no |
+| AI-assisted labels | evidence correctness on the 16 development papers, labelled by the AI assistant | **no** |
+
+No human has labelled PaperLens output on real papers for either version.
+
+### 6.2 Synthetic benchmark (n=100 per seed)
+
+| Seed | Measure | 0.1.0 | 0.2.0-dev |
+|---|---|---|---|
+| 7 | top-1 evidence hit / evidence page / supported rated strong or moderate | 1.0 / 1.0 / 1.0 | 1.0 / 1.0 / 1.0 |
+| 7 | unsupported rated none or weak | 1.0 | 1.0 |
+| 99 | top-1 evidence hit / evidence page / supported rated strong or moderate | 1.0 / 1.0 / 1.0 | 1.0 / 1.0 / 1.0 |
+| 99 | unsupported rated none or weak; `unsupported_claim` gap F1 | 0.975; 0.987 | 1.0; 1.0 |
+
+All other synthetic measures (rubric, claim recall and page, remaining gap rules) are identical to 0.1.0.
+
+The first rerun of 0.2.0-dev was **worse**: top-1 hit 0.969, page accuracy 0.962, strong/moderate 0.987 (seed 7) and 0.981
+(seed 99). Three causes were found and fixed, each with a regression test: the symbol-density rule counted short function
+words ("as", "in", "of") as non-prose and rejected results sentences dense with figures; `89.1% F1` did not match `89.1 F1`;
+and in "from 85.6 to 89.1" only the first number carried the metric. The table above is after those fixes. The synthetic
+papers are templates, so this is a plumbing check, not accuracy on real papers.
+
+### 6.3 SciFact (human labels)
+
+Ranking metrics on SciFact dev, 209 claim-abstract pairs: hit@1 0.488 -> 0.493, hit@3 0.813 -> 0.818, MRR 0.667 -> 0.672;
+BM25 alone is unchanged at 0.498 / 0.813 / 0.673, so PaperLens is still not better than BM25 at ranking rationale sentences.
+AUROC for evidence present vs NOT-ENOUGH-INFO: 0.804 -> 0.810. Differences of this size are within noise for n=209.
+
+Abstention curve (`eval/abstention_curve.py`): each claim is paired with each abstract it cites; a returned top passage is
+correct if it is a gold rationale sentence; a pair without a rationale can only be answered correctly by abstaining.
+
+| `MIN_LEXICAL` | train coverage | train precision | train recall | dev coverage | dev precision | dev recall |
+|---|---|---|---|---|---|---|
+| 0.0 (never abstain) | 1.000 | 0.322 | 0.525 | 1.000 | 0.303 | 0.493 |
+| 0.20 | 0.653 | 0.420 | 0.447 | 0.632 | 0.419 | 0.431 |
+| 0.25 | 0.529 | 0.471 | 0.406 | 0.524 | 0.472 | 0.402 |
+| **0.30 (used)** | 0.431 | 0.500 | 0.351 | 0.424 | 0.521 | 0.359 |
+| 0.35 | 0.333 | 0.542 | 0.294 | 0.335 | 0.535 | 0.292 |
+| 0.40 | 0.263 | 0.574 | 0.246 | 0.276 | 0.596 | 0.268 |
+| 0.50 | 0.171 | 0.611 | 0.170 | 0.191 | 0.662 | 0.206 |
+
+Train: 919 pairs, 564 with a rationale. Dev: 340 pairs, 209 with a rationale. At 0.30 the linker abstains on more than half
+of the pairs and is right about half the time when it answers; it also drops a third of the rationales it would otherwise
+have found (train recall 0.525 -> 0.351). "Correct" here means "is a rationale sentence", not "fully supports the claim",
+and SciFact abstracts are about nine sentences long, so the curve transfers to full papers only roughly.
+
+**How the threshold was chosen, stated plainly.** The plan was to pick `MIN_LEXICAL` from the SciFact train curve. The
+curve has no knee: precision rises and coverage falls smoothly, so any value is a judgement. The file times show this
+history: the train curve was saved with the constant at 0.30; the development pairs were labelled at 0.30; a sweep over
+those AI-labelled development pairs (`dev_threshold_sweep.json`) was then run; and 25 seconds later the constant in the code
+was changed to 0.35, with no SciFact-based reason recorded. That last step is tuning on the development labels. It was
+undone: the constant is 0.30 again, the value in place before the development labels were consulted, and a test pins it.
+Whether 0.30 itself was read off the train curve or set beforehand cannot be established from the files. No further sweep
+was run on the development papers. `dev_threshold_sweep.json` and `prev_at_0.35/` are kept as a record and are not results
+of this version.
+
+### 6.4 The 16 development papers: automatic counts
+
+| Measure (145 extracted claims) | 0.1.0 | 0.2.0-dev |
+|---|---|---|
+| Claims with at least one returned passage | 142 | 81 |
+| Abstentions ("No supporting evidence found") | n/a | 64 |
+| "Evidence search not possible" | n/a | 0 |
+| Support strong / moderate / weak / none | 44 / 32 / 32 / 37 | 29 / 22 / 30 / 64 |
+| Top evidence quote found on its cited page (yes / no) | 135 / 7 | 80 / 1 |
+| Claim text found on its cited page (yes / no) | 144 / 1 | 144 / 1 |
+| Gaps reported (all kinds); `unsupported_claim` | 112; 56 | 138; 81 |
+| Crashes | 0 | 0 |
+
+**Worse:** 25 more `unsupported_claim` flags. A flag now also appears whenever the linker abstains, and section 6.5
+indicates that some of those claims do have support in the paper. Rejected candidates by reason (candidates, not claims):
+below the relevance threshold 2189, table row without a matching value 578, fragment 124, symbols or numbers 86, label-only
+caption 85, boilerplate 23, summary section 13, table row for another quantity 5, restatement 1.
+
+### 6.5 The 16 development papers: AI-assisted evidence labels (not human; not unseen)
+
+Read this before the table.
+- The labels were made by the AI assistant, not by a person. They are an estimate, not ground truth.
+- They were made by the same session that wrote the fixes, from the claim and passage text alone, without re-opening the
+  pages, in about two minutes for 414 rows. The fresh, blind labeller that was planned was not used. The sheet hid which
+  version produced a pair, but the labeller had just written both versions.
+- The pairs were pooled when `MIN_LEXICAL` was 0.30 (`DEV_LABELS_LOCKED.txt`; the recorded sha256 was re-checked and matches).
+- The 16 papers were used to tune the parser and linker of 0.1.0, and the fixes were developed while looking at their
+  output. These numbers say nothing about unseen papers.
+- After the labels were locked the code changed (section 6.2). One top passage of the final version therefore has no
+  label; it is left out of precision and counted. It was not labelled afterwards.
+
+97 of the 145 extracted claims were labelled real claims. On those 97:
+
+| Measure | 0.1.0 | 0.2.0-dev | Direction |
+|---|---|---|---|
+| Coverage: real claims with a returned passage | 0.979 (95/97; 95% CI 0.93-0.99) | 0.619 (60/97; 0.52-0.71) | **worse** |
+| Evidence precision, strict (fully supports) | 0.295 (28/95; 0.21-0.39) | 0.407 (24/59; 0.29-0.53); 0.400 to 0.417 with the unlabelled pair | better, intervals overlap |
+| Evidence precision, lenient (full or partial) | 0.632 (60/95; 0.53-0.72) | 0.814 (48/59; 0.70-0.89) | better |
+| Real claims with fully supporting evidence | 0.289 (28/97; 0.21-0.39) | 0.247 (24/97; 0.17-0.34); 0.258 if the unlabelled pair is correct | **worse** |
+| Returned passages labelled wrong | 35 | 11 | better |
+| Strict precision of `strong` | 0.714 (20/28) | 0.750 (15/20) | about the same |
+| Strict precision of `moderate` | 0.105 (2/19) | 0.200 (3/15) | still poor |
+| Strict precision of `weak` | 0.167 (5/30) | 0.250 (6/24) | still poor |
+
+Source: `dev_precision_coverage_final.txt` (`python -m eval.dev_pairs score-labelled ...`). The earlier file
+`dev_precision_coverage_at_0.30.txt` is the same comparison before the fixes of section 6.2 (coverage 0.639, strict 0.403,
+fully supported 0.258).
+
+What the comparison shows, within the limits above:
+- The new version returns a passage for 35 fewer real claims. For 22 of them the old passage was labelled wrong, for 11
+  partial and for 2 fully supporting. So about two thirds of the abstentions removed a wrong passage and about one third
+  removed something useful.
+- It returns a passage for no claim that the old version left empty; 49 real claims have the same top passage in both
+  versions. The gain in precision comes almost entirely from removing passages, not from finding better ones.
+- The number of claims shown with fully supporting evidence did not rise. A reader gets fewer wrong passages, not more
+  right ones.
+- Strict precision is about 0.41: most returned passages still do not fully support their claim. `moderate` and `weak`
+  remain unreliable; only `strong` is right more often than not.
+- The strict-precision intervals of the two versions overlap. On 60 to 95 passages with AI labels, the improvement in
+  strict precision is not established; the drop in wrong passages (35 to 11) and in coverage is clear.
+
+### 6.6 Not measured
+
+- Precision or coverage of 0.2.0-dev on unseen papers. This needs a new held-out set, frozen code and a frozen procedure.
+- Any human-labelled precision, for either version.
+- Each fix on its own (no ablation was run).
+- Whether the quantity matcher wrongly rejects true matches on real papers; only synthetic cases are tested.
+- The web UI text, beyond a test that the script reads the field the API sends; the JavaScript is not executed in tests.
+
+### 6.7 Automated tests for 0.2.0-dev
+
+`python -m pytest -q`: **101 passed** (the 44 tests of 0.1.0 plus 57 in `tests/test_evidence_linking_v02.py`, all on
+synthetic sentences). One existing test was edited, `test_meta_sentences_and_fragments_are_not_evidence`: it used to check
+that front-matter and fragment sentences are absent from the candidate pool, and now checks that they are absent from the
+evidence returned by `link_evidence`, because 0.2.0-dev rejects them in the suitability filter. The same sentences must
+still be excluded and the same two must still be returned, so the test was not weakened.

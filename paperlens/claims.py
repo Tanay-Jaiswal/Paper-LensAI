@@ -130,10 +130,10 @@ def extract_claims(doc: Document, max_claims: int = 25, min_score: float = 0.62)
 # matches, not the bare literal (Fix 2). All thresholds are here, in one place, and are reported with every ledger.
 
 MIN_LEXICAL = 0.30                 # normalised BM25 a passage needs when it shares no quantity with the claim
-#                                    (chosen from the precision/coverage curves in docs/EVALUATION.md section 6)
+#                                    (how it was chosen and what it costs: docs/EVALUATION.md section 6.3)
 MIN_LEXICAL_WITH_QUANTITY = 0.12   # ... when it does share at least one matched quantity
 MIN_CONTENT_TOKENS = 6             # shorter passages are headings or fragments
-MAX_NON_PROSE = 0.5                # share of tokens without a 3-letter run above which text is symbols/numbers
+MAX_NON_PROSE = 0.5                # share of tokens without a 2-letter run above which text is symbols/numbers
 CAPTION_MIN_LEXICAL = 0.45         # a caption with no matched quantity must clear this to count as a stated result
 CAPTION_MIN_TOKENS = 12
 RESTATEMENT_JACCARD = 0.6          # near-copy of the claim ...
@@ -175,7 +175,8 @@ def _non_prose_share(text: str) -> float:
     toks = text.split()
     if not toks:
         return 1.0
-    return sum(1 for w in toks if not re.search(r"[A-Za-z]{3}", w)) / len(toks)
+    # two letters, not three: "as", "in", "of" are prose, and a results sentence full of figures must stay eligible
+    return sum(1 for w in toks if not re.search(r"[A-Za-z]{2}", w)) / len(toks)
 
 
 def evidence_unsuitable(s: Sentence, claim_tokens: set, claim_values: set, matched: list[str], lex: float) -> str:
