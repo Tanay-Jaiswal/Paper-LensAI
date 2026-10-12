@@ -1,0 +1,62 @@
+<!doctype html><meta charset=utf-8><title>PaperLens report</title><body style='font:14px/1.5 system-ui;max-width:960px;margin:2rem auto;padding:0 1rem'><pre style='white-space:pre-wrap'># PaperLens report: Neurocache: Efficient Vector Retrieval for Long-range Language Modeling
+
+*14 pages · 2 claims · reproducibility 58.7/100 (moderate)*
+
+## Summary
+
+- Our experiments show the effectiveness of Neurocache both for models trained from scratch and for pre-trained models such as Llama2- 7B and Mistral-7B when enhanced with the cache mechanism. *(p.1)*
+- Notably, Neurocache enhances the maximum context length of models like Llama2-7B and Mistral-7B to 128K tokens. *(p.9)*
+
+**Problem**
+- Neurocache improves upon previous methods by (1) storing compressed states, which reduces cache size; (2) performing a single retrieval operation per token which increases inference speed; and (3) extending the retrieval window to neighboring states, which improves both language modeling and downstream task accuracy. *(p.1)*
+- However, these approaches often struggle to utilize their extended contexts (Liu et al., 2023) fully. *(p.1)*
+
+**Approach**
+- In response to these challenges, we introduce Neurocache. *(p.1)*
+- This training, using a causal language modeling objective on a corpus of long documents, enables the models to efficiently utilize the Neurocache system. *(p.4)*
+
+**Results**
+- We also compare Neurocache with text retrieval methods and show improvements in single-document questionanswering and few-shot learning tasks. *(p.1)*
+- Neurocache advances over exiting methods by reducing the cache size through the storage of compressed states, performing a single retrieval operation per token to boost inference speed, and extending the retrieval window to include neighboring states for improved language modeling and downstream accuracy. *(p.2)*
+- For instance, in HotpotQA, Text Retrieval with the Mistral-7B model achieves the highest F1 score of 40.92. *(p.8)*
+
+**Limitations**
+- A notable limitation is Neurocache’s performance in multi-document scenarios, suggesting potential challenges in contexts that require integration of information from multiple sources. *(p.9)*
+- This limitation suggests that our current findings may not fully capture the model’s adaptability and efficiency in diverse application scenarios. *(p.9)*
+
+## Research Evidence Ledger
+
+| ID | Claim | Page | Type | Support | Best evidence |
+|---|---|---|---|---|---|
+| C1 | Neurocache improves upon previous methods by (1) storing compressed states, which reduces cache size; (2) performing a single retrieval operation per token which increases inference speed; and (3) extending the retrieval window to neighboring states, which improves both language modeling and downstream task accuracy. | 1 | assertion | 🔴 none | No supporting evidence found |
+| C2 | We also compare Neurocache with text retrieval methods and show improvements in single-document questionanswering and few-shot learning tasks. | 1 | assertion | 🟡 moderate | p.9: Neurocache excels in single-document and few-shot learning scenarios, while Text Retrieval… |
+
+## Reproducibility: 58.7/100
+
+_100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums_
+
+| Item | Status | Weight | Evidence |
+|---|---|---|---|
+| Code available | present | 3.0 | p.1: We made the source code available under: https: //github.com/alisafaya/neurocach… |
+| Datasets named and accessible | present | 2.0 | p.5: It is recognized as a standard benchmark for evaluating models on long-form text… |
+| Train/validation/test splits specified | partial | 2.0 | p.8: We split the documents into 2,048-token segments, processing them sequentially t… |
+| Preprocessing described | partial | 1.0 | p.1: Recent research by Xu et al. (2023) shows that retrieval-augmented models with s… |
+| Hyperparameters reported | present | 2.0 | p.6: The pre-training involves 100,000 steps with a batch size of 128 and a context s… |
+| Seeds / multiple runs | missing | 2.0 | Run with several seeds and report how many. |
+| Variance / uncertainty reported | missing | 2.0 | Report standard deviation or confidence intervals, not single numbers. |
+| Statistical significance test | missing | 1.5 | Back &#x27;significant&#x27; claims with a named test and p-value or CI. |
+| Baselines described | present | 2.0 | p.1: Our experiments show the effectiveness of Neurocache both for models trained fro… |
+| Ablation / component analysis | missing | 1.0 | Show which components drive the gains. |
+| Evaluation metrics defined | present | 1.0 | p.7: Metrics include F1, Accuracy (Acc.), and Rouge-L (R-L).… |
+| Compute / hardware reported | present | 1.0 | p.6: This adaptation process consumes approximately 200 Nvidia A100 GPU Hours per mod… |
+| Software / library versions | missing | 1.0 | Pin library versions or provide an environment file. |
+| Licence / ethics statement | missing | 0.5 | State data/model licences and ethical considerations. |
+| Limitations discussed | present | 1.0 | p.1: This limitation becomes apparent in tasks that require understanding long docume… |
+
+_Measures what the paper reports (checklist coverage), not whether results actually reproduce._
+
+## Evidence gaps
+
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim; its numbers (1, 2, 3) do not appear in results text. — &quot;Neurocache improves upon previous methods by (1) storing compressed states, which reduces cache size; (2) performing a single retrieval operation per token which increases inference speed; and (3) extending the retrie...&quot;
+- **[MEDIUM] improvement_without_variance** (p.1): Improvement is reported as a single number with no variance, seeds or confidence interval. — &quot;Neurocache improves upon previous methods by (1) storing compressed states, which reduces cache size; (2) performing a single retrieval operation per token which increases inference speed; and (3) extending the retrie...&quot;
+</pre></body>

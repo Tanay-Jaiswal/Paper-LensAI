@@ -1,0 +1,13 @@
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+acl_2023.emnlp-main.250_atformer-a-learned-perfo    2.2s pages= 15 sents=  502 claims=  2 support={'none': 2}
+acl_2024.acl-long.150_itd-large-language-models-    1.9s pages= 13 sents=  358 claims=  5 support={'none': 1, 'weak': 3, 'strong': 1}
+acl_2024.naacl-long.50_neurocache-efficient-vect    2.1s pages= 14 sents=  431 claims=  2 support={'none': 1, 'moderate': 1}
+arxiv_2403.00204v1_la-4-co-4-x-x.pdf                1.7s pages= 25 sents=  347 claims=  5 support={'weak': 4, 'moderate': 1}
+arxiv_2403.00209v2_chartreformer-natural-languag    3.8s pages= 18 sents=  254 claims=  2 support={'none': 2}
+arxiv_2403.00458v2_electric-vehicle-pricing-and-    4.0s pages= 55 sents=  441 claims=  0 support={}
+arxiv_2403.00947v1_history-dependence-shapes-cau    2.3s pages= 24 sents=  473 claims=  2 support={'weak': 1, 'none': 1}
+doi_10.5194-gmd-16-3029-2023_technical-descripti    8.9s pages= 53 sents=  946 claims=  5 support={'none': 3, 'weak': 2}
+doi_10.7554-elife.76927_the-rna-helicase-ddx39b-    3.3s pages= 25 sents=  758 claims=  1 support={'weak': 1}
+pmc_PMC9810159_effectiveness-of-a-peer-educator-    2.2s pages= 16 sents=  433 claims=  7 support={'strong': 4, 'moderate': 2, 'weak': 1}
+pmc_PMC9815661_a-dsrna-binding-mutant-reveals-on    3.2s pages= 28 sents=  668 claims=  2 support={'weak': 1, 'strong': 1}
+11 papers, 0 crashed, 33 claim rows -> eval\results\held_out_v0.2\raw

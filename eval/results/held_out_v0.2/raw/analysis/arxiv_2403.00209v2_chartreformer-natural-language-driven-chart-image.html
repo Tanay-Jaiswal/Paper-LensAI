@@ -1,0 +1,61 @@
+<!doctype html><meta charset=utf-8><title>PaperLens report</title><body style='font:14px/1.5 system-ui;max-width:960px;margin:2rem auto;padding:0 1rem'><pre style='white-space:pre-wrap'># PaperLens report: ChartReformer: Natural Language-Driven Chart Image Editing
+
+*18 pages · 2 claims · reproducibility 47.8/100 (low)*
+
+&gt; **Warnings:** No &#x27;Abstract&#x27; heading detected; treated the front matter as the abstract.
+
+## Summary
+
+- Instead of predicting the plotting code, the key in this method is that we allow the model to comprehend the chart and reason over the prompt to generate the corresponding underlying data table and visual attributes for new charts, enabling a precise and stable editing result. *(p.1)*
+- By generating edited charts in a decomposed form that includes both the data table and visual attributes, ChartReformer enables precise, natural language-driven edits across style, layout, format, and data-centric modifications. *(p.13)*
+
+**Problem**
+- Chart visualizations are essential for data interpretation and communication; however, most charts are only accessible in image format and lack the corresponding data tables and supplementary information, making it difficult to alter their appearance for different scenarios of application. *(p.1)*
+- However, for chart editing tasks, [12] still rely on input visual- *(p.2)*
+
+**Approach**
+- To eliminate the need for original underlying data and information to perform chart editing, we propose ChartReformer, a natural language-driven chart image editing solution that directly edits the charts from the input images with the given instruction prompts. *(p.1)*
+- To close this gap, we introduce ChartReformer, which edits chart images from natural language prompts without any prior knowledge of the underlying data and original plot settings. *(p.3)*
+
+**Results**
+- The experiments show promising results for the natural language-driven chart image editing. *(p.1)*
+- This approach predicting and adjusting the embedded visual attributes and data under original chart images enables the creation of customized chart images through a re-plotter without explicitly predicting the plotting code, producing and delivering robust and stable chart editing results. *(p.3)*
+- Our experiments demonstrate promising results, highlighting ChartReformer’s potential to enhance chart accessibility and adaptability for diverse applications. *(p.13)*
+
+## Research Evidence Ledger
+
+| ID | Claim | Page | Type | Support | Best evidence |
+|---|---|---|---|---|---|
+| C1 | To eliminate the need for original underlying data and information to perform chart editing, we propose ChartReformer, a natural language-driven chart image editing solution that directly edits the charts from the input images with the given instruction prompts. | 1 | contribution | 🔴 none | No supporting evidence found |
+| C2 | To generalize ChartReformer, we define and standardize the chart editing category and generate the ChartCraft dataset, covering style, layout, format, and data-centric edits. | 1 | generalization | 🔴 none | No supporting evidence found |
+
+## Reproducibility: 47.8/100
+
+_100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums_
+
+| Item | Status | Weight | Evidence |
+|---|---|---|---|
+| Code available | present | 3.0 | p.1: Our datasets and model are available at: https://github.com/pengyu965/ChartRefor… |
+| Datasets named and accessible | present | 2.0 | p.9: To the best of our knowledge, no existing dataset related to chart editing is pu… |
+| Train/validation/test splits specified | partial | 2.0 | p.11: Table 3 shows the results of ChartReformer on our test set consisting of 5.5K sa… |
+| Preprocessing described | present | 1.0 | p.5: Critical operations include range filtering to focus on specific data segments, … |
+| Hyperparameters reported | missing | 2.0 | Report all hyperparameters, how they were tuned and the search ranges. |
+| Seeds / multiple runs | missing | 2.0 | Run with several seeds and report how many. |
+| Variance / uncertainty reported | missing | 2.0 | Report standard deviation or confidence intervals, not single numbers. |
+| Statistical significance test | missing | 1.5 | Back &#x27;significant&#x27; claims with a named test and p-value or CI. |
+| Baselines described | present | 2.0 | p.9: Chart Editing We fine-tune the pretrained model on paired images and edit prompt… |
+| Ablation / component analysis | missing | 1.0 | Show which components drive the gains. |
+| Evaluation metrics defined | present | 1.0 | p.3: Suitable evaluation metrics are designed for such tasks. – Provide ChartCraft da… |
+| Compute / hardware reported | missing | 1.0 | State hardware, runtime and total compute budget. |
+| Software / library versions | missing | 1.0 | Pin library versions or provide an environment file. |
+| Licence / ethics statement | missing | 0.5 | State data/model licences and ethical considerations. |
+| Limitations discussed | present | 1.0 | p.2: These limitations become particularly acute in scenarios where source data are l… |
+
+_Measures what the paper reports (checklist coverage), not whether results actually reproduce._
+
+## Evidence gaps
+
+- **[HIGH] no_hyperparameters**: Training hyperparameters are not reported.
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim. — &quot;To generalize ChartReformer, we define and standardize the chart editing category and generate the ChartCraft dataset, covering style, layout, format, and data-centric edits.&quot;
+- **[MEDIUM] generalization_narrow_evidence** (p.1): Generalisation/robustness claim, but only 1 evaluation dataset(s) detected (ChartCraft). — &quot;To generalize ChartReformer, we define and standardize the chart editing category and generate the ChartCraft dataset, covering style, layout, format, and data-centric edits.&quot;
+</pre></body>

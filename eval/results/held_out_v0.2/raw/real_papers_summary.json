@@ -1,0 +1,980 @@
+[
+  {
+    "paper": "acl_2023.emnlp-main.250_atformer-a-learned-performance-model-with.pdf",
+    "seconds": 2.23,
+    "title_extracted": "ATFormer: A Learned Performance Model with Transfer Learning Across Devices for Deep Learning Tensor Programs",
+    "pages_paperlens": 15,
+    "pages_pymupdf": 15,
+    "warnings": [],
+    "n_sentences": 502,
+    "sections": {
+      "references": 228,
+      "experiments": 147,
+      "method": 76,
+      "background": 30,
+      "conclusion": 7,
+      "abstract": 6,
+      "introduction": 5,
+      "results": 1,
+      "front": 1,
+      "appendix": 1
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "DataSet",
+      "2 Background and Related Work",
+      "3.1 Problem Formulation",
+      "3.2 Performance Model",
+      "3.3 Transfer Learning",
+      "4.1 End-to-End Execution Evaluations",
+      "4.2 Transfer Learning Evaluations",
+      "4.3 Ablation Study",
+      "5 Conclusion",
+      "References",
+      "Appendix",
+      "Feature Extraction Details",
+      "Implementation Details",
+      "Dataset Details",
+      "Benchmark Details",
+      "Other Platforms: Intel CPUs",
+      "Performance on Tensor Cores"
+    ],
+    "kinds": {
+      "table": 18,
+      "meta": 1,
+      "text": 461,
+      "caption": 22
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 2,
+    "claim_sections": {
+      "abstract": 1,
+      "conclusion": 1
+    },
+    "support": {
+      "none": 2
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 2
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 45,
+      "table_row_without_matching_value": 14,
+      "claim_zone_without_new_data": 32,
+      "caption_label_only": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 2
+    },
+    "evidence_quote_on_cited_page": {},
+    "reproducibility_score": 54.3,
+    "rubric_not_applicable": [],
+    "n_gaps": 4,
+    "gap_kinds": {
+      "no_code": 1,
+      "unsupported_claim": 2,
+      "superlative_unsupported": 1
+    },
+    "datasets": [
+      "DNN",
+      "TenSet",
+      "TenSet-50"
+    ],
+    "metrics": [
+      "accuracy",
+      "RMSE"
+    ]
+  },
+  {
+    "paper": "acl_2024.acl-long.150_itd-large-language-models-can-teach.pdf",
+    "seconds": 1.86,
+    "title_extracted": "ItD: Large Language Models Can Teach Themselves Induction through Deduction",
+    "pages_paperlens": 13,
+    "pages_pymupdf": 13,
+    "warnings": [],
+    "n_sentences": 358,
+    "sections": {
+      "references": 120,
+      "other": 78,
+      "experiments": 74,
+      "introduction": 42,
+      "related": 20,
+      "abstract": 8,
+      "limitations": 5,
+      "conclusion": 4,
+      "ethics": 4,
+      "front": 2,
+      "acknowledgments": 1
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "2.1 Induction Task",
+      "2.2 IO Prompt",
+      "3 Framework",
+      "3.1 Deductive Data Generation",
+      "3.1.2 Deduction with In-Context Learning",
+      "3.2 Naive Bayesian Induction",
+      "3.2.1 Fine-tuning on the Deduced Data",
+      "3.2.2 Naive Bayesian Group Decoding",
+      "4.1 Dataset and Setups",
+      "4.2 Baselines",
+      "4.3 Main Results",
+      "Generation",
+      "Induction",
+      "Sizes of LLMs",
+      "Further Improvements for ItD",
+      "4.6.3 Held-out Task Generalization",
+      "5.1 Capability of Induction of LLMs",
+      "5.2 Memory-Oriented Induction",
+      "5.3 Hypothesis Search and Refinement",
+      "5.4 Naive Bayes-based Context Extension",
+      "6 Conclusion",
+      "Limitations",
+      "Ethics Statement",
+      "Acknowledgements",
+      "References",
+      "Setups",
+      "Detailed Results"
+    ],
+    "kinds": {
+      "meta": 2,
+      "text": 347,
+      "caption": 2,
+      "table": 7
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 5,
+    "claim_sections": {
+      "abstract": 3,
+      "introduction": 1,
+      "conclusion": 1
+    },
+    "support": {
+      "none": 1,
+      "weak": 3,
+      "strong": 1
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 1,
+      "found": 4
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 138,
+      "fragment": 16,
+      "table_row_without_matching_value": 8,
+      "claim_zone_without_new_data": 132,
+      "caption_label_only": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 5
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 4
+    },
+    "reproducibility_score": 51.1,
+    "rubric_not_applicable": [],
+    "n_gaps": 7,
+    "gap_kinds": {
+      "no_hyperparameters": 1,
+      "number_not_in_results": 2,
+      "unsupported_claim": 3,
+      "improvement_without_variance": 1
+    },
+    "datasets": [
+      "GLUE",
+      "Induction"
+    ],
+    "metrics": []
+  },
+  {
+    "paper": "acl_2024.naacl-long.50_neurocache-efficient-vector-retrieval-for-long.pdf",
+    "seconds": 2.07,
+    "title_extracted": "Neurocache: Efficient Vector Retrieval for Long-range Language Modeling",
+    "pages_paperlens": 14,
+    "pages_pymupdf": 14,
+    "warnings": [],
+    "n_sentences": 431,
+    "sections": {
+      "references": 197,
+      "other": 78,
+      "method": 64,
+      "related": 26,
+      "introduction": 17,
+      "limitations": 14,
+      "conclusion": 12,
+      "results": 11,
+      "abstract": 6,
+      "experiments": 5,
+      "front": 1
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "2 Related Work",
+      "2.1 Text Retrieval",
+      "2.2 Vector Retrieval",
+      "2.3 Neurocache",
+      "3.1 Neurocache Overview",
+      "3.2 Neurocache Adaptation",
+      "3.3 Retrieval Overhead",
+      "3.4 Comparative Analysis",
+      "4 Language Modeling",
+      "4.1 Datasets",
+      "PG-19:",
+      "4.2 Pre-training",
+      "Model",
+      "4.3 Adaptation",
+      "5 Downstream Evaluation",
+      "5.1 Datasets",
+      "NarrativeQA (NQA)",
+      "MultiFieldQA (MQA)",
+      "HotpotQA",
+      "5.1.3 Few-shot Learning",
+      "5.2 Models",
+      "Position Interpolation (PI):",
+      "5.3 Evaluation Setting",
+      "5.4 Results",
+      "6 Conclusion",
+      "Acknowledgment",
+      "7 Limitations",
+      "References",
+      "Hyperparameters",
+      "Neurocache Algorithm"
+    ],
+    "kinds": {
+      "meta": 3,
+      "text": 418,
+      "caption": 7,
+      "table": 3
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 2,
+    "claim_sections": {
+      "abstract": 2
+    },
+    "support": {
+      "none": 1,
+      "moderate": 1
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 1,
+      "found": 1
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 30,
+      "table_row_without_matching_value": 2,
+      "caption_label_only": 2,
+      "claim_zone_without_new_data": 24,
+      "fragment": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 2
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 1
+    },
+    "reproducibility_score": 58.7,
+    "rubric_not_applicable": [],
+    "n_gaps": 2,
+    "gap_kinds": {
+      "unsupported_claim": 1,
+      "improvement_without_variance": 1
+    },
+    "datasets": [
+      "LongPile",
+      "Pile",
+      "Qasper"
+    ],
+    "metrics": [
+      "accuracy",
+      "F1"
+    ]
+  },
+  {
+    "paper": "arxiv_2403.00204v1_la-4-co-4-x-x.pdf",
+    "seconds": 1.69,
+    "title_extracted": "La4Co4X (X = Pb, Bi, Sb): a demonstration of antagonistic pairs as a route to quasi-low dimensional ternary compounds",
+    "pages_paperlens": 25,
+    "pages_pymupdf": 25,
+    "warnings": [],
+    "n_sentences": 347,
+    "sections": {
+      "references": 175,
+      "results": 73,
+      "other": 51,
+      "introduction": 20,
+      "abstract": 17,
+      "acknowledgments": 7,
+      "front": 4
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "Figure 1:",
+      "2.1 Crystal Growth",
+      "Figure 2:",
+      "2.2 Elemental analysis",
+      "2.3 X-ray diffraction",
+      "2.4 Physical property measurements",
+      "2.5 Electronic structure calculations",
+      "3 Results and Discussion",
+      "Figure 5:",
+      "4 Summary and Conclusions",
+      "5 Acknowledgements",
+      "Conflicts of Interest",
+      "References",
+      "Supporting Information",
+      "1 Additional synthetic details and powder X-ray diffraction",
+      "Figure S3:",
+      "2 Elemental analysis",
+      "3 Room temperature magnetization isotherms",
+      "4 Curie Weiss Fits",
+      "5 Crystallographic tables",
+      "6 References"
+    ],
+    "kinds": {
+      "text": 338,
+      "caption": 6,
+      "meta": 3
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 5,
+    "claim_sections": {
+      "abstract": 5
+    },
+    "support": {
+      "weak": 4,
+      "moderate": 1
+    },
+    "evidence_status": {
+      "found": 5
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 89,
+      "caption_label_only": 7,
+      "claim_zone_without_new_data": 79,
+      "fragment": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 5
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 5
+    },
+    "reproducibility_score": 13.2,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 7,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1,
+      "unsupported_claim": 3,
+      "generalization_narrow_evidence": 2
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "arxiv_2403.00209v2_chartreformer-natural-language-driven-chart-image.pdf",
+    "seconds": 3.8,
+    "title_extracted": "ChartReformer: Natural Language-Driven Chart Image Editing",
+    "pages_paperlens": 18,
+    "pages_pymupdf": 18,
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract."
+    ],
+    "n_sentences": 254,
+    "sections": {
+      "references": 71,
+      "experiments": 67,
+      "other": 51,
+      "introduction": 26,
+      "related": 21,
+      "abstract": 8,
+      "discussion": 5,
+      "conclusion": 4,
+      "front": 1
+    },
+    "headings": [
+      "1 Introduction",
+      "2.1 Natural-language-driven visualization",
+      "2.2 Chart Comprehension",
+      "3.1 Chart Edit Taxonomy",
+      "4 ChartReformer",
+      "4.1 Dataset",
+      "4.2 Our Pipeline",
+      "5 Experiments",
+      "5.1 Metrics",
+      "5.2 Results",
+      "6 Discussion and Limitations",
+      "7 Conclusion",
+      "References",
+      "Editable"
+    ],
+    "kinds": {
+      "text": 216,
+      "caption": 12,
+      "table": 16,
+      "meta": 10
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 2,
+    "claim_sections": {
+      "abstract": 2
+    },
+    "support": {
+      "none": 2
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 2
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 41,
+      "caption_label_only": 9,
+      "fragment": 7,
+      "claim_zone_without_new_data": 52,
+      "table_row_without_matching_value": 11
+    },
+    "claim_text_on_cited_page": {
+      "y": 2
+    },
+    "evidence_quote_on_cited_page": {},
+    "reproducibility_score": 47.8,
+    "rubric_not_applicable": [],
+    "n_gaps": 3,
+    "gap_kinds": {
+      "no_hyperparameters": 1,
+      "unsupported_claim": 1,
+      "generalization_narrow_evidence": 1
+    },
+    "datasets": [
+      "ChartCraft"
+    ],
+    "metrics": [
+      "accuracy",
+      "F1",
+      "precision",
+      "recall",
+      "exact match"
+    ]
+  },
+  {
+    "paper": "arxiv_2403.00458v2_electric-vehicle-pricing-and-battery-costs.pdf",
+    "seconds": 4.01,
+    "title_extracted": "Title: Electric vehicle pricing and ba2ery costs: A misaligned assump:on? Authors: Lucas Woodley1,2, Chung Yi See1, Vasco Rato Santos3, Megan Yeo1, Daniel Palmer4, Sebas:an Nosenzo5, and Ashley Nunes1",
+    "pages_paperlens": 55,
+    "pages_pymupdf": 55,
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract."
+    ],
+    "n_sentences": 441,
+    "sections": {
+      "references": 273,
+      "results": 85,
+      "front": 38,
+      "method": 24,
+      "other": 15,
+      "abstract": 5,
+      "acknowledgments": 1
+    },
+    "headings": [
+      "Results and Discussion",
+      "Limita:ons and Conclusion",
+      "References",
+      "Acknowledgements",
+      "Funding",
+      "Method",
+      "Supplementary Informa:on"
+    ],
+    "kinds": {
+      "text": 395,
+      "table": 19,
+      "meta": 24,
+      "caption": 3
+    },
+    "pages_with_no_sentences": [
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      49,
+      50,
+      53
+    ],
+    "n_claims": 0,
+    "claim_sections": {},
+    "support": {},
+    "evidence_status": {},
+    "rejected_candidates": {},
+    "claim_text_on_cited_page": {},
+    "evidence_quote_on_cited_page": {},
+    "reproducibility_score": 31.6,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 2,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "arxiv_2403.00947v1_history-dependence-shapes-causal-inference-of.pdf",
+    "seconds": 2.32,
+    "title_extracted": "History-dependence shapes causal inference of brain-behaviour relationships",
+    "pages_paperlens": 24,
+    "pages_pymupdf": 24,
+    "warnings": [],
+    "n_sentences": 473,
+    "sections": {
+      "references": 148,
+      "results": 140,
+      "discussion": 87,
+      "introduction": 56,
+      "method": 32,
+      "abstract": 7,
+      "front": 1,
+      "reproducibility": 1,
+      "acknowledgments": 1
+    },
+    "headings": [
+      "Abstract",
+      "Introduction",
+      "Undecidability of history-dependence in open systems",
+      "History-dependence in simple model systems",
+      "Mediation analysis over latent intervention dynamics",
+      "Model",
+      "Discussion",
+      "Hypothesis testing in absence of ground-truth understanding",
+      "Code Availability",
+      "Acknowledgements",
+      "References"
+    ],
+    "kinds": {
+      "text": 416,
+      "meta": 55,
+      "table": 1,
+      "caption": 1
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 2,
+    "claim_sections": {
+      "abstract": 2
+    },
+    "support": {
+      "weak": 1,
+      "none": 1
+    },
+    "evidence_status": {
+      "found": 1,
+      "no_supporting_evidence": 1
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 58,
+      "fragment": 3,
+      "claim_zone_without_new_data": 55,
+      "table_row_without_matching_value": 2,
+      "boilerplate": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 2
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 1
+    },
+    "reproducibility_score": 76.3,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 2,
+    "gap_kinds": {
+      "unsupported_claim": 2
+    },
+    "datasets": [],
+    "metrics": [
+      "precision"
+    ]
+  },
+  {
+    "paper": "doi_10.5194-gmd-16-3029-2023_technical-descriptions-of-the-experimental-dynamical.pdf",
+    "seconds": 8.86,
+    "title_extracted": "Technical descriptions of the experimental dynamical downscaling simulations over North America by the CAM–MPAS variable-resolution model",
+    "pages_paperlens": 53,
+    "pages_pymupdf": 53,
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract.",
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 946,
+    "sections": {
+      "other": 437,
+      "references": 271,
+      "appendix": 149,
+      "introduction": 47,
+      "conclusion": 21,
+      "abstract": 15,
+      "front": 6
+    },
+    "headings": [
+      "1 Introduction",
+      "2 Model description",
+      "2.1 The Model for Prediction Across Scales (MPAS)",
+      "2.2 The Community Earth System Model version 2",
+      "2.3 CAM–MPAS coupling",
+      "3.1 Model grid and parameters",
+      "3.2 Model conﬁgurations",
+      "3.3 Model experiments and input data",
+      "4.1 Post-processing",
+      "4.2 Data repositories",
+      "5.1 Computational aspects",
+      "5.2 General characteristics of simulated climate",
+      "5.2.1 Present-day climate",
+      "5.2.2 Future climate",
+      "5.2.3 Soil spin-up",
+      "6 Conclusions",
+      "Appendix A: Model input",
+      "Appendix B: Raw model output",
+      "Appendix C: Archived variables",
+      "Appendix D: Computation at NERSC",
+      "Appendix E: Global climate",
+      "Present-day climate biases and resolution",
+      "Future climate changes and resolution sensitivities",
+      "Appendix F: Regional climate",
+      "References"
+    ],
+    "kinds": {
+      "meta": 137,
+      "text": 801,
+      "caption": 8
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 5,
+    "claim_sections": {
+      "abstract": 4,
+      "conclusion": 1
+    },
+    "support": {
+      "none": 3,
+      "weak": 2
+    },
+    "evidence_status": {
+      "no_supporting_evidence": 3,
+      "found": 2
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 161,
+      "fragment": 3,
+      "claim_zone_without_new_data": 131,
+      "symbols_or_numbers": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 5
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 2
+    },
+    "reproducibility_score": 63.2,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 6,
+    "gap_kinds": {
+      "unsupported_claim": 5,
+      "no_limitations": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "doi_10.7554-elife.76927_the-rna-helicase-ddx39b-activates-foxp3.pdf",
+    "seconds": 3.32,
+    "title_extracted": "The RNA helicase DDX39B activates FOXP3 RNA splicing to control T regulatory cell fate",
+    "pages_paperlens": 25,
+    "pages_pymupdf": 25,
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract."
+    ],
+    "n_sentences": 758,
+    "sections": {
+      "references": 280,
+      "results": 231,
+      "method": 145,
+      "discussion": 35,
+      "other": 32,
+      "introduction": 13,
+      "abstract": 8,
+      "front": 5,
+      "acknowledgments": 4,
+      "reproducibility": 4,
+      "experiments": 1
+    },
+    "headings": [
+      "Introduction",
+      "DDX39B controls expression of genes associated with multiple",
+      "DDX39B controls expression of FOXP3",
+      "DDX39B depletion disrupts Treg-specific gene expression",
+      "Low DDX39B exacerbates retention of FOXP3 introns",
+      "FOXP3 introns have C-rich py",
+      "DDX39B depletion",
+      "Discussion",
+      "Cells",
+      "Plasmids",
+      "Establishment of stable cell lines",
+      "Lentiviral packaging",
+      "DDX39B rescue in MT-2 cells",
+      "RNA-seq library preparation, sequencing and analyses",
+      "MS susceptibility gene enrichment analysis",
+      "RT-qPCR analysis of RNA expression",
+      "Gene-set enrichment analysis (GSEA)",
+      "Subcellular fractionation of MT-2 cells",
+      "Phylogenetic analysis of the FOXP3 gene",
+      "FOXP3 splicing reporter assays",
+      "Py tract sequence analysis of retained introns",
+      "Statistical analysis",
+      "Acknowledgements",
+      "Competing interests",
+      "Funding",
+      "Author contributions",
+      "Author ORCIDs",
+      "Decision letter and Author response",
+      "Supplementary files",
+      "Data availability",
+      "Dataset URL",
+      "References"
+    ],
+    "kinds": {
+      "text": 684,
+      "meta": 67,
+      "caption": 7
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 1,
+    "claim_sections": {
+      "abstract": 1
+    },
+    "support": {
+      "weak": 1
+    },
+    "evidence_status": {
+      "found": 1
+    },
+    "rejected_candidates": {},
+    "claim_text_on_cited_page": {
+      "y": 1
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 1
+    },
+    "reproducibility_score": 65.8,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 2,
+    "gap_kinds": {
+      "no_limitations": 1,
+      "unsupported_claim": 1
+    },
+    "datasets": [
+      "RNAseq"
+    ],
+    "metrics": []
+  },
+  {
+    "paper": "pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf",
+    "seconds": 2.23,
+    "title_extracted": "Effectiveness of a peer educator-coordinated preference-based differentiated service delivery model on viral suppression among young people living with HIV in Lesotho: The PEBRA cluster-randomized tri",
+    "pages_paperlens": 16,
+    "pages_pymupdf": 16,
+    "warnings": [],
+    "n_sentences": 433,
+    "sections": {
+      "other": 119,
+      "references": 92,
+      "results": 89,
+      "discussion": 80,
+      "abstract": 19,
+      "introduction": 11,
+      "front": 10,
+      "ethics": 8,
+      "acknowledgments": 5
+    },
+    "headings": [
+      "Background",
+      "Methods and findings",
+      "Conclusions",
+      "Trial registration",
+      "Author summary",
+      "Introduction",
+      "Study design and participants",
+      "Randomization and blinding",
+      "Procedures",
+      "Intervention and control",
+      "Data collection",
+      "Outcomes",
+      "Statistical analysis",
+      "Ethics statement",
+      "Results",
+      "Discussion",
+      "Supporting information",
+      "Acknowledgments",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 316,
+      "meta": 35,
+      "caption": 1,
+      "table": 81
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 7,
+    "claim_sections": {
+      "abstract": 4,
+      "discussion": 3
+    },
+    "support": {
+      "strong": 4,
+      "moderate": 2,
+      "weak": 1
+    },
+    "evidence_status": {
+      "found": 7
+    },
+    "rejected_candidates": {
+      "restates_claim": 1,
+      "summary_section": 4,
+      "table_row_for_another_quantity": 2,
+      "below_relevance_threshold": 37,
+      "table_row_without_matching_value": 19,
+      "fragment": 7,
+      "claim_zone_without_new_data": 42,
+      "symbols_or_numbers": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 7
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 7
+    },
+    "reproducibility_score": 63.2,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 1,
+    "gap_kinds": {
+      "unsupported_claim": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "pmc_PMC9815661_a-dsrna-binding-mutant-reveals-only.pdf",
+    "seconds": 3.2,
+    "title_extracted": "A dsRNA-binding mutant reveals only a minor role of exonuclease activity in interferon antagonism by the arenavirus nucleoprotein",
+    "pages_paperlens": 28,
+    "pages_pymupdf": 28,
+    "warnings": [],
+    "n_sentences": 668,
+    "sections": {
+      "other": 218,
+      "references": 182,
+      "results": 120,
+      "discussion": 91,
+      "introduction": 40,
+      "abstract": 9,
+      "front": 7,
+      "acknowledgments": 1
+    },
+    "headings": [
+      "Abstract",
+      "Author summary",
+      "Introduction",
+      "Results",
+      "Characterization of recombinant Tacaribe viruses (TCRVs) encoding",
+      "Discussion",
+      "Cell culture",
+      "Viruses",
+      "TCRV full-length clone and minigenome plasmids",
+      "Mutagenesis of TCRV NP",
+      "Minigenome assay",
+      "Analysis of NP expression by western blot",
+      "Exonuclease assay",
+      "Endotoxin removal from plasmids",
+      "Rescue of recombinant Tacaribe viruses",
+      "Virus sequencing",
+      "Analysis of rTCRV growth kinetics",
+      "Plaque assay",
+      "Prediction of stability for TCRV NP mutants",
+      "Statistical analysis",
+      "Supporting information",
+      "Acknowledgments",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 603,
+      "meta": 65
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 2,
+    "claim_sections": {
+      "abstract": 1,
+      "discussion": 1
+    },
+    "support": {
+      "weak": 1,
+      "strong": 1
+    },
+    "evidence_status": {
+      "found": 2
+    },
+    "rejected_candidates": {
+      "below_relevance_threshold": 28,
+      "claim_zone_without_new_data": 29,
+      "fragment": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 2
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 2
+    },
+    "reproducibility_score": 42.1,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 4,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1,
+      "unsupported_claim": 1,
+      "generalization_narrow_evidence": 1
+    },
+    "datasets": [],
+    "metrics": [
+      "F1"
+    ]
+  }
+]

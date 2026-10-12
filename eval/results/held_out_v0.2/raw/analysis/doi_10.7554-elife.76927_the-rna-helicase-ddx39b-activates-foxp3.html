@@ -1,0 +1,58 @@
+<!doctype html><meta charset=utf-8><title>PaperLens report</title><body style='font:14px/1.5 system-ui;max-width:960px;margin:2rem auto;padding:0 1rem'><pre style='white-space:pre-wrap'># PaperLens report: The RNA helicase DDX39B activates FOXP3 RNA splicing to control T regulatory cell fate
+
+*25 pages · 1 claims · reproducibility 65.8/100 (moderate)*
+
+&gt; **Warnings:** No &#x27;Abstract&#x27; heading detected; treated the front matter as the abstract.
+
+## Summary
+
+- Consistent with such a role we show that DDX39B controls the expression of many MS susceptibility genes and important immune-related genes. *(p.1)*
+- Splicing of FOXP3 introns, which belong to a previously unrecognized type of introns with C-rich polypyrimidine tracts, was exquisitely sensitive to DDX39B levels. *(p.1)*
+
+**Problem**
+- Consistent with such a role we show that DDX39B controls the expression of many MS susceptibility genes and important immune-related genes. *(p.1)*
+- Given the importance of FOXP3 in autoimmunity, this work cements DDX39B as an important guardian of immune tolerance. *(p.1)*
+
+**Results**
+- treatment (Figure 1—figure supplement 1 and Supplementary file 1), which was consistent with Sh3 treatment reducing DDX39B RNA levels more profoundly (Supplementary file 1) and DDX39B protein levels more consistently (Galarza-Muñoz et al., 2017). *(p.3)*
+- Indeed, FOXP3 transcripts were among 122 high confidence targets of DDX39B significantly reduced in CD4+ T cells from both donors 1 and 4 with both Sh3 and Sh5 (Figure 1— figure supplement 4, Supplementary file 1). *(p.4)*
+- These results indicate that the C-rich py tract of FOXP3 intron 11 is highly dependent on the DDX39B ATPase activity and this unique dependency may distinguish its *(p.12)*
+
+**Limitations**
+- This suggests that once bound to the branchpoint sequence and py tract in these C-rich introns, the U2 snRNP-U2AF complex does not require further remodeling by DDX39B. *(p.14)*
+
+## Research Evidence Ledger
+
+| ID | Claim | Page | Type | Support | Best evidence |
+|---|---|---|---|---|---|
+| C1 | Consistent with such a role we show that DDX39B controls the expression of many MS susceptibility genes and important immune-related genes. | 1 | assertion | 🟠 weak | p.4: Expression of 421 of these MS susceptibility genes was detected in our RNAseq data and exp… |
+
+## Reproducibility: 65.8/100
+
+_100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums_
+
+| Item | Status | Weight | Evidence |
+|---|---|---|---|
+| Code available | present | 3.0 | p.16: Subsequently, we used the minimum value of change percent spliced in at 95% conf… |
+| Datasets named and accessible | present | 2.0 | p.21: All data are available in the main text or supplementary materials.… |
+| Train/validation/test splits specified | not_applicable | 2.0 | Not scored: no model training was detected in this paper. |
+| Preprocessing described | present | 1.0 | p.15: After 72 hr, supernatants were collected, filtered through 0.45 mm filters and c… |
+| Hyperparameters reported | not_applicable | 2.0 | Not scored: no model training was detected in this paper. |
+| Seeds / multiple runs | missing | 2.0 | Run with several seeds and report how many. |
+| Variance / uncertainty reported | present | 2.0 | p.3: In all figures the error bars indicate standard deviation. *: p&lt;0.05, **: p&lt;0.01… |
+| Statistical significance test | present | 1.5 | p.3: The observed overlap of 41 (Magenta arrow) demonstrates substantial enrichment (… |
+| Baselines described | present | 2.0 | p.4: In contrast, there was no significant overlap when the directional pairing was f… |
+| Ablation / component analysis | missing | 1.0 | Show which components drive the gains. |
+| Evaluation metrics defined | partial | 1.0 | p.3: The heat map shows expression of five genes between control (NTC) and DDX39B dep… |
+| Compute / hardware reported | missing | 1.0 | State hardware, runtime and total compute budget. |
+| Software / library versions | missing | 1.0 | Pin library versions or provide an environment file. |
+| Licence / ethics statement | present | 0.5 | p.1: *For correspondence: ssbradri@utmb.edu (SB); maragarc@utmb.edu (MAG-B) †These au… |
+| Limitations discussed | missing | 1.0 | Add a limitations section naming settings where the method fails. |
+
+_Measures what the paper reports (checklist coverage), not whether results actually reproduce._
+
+## Evidence gaps
+
+- **[MEDIUM] no_limitations**: No limitations section or discussion of failure cases was found.
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim (only weak lexical overlap). — &quot;Consistent with such a role we show that DDX39B controls the expression of many MS susceptibility genes and important immune-related genes.&quot;
+</pre></body>

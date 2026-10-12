@@ -1,0 +1,964 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "a1cf70cedc1d",
+    "title": "Effectiveness of a peer educator-coordinated preference-based differentiated service delivery model on viral suppression among young people living with HIV in Lesotho: The PEBRA cluster-randomized tri",
+    "n_pages": 16,
+    "source_name": "pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf",
+    "warnings": [],
+    "n_sentences": 433
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "The cluster-randomized trial compared PEBRA model versus standard clinic care (no PE and ART refill done by nurses) in 3 districts in Lesotho.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "In the 10 clinics randomized to the intervention arm, participants were offered the PEBRA model, coordinated by a trained PE and supported by an eHealth application (PEBRApp).",
+        "page": 1,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "The main limitation was that the data collectors in the control clusters were also young peers; however, they used a restricted version of the PEBRApp to collect data and thus were not able to provide the PEBRA model.",
+          "page": 2,
+          "section": "abstract",
+          "sentence_id": 21
+        },
+        {
+          "text": "In Lesotho, similar to other countries in the region, efforts to adapt HIV care to adolescents and young adults are promoted [7], but young peers still only play a limited role in providing services.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 48
+        }
+      ],
+      "approach": [],
+      "results": [
+        {
+          "text": "Several systematic reviews concluded that evidence for interventions to improve engagement in HIV care among adolescents and young adults in low-resource settings is of low quality [6,8,9], and in general, DSD models are not designed for young people nor led by young people [10].",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 49
+        },
+        {
+          "text": "At the 12-month follow-up, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm achieved viral suppression below 20 copies/mL (adjusted OR 1.27; 95% CI [0.79 to 2.03]; p = 0.327; Table 2).",
+          "page": 8,
+          "section": "results",
+          "sentence_id": 152
+        },
+        {
+          "text": "The primary analysis indicated that participants from Mokhotlong district were less likely to reach viral suppression.",
+          "page": 10,
+          "section": "results",
+          "sentence_id": 222
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Third, the data collectors in the control clusters were also young peers, who used the same data collection tool (a restricted version of the PEB- RApp).",
+          "page": 13,
+          "section": "discussion",
+          "sentence_id": 308
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 1,
+      "text": "AU : Pleaseconfirmthatallheadinglevelsarerepresentedcorrectly: Southern and Eastern Africa is home to more than 2.1 million young people aged 15 to 24 years living with HIV.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "2.1",
+        "15",
+        "24"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 146,
+          "page": 8,
+          "section": "results",
+          "quote": "Between November 6, 2019 and February 4, 2020, 315 young people (aged 15 to 24 years) living with HIV and receiving ART care at the 20 clusters were identified and approached.",
+          "score": 0.461,
+          "shared_numbers": [
+            "15",
+            "24"
+          ],
+          "shared_terms": [
+            "15",
+            "24",
+            "aged",
+            "hiv",
+            "liv",
+            "people",
+            "year",
+            "young"
+          ],
+          "lexical": 0.325
+        },
+        {
+          "sentence_id": 62,
+          "page": 4,
+          "section": "other",
+          "quote": "Young people were eligible for inclusion if they were living with HIV, registered for HIV care at one of the eligible clusters, aged 15 to 24 years, taking ART, and able to provide informed consent.",
+          "score": 0.4,
+          "shared_numbers": [
+            "15",
+            "24"
+          ],
+          "shared_terms": [
+            "15",
+            "24",
+            "aged",
+            "hiv",
+            "liv",
+            "people",
+            "year",
+            "young"
+          ],
+          "lexical": 0.339
+        },
+        {
+          "sentence_id": 286,
+          "page": 12,
+          "section": "discussion",
+          "quote": "Our participants were older, between 15 and 24 years old with a median age of 19 years.",
+          "score": 0.329,
+          "shared_numbers": [
+            "15",
+            "24"
+          ],
+          "shared_terms": [
+            "15",
+            "24",
+            "year"
+          ],
+          "lexical": 0.199
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.461,
+      "flags": [],
+      "confidence": 0.95,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "restates_claim": 1,
+        "summary_section": 1
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 11,
+      "text": "From November 6, 2019 to February 4, 2020, we enrolled 307 individuals (150 intervention, 157 control; 218 [71%] female, median age 19 years [interquartile range, IQR, 17 to 22]).",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "6",
+        "4",
+        "307",
+        "150",
+        "157",
+        "218",
+        "71",
+        "19",
+        "17",
+        "22"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 150,
+          "page": 8,
+          "section": "results",
+          "quote": "The median age was 19 years (interquartile range [IQR] 17 to 22), 218 (71%) female, 93 (30%) were married, 107 (35%) had at least 1 child, 22 (7.2%) were (self-)employed with regular income, and 93 (30%) were attending school at time of enrolment.",
+          "score": 0.471,
+          "shared_numbers": [
+            "17",
+            "19",
+            "218",
+            "22",
+            "71"
+          ],
+          "shared_terms": [
+            "17",
+            "19",
+            "218",
+            "22",
+            "71",
+            "age",
+            "female",
+            "interquartile"
+          ],
+          "lexical": 0.365
+        },
+        {
+          "sentence_id": 148,
+          "page": 8,
+          "section": "results",
+          "quote": "It total, 307 participants—150 in intervention clusters and 157 in control clusters—were enrolled and included in the intention-to-treat analysis (Fig 2).",
+          "score": 0.395,
+          "shared_numbers": [
+            "150",
+            "157",
+            "307"
+          ],
+          "shared_terms": [
+            "150",
+            "157",
+            "307",
+            "control",
+            "enroll",
+            "intervention"
+          ],
+          "lexical": 0.206
+        },
+        {
+          "sentence_id": 146,
+          "page": 8,
+          "section": "results",
+          "quote": "Between November 6, 2019 and February 4, 2020, 315 young people (aged 15 to 24 years) living with HIV and receiving ART care at the 20 clusters were identified and approached.",
+          "score": 0.298,
+          "shared_numbers": [
+            "4",
+            "6"
+          ],
+          "shared_terms": [
+            "2019",
+            "2020",
+            "4",
+            "6",
+            "february",
+            "november",
+            "year"
+          ],
+          "lexical": 0.248
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.471,
+      "flags": [],
+      "confidence": 0.8,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "table_row_for_another_quantity": 2
+      }
+    },
+    {
+      "id": "C3",
+      "sentence_id": 12,
+      "text": "At 12 months, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm had viral suppression (adjusted odds ratio (OR) 1.27; 95%",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "12",
+        "99",
+        "150",
+        "66",
+        "95",
+        "157",
+        "61",
+        "1.27",
+        "95"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 152,
+          "page": 8,
+          "section": "results",
+          "quote": "At the 12-month follow-up, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm achieved viral suppression below 20 copies/mL (adjusted OR 1.27; 95% CI [0.79 to 2.03]; p = 0.327; Table 2).",
+          "score": 0.773,
+          "shared_numbers": [
+            "12",
+            "150",
+            "157",
+            "61",
+            "66",
+            "95",
+            "99"
+          ],
+          "shared_terms": [
+            "1.27",
+            "12",
+            "150",
+            "157",
+            "61",
+            "66",
+            "95",
+            "99"
+          ],
+          "lexical": 0.618
+        },
+        {
+          "sentence_id": 227,
+          "page": 10,
+          "section": "results",
+          "quote": "Twelve of 150 (8%) in the intervention versus 23 of 157 (14.7%) in the control arm had transferred out at 12 months (aOR 0.53; 95% CI [0.25 to 1.13]; p = 0.099; Table 2).",
+          "score": 0.407,
+          "shared_numbers": [
+            "12",
+            "157"
+          ],
+          "shared_terms": [
+            "12",
+            "150",
+            "157",
+            "95",
+            "arm",
+            "control",
+            "intervention",
+            "month"
+          ],
+          "lexical": 0.331
+        },
+        {
+          "sentence_id": 148,
+          "page": 8,
+          "section": "results",
+          "quote": "It total, 307 participants—150 in intervention clusters and 157 in control clusters—were enrolled and included in the intention-to-treat analysis (Fig 2).",
+          "score": 0.368,
+          "shared_numbers": [
+            "150",
+            "157"
+          ],
+          "shared_terms": [
+            "150",
+            "157",
+            "control",
+            "intervention",
+            "participant"
+          ],
+          "lexical": 0.2
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.773,
+      "flags": [],
+      "confidence": 0.8,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "summary_section": 1
+      }
+    },
+    {
+      "id": "C4",
+      "sentence_id": 19,
+      "text": "There were no significant differences between arms in other secondary outcomes.",
+      "page": 2,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 228,
+          "page": 10,
+          "section": "results",
+          "quote": "The PEBRA model had a favorable effect on most other secondary endpoints, but the differences were not significant (Table 2).",
+          "score": 0.474,
+          "shared_numbers": [],
+          "shared_terms": [
+            "differenc",
+            "secondary",
+            "significant"
+          ],
+          "lexical": 0.638
+        },
+        {
+          "sentence_id": 291,
+          "page": 12,
+          "section": "discussion",
+          "quote": "Such differences in a multicomponent intervention may foster different mechanisms to improve outcomes and more research is needed to understand these pathways [23].",
+          "score": 0.268,
+          "shared_numbers": [],
+          "shared_terms": [
+            "differenc",
+            "outcom"
+          ],
+          "lexical": 0.376
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.474,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 25,
+        "table_row_without_matching_value": 1,
+        "summary_section": 2,
+        "fragment": 4,
+        "claim_zone_without_new_data": 21,
+        "symbols_or_numbers": 1
+      }
+    },
+    {
+      "id": "C5",
+      "sentence_id": 232,
+      "text": "Overall, viral suppression increased from 166/307 (54%) at baseline to 194/307 (63%) at 12 months of follow-up.",
+      "page": 10,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "166",
+        "307",
+        "54",
+        "194",
+        "307",
+        "63",
+        "12"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 149,
+          "page": 8,
+          "section": "results",
+          "quote": "The baseline characteristics of the 307 participants are shown in Table 1.",
+          "score": 0.302,
+          "shared_numbers": [
+            "307"
+          ],
+          "shared_terms": [
+            "307",
+            "baseline"
+          ],
+          "lexical": 0.194
+        },
+        {
+          "sentence_id": 152,
+          "page": 8,
+          "section": "results",
+          "quote": "At the 12-month follow-up, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm achieved viral suppression below 20 copies/mL (adjusted OR 1.27; 95% CI [0.79 to 2.03]; p = 0.327; Table 2).",
+          "score": 0.254,
+          "shared_numbers": [
+            "12"
+          ],
+          "shared_terms": [
+            "12",
+            "follow-up",
+            "month",
+            "suppression",
+            "viral"
+          ],
+          "lexical": 0.195
+        },
+        {
+          "sentence_id": 233,
+          "page": 10,
+          "section": "discussion",
+          "quote": "However, there was no conclusive evidence of a significantly higher rate of viral suppression at 12 months among participants in the intervention clusters compared to standard of care.",
+          "score": 0.215,
+          "shared_numbers": [
+            "12"
+          ],
+          "shared_terms": [
+            "12",
+            "month",
+            "suppression",
+            "viral"
+          ],
+          "lexical": 0.211
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.302,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {}
+    },
+    {
+      "id": "C6",
+      "sentence_id": 288,
+      "text": "Our pre-planned subgroup analysis suggests such a direction of effect (S4 Table), although this effect has to be interpreted with caution and the interaction term was not significant (p-interaction 0.515).",
+      "page": 12,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": true,
+      "numbers": [
+        "0.515"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 225,
+          "page": 10,
+          "section": "results",
+          "quote": "We found no significant interaction of the prespecified effect modifiers on the primary endpoint (S4 Table).",
+          "score": 0.221,
+          "shared_numbers": [],
+          "shared_terms": [
+            "4",
+            "effect",
+            "interaction",
+            "s",
+            "significant",
+            "table"
+          ],
+          "lexical": 0.304
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.221,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 12,
+        "table_row_without_matching_value": 18,
+        "fragment": 3,
+        "claim_zone_without_new_data": 21,
+        "symbols_or_numbers": 1
+      }
+    },
+    {
+      "id": "C7",
+      "sentence_id": 312,
+      "text": "During the study period of the PEBRA trial, viral suppression rates in both groups increased by 9%.",
+      "page": 13,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "9"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 304,
+          "page": 13,
+          "section": "discussion",
+          "quote": "First, in both groups, 9% of participants in care at 12 months had a missing VL measurement, thus classified as having an unsuppressed VL, which may have underestimated the viral suppression rates.",
+          "score": 0.662,
+          "shared_numbers": [
+            "9"
+          ],
+          "shared_terms": [
+            "9",
+            "group",
+            "rat",
+            "suppression",
+            "viral"
+          ],
+          "lexical": 0.436
+        },
+        {
+          "sentence_id": 284,
+          "page": 12,
+          "section": "discussion",
+          "quote": "First, the PEBRA trial ended at 1 year; it is possible that the observed nonsignificant trends towards better outcomes in the intervention group would have increased over a longer time.",
+          "score": 0.19,
+          "shared_numbers": [],
+          "shared_terms": [
+            "group",
+            "increas",
+            "pebra",
+            "trial"
+          ],
+          "lexical": 0.34
+        },
+        {
+          "sentence_id": 295,
+          "page": 12,
+          "section": "discussion",
+          "quote": "Both interventions improved viral suppression rates compared to the standard of care.",
+          "score": 0.184,
+          "shared_numbers": [],
+          "shared_terms": [
+            "rat",
+            "suppression",
+            "viral"
+          ],
+          "lexical": 0.322
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.662,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {}
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 7,
+    "support": {
+      "strong": 4,
+      "moderate": 2,
+      "weak": 1,
+      "none": 0
+    },
+    "evidence_status": {
+      "found": 7,
+      "no_supporting_evidence": 0,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 63.2,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "other",
+            "quote": "Peer educator-coordinated preference-based HIV care model for adolescents living with HIV in Lesotho https://zenodo.org/record/7307834#.",
+            "sentence_id": 31
+          },
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "More details and screenshots about the PEBRApp are provided in the published study protocol [13] and the code is open-source available on github (https://github.com/chrisly-bear/PEBRApp).",
+            "sentence_id": 90
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "front",
+            "quote": "Data Availability Statement: A key pseudoanonymized individual participant dataset collected during the study, along with a data dictionary, is available at the data repository Zenodo with open access.",
+            "sentence_id": 16
+          }
+        ],
+        "advice": "Name every dataset with version/source and state how to obtain it."
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "abstract",
+            "quote": "confidence interval [CI] [0.79 to 2.03]; p = 0.327); 4 of 150 (2.7%) versus 1 of 157 (0.6%) had died (adjusted OR 4.12; 95% CI [0.45 to 37.62]; p = 0.210); and 12 of 150 (8%) versus 23 of 157 (14.7%) had transferred out (adjusted OR 0.53; 9",
+            "sentence_id": 18
+          },
+          {
+            "page": 2,
+            "section": "other",
+            "quote": "Abbreviations: AU : Anabbreviationlisthasbeencompiledforthoseusedinthetext:Pleaseverifythatallentriesarecorrect: ART, antiretroviral therapy; CATS, community adolescent treatment supporters; CI, confidence interval; COVID-19, Coronavirus Di",
+            "sentence_id": 38
+          },
+          {
+            "page": 7,
+            "section": "other",
+            "quote": "From the logistic regression models, results are presented as odds ratios (ORs) with 95% confidence interval (CI) and from the linear regression model as beta coefficients with 95% CI.",
+            "sentence_id": 130
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "abstract",
+            "quote": "confidence interval [CI] [0.79 to 2.03]; p = 0.327); 4 of 150 (2.7%) versus 1 of 157 (0.6%) had died (adjusted OR 4.12; 95% CI [0.45 to 37.62]; p = 0.210); and 12 of 150 (8%) versus 23 of 157 (14.7%) had transferred out (adjusted OR 0.53; 9",
+            "sentence_id": 18
+          },
+          {
+            "page": 8,
+            "section": "results",
+            "quote": "At the 12-month follow-up, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm achieved viral suppression below 20 copies/mL (adjusted OR 1.27; 95% CI [0.79 to 2.03]; p = 0.327; Table 2).",
+            "sentence_id": 152
+          },
+          {
+            "page": 10,
+            "section": "results",
+            "quote": "Twelve of 150 (8%) in the intervention versus 23 of 157 (14.7%) in the control arm had transferred out at 12 months (aOR 0.53; 95% CI [0.25 to 1.13]; p = 0.099; Table 2).",
+            "sentence_id": 227
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "As compared with other age groups, this population group has poorer outcomes along the HIV care cascade.",
+            "sentence_id": 2
+          },
+          {
+            "page": 2,
+            "section": "abstract",
+            "quote": "Preference-based peer-coordinated care for young people living with HIV, compared to nurse-based care only, did not lead to conclusive evidence for an effect on viral suppression.",
+            "sentence_id": 23
+          },
+          {
+            "page": 2,
+            "section": "other",
+            "quote": "Compared to younger children or adults living with HIV, young people have worse viral suppression rates and are at greater risk of dying and being lost from care.",
+            "sentence_id": 26
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 10,
+            "section": "results",
+            "quote": "This effect was no longer observed when we adjusted for baseline VL in the prespecified sensitivity analysis (S2 Table).",
+            "sentence_id": 223
+          },
+          {
+            "page": 13,
+            "section": "other",
+            "quote": "Primary analysis model with fixed covariables and prespecified sensitivity analysis with adjustment for baseline VL.",
+            "sentence_id": 320
+          }
+        ],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 12,
+            "section": "discussion",
+            "quote": "Nevertheless, 2 reviews cautiously suggest that youth-friendly services and opening hours, multidisciplinary clinics, eHealth support, task-shifting to lay personnel, and peer support and group counselling warrant further research [6,8].",
+            "sentence_id": 277
+          }
+        ],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "front",
+            "quote": "The editorial history of this article is available here: https://doi.org/10.1371/journal.pmed.1004150 Copyright: © 2023 Kopo et al. This is an open access article distributed under the terms of the Creative Commons Attribution License, whic",
+            "sentence_id": 15
+          },
+          {
+            "page": 4,
+            "section": "other",
+            "quote": "Young people were eligible for inclusion if they were living with HIV, registered for HIV care at one of the eligible clusters, aged 15 to 24 years, taking ART, and able to provide informed consent.",
+            "sentence_id": 62
+          },
+          {
+            "page": 4,
+            "section": "other",
+            "quote": "During the recruitment period, the PE actively screened all young people attending their health facility for inclusion on a rolling basis and obtained written informed consent.",
+            "sentence_id": 70
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "abstract",
+            "quote": "The main limitation was that the data collectors in the control clusters were also young peers; however, they used a restricted version of the PEBRApp to collect data and thus were not able to provide the PEBRA model.",
+            "sentence_id": 21
+          },
+          {
+            "page": 13,
+            "section": "discussion",
+            "quote": "PEBRA trial had several limitations.",
+            "sentence_id": 303
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 1.0,
+        "score": 33.3
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 3.5,
+        "score": 63.6
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.5,
+        "score": 25.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.5,
+        "score": 100.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap); its numbers (0.515) do not appear in results text.",
+      "page": 12,
+      "claim_id": "C6",
+      "quote": "Our pre-planned subgroup analysis suggests such a direction of effect (S4 Table), although this effect has to be interpreted with caution and the interaction term was not significant (p-interaction 0.515)."
+    }
+  ],
+  "datasets": [],
+  "metrics": []
+}

@@ -1,0 +1,674 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "262dd0b4c04e",
+    "title": "La4Co4X (X = Pb, Bi, Sb): a demonstration of antagonistic pairs as a route to quasi-low dimensional ternary compounds",
+    "n_pages": 25,
+    "source_name": "arxiv_2403.00204v1_la-4-co-4-x-x.pdf",
+    "warnings": [],
+    "n_sentences": 347
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "The Co is moment bearing in each La4Co4X compound studied, and we show that whereas La4Co4Pb behaves as a three dimensional antiferromagnet with T N = 220 K, La4Co4Bi and La4Co4Sb have behavior consistent with low dimensional magnetic coupling and ordering, with T N = 153 K and 143 K respectively.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "As a demonstration, we present the discovery of a new family of intermetallic compounds, La4Co4X (X = Pb, Bi, Sb), that are based on the immiscible pairs Co-Pb and Co-Bi.",
+        "page": 9,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "We use the term “antagonistic pairs” to refer to such pairs of elements with similarly extreme levels of immiscibility,1 of which other examples include, but are not limited to, Ba-Fe and La-Cr.",
+          "page": 1,
+          "section": "introduction",
+          "sentence_id": 15
+        }
+      ],
+      "approach": [
+        {
+          "text": "As proof of principle, we present the discovery, crystal growth, and basic physical properties of La4Co4X (X = Pb, Bi, Sb), a new family of intermetallic compounds based on the antagonistic pairs Co-Pb and Co-Bi.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 4
+        },
+        {
+          "text": "As a demonstration, we present the discovery of a new family of intermetallic compounds, La4Co4X (X = Pb, Bi, Sb), that are based on the immiscible pairs Co-Pb and Co-Bi.",
+          "page": 9,
+          "section": "abstract",
+          "sentence_id": 156
+        }
+      ],
+      "results": [
+        {
+          "text": "Here, we demonstrate how strongly immiscible pairs of elements can be leveraged to synthesize ternary compounds with reduced or quasi-reduced dimensional motifs such as 2D sheets, 1D chains, or 0D clusters intrinsically built into their crystal structures.",
+          "page": 1,
+          "section": "introduction",
+          "sentence_id": 12
+        },
+        {
+          "text": "As shown in Figure 4b, the H ∥ b and H ∥ c magnetization of La4Co4Pb first increases on cooling and reaches a peak near 220 K, characteristic of antiferromagnetic order in which the moments are aligned along the b-axis.",
+          "page": 7,
+          "section": "results",
+          "sentence_id": 111
+        },
+        {
+          "text": "Likewise, instead of a sharp peak like that observed in La4Co4Pb, the magnetization of La4Co4Bi and La4Co4Sb reaches a very broad maximum centered respectively at 195 K and 170 K in each material.",
+          "page": 7,
+          "section": "results",
+          "sentence_id": 115
+        }
+      ],
+      "limitations": []
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 1,
+      "text": "We outline how pairs of strongly immiscible elements, referred to here as antagonistic pairs, can be used to synthesize ternary compounds with low or quasi-reduced dimensional motifs intrinsically built into their crystal structures.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 96,
+          "page": 6,
+          "section": "results",
+          "quote": "As the La4Co4X family are new materials that adopt a new structure type, this work serves as a proof-of-principle that highly immiscible pairs of atoms can be leveraged to form new materials with quasireduced dimensional motifs intrinsically built into their crystal structures, which we suggest naturally form as immiscible atoms continue to avoid close contact in the solid-state.",
+          "score": 0.291,
+          "shared_numbers": [],
+          "shared_terms": [
+            "built",
+            "crystal",
+            "dimensional",
+            "immiscible",
+            "intrinsically",
+            "motif",
+            "pair",
+            "structur"
+          ],
+          "lexical": 0.315
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.291,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 30,
+        "caption_label_only": 3,
+        "claim_zone_without_new_data": 26
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 8,
+      "text": "The Co is moment bearing in each La4Co4X compound studied, and we show that whereas La4Co4Pb behaves as a three dimensional antiferromagnet with T N = 220 K, La4Co4Bi and La4Co4Sb have behavior consistent with low dimensional magnetic coupling and ordering, with T N = 153 K and 143 K respectively.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [
+        "220",
+        "153",
+        "143"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 122,
+          "page": 8,
+          "section": "results",
+          "quote": "The inferred T N agree well with the transition temperatures determined from the resistivity derivatives, with T N = 220 K, 155 K, and 146 for respective X = Pb, Bi and Sb samples.",
+          "score": 0.381,
+          "shared_numbers": [
+            "220"
+          ],
+          "shared_terms": [
+            "220",
+            "bi",
+            "k",
+            "n",
+            "pb",
+            "sb",
+            "t",
+            "x"
+          ],
+          "lexical": 0.263
+        },
+        {
+          "sentence_id": 107,
+          "page": 7,
+          "section": "results",
+          "quote": "The peaks in the resistance derivatives were used to assign the transition temperatures of T N = 219 K for La4Co4Pb, 153 K for La4Co4Bi, and 145 K for La4Co4Sb,37 and we find that the dρ/dT peak is substantially stronger in La4Co4Pb than either La4Co4Bi or La4Co4Sb.",
+          "score": 0.36,
+          "shared_numbers": [
+            "153"
+          ],
+          "shared_terms": [
+            "153",
+            "4",
+            "bi",
+            "co",
+            "k",
+            "la",
+            "n",
+            "pb"
+          ],
+          "lexical": 0.219
+        },
+        {
+          "sentence_id": 111,
+          "page": 7,
+          "section": "results",
+          "quote": "As shown in Figure 4b, the H ∥ b and H ∥ c magnetization of La4Co4Pb first increases on cooling and reaches a peak near 220 K, characteristic of antiferromagnetic order in which the moments are aligned along the b-axis.",
+          "score": 0.332,
+          "shared_numbers": [
+            "220"
+          ],
+          "shared_terms": [
+            "220",
+            "4",
+            "co",
+            "k",
+            "la",
+            "moment",
+            "order",
+            "pb"
+          ],
+          "lexical": 0.177
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.381,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {}
+    },
+    {
+      "id": "C3",
+      "sentence_id": 10,
+      "text": "We anticipate that identifying and using mutually compatible third elements together with an antagonistic pair represents a novel and generalizable design principle for discovering new materials and new structure types containing low-dimensional substructures.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "generalization",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 94,
+          "page": 6,
+          "section": "results",
+          "quote": "The existence of stable ternary compounds containing the pairs Co-Pb and Co-Bi demonstrates that the extreme immiscibility of Co with Pb and Bi may be overcome by using a third element that is mutually compatible with the antagonistic elements.",
+          "score": 0.297,
+          "shared_numbers": [],
+          "shared_terms": [
+            "antagonistic",
+            "compatible",
+            "contain",
+            "element",
+            "mutually",
+            "pair",
+            "third"
+          ],
+          "lexical": 0.322
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.297,
+      "flags": [],
+      "confidence": 0.86,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 29,
+        "caption_label_only": 2,
+        "fragment": 1,
+        "claim_zone_without_new_data": 27
+      }
+    },
+    {
+      "id": "C4",
+      "sentence_id": 156,
+      "text": "As a demonstration, we present the discovery of a new family of intermetallic compounds, La4Co4X (X = Pb, Bi, Sb), that are based on the immiscible pairs Co-Pb and Co-Bi.",
+      "page": 9,
+      "section": "abstract",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 138,
+          "page": 9,
+          "section": "results",
+          "quote": "More generally, the La4Co4X family contains at least three new Co-based intermetallic compounds in which the Co is moment bearing.",
+          "score": 0.345,
+          "shared_numbers": [],
+          "shared_terms": [
+            "4",
+            "co",
+            "compound",
+            "family",
+            "intermetallic",
+            "la",
+            "new",
+            "x"
+          ],
+          "lexical": 0.388
+        },
+        {
+          "sentence_id": 94,
+          "page": 6,
+          "section": "results",
+          "quote": "The existence of stable ternary compounds containing the pairs Co-Pb and Co-Bi demonstrates that the extreme immiscibility of Co with Pb and Bi may be overcome by using a third element that is mutually compatible with the antagonistic elements.",
+          "score": 0.336,
+          "shared_numbers": [],
+          "shared_terms": [
+            "bi",
+            "co",
+            "co-bi",
+            "co-pb",
+            "compound",
+            "pair",
+            "pb"
+          ],
+          "lexical": 0.389
+        },
+        {
+          "sentence_id": 82,
+          "page": 5,
+          "section": "results",
+          "quote": "The La4Co4X (X = Pb, Bi, or Sb) compounds adopt a new orthorhombic structure type with space group Pbam.",
+          "score": 0.315,
+          "shared_numbers": [],
+          "shared_terms": [
+            "4",
+            "bi",
+            "co",
+            "compound",
+            "la",
+            "new",
+            "pb",
+            "sb"
+          ],
+          "lexical": 0.326
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.345,
+      "flags": [],
+      "confidence": 0.86,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {}
+    },
+    {
+      "id": "C5",
+      "sentence_id": 160,
+      "text": "This work opens the door to a generalizable strategy of exploiting strongly immiscible pairs to target materials with low dimensional structural motifs.",
+      "page": 9,
+      "section": "abstract",
+      "claim_type": "generalization",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 96,
+          "page": 6,
+          "section": "results",
+          "quote": "As the La4Co4X family are new materials that adopt a new structure type, this work serves as a proof-of-principle that highly immiscible pairs of atoms can be leveraged to form new materials with quasireduced dimensional motifs intrinsically built into their crystal structures, which we suggest naturally form as immiscible atoms continue to avoid close contact in the solid-state.",
+          "score": 0.282,
+          "shared_numbers": [],
+          "shared_terms": [
+            "dimensional",
+            "immiscible",
+            "material",
+            "motif",
+            "pair",
+            "work"
+          ],
+          "lexical": 0.305
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.282,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 30,
+        "caption_label_only": 2,
+        "fragment": 1,
+        "claim_zone_without_new_data": 26
+      }
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 5,
+    "support": {
+      "strong": 0,
+      "moderate": 1,
+      "weak": 4,
+      "none": 0
+    },
+    "evidence_status": {
+      "found": 5,
+      "no_supporting_evidence": 0,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 13.2,
+    "band": "low",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Name every dataset with version/source and state how to obtain it."
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report standard deviation or confidence intervals, not single numbers."
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Back 'significant' claims with a named test and p-value or CI."
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 8,
+            "section": "results",
+            "quote": "However, the transition in the X = Bi and Sb compounds appears substantially broadened compared to that observed in La4Co4Pb.",
+            "sentence_id": 131
+          },
+          {
+            "page": 9,
+            "section": "results",
+            "quote": "Compared to the rare-earth atoms, which provide robust magnetism associated with their well-localized 4f orbitals, transition metals are considerably less likely to possess a magnetic moment in intermetallic compounds.",
+            "sentence_id": 139
+          },
+          {
+            "page": 9,
+            "section": "results",
+            "quote": "These differences likely reflect the greater chemical similarity between La4Co4Bi and La4Co4Sb compared to La4Co4Pb, and are at least consistent with the experimental transport and magnentic data, in which behavior of La4Co4Pb is distinct.",
+            "sentence_id": 147
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "The DFT calculations were performed by using the Perdew-Burke-Ernzerhof (PBE) exchangecorrelation functional within the framework of GGA16 as implemented in the Vienna Ab initio Simulation Package (VASP).17,18 A plane-wave cutoff energy was",
+            "sentence_id": 81
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Add a limitations section naming settings where the method fails."
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 0.0,
+        "score": 0.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "no_limitations",
+      "severity": "medium",
+      "message": "No limitations section or discussion of failure cases was found.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "We outline how pairs of strongly immiscible elements, referred to here as antagonistic pairs, can be used to synthesize ternary compounds with low or quasi-reduced dimensional motifs intrinsically built into their cry..."
+    },
+    {
+      "id": "G4",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C3",
+      "quote": "We anticipate that identifying and using mutually compatible third elements together with an antagonistic pair represents a novel and generalizable design principle for discovering new materials and new structure type..."
+    },
+    {
+      "id": "G5",
+      "kind": "generalization_narrow_evidence",
+      "severity": "medium",
+      "message": "Generalisation/robustness claim, but only 0 evaluation dataset(s) detected (none named).",
+      "page": 1,
+      "claim_id": "C3",
+      "quote": "We anticipate that identifying and using mutually compatible third elements together with an antagonistic pair represents a novel and generalizable design principle for discovering new materials and new structure type..."
+    },
+    {
+      "id": "G6",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 9,
+      "claim_id": "C5",
+      "quote": "This work opens the door to a generalizable strategy of exploiting strongly immiscible pairs to target materials with low dimensional structural motifs."
+    },
+    {
+      "id": "G7",
+      "kind": "generalization_narrow_evidence",
+      "severity": "medium",
+      "message": "Generalisation/robustness claim, but only 0 evaluation dataset(s) detected (none named).",
+      "page": 9,
+      "claim_id": "C5",
+      "quote": "This work opens the door to a generalizable strategy of exploiting strongly immiscible pairs to target materials with low dimensional structural motifs."
+    }
+  ],
+  "datasets": [],
+  "metrics": []
+}

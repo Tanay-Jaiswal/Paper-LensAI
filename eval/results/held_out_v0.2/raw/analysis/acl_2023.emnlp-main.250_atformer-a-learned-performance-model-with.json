@@ -1,0 +1,519 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "9af548242f35",
+    "title": "ATFormer: A Learned Performance Model with Transfer Learning Across Devices for Deep Learning Tensor Programs",
+    "n_pages": 15,
+    "source_name": "acl_2023.emnlp-main.250_atformer-a-learned-performance-model-with.pdf",
+    "warnings": [],
+    "n_sentences": 502
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "Furthermore, ATFormer with pre-trained parameters can quickly adapt to different workloads and hardware via transfer learning.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "Additionally, we will explore more universal and efficient methods for optimizing tensor programs with ATFormer.",
+        "page": 9,
+        "section": "conclusion"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "However, this progress has been accompanied by a significant increase in the number of operators and, consequently, the computational complexity of DNNs.",
+          "page": 1,
+          "section": "introduction",
+          "sentence_id": 9
+        }
+      ],
+      "approach": [
+        {
+          "text": "We believe that the simplicity of our method will attract more research attention to the field of tensor operator optimization, further enhancing training and inference efficiency.",
+          "page": 4,
+          "section": "method",
+          "sentence_id": 105
+        }
+      ],
+      "results": [
+        {
+          "text": "While compilation-based methods with performance models can provide dynamic and suitable code optimization, they suffer from a large design space exploration with rough measurement accuracy and poor transferability among different hardware platforms.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 4
+        },
+        {
+          "text": "Compared with state-of-the-arts, ATFormer can predict the optimal implementation of tensor operators to reduce inference time with minimal effort on modern DNN benchmarks.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 6
+        },
+        {
+          "text": "Through transfer learning, ATFormer achieves faster-converged latency and superior transferability across different hardware platforms, outperforming previous state-of-the-art benchmarks.",
+          "page": 9,
+          "section": "conclusion",
+          "sentence_id": 248
+        }
+      ],
+      "limitations": []
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 6,
+      "text": "Compared with state-of-the-arts, ATFormer can predict the optimal implementation of tensor operators to reduce inference time with minimal effort on modern DNN benchmarks.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.83,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 22,
+        "table_row_without_matching_value": 8,
+        "claim_zone_without_new_data": 16
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 248,
+      "text": "Through transfer learning, ATFormer achieves faster-converged latency and superior transferability across different hardware platforms, outperforming previous state-of-the-art benchmarks.",
+      "page": 9,
+      "section": "conclusion",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.66,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 23,
+        "caption_label_only": 1,
+        "table_row_without_matching_value": 6,
+        "claim_zone_without_new_data": 16
+      }
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 2,
+    "support": {
+      "strong": 0,
+      "moderate": 0,
+      "weak": 0,
+      "none": 2
+    },
+    "evidence_status": {
+      "found": 0,
+      "no_supporting_evidence": 2,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 54.3,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Compared with state-of-the-arts, ATFormer can predict the optimal implementation of tensor operators to reduce inference time with minimal effort on modern DNN benchmarks.",
+            "sentence_id": 6
+          },
+          {
+            "page": 2,
+            "section": "experiments",
+            "quote": "Our design, ATFormer, consistently outperforms popular DNN benchmarks, including small and large-scale models.",
+            "sentence_id": 30
+          },
+          {
+            "page": 2,
+            "section": "experiments",
+            "quote": "Existing tree-based performance models are insufficient for evaluating inference in a large search space and transferable knowledge is difficult to acquire across different platforms. (ii) A simple yet efficient design that utilizes attenti",
+            "sentence_id": 33
+          }
+        ],
+        "advice": "Name every dataset with version/source and state how to obtain it."
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 4,
+            "section": "method",
+            "quote": "As for the computation layer, a set of feature statements E ∈ RL×Dout should be split into M stacks of feature statements Z ∈ RM×N×Dout firstly.",
+            "sentence_id": 112
+          }
+        ],
+        "advice": "State exact split sizes/seeds and what was used for tuning."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "We report the the end-to-end inference latency with batch size 1 on RTX 2080Ti.",
+            "sentence_id": 144
+          },
+          {
+            "page": 6,
+            "section": "experiments",
+            "quote": "All large-scale models are exported from Hugging Face, with a batch size of 1 and a maximum input sequence length of 512.",
+            "sentence_id": 168
+          },
+          {
+            "page": 7,
+            "section": "experiments",
+            "quote": "The relative gains obtain for batch size = 1 with 300 measurement trials.",
+            "sentence_id": 193
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "background",
+            "quote": "To enhance their performance, an ensemble learning approach is typically employed to reduce variance.",
+            "sentence_id": 46
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Back 'significant' claims with a named test and p-value or CI."
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Compared with state-of-the-arts, ATFormer can predict the optimal implementation of tensor operators to reduce inference time with minimal effort on modern DNN benchmarks.",
+            "sentence_id": 6
+          },
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Furthermore, ATFormer with pre-trained parameters can quickly adapt to different workloads and hardware via transfer learning.",
+            "sentence_id": 7
+          },
+          {
+            "page": 2,
+            "section": "experiments",
+            "quote": "Additionally, transferable features with pre-trained parameters are used to expedite search convergence across different hardware platforms.",
+            "sentence_id": 28
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 12,
+            "section": "experiments",
+            "quote": "We also provide a detailed ablation study of the model architecture, accuracy, loss function, convergence speed, and training scheme, with insights and qualitative results.",
+            "sentence_id": 432
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "While compilation-based methods with performance models can provide dynamic and suitable code optimization, they suffer from a large design space exploration with rough measurement accuracy and poor transferability among different hardware ",
+            "sentence_id": 4
+          },
+          {
+            "page": 3,
+            "section": "method",
+            "quote": "The accuracy of the cost model f is crucial in finding ideal optimization configuration.",
+            "sentence_id": 82
+          },
+          {
+            "page": 8,
+            "section": "experiments",
+            "quote": "We report the performance about total latency, search time on ResNet-18 and MobileNet-V2 and accuracy on the static datasets.",
+            "sentence_id": 214
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "introduction",
+            "quote": "As a result, it has become increasingly challenging to efficiently deploy DNNs with optimized tensor programs on certain hardware accelerators like CPUs, GPUs and TPUs (Jouppi et al., 2017).",
+            "sentence_id": 10
+          },
+          {
+            "page": 2,
+            "section": "experiments",
+            "quote": "Even when extracted on GPUs, the feature’s stability and performance cannot be guaranteed across different GPU architectures such as Volta, Turing, and Ampere.",
+            "sentence_id": 24
+          },
+          {
+            "page": 2,
+            "section": "experiments",
+            "quote": "Existing tree-based performance models are insufficient for evaluating inference in a large search space and transferable knowledge is difficult to acquire across different platforms. (ii) A simple yet efficient design that utilizes attenti",
+            "sentence_id": 33
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 12,
+            "section": "experiments",
+            "quote": "We use TVM v0.8dev in TenSet (Zheng et al., 2021), LLVM 11.0, and CUDA 11.0 for compilation, while XGBoost 1.5.0 and PyTorch 1.7.1 are used for training models.",
+            "sentence_id": 435
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "introduction",
+            "quote": "To overcome the limitations, mainstream searchbased tensor compilers (Chen et al., 2018a; Zheng et al., 2020; Bai et al., 2021; Li et al., 2020; Fegade et al., 2021) are developed.",
+            "sentence_id": 11
+          },
+          {
+            "page": 2,
+            "section": "experiments",
+            "quote": "The main contributions of this paper are the following: (i) We highlight the limitations of current auto-tuning frameworks.",
+            "sentence_id": 32
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 5.0,
+        "earned": 2.0,
+        "score": 40.0
+      },
+      "Method": {
+        "weight": 2.0,
+        "earned": 2.0,
+        "score": 100.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 2.0,
+        "score": 36.4
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 3.5,
+        "score": 87.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 2.0,
+        "score": 100.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "unsupported_claim",
+      "severity": "high",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 9,
+      "claim_id": "C2",
+      "quote": "Through transfer learning, ATFormer achieves faster-converged latency and superior transferability across different hardware platforms, outperforming previous state-of-the-art benchmarks."
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Compared with state-of-the-arts, ATFormer can predict the optimal implementation of tensor operators to reduce inference time with minimal effort on modern DNN benchmarks."
+    },
+    {
+      "id": "G4",
+      "kind": "superlative_unsupported",
+      "severity": "medium",
+      "message": "Superlative claim with no clear head-to-head comparison in the results.",
+      "page": 9,
+      "claim_id": "C2",
+      "quote": "Through transfer learning, ATFormer achieves faster-converged latency and superior transferability across different hardware platforms, outperforming previous state-of-the-art benchmarks."
+    }
+  ],
+  "datasets": [
+    "DNN",
+    "TenSet",
+    "TenSet-50"
+  ],
+  "metrics": [
+    "accuracy",
+    "RMSE"
+  ]
+}

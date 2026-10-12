@@ -1,0 +1,63 @@
+<!doctype html><meta charset=utf-8><title>PaperLens report</title><body style='font:14px/1.5 system-ui;max-width:960px;margin:2rem auto;padding:0 1rem'><pre style='white-space:pre-wrap'># PaperLens report: A dsRNA-binding mutant reveals only a minor role of exonuclease activity in interferon antagonism by the arenavirus nucleoprotein
+
+*28 pages · 2 claims · reproducibility 42.1/100 (low)*
+
+## Summary
+
+- We found that expression of Tacaribe virus (TCRV) NP containing this RNA-binding H426A mutation was still able to efficiently block IFN-β promoter activity in response to Sendai virus infection, despite being strongly impaired in its exonuclease activity. *(p.1)*
+- This was in contrast to a conventional exonuclease active site mutant (E388A), which was impaired with respect to both exonuclease activity and IFN antagonism. *(p.1)*
+
+**Problem**
+- However, efforts to analyze this contribution are complicated by the functional overlap between the exonuclease active site and a neighboring region involved in IKKε-binding and subsequent inhibition of IRF3 activation, which also plays an important role in IFN production. *(p.1)*
+- We found that expression of Tacaribe virus (TCRV) NP containing this RNA-binding H426A mutation was still able to efficiently block IFN-β promoter activity in response to Sendai virus infection, despite being strongly impaired in its exonuclease activity. *(p.1)*
+
+**Approach**
+- Finally, we generated a novel ExoN mutant based on mutation of H426A, which destabilizes binding of the non-substrate RNA strand without disrupting the ExoN active site or the region responsible for regulation of IKKε-binding/IRF3 inhibition. *(p.4)*
+
+**Results**
+- G389A, G389P, GPPT&gt;DLQL or GPPT&gt;GLQL) resulted in a marked increase in Gibb’s free energy values, suggesting reduced stability of these mutants compared to wild-type (Fig 1B). *(p.4)*
+- Interestingly, while protein expression levels based on transfection of an equivalent amount of plasmid was comparable for both the classical ExoN active site mutant (E388A) and the substrate RNA-binding mutant (H426A) (Fig 2, bottom panel and S2 Fig, panel A), for the other mutants affecting the active site-proximal loop, expression was markedly reduced. *(p.4)*
+- As expected, we found that all three mutants had a strongly reduced ExoN activity compared to TCRV NP (WT), with the GPPT&gt;DLQL mutant showing a 97% loss of activity, the E388A mutant showing an 85% loss of activity, and the H426A mutant showing a 68% loss of activity. *(p.7)*
+
+**Limitations**
+- Importantly, since the mutational approach used to generate the H426A mutant targeted substrate RNA-binding, it involves residues located away from the ExoN-proximal DIEG(R) motif associated with IKKε-binding/IRF3 inhibition (Fig 1), and as such it is reasonable to assume that it does not impact this mechanism. *(p.14)*
+- While it must be noted that IFN-β mRNA expression does not always correlate with levels of the bioactive protein, the only regulatory mechanisms described to date by which arenavirus NP regulates IFN-β production act at the transcriptional level (reviewed in [31]). *(p.15)*
+
+## Research Evidence Ledger
+
+| ID | Claim | Page | Type | Support | Best evidence |
+|---|---|---|---|---|---|
+| C1 | Further, in IFN-competent cells, the TCRV-H426A RNAbinding mutant showed more robust growth and delayed IFN-β mRNA upregulation compared to the TCRV-E388A active site mutant. | 1 | generalization | 🟠 weak | p.15: This was despite the fact that, in contrast to wild-type TCRV and the RNA-binding mutant (… |
+| C2 | However, despite these significant reductions in ExoN activity, the H426A mutant still efficiently suppressed IFN-β promoter activation in response to SeV infection (88% of WT inhibition levels, Fig 4). | 14 | result | 🟢 strong | p.9: 88% of WT inhibition; Fig 4, left panel).… |
+
+## Reproducibility: 42.1/100
+
+_100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums_
+
+| Item | Status | Weight | Evidence |
+|---|---|---|---|
+| Code available | missing | 3.0 | Publish code (with a permanent link) and trained checkpoints. |
+| Datasets named and accessible | partial | 2.0 | p.21: Post-hoc tests were selected based on the dataset: Dunnett’s (comparison to a co… |
+| Train/validation/test splits specified | not_applicable | 2.0 | Not scored: no model training was detected in this paper. |
+| Preprocessing described | missing | 1.0 | Describe cleaning, tokenisation and augmentation steps. |
+| Hyperparameters reported | not_applicable | 2.0 | Not scored: no model training was detected in this paper. |
+| Seeds / multiple runs | missing | 2.0 | Run with several seeds and report how many. |
+| Variance / uncertainty reported | present | 2.0 | p.6: Means and standard deviations are shown from four independent replicates.… |
+| Statistical significance test | present | 1.5 | p.6: Statistical analysis was performed using a one-way ANOVA with Dunnett’s post-hoc… |
+| Baselines described | present | 2.0 | p.1: Further, in IFN-competent cells, the TCRV-H426A RNAbinding mutant showed more ro… |
+| Ablation / component analysis | missing | 1.0 | Show which components drive the gains. |
+| Evaluation metrics defined | missing | 1.0 | Define every metric and the averaging scheme (micro/macro). |
+| Compute / hardware reported | partial | 1.0 | p.12: Further examination of IFN-β production in A549 cells in response to infection w… |
+| Software / library versions | missing | 1.0 | Pin library versions or provide an environment file. |
+| Licence / ethics statement | present | 0.5 | p.1: PLoS Pathog 19(1): e1011049. https://doi.org/10.1371/journal.ppat.1011049 Editor… |
+| Limitations discussed | partial | 1.0 | p.2: Interestingly, however, it appears that only Z proteins of pathogenic arenavirus… |
+
+_Measures what the paper reports (checklist coverage), not whether results actually reproduce._
+
+## Evidence gaps
+
+- **[HIGH] no_code**: No code or implementation link is given.
+- **[MEDIUM] no_limitations**: No limitations section or discussion of failure cases was found.
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim (only weak lexical overlap). — &quot;Further, in IFN-competent cells, the TCRV-H426A RNAbinding mutant showed more robust growth and delayed IFN-β mRNA upregulation compared to the TCRV-E388A active site mutant.&quot;
+- **[MEDIUM] generalization_narrow_evidence** (p.1): Generalisation/robustness claim, but only 0 evaluation dataset(s) detected (none named). — &quot;Further, in IFN-competent cells, the TCRV-H426A RNAbinding mutant showed more robust growth and delayed IFN-β mRNA upregulation compared to the TCRV-E388A active site mutant.&quot;
+</pre></body>

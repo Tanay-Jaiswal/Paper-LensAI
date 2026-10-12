@@ -1,0 +1,695 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "7006d5c2e456",
+    "title": "ItD: Large Language Models Can Teach Themselves Induction through Deduction",
+    "n_pages": 13,
+    "source_name": "acl_2024.acl-long.150_itd-large-language-models-can-teach.pdf",
+    "warnings": [],
+    "n_sentences": 358
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "The ItD framework is composed of two main components: a Deductive Data Generation module to generate induction data and a Naive Bayesian Induction module to optimize the fine-tuning and decoding of LLMs.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "Moreover, we verify the effectiveness of Deductive Data Generation and Naive Bayesian Induction.",
+        "page": 9,
+        "section": "conclusion"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "The Induction task is an important task in Natural Language Processing (NLP) and the mastery of the induction ability is an important sign of intelligence (Peirce, 1868; Lake et al., 2017; Chollet, 2019).",
+          "page": 1,
+          "section": "introduction",
+          "sentence_id": 16
+        },
+        {
+          "text": "For a given induction task, ItD first proposes Deductive Data Generation to leverage the deductive capability of the LLMs to generate a set of task data (x, y, f), which is simple yet effective and does not rely on human annotations or any larger LLMs’ assistance.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 37
+        }
+      ],
+      "approach": [
+        {
+          "text": "In this paper, we propose a novel framework, Induction through Deduction (ItD), to enable the LLMs to teach themselves induction through deduction.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 3
+        },
+        {
+          "text": "Specifically, this novel technique fine-tunes the LLM to predict f conditioned on single pair x, y (p(f|x, y)) instead of n pairs (p(f|{xi, yi}n i=1)).",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 43
+        }
+      ],
+      "results": [
+        {
+          "text": "Recent works mainly adopt “post processes” paradigms to improve the performance of LLMs on induction (e.g., the hypothesis search & refinement methods), but their performance is still constrained by the inherent inductive capability of the LLMs.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 2
+        },
+        {
+          "text": "Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 5
+        },
+        {
+          "text": "More experiment results support that ItD can be effectively applied to LLMs of different sizes, and a more powerful deductor can further improve the performance of ItD.",
+          "page": 9,
+          "section": "conclusion",
+          "sentence_id": 226
+        }
+      ],
+      "limitations": [
+        {
+          "text": "It does not involve planning and may likely fall into local optima.",
+          "page": 9,
+          "section": "limitations",
+          "sentence_id": 230
+        },
+        {
+          "text": "We leave further exploration of these directions as future work.",
+          "page": 9,
+          "section": "limitations",
+          "sentence_id": 231
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 2,
+      "text": "Recent works mainly adopt “post processes” paradigms to improve the performance of LLMs on induction (e.g., the hypothesis search & refinement methods), but their performance is still constrained by the inherent inductive capability of the LLMs.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 30,
+        "fragment": 4,
+        "table_row_without_matching_value": 1,
+        "claim_zone_without_new_data": 25
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 3,
+      "text": "In this paper, we propose a novel framework, Induction through Deduction (ItD), to enable the LLMs to teach themselves induction through deduction.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 66,
+          "page": 3,
+          "section": "other",
+          "quote": "In this section, we introduce ItD, a framework for empowering the induction capability of LLMs through their own deduction capability.",
+          "score": 0.283,
+          "shared_numbers": [],
+          "shared_terms": [
+            "deduction",
+            "framework",
+            "induction",
+            "itd",
+            "llm",
+            "through"
+          ],
+          "lexical": 0.392
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.283,
+      "flags": [],
+      "confidence": 0.86,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 26,
+        "table_row_without_matching_value": 2,
+        "caption_label_only": 1,
+        "fragment": 3,
+        "claim_zone_without_new_data": 27
+      }
+    },
+    {
+      "id": "C3",
+      "sentence_id": 5,
+      "text": "Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "36",
+        "10"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 151,
+          "page": 6,
+          "section": "experiments",
+          "quote": "As shown in Table 1, ItD is significantly superior to all existing methods on both datasets, bringing relative performance improvement of 193% and 16% compared with the base model (IO), while bringing relative performance improvement of 35% and 10% compared with the previous SOTA (HS&R).",
+          "score": 0.455,
+          "shared_numbers": [
+            "10"
+          ],
+          "shared_terms": [
+            "10",
+            "compar",
+            "improvement",
+            "itd",
+            "performance",
+            "previou",
+            "relative"
+          ],
+          "lexical": 0.326
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.455,
+      "flags": [],
+      "confidence": 1.0,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 26,
+        "table_row_without_matching_value": 4,
+        "fragment": 3,
+        "claim_zone_without_new_data": 26
+      }
+    },
+    {
+      "id": "C4",
+      "sentence_id": 40,
+      "text": "We find out that directly fine-tuning the LLMs with the IO prompt (§2.2) used in the previous methods (Honovich et al., 2022; Wang et al., 2023; Qiu et al., 2023) cannot effectively leverage the observed samples (as shown in Figure 5).",
+      "page": 2,
+      "section": "introduction",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "2.2"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 62,
+          "page": 3,
+          "section": "other",
+          "quote": "As the induction task offers the model n observed samples at a time, it is natural to organize the samples into the IO (Input-Output) prompt as follows: x1, y1; x2, y2; ...; xn, yn, which is also widely used by previous works (Honovich et al., 2022; Wang et al., 2023; Qiu et al., 2023).",
+          "score": 0.176,
+          "shared_numbers": [],
+          "shared_terms": [
+            "2022",
+            "2023",
+            "al",
+            "et",
+            "honovich",
+            "io",
+            "observ",
+            "previou"
+          ],
+          "lexical": 0.321
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.176,
+      "flags": [],
+      "confidence": 0.76,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 30,
+        "fragment": 2,
+        "claim_zone_without_new_data": 27
+      }
+    },
+    {
+      "id": "C5",
+      "sentence_id": 224,
+      "text": "We conduct a series of experiments on two types of induction datasets and verify that ItD is superior to existing methods in empowering the inductive capability of LLMs.",
+      "page": 9,
+      "section": "conclusion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 152,
+          "page": 6,
+          "section": "experiments",
+          "quote": "These results verify that ItD is better than previous methods in empowering the inductive capability of LLMs.",
+          "score": 0.352,
+          "shared_numbers": [],
+          "shared_terms": [
+            "capability",
+            "empower",
+            "inductive",
+            "itd",
+            "llm",
+            "method",
+            "verify"
+          ],
+          "lexical": 0.424
+        },
+        {
+          "sentence_id": 129,
+          "page": 5,
+          "section": "experiments",
+          "quote": "We use two datasets to test the inductive capability of LLMs on two types of induction tasks: commonsense inductive reasoning and symbolic inductive reasoning.",
+          "score": 0.346,
+          "shared_numbers": [],
+          "shared_terms": [
+            "capability",
+            "dataset",
+            "induction",
+            "inductive",
+            "llm",
+            "two",
+            "typ"
+          ],
+          "lexical": 0.423
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.352,
+      "flags": [],
+      "confidence": 0.63,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 26,
+        "fragment": 4,
+        "table_row_without_matching_value": 1,
+        "claim_zone_without_new_data": 27
+      }
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 5,
+    "support": {
+      "strong": 1,
+      "moderate": 0,
+      "weak": 3,
+      "none": 1
+    },
+    "evidence_status": {
+      "found": 4,
+      "no_supporting_evidence": 1,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 51.1,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "The data and code of this paper can be found at https://github.com/forangel2014/ItD.",
+            "sentence_id": 8
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 9,
+            "section": "ethics",
+            "quote": "All experiments are conducted on publicly available datasets.",
+            "sentence_id": 233
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "other",
+            "quote": "The complete task data D of task T is then split into an induction set Din and a deduction set Dde.",
+            "sentence_id": 53
+          },
+          {
+            "page": 3,
+            "section": "other",
+            "quote": "Din is split into multiple batches, with each batch containing n samples {xi, yi}n i=1.",
+            "sentence_id": 55
+          }
+        ],
+        "advice": "State exact split sizes/seeds and what was used for tuning."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "For the Qn i=1 p(f|xi, yi), we modify the ordinary beam search decoding process as follows: n X i=1 log p(t|xi, yi) = n X i=1 m X j=1 log p(tj|xi, yi, t<j) = m X j=1 n X i=1 log p(tj|xi, yi, t<j) (3) As shown in Eq (3) and Figure 3, in the ",
+            "sentence_id": 122
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report all hyperparameters, how they were tuned and the search ranges."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report standard deviation or confidence intervals, not single numbers."
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Back 'significant' claims with a named test and p-value or CI."
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively.",
+            "sentence_id": 5
+          },
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "Compared with previous methods, The experiment results show that ItD is",
+            "sentence_id": 46
+          },
+          {
+            "page": 3,
+            "section": "other",
+            "quote": "As we introduced in §1, compared with induction p(f|x, y), LLMs are better at deduction p(y|f, x).",
+            "sentence_id": 72
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Our ablation study verifies the effectiveness of two key modules of ItD.",
+            "sentence_id": 6
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "introduction",
+            "quote": "The task of Induction aims to discover consistent transformations from a set of input-output pairs, where the transformations map the inputs to the outputs well (Wang et al., 2023).",
+            "sentence_id": 10
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 9,
+            "section": "ethics",
+            "quote": "Thus there is no data privacy concern.",
+            "sentence_id": 234
+          }
+        ],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "To tackle such a limitation, work like Hypothesis Search (Wang et al., 2023) proposes to select the generated hypotheses from LLMs by evaluating them on the observations, while another following work Iterative Hypothesis Refinement (Qiu et ",
+            "sentence_id": 29
+          },
+          {
+            "page": 9,
+            "section": "limitations",
+            "quote": "With our ItD framework, we can improve both the symbolic deductive reasoning and semantic deductive reasoning tasks.",
+            "sentence_id": 227
+          },
+          {
+            "page": 9,
+            "section": "limitations",
+            "quote": "However, constrained by the limited capability of LLMs in symbolic reasoning, the performance of ItD on List Function (a symbolic deductive task) is not as satisfying as it is on Instruction Induction (a semantic deductive task).",
+            "sentence_id": 228
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Data": {
+        "weight": 5.0,
+        "earned": 4.0,
+        "score": 80.0
+      },
+      "Method": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 3.5,
+        "score": 87.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.25,
+        "score": 50.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_hyperparameters",
+      "severity": "high",
+      "message": "Training hyperparameters are not reported.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "number_not_in_results",
+      "severity": "high",
+      "message": "Reported value(s) 36 never appear in the experiments/results text or tables (possible abstract-body mismatch, or derived value that is not shown).",
+      "page": 1,
+      "claim_id": "C3",
+      "quote": "Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively."
+    },
+    {
+      "id": "G3",
+      "kind": "number_not_in_results",
+      "severity": "high",
+      "message": "Reported value(s) 2.2 never appear in the experiments/results text or tables (possible abstract-body mismatch, or derived value that is not shown).",
+      "page": 2,
+      "claim_id": "C4",
+      "quote": "We find out that directly fine-tuning the LLMs with the IO prompt (§2.2) used in the previous methods (Honovich et al., 2022; Wang et al., 2023; Qiu et al., 2023) cannot effectively leverage the observed samples (as s..."
+    },
+    {
+      "id": "G4",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Recent works mainly adopt “post processes” paradigms to improve the performance of LLMs on induction (e.g., the hypothesis search & refinement methods), but their performance is still constrained by the inherent induc..."
+    },
+    {
+      "id": "G5",
+      "kind": "improvement_without_variance",
+      "severity": "medium",
+      "message": "Improvement is reported as a single number with no variance, seeds or confidence interval.",
+      "page": 1,
+      "claim_id": "C3",
+      "quote": "Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively."
+    },
+    {
+      "id": "G6",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap); its numbers (2.2) do not appear in results text.",
+      "page": 2,
+      "claim_id": "C4",
+      "quote": "We find out that directly fine-tuning the LLMs with the IO prompt (§2.2) used in the previous methods (Honovich et al., 2022; Wang et al., 2023; Qiu et al., 2023) cannot effectively leverage the observed samples (as s..."
+    },
+    {
+      "id": "G7",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 9,
+      "claim_id": "C5",
+      "quote": "We conduct a series of experiments on two types of induction datasets and verify that ItD is superior to existing methods in empowering the inductive capability of LLMs."
+    }
+  ],
+  "datasets": [
+    "GLUE",
+    "Induction"
+  ],
+  "metrics": []
+}
