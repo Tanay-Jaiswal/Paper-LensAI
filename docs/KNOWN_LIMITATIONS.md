@@ -68,3 +68,19 @@ Measured on development data only; see `docs/EVALUATION.md` section 9.
 - **Figures below 10 without a decimal are ignored** in coverage, so "eleven tasks" or "6 targets" is never reported missing.
 - **The rating ignores coverage.** A claim can be `strong` with one of four figures matched; read the coverage line.
 - **Most claimed figures are still unmatched:** 59 of 143 on the development papers after the change.
+
+## Added for 0.4.0-dev (abstract and section detection)
+
+Measured on development data only; `docs/EVALUATION.md` section 10.
+
+- **Headings are heuristic.** Typography decides: a heading in body-size regular type with no number is missed; a bold
+  lead-in line of one or two words can be taken as a heading. Run-in headings ("Methods. We ...") are not detected.
+- **No abstract is better than a wrong one.** If page 1 has no 'Abstract' heading and no prose paragraph, nothing is
+  labelled abstract and a warning says so. A prose paragraph that is not the abstract (a dedication, a significance
+  statement) can still be chosen when there is no heading; the warning says it was a guess.
+- **Contents pages** are skipped by a rule (dot leaders, or a "Contents" title with many page numbers); an unusual
+  contents layout would still be read as headings.
+- **Custom heading names** map to a standard section only through one of a few words ("evaluation", "results",
+  "conclusion", "discussion", ...); other names stay `other`, which is searched for evidence at a low prior.
+- Appendix detection needs the letter sequence A, B, C after a conclusion, references or acknowledgments; appendices
+  labelled otherwise stay `other`.

@@ -77,3 +77,19 @@ held-out papers.
 
 Not run: the official held-out scorers, `eval/dev_threshold_sweep.py`, the web UI in a browser (the UI line added in
 `web/app.js` is untested), and anything on either held-out folder.
+
+## 0.4.0-dev (2026-10-12, branch `dev/section-detection-v0.4`)
+
+| Command | Outcome |
+|---|---|
+| `PY -m pytest -q` before any change | 119 passed |
+| `PY -m pytest -q tests/test_structure_v04.py`, first run | 13 passed, **4 failed**: fixture sentences under 25 characters (dropped by the existing filter), a 39-word abstract under the 40-word minimum, a wrong assertion about `canonical_section`, and one real finding: `keyword_section` accepted 6 content words, tightened to 4. The front-matter paragraph gap was also loosened from 1.45 to 1.7 line heights (synthetic leading is 1.48) |
+| `PY -m pytest -q` final | **136 passed, 0 failed** (17 new tests; the version-string test updated to `0.4.0-dev`) |
+| `PAPERLENS_SRC=<copy of 663bf4d> PY -m eval.structure_dev data/Papers eval/dev_structure_labels.json <out>` | abstract start 15/16, end 11/16; bookmarked headings 61/85, precision 61/94 |
+| `PY -m eval.structure_dev data/Papers eval/dev_structure_labels.json <out>` | abstract start 16/16, end 16/16; headings 83/85, precision 83/113 |
+| `PY -m eval.real_papers data/Papers eval/results/dev_v0.4` | 16 papers, 0 crashed, 147 claims |
+| `PY -m eval.dev_pairs score-labelled ...` on dev_v0.4 | **failed** (KeyError: 3 new claims have no label); compared by a script instead: strict 24/60 vs 24/59, lenient 49/60 vs 48/59, 142 of 144 common claims keep the top passage |
+| `PY -m eval.run_eval --n 100 --seed 7`, `PY -m eval.scifact_eval` to `eval/results/dev_v0.4` | identical to `dev_v0.3` apart from timings. Seed 99 not re-run |
+| Browser (built-in pane, `python -m paperlens serve`, data folder in a scratch directory) | LIGO development paper: abstract warning shown, 9 claims; claim detail shows page, section, "1 of 3 claimed figures matched; not found: 1e-21, 250" and three loaded page images. GPT-3 (75 pages) was analysed through the API only, not opened in the browser; no missing-section paper was opened in the browser |
+
+Not run: official held-out scorers, `eval/dev_threshold_sweep.py`, anything on either held-out folder.

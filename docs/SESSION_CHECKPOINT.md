@@ -1,86 +1,80 @@
-# PaperLens AI session checkpoint (2026-10-12, pre-reset sprint)
+# PaperLens AI session checkpoint (2026-10-12, sprint 2: abstract and section detection)
 
-Written by the session that did the work, from commands it ran (`docs/TEST_REPORT.md`, section "0.3.0-dev").
-The previous checkpoint is in Git: `git show 45b2ca2:docs/SESSION_CHECKPOINT.md`.
+Written by the session that did the work, from commands it ran (`docs/TEST_REPORT.md`, section "0.4.0-dev").
+The previous checkpoint is in Git: `git show 663bf4d:docs/SESSION_CHECKPOINT.md`.
 
 ## Verified state
-- Folder `C:\Users\imcal\OneDrive\Desktop\PaperLens-AI`. Working tree was clean at the start (`git status`), no stash.
-- New branch `dev/partial-support-v0.3`, created from `dev/evidence-linking-v0.2` at `45b2ca2`. Code commit `a301d1a`
-  (this file is in the commit after it). Code version `0.3.0-dev`.
-- `dev/evidence-linking-v0.2` is still `45b2ca2`; `main` is `d6951bf`.
+- Folder `C:\Users\imcal\OneDrive\Desktop\PaperLens-AI`. Start: branch `dev/partial-support-v0.3`, commit `663bf4d`
+  (code `a301d1a`), working tree clean, 119 tests passed (all as the previous sprint reported).
+- New branch `dev/section-detection-v0.4` from `663bf4d`; the final commit is the tip of this branch (`git log -1`).
+  Code version `0.4.0-dev`. `dev/partial-support-v0.3` is still `663bf4d`, `main` is `d6951bf`.
 - Tags unmoved: `v0.1.0-frozen-heldout` = `d6951bf`, `v0.2.0-dev-frozen-heldout2` = `a549f25`.
 - No remote is configured. Nothing was pushed or published.
-- Use `.venv\Scripts\python.exe` (written `PY` below); the system Python has no pytest.
+- Use `.venv\Scripts\python.exe` (written `PY`); set `PYTHONIOENCODING=utf-8` for the eval scripts on Windows.
+- `paperlens/ingest.py` is stored with CRLF line endings in Git; keep them (an editor or `sed -i` that rewrites them makes the diff the whole file).
 
-## What was done and why
-1. **Diagnosis** (docs/EVALUATION.md 9.1). Of the 24 top passages labelled partial on the 16 development papers
-   (AI-assisted labels), 13 are compound claims where the passage supports one part, 7 describe an experiment or point
-   to a table without the result, 4 restate the claim. Compound claims are the largest single cause.
-2. **Change** (`paperlens/claims.py`): `_complementary` keeps the top passage and gives places 2 and 3 first to
-   accepted passages that match a claimed figure not matched yet. `quantity_coverage` records per claim which claimed
-   figures were found (`Claim.quantity_coverage`, flag `partial_quantity_coverage`); the Markdown report and
-   `web/app.js` show "k of n claimed figures matched; not found: ...". Thresholds, abstention and ratings unchanged.
-3. **Experiment not adopted**: making `strong` require full coverage by the top passage would demote 3 `y`, 1 `p`,
-   1 `n` (15/20 to 12/15 strict). Not justified; a test pins the unchanged rule.
-4. New script `eval/quantity_coverage.py`; 13 regression tests in `tests/test_compound_claims_v03.py` (negative cases
-   included); docs updated (README versions, EVALUATION 9, KNOWN_LIMITATIONS, TEST_REPORT).
+## What was done and why (details: docs/EVALUATION.md section 10)
+Root causes were found by dumping line geometry of the development PDFs first: headless-abstract fallback took the whole
+page-1 front matter; footnote/venue lines extended abstracts; "Summary and Conclusions" became a second abstract;
+italic or regular-type numbered headings were missed; appendices ("A", "A.1", split label) became references/other;
+contents pages created fake sections; wrapped headings were split and fragments became headings; custom names
+("4 User Evaluation") left no results section; ligatures and a sidebar rule dropped headings.
+Changes in `paperlens/ingest.py`: `_heading_at` (explainable heading rules with sequence check, wrapped-heading join,
+rejection of paragraphs, pull quotes, table header cells, captions), appendix tracking, contents-page detection, edge-strip
+running headers, `keyword_section` fallback, headless-abstract choice by prose test, `NO_ABSTRACT` and over-long-abstract
+warnings. Evidence linking, thresholds, ratings: untouched.
+New: `tests/test_structure_v04.py` (17 tests incl. negatives), `eval/structure_dev.py`, `eval/dev_structure_labels.json`
+(AI-assisted abstract boundaries, 16 dev papers), `eval/results/dev_v0.4/`.
 
 ## Commands and exact outcomes
 | Command | Outcome |
 |---|---|
-| `PY -m pytest -q` | 106 passed before; **119 passed, 0 failed** after |
-| `PY -m eval.real_papers data/Papers eval/results/dev_v0.3` | 16 papers, 0 crashed, 145 claims; rows identical to 0.2.0-dev |
-| `PY -m eval.dev_pairs score-labelled eval/results/dev_v0.2/real_papers_audit.csv eval/results/dev_v0.3/real_papers_audit.csv eval/results/dev_v0.2` | before = after: coverage 0.619 (60/97), strict 0.407 (24/59), lenient 0.814 (48/59), wrong passages 11, abstentions on real claims 37 |
-| `PY -m eval.quantity_coverage data/Papers eval/results/dev_v0.3 eval/results/dev_v0.2/dev_pairs_labelled.csv` | claimed figures matched by the 3 returned passages **78 to 84 of 143**; claims fully covered **20 to 22 of 51** |
-| `PY -m eval.run_eval --n 100 --seed 7 --out eval/results/dev_v0.3/seed7` (and seed 99) | identical to dev_v0.2 except timings |
-| `PY -m eval.scifact_eval --out eval/results/dev_v0.3` | identical to dev_v0.2 except timings |
+| `PY -m pytest -q` | 119 passed before; **136 passed, 0 failed** after |
+| `PY -m eval.structure_dev data/Papers eval/dev_structure_labels.json <out>` (before = `PAPERLENS_SRC` pointing at a `git archive 663bf4d paperlens` copy) | abstract start 15 to **16**/16, end 11 to **16**/16; bookmarked headings found 61 to **83**/85; detected headings that are bookmarks 61/94 to 83/113 |
+| `PY -m eval.real_papers data/Papers eval/results/dev_v0.4` | 16 papers, 0 crashed, 147 claims (145 before); 142 of 144 common claims keep the top passage |
+| labelled comparison (script, `score-labelled` cannot run: 3 new LIGO claims unlabelled) | strict 24/60 (was 24/59), lenient 49/60 (48/59); 1 dropped claim was labelled not-a-claim |
+| `PY -m eval.run_eval --n 100 --seed 7`, `PY -m eval.scifact_eval` | identical to dev_v0.3 except timings (seed 99 not re-run) |
+| Browser, LIGO dev paper | abstract warning, 9 claims, page/section labels, "1 of 3 claimed figures matched; not found: ..." and page images all displayed |
 
-**Honest reading:** no regression, and no gain in top-passage precision (the top passage is the same by design). The
-gain is 6 more claimed figures shown with a passage, plus an explicit list of unmatched figures. Whether the added
-passages are correct is unlabelled. Nothing was measured on unseen papers.
+**Honest reading:** structure detection on the development papers improved clearly, but the labels are AI-assisted,
+heading scores rest on 3 bookmarked papers, and the rules were tuned on these same papers. Evidence precision and
+coverage did not measurably change. Nothing was measured on unseen papers.
 
 ## Known bugs, ranked by expected impact
-1. Claim extraction collapses on some layouts: 3 claims per paper on the second held-out run, none for one 55-page
-   paper; "Abstract" heading not detected in 5 papers (`eval/results/held_out_v0.2/KNOWN_BUGS.md` items 1 to 6). Not
-   investigated on those PDFs on purpose.
-2. Section classification: Copernicus layout yields no results section (437 sentences `other`).
-3. Partial support for claims without figures (16 of 24 partial passages): experiment descriptions, table pointers and
-   restatements still returned as `weak` evidence.
-4. 59 of 143 claimed figures on development papers match no returned passage (figures only in tables or figures,
-   unit or wording mismatch, `91.2%` vs `0.912`).
-5. `moderate` and `weak` are right in a quarter of cases or fewer; ratings are not calibrated.
-6. One development pair is still unlabelled, so `eval.dev_pairs score` refuses and `score-labelled` is needed.
+1. Not yet reproduced on a layout like the failing held-out papers ("3 claims per paper", a 55-page paper with none; see
+   `eval/results/held_out_v0.2/KNOWN_BUGS.md`, not opened this sprint). The new rules may or may not fix them; test on a third unseen set.
+2. Run-in headings ("Methods. We ...") and regular-type unnumbered headings are not detected.
+3. Partial support for claims without figures (experiment descriptions, table pointers, restatements) still returned as `weak`.
+4. 59 of 143 claimed figures match no returned passage (tables, units, `91.2%` vs `0.912`).
+5. Support ratings are not calibrated (`moderate`/`weak` right in about a quarter of cases or fewer).
+6. Browser check covered one paper; a long paper (GPT-3) and a paper with no results section were checked only through the API.
 
 ## Next three tasks
-1. Reproduce the abstract-detection and section failures on **development or synthetic** PDFs with the same layouts
-   (never the held-out files), fix in `paperlens/ingest.py`, add layout tests like `tests/test_real_layout_fixes.py`.
-2. Reject "experiment announcement" passages for result claims: a passage with no figure and no outcome verb
-   ("we conduct", "we evaluate ... on", "Table N provides") should not be returned as support. Measure on the dev
-   labels (7 partial cases) and SciFact train before adopting.
-3. Extend coverage to non-numeric parts: split a claim on its coordinated objects ("on both A and B") and report which
-   named parts appear in the returned passages. Start in `claims.quantity_coverage`.
+1. Build a synthetic multi-column and 3-layout benchmark (two columns with spanning headings, side-by-side figures,
+   rotated stamps) to test reading order; claim extraction collapse on odd layouts is the top open risk.
+2. Reject "experiment announcement" passages for result claims (no figure, no outcome verb); measure on the dev labels
+   and SciFact train before adopting.
+3. Add run-in heading detection ("Methods." at the start of a paragraph) and label 3 to 5 more development papers' headings
+   so heading precision is measured on more than 3 papers.
 
 ## Look here first
-- `paperlens/claims.py`: `select_passages`, `_complementary`, `quantity_coverage`, `link_evidence`, `evidence_unsuitable`.
-- `paperlens/textutils.py`: `quantities_in`, `Quantity.matches`.
-- `paperlens/ingest.py`: heading and abstract detection (bugs 1 and 2).
-- `eval/quantity_coverage.py`, `eval/dev_pairs.py`, `eval/results/dev_v0.3/quantity_coverage.csv` (per-claim missing figures).
+- `paperlens/ingest.py`: `_heading_at`, `_classify_heading` (via `_next_section`), `_is_toc_page`, `_style_run`, `_headless_abstract`, `_build`.
+- `tests/test_structure_v04.py`, `tests/test_real_layout_fixes.py`, `eval/structure_dev.py`.
 
 ## Limitations of this session
-- The UI line in `web/app.js` was not opened in a browser.
-- Labels used are AI-assisted and from the session that wrote the 0.2.0-dev fixes; no human label exists for any version.
-- **One slip to know about:** a repository-wide `git grep` for the word "flags" over `eval/` also searched the tracked
-  files under the held-out result folders. The only output shown was 30 lines reading `"flags": [],` with file names
-  from `eval/results/held_out/raw/analysis/` (first held-out set). No label, key, claim or passage was displayed, and
-  nothing from it was used. No other command opened, listed or searched `sealed_key/` or `raw/`.
+- Browser: the pane's screenshot timed out once; the page was read through page text and DOM instead.
+- Abstract labels were written by this session after seeing the parser output on the same papers (not independent).
+- **Earlier slip, recorded as asked:** the previous sprint ran a repository-wide `git grep` for "flags" over `eval/`,
+  which also searched tracked files under the first held-out set's `raw/analysis/` (30 lines of `"flags": [],` were shown;
+  no label, key, claim or passage). Not repeated or investigated. This sprint opened, listed and searched nothing under
+  `eval/results/held_out*` or its audit folders, and used narrowly scoped paths (`data/Papers`, `eval/results/dev_*`).
 
 ## Protected assets: what was actually checked
-- `git diff --stat 45b2ca2 HEAD` and `git status --porcelain` on `eval/results/held_out*`, both AI-audit folders,
-  `eval/results/dev_v0.2`, `data/` and the 0.1.0 result files: no differences, no untracked files.
-- Both tags resolve to the commits listed above.
-- Not re-run: the raw-output hash checks and freeze-manifest verifications of the earlier session; the official scorers.
+- `git diff --stat <start> HEAD -- eval/results/held_out eval/results/held_out_v0.2 eval/results/held_out_ai_audit eval/results/held_out_ai_audit_2 eval/results/held_out_v0.2_ai_audit eval/results/dev_v0.2 eval/results/dev_v0.3 data`:
+  no differences (names only, no content opened).
+- Both tags resolve to the commits listed above. Not re-run: raw-output hash checks, freeze verification, the official scorers.
 
 ## Still the owner's actions
 Label `eval/results/held_out_v0.2/held_out_audit.csv` by hand before opening the AI audit files, then run
 `python -m eval.held_out_v2 score eval/results/held_out_v0.2`. Do not tune on either held-out set or their labels.
-`0.3.0-dev` needs a third unseen set before any unseen-data claim.
+`0.4.0-dev` needs a third unseen set before any unseen-data claim.

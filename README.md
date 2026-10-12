@@ -45,6 +45,9 @@ frozen as tag `v0.2.0-dev-frozen-heldout2` and run on 11 unseen papers, whose hu
 Branch `dev/partial-support-v0.3` is `0.3.0-dev`: for a claim that cites several figures the three returned passages are
 chosen to cover different figures, and the ledger says which claimed figures were not found (section 9; development
 data only, top-passage precision unchanged).
+Branch `dev/section-detection-v0.4` is `0.4.0-dev`: abstract and section-heading detection was reworked (appendices,
+wrapped and italic headings, contents pages, headless abstracts, an honest "no abstract" warning); development data only
+(`docs/EVALUATION.md` section 10).
 
 Python 3.10+ required. macOS/Linux: same commands with `source .venv/bin/activate`.
 

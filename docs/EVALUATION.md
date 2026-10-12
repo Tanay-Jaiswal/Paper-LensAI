@@ -579,3 +579,72 @@ coverage is reported next to the rating instead of altering it. A test pins this
 - The 16 partial passages of claims without figures (experiment descriptions, pointers, restatements, one of several
   named tasks). Nothing in this version addresses them.
 - Anything on unseen papers. A third unseen set would be needed to evaluate this version.
+
+## 10. Development version 0.4.0-dev: abstract and section detection (development data only)
+
+Branch `dev/section-detection-v0.4`, started from `663bf4d`. Only the 16 development papers (`data/Papers`) and
+synthetic PDFs were used. Neither held-out set, their raw outputs, keys, labels or scores were opened or used; the
+parser was tuned on the 16 development papers, so the numbers below are development numbers, not evidence of accuracy
+on unseen papers.
+
+### 10.1 Root causes (found by dumping line geometry of the development PDFs before changing code)
+
+| # | Failure seen | Cause in `paperlens/ingest.py` |
+|---|---|---|
+| 1 | LIGO-style first page: authors, dates and DOI became the "abstract" | the fallback relabelled all page-1 front matter |
+| 2 | Abstract ran into a footnote or venue line (Attention, GPT-3) | only the first small-print block of a page was footnote text |
+| 3 | PLOS "Summary and Conclusions" on page 11 became a second abstract (13 sentences) | prefix match to the key "summary" |
+| 4 | Headings in body-size italic or regular type not found (ATLAS: 18 of 31 bookmarks missed) | heading needed bold or larger type |
+| 5 | Appendices became `references` or `other` (SciFact, BERT, ResNet, GPT-3) | appendix letters ("A", "A.1") and the split label/title were not recognised |
+| 6 | Contents page (GPT-3) created sections "2 Approach", "6 Broader Impacts" on page 2 | page was read as structure |
+| 7 | Wrapped headings split in two; fragments such as "O2peak)" became headings | no multi-line heading logic, no bracket check |
+| 8 | Custom names such as "4 User Evaluation" and "3 The BLEU Evaluation" left no results/experiments section (4 papers warned) | exact-name vocabulary only |
+| 9 | Ligatures broke heading matching; a bold standard heading beside a reference list was dropped as a margin sidebar | text compared before normalising; sidebar test |
+| 10 | Bold paragraphs, pull quotes and table header cells risked being read as headings | not previously covered |
+
+### 10.2 Change (explainable rules, conservative fallbacks)
+
+Headings are decided by `_heading_at`: a typographically marked standard name; a numbered heading that is bold, larger or
+italic with a number that continues the sequence (`_seq_ok`); an appendix label that follows the last one; a short bold
+or large line with no sentence shape. Wrapped lines are joined only when they continue in the same style. Rejected:
+bold paragraphs (5+ lines), pull quotes (kept as `meta`), table header cells, caption labels, contents entries and
+dotted leaders, unbalanced brackets, dangling last words. A contents page is kept as front matter and read for no
+structure. A custom heading takes a standard section only through a first or last content word
+(`keyword_section`, four words at most) and only as a fallback.
+
+Abstract: exact "Abstract"/"Summary"/spaced capitals, run-in "Abstract. ..." and structured labels as before. Without a
+heading the first prose paragraph of page 1 (40+ words, mostly lower case, no e-mail address) and directly following
+paragraphs of the same size are used, and the document warns "No 'Abstract' heading detected ...". If there is no such
+paragraph nothing is labelled abstract and the document says so (`NO_ABSTRACT`). Keyword lines and display text end an
+abstract; an abstract above 30 sentences warns.
+
+### 10.3 Results on the 16 development papers (`python -m eval.structure_dev data/Papers eval/dev_structure_labels.json <out>`)
+
+Abstract labels are AI-assisted (written by the session that changed the parser, from the PDF text layer), not human.
+Heading scores use the authors' own PDF bookmarks, available for 3 papers only (ATLAS, Attention, GPT-3; 85 entries).
+
+| Measure | 0.3.0-dev (`663bf4d`) | 0.4.0-dev |
+|---|---|---|
+| Abstract start correct | 15 / 16 | 16 / 16 |
+| Abstract end correct | 11 / 16 | 16 / 16 |
+| Bookmarked headings found (recall) | 61 / 85 | 83 / 85 |
+| Detected headings that are bookmarks (precision) | 61 / 94 | 83 / 113 |
+| Papers warned "no results/experiments section" | 5 | 3 |
+
+The 30 extra detected headings are mostly run-in sub-headings that authors leave out of bookmarks (GPT-3: 23), so
+precision here is a lower bound. Missed: ATLAS "6 H->WW(*)->evmuv channel" and Attention "Results" (a bookmark with no
+heading line).
+
+Evidence pipeline (`eval.real_papers` to `eval/results/dev_v0.4`, compared with the existing development labels):
+147 claims (145 before). 144 are common and 142 keep the same top passage; 1 old claim dropped (labelled not a claim:
+"Recommendations ...", PLOS) and 3 new LIGO claims are unlabelled. On labelled rows: 61 of 97 real claims have a
+passage (60 before), strict 24/60 (24/59), lenient 49/60 (48/59). `eval.dev_pairs score-labelled` cannot run because
+of the 3 unlabelled claims, so this was compared by script. No change in strict precision can be shown. Synthetic seed 7
+and SciFact dev are identical to 0.3.0-dev apart from run times.
+
+### 10.4 Not measured, not fixed
+
+- Nothing on unseen papers. Abstract and heading rules were tuned on the 16 papers that score them.
+- Multi-column order depends on PyMuPDF; no layout engine was added, and no test uses a 3-column or rotated layout.
+- Heading precision against a labelled set (only 3 papers have bookmarks).
+- Run-in headings inside a paragraph ("Methods. We ...").
