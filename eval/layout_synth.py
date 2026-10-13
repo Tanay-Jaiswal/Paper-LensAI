@@ -147,7 +147,7 @@ class Content:
 
 def logical_items(seed: int, n_filler: int, tables: bool = False, quantities: bool = False,
                   intro_after_abstract_break: bool = True, table_style: str = "",
-                  cell_order: str = "rows") -> tuple[list[Item], Content]:
+                  cell_order: str = "rows", integer_cells: bool = False) -> tuple[list[Item], Content]:
     """The logical document: title, abstract with two claims, four numbered sections, references."""
     c = Content(seed)
     (c1, e1), (c2, e2) = c.claims()
@@ -188,6 +188,14 @@ def logical_items(seed: int, n_filler: int, tables: bool = False, quantities: bo
                     ["Ablation", f"{round(c.a1 - 1.3, 1)}", f"{c.red + 3}.7 ± 0.3", "47.1M", "8.5 h"],
                     ["No pretraining", f"{round(c.a0 - 4.2, 1)}", "-", "48.0M", "8.9 h"],
                     ["Ensemble of 5", f"{round(c.a1 + 0.9, 1)}", f"{c.red - 1}.8 ± 0.2", "240M", "45 h"]]
+        if integer_cells:
+            # counts only: every value is a bare integer, the shape a page number also has
+            n = 200 + c.red
+            rows = [["Split", "Supports", "Refutes", "Neutral", "All"],
+                    ["Train", f"{n + 132}", f"{n - 27}", f"{n + 104}", f"{3 * n + 209}"],
+                    ["Dev", f"{n - 76}", f"{n - 136}", f"{n - 88}", f"{3 * n - 300}"],
+                    ["Test", "100", "100", "100", "300"],
+                    ["Total", f"{2 * n + 156}", f"{2 * n - 63}", f"{2 * n + 116}", f"{6 * n + 209}"]]
         it.append(Item("table", rows=rows, section="results", bid="table1", style=table_style, cell_order=cell_order))
         it.append(Item("figure", section="results", bid="fig1"))
         it.append(Item("caption", f"Figure 1: Training curves of the {c.method} for three random seeds on {c.b1}.",
@@ -649,6 +657,12 @@ LAYOUTS = [
      dict(tpl="two", fill=3, tables=True, table_style="unruled", cell_order="cols")),
     ("L16_unruled_cellshuffle_single", "unruled_tables", "natural",
      dict(tpl="single", fill=3, tables=True, table_style="unruled", cell_order="shuffled")),
+    # a table of bare integers in a document long enough for the repeated-line test (0.6.1-dev): its cells have the
+    # same shape as the page numbers at the foot of every page
+    ("L17_integer_table_single", "integer_tables", "natural",
+     dict(tpl="single", fill=26, tables=True, table_style="unruled", integers=True)),
+    ("L17_integer_table_twocol", "integer_tables", "blocks_y",
+     dict(tpl="two", fill=26, tables=True, table_style="unruled", integers=True)),
 ]
 
 
@@ -670,7 +684,8 @@ def make(doc_id: str) -> tuple[bytes, dict]:
                                "units": [{"page": 1, "text": "1"}], "quantities": [], "rows": []}]}
         return pdf, truth
     items, c = logical_items(seed, kw.get("fill", 3), tables=kw.get("tables", False), quantities=kw.get("quantities", False),
-                             table_style=kw.get("table_style", ""), cell_order=kw.get("cell_order", "rows"))
+                             table_style=kw.get("table_style", ""), cell_order=kw.get("cell_order", "rows"),
+                             integer_cells=kw.get("integers", False))
     furniture: dict = {"pagenum": True}
     if kw.get("furniture"):
         furniture["header"] = lambda p: "A. Writer and B. Author" if p % 2 == 0 else "Synthetic Layout Benchmark"

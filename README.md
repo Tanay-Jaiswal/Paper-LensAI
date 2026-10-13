@@ -31,7 +31,7 @@ pip install -r requirements.txt
 python -m paperlens serve            # open http://127.0.0.1:8000  (click "Load demo papers" for an instant tour)
 python -m paperlens analyze paper.pdf --out report          # JSON + Markdown + HTML report
 python -m paperlens compare a.pdf b.pdf --out report
-python -m pytest -q                  # automated tests (217 on the current development branch)
+python -m pytest -q                  # automated tests (235 on the current development branch)
 ```
 
 Run every command with the virtual environment active (or as `.venv\Scripts\python.exe -m ...`): the system Python does not

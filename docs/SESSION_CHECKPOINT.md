@@ -1,7 +1,24 @@
-# PaperLens AI session checkpoint (2026-10-13, sprint 7: tables without a grid; sprint 8: row-level table benchmark)
+# PaperLens AI session checkpoint (2026-10-13, sprint 7: tables without a grid; sprint 8: row-level table benchmark; sprint 9: page-number filter)
 
 Written by the session that did the work, from commands it ran (`docs/TEST_REPORT.md` "0.6.0-dev", `docs/EVALUATION.md` section 13).
 Previous checkpoint: `git show adce476:docs/SESSION_CHECKPOINT.md` (sprint 6, figure text and label carry-over).
+
+## Sprint 9 (after `3109556`): numbers in the page body are no longer deleted as page numbers. Version `0.6.1-dev`.
+- **Start verified:** branch `dev/reading-order-v0.5`, HEAD `3109556`, tree clean, 222 tests passed, tags unmoved, annotation hash intact.
+- **Fault:** every line whose digit-masked pattern repeated on half the pages was deleted anywhere on the page; page numbers made "a bare number" such a pattern.
+  1117 body lines were lost on the 16 development papers (plus 284 real page numbers and 420 worded heads and footers, which were rightly removed).
+- **Fix (`paperlens/ingest.py`: `_drop_furniture`, `_page_number_lines`, `_has_row_neighbour`, `_loose_numbers`, `EDGE_STRIP`):** patterns with fewer than four letters
+  are removed only in the top or bottom 8% of the page (not in a row of three or more number cells) or when they are page numbers by sequence (outermost line, counting
+  with the pages). Worded patterns as before. Runs of three or more bare numbers outside tables are kept as `meta` (axis ticks), single ones stay in the text.
+- **Numbers:** tests 222 -> **235 passed**. Synthetic `integer_tables` layouts: row recall 0.00 -> 1.00; 29 earlier layouts identical.
+  Row-level table benchmark (AI-transcribed annotations, unchanged): exact rows 43 -> 51 of 70 (strict), 46 -> 54 (lenient); cells 249 -> 277 of 330; the gain is
+  the two SciFact tables. Development papers: letterless lines removed 1401 -> 335; 144 claims identical; 143 of 144 top passages identical; evidence precision unchanged.
+- **Regressions seen and their state:** page numbers and a journal footer leaking into sentences, and axis ticks glued into prose, appeared with the first version and
+  were fixed at the cause. Remaining: a few restored tick or legend numbers as short junk sentences; longer unreadable display equations.
+- **Next recommended task:** values that the parser splits at superscript, subscript or uncertainty parts (benchmark tables T09 and T07, 10 of the 19 rows still wrong),
+  i.e. cell merging inside one printed value; then word tables (T04). A human check of `eval/table_truth/VERIFICATION_SHEET.md` would make the benchmark trustworthy.
+- **Protected assets:** no held-out folder, raw output, sealed key or audit file opened, listed or searched; no held-out scorer; tags unmoved; nothing pushed;
+  `eval/table_truth/tables.json` unchanged (sha256 as locked); `git diff --stat 3109556 HEAD` over held-out, audit and earlier result folders: no change.
 
 ## Sprint 8 (after `4d15ba8`): row-level benchmark on real development tables. No parser change.
 - **Start verified:** branch `dev/reading-order-v0.5`, HEAD `4d15ba8`, tree clean, 217 tests passed, tags unmoved.

@@ -138,3 +138,16 @@ Synthetic layouts and development papers only; `docs/EVALUATION.md` section 11.
   annotations that are AI-transcribed, not human-verified, and partly from pages used while writing the detector.
 - **A value printed with superscript and subscript parts, or with separate uncertainty parts, is split into two cells.**
 - **Rows under a group label can lose their row label** and are then kept only as unlabelled rows.
+
+## Added for 0.6.1-dev (page numbers and numbers in the page body)
+
+- **Fixed:** integer-only lines (and other short repeated patterns) in the page body are no longer deleted as page
+  numbers. The entry above that describes this loss applies to versions up to 0.6.0-dev.
+- **A page number is recognised only by position**: in the top or bottom 8% of the page, or as the lowest or highest
+  line of the page counting up with the pages. Roman numerals, numbers with a prefix ("A-3"), a number that is not the
+  outermost line and lies outside the strip, and page numbers of documents shorter than four pages outside the strip are
+  not removed and can end up in a sentence.
+- **A real table row in the edge strip with fewer than three number cells** can still be taken for furniture.
+- **More figure text reaches the output.** Tick labels and legend numbers that used to be deleted by accident are now
+  kept: runs of three or more bare numbers as `meta`, single ones in the text, where a few form short junk sentences.
+- **Formula fragments** that were deleted by accident are back in the text; display equations remain unreadable prose.

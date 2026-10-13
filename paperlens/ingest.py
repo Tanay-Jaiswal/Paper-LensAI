@@ -192,6 +192,79 @@ def _running_headers(pages) -> set[str]:
     return out | {t for t, c in edge.items() if c >= max(2, -(-n // 5)) and len(t) < 90 and len(re.findall("[A-Za-z]", t)) >= 4}
 
 
+EDGE_STRIP = 0.08          # top and bottom share of the page height in which page numbers and running heads sit
+FURNITURE_MIN_LETTERS = 4  # a repeated pattern with fewer letters ("#", "# / #", "x") says nothing by itself
+
+
+def _in_edge_strip(ln: tuple, height: float) -> bool:
+    return bool(height) and (ln[3] < EDGE_STRIP * height or ln[3] > (1 - EDGE_STRIP) * height)
+
+
+def _has_row_neighbour(ln: tuple, lines: list[tuple], height: float) -> bool:
+    """Are there two or more other letterless lines on the same baseline in the edge strip? A page number stands
+    alone or next to one identifier (an ISSN line); a table row that happens to sit at the page edge has several cells."""
+    n = 0
+    for o in lines:
+        if o is ln or re.search("[A-Za-z]", o[0]) or not _in_edge_strip(o, height):
+            continue
+        if abs(o[3] - ln[3]) < 0.5 * min(o[1], ln[1]) and (o[5][0] >= ln[5][2] or o[5][2] <= ln[5][0]):
+            n += 1
+    return n >= 2
+
+
+_PAGE_NUMBER = re.compile(r"^[\-–—\s]*(\d{1,4})[\-–—\s]*$")
+PAGE_NUMBER_ZONE = 0.2     # a page number is looked for in the top or bottom fifth of the page ...
+
+
+def _page_number_lines(pages) -> set[int]:
+    """ids of the lines that are page numbers by position and by sequence: on each page the lowest (or highest) line,
+    if it is a bare number in the bottom (top) fifth of the page; and over the document these numbers must run with the
+    pages (number minus page index constant) on at least half of the pages, three at least. A bare number anywhere
+    else, or one that does not follow the count, is content."""
+    found: set[int] = set()
+    for lowest in (True, False):
+        cand = {}
+        for k, pg in enumerate(pages):
+            h, lines = pg.get("height") or 0, pg["lines"]
+            if not h or not lines:
+                continue
+            ln = max(lines, key=lambda x: x[5][3]) if lowest else min(lines, key=lambda x: x[5][1])
+            m = _PAGE_NUMBER.match(ln[0])
+            if m and (ln[3] > (1 - PAGE_NUMBER_ZONE) * h if lowest else ln[3] < PAGE_NUMBER_ZONE * h):
+                cand[k] = (int(m.group(1)) - k, ln)
+        if not cand:
+            continue
+        offset, n = Counter(v[0] for v in cand.values()).most_common(1)[0]
+        if n >= max(3, -(-len(pages) // 2)):
+            found |= {id(ln) for off, ln in cand.values() if off == offset}
+    return found
+
+
+def _drop_furniture(lines: list[tuple], repeated: set[str], height: float, page_numbers=frozenset()) -> list[tuple]:
+    """Remove the lines that `_running_headers` found repeated across pages.
+
+    A repeated pattern made of words (a running head, a journal footer) is removed wherever it stands, as before.
+    A pattern with fewer than FURNITURE_MIN_LETTERS letters is the shape of a page number, and also the shape of
+    every bare number, single symbol or table cell in the paper ("#" is repeated on every page because of the page
+    numbers). Such a line is furniture only where page numbers are: in the top or bottom strip of the page, not in
+    a row of cells, or where `_page_number_lines` found the page numbers of this document. Everywhere else it is
+    content and is kept."""
+    out = []
+    for ln in lines:
+        pattern = re.sub(r"\d+", "#", ln[0])
+        if id(ln) in page_numbers:
+            continue
+        if pattern not in repeated:
+            out.append(ln)
+        elif len(re.findall("[A-Za-z]", pattern)) >= FURNITURE_MIN_LETTERS:
+            continue
+        elif _in_edge_strip(ln, height) and not _has_row_neighbour(ln, lines, height):
+            continue
+        else:
+            out.append(ln)
+    return out
+
+
 def _clean(text: str) -> tuple[str, int]:
     """Normalise ligatures and control characters. Returns (text, n_unmapped_between_digits).
 
@@ -400,6 +473,37 @@ def _side_by_side(lines: list[tuple]) -> bool:
             if overlap > 0.5 * min(a[5][3] - a[5][1], b[5][3] - b[5][1]) and                     (b[5][0] - a[5][2] >= GUTTER_MIN or a[5][0] - b[5][2] >= GUTTER_MIN):
                 return True
     return False
+
+
+def _bare_numbers(text: str) -> int:
+    """Number of tokens if the line consists of numbers only (no words, no citation-list punctuation), else 0."""
+    toks = text.split()
+    if not toks or any(t[-1] in ",;]" or t[0] in "[(" for t in toks) or not all(_numeric_cell(t) for t in toks):
+        return 0
+    return len(toks)
+
+
+def _loose_numbers(lines: list[tuple]) -> tuple[list[tuple], list[tuple]]:
+    """Runs of consecutive number-only lines that hold three or more numbers and are in no table: the tick labels of
+    a plot axis, a column of values without labels. They are kept (as `meta`) but never joined into a sentence.
+    One or two bare numbers stay in the text: the numerator of a fraction, a value on a line of its own."""
+    keep, loose, run = [], [], []
+
+    def close():
+        if sum(_bare_numbers(ln[0]) for ln in run) >= 3:
+            loose.extend(run)
+        else:
+            keep.extend(run)
+        run.clear()
+
+    for ln in lines:
+        if ln[4] >= 0 and _bare_numbers(ln[0]):
+            run.append(ln)
+            continue
+        close()
+        keep.append(ln)
+    close()
+    return keep, loose
 
 
 UNREADABLE_WARNING = "Very little extractable text: the PDF may be scanned. OCR is not enabled."
@@ -1048,11 +1152,12 @@ def _build(pdf, doc_id: str, name: str) -> Document:
         pages.append({"pno": pno, "tables": tables, "lines": lines, "figtext": figtext,
                       "width": page.rect.width, "height": page.rect.height})
     repeated = _running_headers(pages)
+    page_numbers = _page_number_lines(pages)
     prev_toc = False
     for pg in pages:
         pg["toc"] = prev_toc = _is_toc_page(pg["lines"], prev_toc)
-        if repeated:
-            pg["lines"] = [ln for ln in pg["lines"] if re.sub(r"\d+", "#", ln[0]) not in repeated]
+        if repeated or page_numbers:
+            pg["lines"] = _drop_furniture(pg["lines"], repeated, pg["height"], page_numbers)
         # a bold standard heading left of a hanging-indent reference list is not a sidebar
         margin = {i for i in _margin_lines(pg["lines"], pg["width"])
                   if not (pg["lines"][i][2] and canonical_section(pg["lines"][i][0], exact=True))}
@@ -1062,6 +1167,8 @@ def _build(pdf, doc_id: str, name: str) -> Document:
         if not pg["toc"]:
             pg["open_tables"], pg["lines"], pg["unlabelled"] = _open_tables(pg["lines"], pg["width"])
         pg["lines"], pg["layout"] = _reorder_columns(pg["lines"])
+        pg["lines"], loose = _loose_numbers(pg["lines"])
+        pg["figtext"] = pg["figtext"] + loose
         for ln in pg["lines"]:
             size_chars[round(ln[1], 1)] += len(ln[0])
     total_chars = sum(len(ln[0]) for pg in pages for ln in pg["lines"])
@@ -1199,8 +1306,9 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                     place_table(pg["open_tables"][-block_no - 1], next((ln for ln in lines[i:] if ln[4] >= 0), None))
                 continue
             emit_tables(y, (lines[i - 1][5][0] + lines[i - 1][5][2]) / 2, lines[i - 1])
-            if re.fullmatch(r"\d{1,3}", text) and (y < 60 or y > 700):
-                continue  # page number
+            if re.fullmatch(r"\d{1,3}", text) and _in_edge_strip(lines[i - 1], pg["height"]) \
+                    and not _has_row_neighbour(lines[i - 1], lines, pg["height"]):
+                continue  # page number (documents too short for the repeated-line test)
             if block_no != last_block:
                 last_block = block_no
                 # a small-print block in the lower half that opens with a footnote mark (author notes, URLs), and

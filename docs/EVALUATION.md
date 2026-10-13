@@ -994,3 +994,96 @@ measured with this benchmark and the synthetic layouts without tuning on individ
 
 Human-verified accuracy (no human has checked the transcriptions); table boundaries as boxes; anything on unseen papers;
 rows of the tables that were not annotated (the remaining tables of these papers).
+
+## 15. Development version 0.6.1-dev: page numbers and running heads no longer delete numbers in the page body
+
+Branch `dev/reading-order-v0.5`, continued from `3109556`. Synthetic PDFs and development papers only. The row-level
+table annotations (section 14) are AI-transcribed, not human-verified; they are used here as a diagnostic, their file
+and locked hash are unchanged, and nothing was adjusted to individual annotated rows.
+
+### 15.1 The fault, measured (`paperlens/ingest.py` at `3109556`)
+
+`_running_headers` masks digits and collects the patterns that occur on half the pages; `_build` then deleted **every**
+line with such a pattern, wherever it stood. Page numbers make the bare-number pattern qualify, so every integer-only
+line was deleted; other short patterns qualified too (single letters of formulas, decimals, control characters).
+On the 16 development papers (331 pages) the filter removed 1401 lines whose pattern has fewer than four letters: 284 in
+the top or bottom 8% of the page, **1117 in the page body** (GPT-3 320, ATLAS 283, Adam 197, ResNet 186), and 420 worded
+lines (running heads, journal footers).
+
+### 15.2 The change
+
+- A repeated pattern with at least four letters is removed wherever it stands, as before (420 lines before and after).
+- A repeated pattern with fewer letters is removed only (a) in the top or bottom 8% of the page, unless two or more
+  other letterless lines share its baseline (a table row at the page edge), or (b) if it is a page number by sequence:
+  the lowest or highest line of the page, a bare number in the outer fifth, whose value runs with the page count on at
+  least half the pages (three at least). Rule (b) was added after the first version leaked the page numbers of two
+  development papers into sentences (they sit at 87% and 91% of the page height).
+- The separate rule for short documents ("a number of up to three digits below y = 700 is a page number") now uses the
+  same 8% strip; it used to drop bare numbers in the lowest 12 to 17% of the body.
+- Bare numbers that are now kept but belong to no table: a run of number-only lines holding three or more numbers (the
+  tick labels of a plot axis) is kept as `meta` and never joined into a sentence; one or two bare numbers stay in the
+  text (the numerator of a fraction, a value on its own line).
+
+Letterless lines removed on the development papers: 1401 before, **335 after** (284 in the edge strip, 51 page numbers
+found by sequence in ATLAS and Adam); nothing is removed now that was kept before; worded lines unchanged.
+
+### 15.3 Synthetic checks
+
+`tests/test_page_numbers.py` (11 tests): integer table cells in a six-page document with page numbers at the bottom, at
+the top, and outside the 8% strip; a lone integer inside a sentence; a short document; a table row inside the bottom strip;
+running heads and a letterless journal footer still removed; axis ticks not glued; fraction numerators and citation
+lists untouched. Two new benchmark layouts (`integer_tables`: an integer-only table in a document of four or more pages):
+
+| Layout, measure | parser of `3109556` | 0.6.1-dev |
+|---|---|---|
+| `L17_integer_table_single`, `_twocol`: table-row recall | 0.00, 0.00 | 1.00, 1.00 |
+| sentences with glued table cells / spliced sentences (both layouts) | 2 / 2 | 0 / 0 |
+| paragraph reconstruction | 0.91 | 1.00 |
+
+The 29 earlier layouts score exactly as recorded for 0.6.0-dev. Files: `eval/results/layout_bench/after_0.6.1-dev.json`,
+`baseline_3109556_31_layouts.json`.
+
+### 15.4 Row-level table benchmark, before and after (annotations unchanged; 70 rows, 330 cells, 15 header rows)
+
+| Measure | Denominator | 0.6.0-dev (`3109556`) | 0.6.1-dev |
+|---|---|---|---|
+| Exact rows, strict | 70 | 43 = 0.614 | 51 = 0.729 |
+| Exact rows, lenient | 70 | 46 = 0.657 | 54 = 0.771 |
+| Cells found, strict | 330 | 249 = 0.755 | 277 = 0.839 |
+| Partial rows / missing rows, strict | 70 | 13 / 13 | 10 / 8 |
+| Header rows returned | 15 | 5 | 6 |
+| Wrong heads / heads attached | attached | 0 / 134 | 0 / 150 |
+| Values carrying their correct column head | 255 | 0.525 | 0.588 |
+
+The whole change is in two tables: T08a (0/4 rows, 0/20 cells before; 4/4, 20/20 after) and T08b (0/4, 12/20 before; 4/4,
+20/20 after). The other nine tables are unchanged row for row. Still failing: the word table (T04, 7 rows), values split
+at superscript or uncertainty parts (T09, T07), one row of the ruled table (T10). This is a diagnostic on 11 development
+tables with AI-made annotations; it does not establish real-world accuracy.
+
+### 15.5 The 16 development papers
+
+| Count | 0.6.0-dev | 0.6.1-dev |
+|---|---|---|
+| sentences of kind text / table / meta / caption | 8263 / 689 / 607 / 191 | 8267 / 722 / 632 / 191 |
+| prose sentences with a run of four or more numbers (upper bound on table text in prose) | 14 | 12 |
+| papers with a "rows without labels" warning | 7 | 9 |
+| claims extracted | 144 | 144, identical in text |
+| top evidence passage unchanged | | 143 of 144 |
+| coverage / strict / lenient on 99 real claims (AI-assisted labels) | 59/99, 22/59, 48/59 | 59/99, 22/59, 48/59 |
+
+One passage changed (a partial passage replaced by another partial one; one fresh AI-assisted label). Abstract 16/16 and
+headings 83/85 unchanged; synthetic claim benchmark (seed 7) and SciFact dev identical. No crash.
+
+Reading the changed sentences (8 of 16 papers changed; 58 `text` sentences replaced by 62):
+- gains: restored table cells (SciFact, GPT-3: 35 and 75 new or completed rows), restored values inside sentences
+  ("... the scaling factor of 1 √dk", answers such as "A: 48" in the GPT-3 appendix), restored parts of formulas (Adam);
+- regressions, all small: a few restored tick labels or legend numbers of figures appear as short junk sentences or are
+  attached to figure text that was already junk ("20", "[GeV] 12 m", "18-layer 34-layer 50 Table 2."); restored formula
+  fragments make some already unreadable display equations longer;
+- no page number is left in any sentence of the 16 papers, and no sentence lost prose.
+
+### 15.6 Not measured, not fixed
+
+Unseen papers; human-verified table rows; page numbers that are neither in the edge strip nor the lowest or highest line
+(for example beside a footer line set lower), or that do not count with the pages (roman numerals, "A-3"); documents of
+fewer than four pages rely on the strip rule alone.

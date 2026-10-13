@@ -166,3 +166,21 @@ folders or audit files. `git stash` was used twice during the work and restored 
 | `PY -m eval.layout_bench` | unchanged from `after_0.6.0-dev.json` (the parser was not edited) |
 
 Not run: any parser change, the held-out scorers, anything on held-out or audit folders.
+
+## 0.6.1-dev (2026-10-13, branch `dev/reading-order-v0.5`)
+
+| Command | Outcome |
+|---|---|
+| `git status`, `git rev-parse HEAD`, tags, `PY -m pytest -q` at the start | clean, `3109556`, tags at `d6951bf` / `a549f25`, 222 passed |
+| count of lines removed by the furniture filter on the 16 development papers | letterless: 284 in the edge strip, 1117 in the body; worded: 420 |
+| first version (edge strip, lone line) | tests 222 passed; table benchmark 51/70; **regression on development papers**: page numbers of ATLAS and Adam (at 87% and 91% of the page height) glued into sentences, a letterless journal footer glued into a sentence, axis ticks glued into prose |
+| second version (page numbers by sequence; two neighbours needed for a row; runs of bare numbers kept as meta) | regressions gone; changed `text` sentences 92 -> 58 |
+| `PY -m pytest -q tests/test_page_numbers.py`, first run | 9 passed, **2 failed**: the synthetic fixture repeated identical prose lines on every page, which the parser rightly removes as repeated lines; fixture changed, parser not |
+| `PY -m pytest -q` final | **235 passed, 0 failed, 0 skipped** (13 new: 11 in `tests/test_page_numbers.py`, 2 benchmark layouts) |
+| `PY -m eval.layout_bench --out eval/results/layout_bench/after_0.6.1-dev.json` | 31 layouts, all measures 1.00 on the two new ones; 29 earlier layouts identical to `after_0.6.0-dev.json` |
+| `PAPERLENS_SRC=<3109556> PY -m eval.layout_bench --out .../baseline_3109556_31_layouts.json` | new layouts: table-row recall 0.00, 2 glued, 2 spliced |
+| `PY -m eval.table_rows_bench score eval/results/table_rows_dev/rows_0.6.1-dev.json` | exact rows 51/70 strict, 54/70 lenient; cells 277/330; annotation hash unchanged (`366843a1...`) |
+| `PY -m eval.real_papers`, `eval.table_text_dev`, `eval.structure_dev`, `eval.run_eval --seed 7`, `eval.scifact_eval` into `eval/results/dev_v0.6.1` | 16 papers, 0 crashed, 144 claims; number-run prose 14 -> 12; abstract 16/16, headings 83/85; synthetic and SciFact identical to 0.6.0-dev |
+| `PY -m eval.claim_map map / merge / compare` (0.6.0-dev vs 0.6.1-dev) | 144 identical claims, 143 same top passage, 1 fresh pair label; coverage, strict and lenient unchanged |
+
+Not run: the application in the browser, the held-out scorers, anything on held-out or audit folders.
