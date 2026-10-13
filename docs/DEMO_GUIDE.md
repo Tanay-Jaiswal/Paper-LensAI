@@ -9,7 +9,7 @@ numbers. If a number differs, trust the screen and tell the audience the guide i
 ```powershell
 cd PaperLens-AI
 .venv\Scripts\Activate.ps1
-python -m pytest -q                 # expect: 238 passed
+python -m pytest -q                 # expect: 240 passed
 python -m paperlens serve           # leave running, open http://127.0.0.1:8000
 ```
 

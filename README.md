@@ -75,7 +75,7 @@ Errors: 400 not a PDF, 413 over 25 MB, 422 damaged or encrypted PDF, 404 unknown
 ## Tests
 
 ```powershell
-python -m pytest -q          # 238 tests, about one minute, no network
+python -m pytest -q          # 240 tests, about one minute, no network
 ```
 
 ## Demonstration

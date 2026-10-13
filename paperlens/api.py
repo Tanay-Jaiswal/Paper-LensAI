@@ -125,6 +125,27 @@ def page_image(aid: str, page: int, highlight: str = "", zoom: float = 1.4):
         return Response(_render_page(pdf[page - 1], a, page, highlight, zoom), media_type="image/png")
 
 
+def _find_rects(pg, text: str, kind: str = "text") -> list:
+    """Where a sentence is on the page. The extracted text can differ from the page's own text layer (a ligature that
+    became 'fi ', a hyphenated line end, a table row rebuilt from cells), so after the full-sentence search the
+    first and last words, then other short runs of words, are tried; the first search that finds something wins."""
+    rects = pg.search_for(text[:110]) or pg.search_for(text[:50])
+    if rects:
+        return rects
+    if kind == "table":
+        rects = pg.search_for(text.rsplit(":", 1)[-1].strip())
+        if rects:
+            return rects
+    w = text.split()
+    if len(w) >= 8:
+        runs = [w[:5], w[-5:]] + [w[i:i + 5] for i in range(5, len(w) - 5, 5)]
+        for run in runs:
+            rects = pg.search_for(" ".join(run))
+            if rects:
+                return rects
+    return []
+
+
 def _render_page(pg, a: Analysis, page: int, highlight: str, zoom: float) -> bytes:
     ids = [int(x) for x in highlight.split(",") if x.strip().isdigit()][:12]
     by_id = {s.id: s for s in a.doc.sentences}
@@ -133,12 +154,7 @@ def _render_page(pg, a: Analysis, page: int, highlight: str, zoom: float) -> byt
         s = by_id.get(sid)
         if not s or s.page != page:
             continue
-        needle = s.text if len(s.text) <= 110 else s.text[:110]
-        rects = pg.search_for(needle) or pg.search_for(s.text[:50])
-        if not rects and s.kind == "table":
-            last = s.text.rsplit(":", 1)[-1].strip()
-            rects = pg.search_for(last)
-        for r in rects:
+        for r in _find_rects(pg, s.text, s.kind):
             annot = pg.add_highlight_annot(r)
             annot.set_colors(stroke=colors[n % 3])
             annot.update()
@@ -172,7 +188,9 @@ def compare_endpoint(req: CompareReq):
 @app.post("/api/demo")
 def demo():
     """Create two synthetic demo papers so the UI can be explored without a PDF."""
-    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "eval"))
+    ev = str(Path(__file__).resolve().parent.parent / "eval")
+    if ev not in sys.path:
+        sys.path.insert(0, ev)
     from synth import make_paper
     good = make_paper(11, items={k: True for k in ["code", "data", "hyper", "seeds", "variance", "stat_test",
                                                    "hardware", "software", "splits", "baselines", "ablation",

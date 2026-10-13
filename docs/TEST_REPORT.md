@@ -202,3 +202,30 @@ Commands run in the repository folder with `.venv/Scripts/python.exe` (Python 3.
 
 Not run in this sprint: `eval.*` benchmarks, held-out scorers (forbidden), `eval.layout_bench` (engine unchanged).
 
+## 1.0.0 end-to-end QA (2026-10-13, after `b1e0d19`)
+
+Start: branch `dev/reading-order-v0.5`, HEAD `b1e0d19`, only `.claude/` untracked, Python 3.13.7, `pip check` clean, 16 development PDFs present, port 8000 free.
+No lint, type-check or packaging configuration exists in the repository, so none was run (`python -m compileall` and `node --check web/app.js` were run: clean).
+
+| Check | Result |
+|---|---|
+| `python -m paperlens serve`; `/`, `/static/app.js`, `/static/style.css`, `/favicon.ico`, `/api/health`, `/docs`, `/openapi.json`, unknown route | 200 / 200 / 200 / 204 / 200 / 200 / 200 / 404; no traceback in the server log over the whole session |
+| All 16 development PDFs uploaded through `POST /api/analyze` | 16 of 16 returned 200 in 0.9 to 12.5 s (75-page paper 12.5 s); 144 claims; no empty ledger; page counts equal the PDFs' |
+| Citation check against the source PDFs (quote windows searched in the text of the cited page with PyMuPDF) | 143 of 144 claims and 173 of 185 evidence quotes found on the cited page. The 12 misses are table rows that PaperLens rebuilds from cells (order differs) and one claim that starts on page 1 and ends on page 2. Not a proof of correctness, a plausibility check |
+| Page images with highlights, one per paper; HTML report for each | 16 of 16 PNG; 16 of 16 HTML 200; report parses with no unclosed or stray tags |
+| Browser (built-in pane, 1366x768): load, synthetic demo button, open stored analysis, ledger filters, claim with no evidence (rejection reasons), weak claim, page images, gap-to-claim link, Compare, invalid file uploads, reload | all worked; no JavaScript errors captured. Page screenshots timed out in the pane (rendering), so layout was judged from DOM and text, not from a picture |
+| Upload of non-PDF, damaged PDF, "%PDF" text file in the browser | clear red message each time, controls re-enabled |
+| Reload and server restart (process killed, new server) | all 21 stored analyses listed; analysis, page image, report and compare all served again |
+| CLI: analyze, compare, path with spaces, nested `--out`, no arguments, missing argument | exit 0 for good input; exit 2 with a usage or one-line message otherwise |
+| `serve` while port 8000 was taken | before: uvicorn bind error, exit 3; after: one-line message, exit 2 |
+
+Bugs found and fixed:
+1. **Highlights missing on 16% of evidence passages** (155 of 185 located). Cause: the sentence text from the parser differs from the PDF text layer (ligature "fi ndings", hyphenated line ends, rebuilt table rows) and only the first 110 and 50 characters were searched. Fix: `_find_rects` also tries runs of five words. 176 of 185 now found. The page was always right; the highlight was the missing aid. The UI now says what an absent highlight means. Tests: `test_highlight_falls_back_to_a_run_of_words_when_the_sentence_text_differs_from_the_page`.
+2. **Busy port gave a raw bind error.** Now a one-line message and exit code 2. Test: `test_serve_refuses_a_busy_port_with_a_clear_message`.
+3. **`/api/demo` added to `sys.path` on every call** (grew without bound). Now added once. Not separately tested (no visible effect).
+
+Tests: `python -m pytest -q` before the fixes 238 passed (exit 0, earlier in the day, 1.0.0 sprint); after the fixes **240 passed, 0 failed, 0 skipped**, exit 0, 64 s, one warning (`starlette` deprecation of `httpx` in `TestClient`).
+
+Not done: keyboard-only and screen-reader checks; mobile and non-Chromium browsers; native file chooser (uploads in the browser were simulated with JavaScript `File` objects; real PDFs were uploaded through the API); deleting analyses (the UI has no delete or replace function).
+Remaining, by severity: low: 9 of 185 evidence quotes (mostly table rows and one display equation) still have no highlight; table-row text on pages with figures is read as garbage in two physics papers; the names of PDFs uploaded through the API with a directory in the filename keep the directory.
+

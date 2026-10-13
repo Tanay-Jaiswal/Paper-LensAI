@@ -128,3 +128,22 @@ def test_html_report_is_standalone_and_escapes_paper_text(client, make_pdf):
 def test_ui_files_are_not_cached_and_health_reports_version(client):
     assert client.get("/static/app.js").headers["cache-control"] == "no-cache"
     assert client.get("/api/health").json() == {"ok": True, "version": __version__}
+
+
+def test_highlight_falls_back_to_a_run_of_words_when_the_sentence_text_differs_from_the_page():
+    import pymupdf
+    d = pymupdf.open(); pg = d.new_page()
+    pg.insert_text((72, 100), "Published research findings are sometimes refuted by subsequent evidence in later work.")
+    # extracted text with a ligature gap, as seen in real papers ("fi ndings"): the full-sentence search finds nothing
+    text = "Published research fi ndings are sometimes refuted by subsequent evidence in later work."
+    assert pg.search_for(text[:50]) == []
+    assert api._find_rects(pg, text), "a later run of words should still locate the sentence"
+    assert api._find_rects(pg, "Something that is nowhere on this page at all, really, none of it.") == []
+
+
+def test_serve_refuses_a_busy_port_with_a_clear_message(capsys):
+    import socket
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0)); s.listen(1)
+        assert main(["serve", "--port", str(s.getsockname()[1])]) == 2
+    assert "already in use" in capsys.readouterr().err

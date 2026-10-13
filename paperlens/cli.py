@@ -68,7 +68,12 @@ def main(argv=None) -> int:
             print("\n".join(cmp["verdict"]))
             print(f"  wrote {out}/comparison.json")
         elif args.cmd == "serve":
+            import socket
             import uvicorn
+            with socket.socket() as probe:
+                if probe.connect_ex((args.host, args.port)) == 0:
+                    raise InputError(f"port {args.port} on {args.host} is already in use; "
+                                     f"stop the other program or choose another port with --port")
             print(f"PaperLens AI {__version__}: open http://{args.host}:{args.port} in a browser (Ctrl+C stops the server)")
             uvicorn.run("paperlens.api:app", host=args.host, port=args.port)
     except InputError as e:

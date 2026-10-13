@@ -1,5 +1,10 @@
 # PaperLens AI session checkpoint (2026-10-13, sprint 10: finalisation release 1.0.0)
 
+## QA sprint (after `b1e0d19`): end-to-end check of 1.0.0. Verdict PASS WITH DOCUMENTED LIMITATIONS.
+- Ran the app, uploaded all 16 development PDFs, checked citations against the PDFs' text, exercised the browser workflow, restart persistence, CLI and API errors. Details and numbers: `docs/TEST_REPORT.md` "end-to-end QA".
+- Fixed: highlights missing on 16% of passages (now 5%), raw error on a busy port, unbounded `sys.path` growth in `/api/demo`. Tests 238 -> 240 passed.
+- Not run: lint/type checks (none configured), screen-reader and mobile checks. No parser or evaluation change; held-out and `eval/table_truth/` untouched.
+
 ## Sprint 10 (after `181b7ac`): release 1.0.0. Engine unchanged; application finished and verified.
 - **Start verified:** branch `dev/reading-order-v0.5`, HEAD `181b7ac`, tree clean, 235 tests passed.
 - **Changed:** `paperlens/cli.py` (one-line errors, exit 2, warnings printed, `--version`), `paperlens/api.py` (clear 422 text,

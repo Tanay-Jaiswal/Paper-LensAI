@@ -169,7 +169,7 @@ function openClaim(id) {
       `<div class="small muted"><strong>Why this passage:</strong> ${why.join("; ")}. Match score ${e.score} (wording relevance ${e.lexical}).</div></div>`;
   });
   const pages = [...new Set([c.page, ...ev.map((e) => e.page)])];
-  h += `<h4>Source page${pages.length > 1 ? "s" : ""}</h4><p class="small muted">Highlighted: the claim and its evidence. Click a page to open it full size.</p><div class="pages">${pages.map((p) => {
+  h += `<h4>Source page${pages.length > 1 ? "s" : ""}</h4><p class="small muted">Highlighted: the claim and its evidence. Click a page to open it full size. If a passage is not highlighted, the page number is still its citation: its wording could not be located automatically on the page.</p><div class="pages">${pages.map((p) => {
     const ids = [c.sentence_id, ...ev.filter((e) => e.page === p).map((e) => e.sentence_id)].join(",");
     const src = `/api/analyses/${cur.id}/page/${p}.png?highlight=${ids}`;
     return `<figure><figcaption class="cite">Page ${p} of ${cur.document.n_pages}</figcaption><a href="${src}&zoom=2.4" target="_blank" rel="noopener"><img loading="lazy" alt="Page ${p} with highlights" src="${src}"></a></figure>`;
