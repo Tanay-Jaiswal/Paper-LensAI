@@ -447,6 +447,303 @@ def _tables(page) -> list[tuple[tuple, list[str]]]:
     return found
 
 
+# ---- tables without a grid ----------------------------------------------------------------------------------------
+# `page.find_tables()` needs drawn rules. A table set with white space only (or with a few horizontal rules) reaches
+# the parser as ordinary lines, and its cells used to be joined into "sentences" and glued to the prose around them.
+# Such a table is recognised from geometry alone:
+#   1. every line is cut into cells at gaps wider than CELL_GAP font sizes; cells on one baseline form a row;
+#   2. a full line of prose (PROSE_WORDS words or more, mostly not numbers) is never a cell: it ends the row, so text
+#      in the neighbouring column of a two-column page stays out;
+#   3. a data row has at least two values, or a label followed by one value, and no mathematical operator; data rows
+#      that follow each other and whose values stand above each other form a table. One row alone needs three values;
+#   4. a cell at the end of a row that stands under or over nothing in the other rows and lies far from its
+#      neighbour is not part of the table (the last words of a line in the next column that share the baseline);
+#   5. the rows directly above (column heads) and short lines between the data rows (group labels) belong to it.
+# What is found is taken out of the running text. A data row with a row label becomes a `table` sentence in the format
+# of ruled tables; heads, group labels and rows without a label are kept as `meta` (never a claim, never evidence) and
+# a row without a label is reported in a warning. Nothing is guessed: cells are never re-ordered or merged across rows.
+# Each row leaves a placeholder line (block number below zero, no text) where it stood, so that the reading order is
+# worked out with the table still occupying its space, and the rows are emitted at that place in the text.
+CELL_GAP = 0.7            # font sizes between two spans of a line that separate two cells (a word space is about 0.3)
+CELL_GAP_MIN = 4.0        # ... and at least this many points
+PROSE_WORDS = 7
+NUMERIC_ROW_LABEL = 3     # a line of at most this many label words ...
+NUMERIC_ROW_VALUES = 4    # ... followed only by at least this many numbers is a row of values, whatever its spacing
+ROW_LEAD = 3.2            # font sizes between the baselines of two data rows of one table (one label row may intervene)
+HEAD_LEAD = 2.6           # font sizes from the first data row up to a row of column heads
+_PLACEHOLDER = {"-", "–", "—", "--", "n/a", "N/A", "NA", "n.a.", "×", "✓", "✗"}
+_EQ_NUMBER = re.compile(r"^\(\s*\d{1,3}[a-z]?\s*\)$")
+_MATH = re.compile(r"[=≤≥≠∥√∑∏∫∞∈∂→←⊗⊕∀∃∇]")
+UNLABELLED_ROWS = ("Table text without row labels on page(s) {pages}: the rows are kept, but they are not used as "
+                   "evidence because the quantity each number belongs to could not be determined.")
+
+
+def _numeric_cell(text: str) -> bool:
+    """A cell that holds a value: it starts with a digit or a sign and has at least as many digits as letters
+    ("19.9 ± 0.4", "12.4M", "3.5 h", "45%"). "F1", "GPT-3", an equation and an equation number are not values."""
+    t = text.strip()
+    if _EQ_NUMBER.match(t) or len(t) > 28 or "=" in t or not re.match(r"[\d+\-–−±<>≤≥~≈$.(]", t):
+        return False
+    digits = sum(ch.isdigit() for ch in t)
+    return digits > 0 and digits >= sum(ch.isalpha() for ch in t)
+
+
+def _prose_cell(text: str) -> bool:
+    """A line of running text, not a cell: five or more words, mostly lower-case words, few numbers (narrow columns
+    hold only five or six words a line), or PROSE_WORDS words of any kind as long as most are not numbers."""
+    words = text.split()
+    nums = sum(1 for w in words if re.search(r"\d", w))
+    if len(words) >= 5 and nums < 0.3 * len(words) and sum(1 for w in words if w[:1].islower()) >= 0.6 * len(words):
+        return True
+    return len(words) >= PROSE_WORDS and nums < 0.5 * len(words)
+
+
+def _cells(lines: list[tuple]) -> list[dict]:
+    """Cells of a page: runs of spans on one line with no gap wider than CELL_GAP between them."""
+    out = []
+    for li, ln in enumerate(lines):
+        spans = sorted(ln[7], key=lambda s: s["bbox"][0])
+        if _prose_cell(ln[0]):
+            # a loosely justified line of prose has wide gaps between its words: it is one piece of text, never cells
+            out.append({"text": ln[0], "bbox": ln[5], "size": ln[1], "line": li, "spans": spans, "num": False, "prose": True})
+            continue
+        toks = ln[0].split()
+        k = next((i for i, t in enumerate(toks) if _numeric_cell(t)), len(toks))
+        listed = any(t[-1] in ",;]" or t[0] in "[(" for t in toks[k:])   # "35, 37–43, 46," is a wrapped citation list
+        if k <= NUMERIC_ROW_LABEL and len(toks) - k >= NUMERIC_ROW_VALUES and not listed \
+                and all(_numeric_cell(t) for t in toks[k:]):
+            # a row of values typed with ordinary spaces ("Score 0.61 0.47 0.52 0.53"): no gap marks its cells, but
+            # a short label followed by nothing except numbers is never a line of prose. Cell boxes are estimated.
+            parts = ([" ".join(toks[:k])] if k else []) + toks[k:]
+            x0, x1, pos, n = ln[5][0], ln[5][2], 0, sum(len(p) for p in parts) + len(parts) - 1
+            for j, part in enumerate(parts):
+                bb = (x0 + (x1 - x0) * pos / n, ln[5][1], x0 + (x1 - x0) * (pos + len(part)) / n, ln[5][3])
+                out.append({"text": part, "bbox": bb, "size": ln[1], "line": li, "spans": spans,
+                            "num": j > 0 or not k, "prose": False})
+                pos += len(part) + 1
+            continue
+        run = []
+        for sp in spans + [None]:
+            if sp is not None and (not run or sp["bbox"][0] - run[-1]["bbox"][2] <= max(CELL_GAP * ln[1], CELL_GAP_MIN)):
+                run.append(sp)
+                continue
+            if run:
+                text = _line_text(run).strip().translate(_LIGATURES)
+                bb = (min(s["bbox"][0] for s in run), min(s["bbox"][1] for s in run),
+                      max(s["bbox"][2] for s in run), max(s["bbox"][3] for s in run))
+                if text:
+                    out.append({"text": text, "bbox": bb, "size": ln[1], "line": li, "spans": run,
+                                "num": _numeric_cell(text), "prose": _prose_cell(text)})
+            run = [sp] if sp is not None else []
+    return out
+
+
+def _gutters(cells: list[dict], page_width: float) -> list[tuple[float, float]]:
+    """Column gutters of the page, from its prose lines alone: vertical strips that no prose line narrower than
+    0.6 of the page crosses, with at least FLANK_MIN_LINES prose lines on each side."""
+    iv = sorted((c["bbox"][0], c["bbox"][2]) for c in cells if c["prose"] and c["bbox"][2] - c["bbox"][0] < 0.6 * page_width)
+    out, end = [], None
+    for k, (a, b) in enumerate(iv):
+        if end is not None and a - end >= GUTTER_MIN:
+            left = sum(1 for x in iv if x[1] <= end + 0.01)
+            right = sum(1 for x in iv if x[0] >= a - 0.01)
+            if left >= FLANK_MIN_LINES and right >= FLANK_MIN_LINES:
+                out.append((end, a))
+        end = b if end is None else max(end, b)
+    return out
+
+
+def _baseline_rows(cells: list[dict], max_gap: float, gutters=()) -> list[list[dict]]:
+    """Cells grouped by baseline, left to right, and cut at prose cells, at gaps wider than `max_gap`, and at a column
+    gutter unless there are at least two values on each side of it (a table that spans the columns)."""
+    rows: list[list[dict]] = []
+    for c in sorted(cells, key=lambda c: ((c["bbox"][1] + c["bbox"][3]) / 2, c["bbox"][0])):
+        yc = (c["bbox"][1] + c["bbox"][3]) / 2
+        if rows and abs(yc - rows[-1][0]["yc"]) < 0.45 * min(c["size"], rows[-1][0]["size"]):
+            rows[-1].append(c)
+        else:
+            c["yc"] = yc
+            rows.append([c])
+        c["yc"] = rows[-1][0]["yc"]
+    segs = []
+    for row in rows:
+        seg: list[dict] = []
+        for c in sorted(row, key=lambda c: c["bbox"][0]):
+            if c["prose"] or (seg and c["bbox"][0] - seg[-1]["bbox"][2] > max_gap):
+                if seg:
+                    segs.append(seg)
+                seg = []
+            if not c["prose"]:
+                seg.append(c)
+        if seg:
+            segs.append(seg)
+    for g0, g1 in gutters:
+        cut = []
+        for seg in segs:
+            left = [c for c in seg if c["bbox"][2] <= g0 + 1.0]
+            right = [c for c in seg if c["bbox"][0] >= g1 - 1.0]
+            if left and right and len(left) + len(right) == len(seg) \
+                    and (sum(c["num"] for c in left) < 2 or sum(c["num"] for c in right) < 2):
+                cut += [left, right]
+            else:
+                cut.append(seg)
+        segs = cut
+    return segs
+
+
+def _x_overlap(a, b) -> float:
+    return min(a[2], b[2]) - max(a[0], b[0])
+
+
+def _seg_box(seg: list[dict]) -> tuple:
+    return (min(c["bbox"][0] for c in seg), min(c["bbox"][1] for c in seg),
+            max(c["bbox"][2] for c in seg), max(c["bbox"][3] for c in seg))
+
+
+def _aligned_columns(rows: list[list[dict]]) -> int:
+    """Number of x-positions at which numeric cells of at least two different rows stand above each other."""
+    iv = sorted((c["bbox"][0], c["bbox"][2], ri) for ri, row in enumerate(rows) for c in row if c["num"])
+    n, cur_end, members = 0, None, set()
+    for x0, x1, ri in iv + [(float("inf"), float("inf"), -1)]:
+        if cur_end is not None and x0 <= cur_end:
+            members.add(ri)
+            cur_end = max(cur_end, x1)
+            continue
+        if len(members) >= 2:
+            n += 1
+        cur_end, members = x1, {ri}
+    return n
+
+
+def _prune_strays(g: list[list[dict]]) -> list[list[dict]]:
+    """Drop end cells that align with no cell of another row and lie apart from their neighbour; drop rows left with one cell."""
+    if len(g) < 2:
+        return g
+    far = 1.5 * g[0][0]["size"]
+    out = []
+    for src in g:
+        r = list(src)
+        changed = True
+        while changed and len(r) >= 2:
+            changed = False
+            for edge, nb in ((r[-1], r[-2]), (r[0], r[1])):
+                alone = not any(_x_overlap(edge["bbox"], c["bbox"]) > 0 for o in g if o is not src for c in o)
+                gap = max(edge["bbox"][0] - nb["bbox"][2], nb["bbox"][0] - edge["bbox"][2])
+                if alone and gap > far:
+                    r.remove(edge)
+                    changed = True
+                    break
+        if len(r) >= 2 and any(c["num"] for c in r):
+            out.append(r)
+    return out
+
+
+def _open_tables(lines: list[tuple], page_width: float) -> tuple[list[list[tuple]], list[tuple], bool]:
+    """Tables without a grid among `lines`. Returns ([rows of table 0, rows of table 1, ...], the other lines with one
+    placeholder per table row (block number -(table index + 1)), unlabelled rows present?). A row is (text, kind)."""
+    if len(lines) < 2:
+        return [], lines, False
+    cells = _cells(lines)
+    segs = _baseline_rows(cells, 0.45 * page_width, _gutters(cells, page_width))
+
+    def is_data(seg):
+        """At least two values, or a label followed by one value. A number followed by words is a numbered heading
+        or a list item ("4 Experiments"), and a row with mathematical operators is part of a formula."""
+        nums = sum(c["num"] for c in seg)
+        if len(seg) < 2 or _CAPTION_START.match(seg[0]["text"]) \
+                or any(_LEADERS.search(c["text"]) or _MATH.search(c["text"]) for c in seg):
+            return False
+        return nums >= 2 or (nums == 1 and seg[-1]["num"] and len(seg) == 2)
+
+    data = sorted((s for s in segs if is_data(s)), key=lambda s: s[0]["yc"])
+    groups: list[list[list[dict]]] = []
+    for seg in data:
+        box, size = _seg_box(seg), seg[0]["size"]
+        for g in reversed(groups):
+            last = _seg_box(g[-1])
+            gbox = (min(_seg_box(r)[0] for r in g), 0, max(_seg_box(r)[2] for r in g), 0)
+            if 0 < seg[0]["yc"] - g[-1][0]["yc"] <= ROW_LEAD * size \
+                    and _x_overlap(box, gbox) > 0.5 * min(box[2] - box[0], gbox[2] - gbox[0]) and last is not None:
+                g.append(seg)
+                break
+        else:
+            groups.append([seg])
+    found, used = [], {}
+    unlabelled = False
+    for g in groups:
+        g = _prune_strays(g)
+        if not g:
+            continue
+        cols = _aligned_columns(g)
+        strong = [r for r in g if sum(c["num"] for c in r) >= 3]
+        if not ((len(g) >= 2 and cols >= 2) or (len(g) >= 3 and cols >= 1) or (len(g) == 1 and strong)):
+            continue
+        if len(g) >= 2 and cols == 0:
+            continue
+        size = g[0][0]["size"]
+        x0, x1 = min(_seg_box(r)[0] for r in g), max(_seg_box(r)[2] for r in g)
+        y0, y1 = g[0][0]["yc"], g[-1][0]["yc"]
+        ids = {id(r) for r in g}
+        taken = {id(c) for r in g for c in r}
+        # rows of column heads directly above, and short lines between the data rows (group labels, wrapped labels)
+        heads, top = [], y0
+        for seg in sorted((s for s in segs if id(s) not in ids and s[0]["yc"] < y0
+                           and not any(id(c) in taken for c in s)), key=lambda s: -s[0]["yc"]):
+            box = _seg_box(seg)
+            if top - seg[0]["yc"] > HEAD_LEAD * size or len(heads) >= 3:
+                break
+            if len(seg) < 2 or _CAPTION_START.match(seg[0]["text"]) or box[0] < x0 - 2 * size or box[2] > x1 + 2 * size:
+                if top - seg[0]["yc"] < 0.5 * size:
+                    continue                       # something else on the same baseline, further left or right
+                break
+            heads.insert(0, seg)
+            top = seg[0]["yc"]
+        inner = [s for s in segs if id(s) not in ids and y0 < s[0]["yc"] < y1 and not any(id(c) in taken for c in s)
+                 and _seg_box(s)[0] >= x0 - 2 * size and _seg_box(s)[2] <= x1 + 2 * size]
+        rows = sorted(g + inner, key=lambda s: s[0]["yc"])
+        head = heads[-1] if heads else None
+        out = [("Table header: " + "; ".join(c["text"] for c in h), "meta") for h in heads]
+        for seg in rows:
+            if id(seg) not in ids:
+                out.append(("Table text: " + "; ".join(c["text"] for c in seg), "meta"))
+                continue
+            parts = []
+            for i, c in enumerate(seg):
+                hs = [h for h in head if _x_overlap(h["bbox"], c["bbox"]) > 0] if head and i else []
+                # a column head is attached only if it stands over this cell alone and the cell under it alone
+                if len(hs) == 1 and sum(1 for o in seg if _x_overlap(hs[0]["bbox"], o["bbox"]) > 0) == 1:
+                    parts.append(f"{hs[0]['text']}: {c['text']}")
+                else:
+                    parts.append(c["text"])
+            labelled = not seg[0]["num"] and sum(ch.isalpha() for ch in seg[0]["text"]) >= 2
+            unlabelled = unlabelled or not labelled
+            out.append(("Table row: " + "; ".join(parts), "table" if labelled else "meta"))
+        for r, seg in enumerate(heads + rows):
+            box = _seg_box(seg)
+            chars = sum(len(c["text"]) for c in seg)
+            mark = ("", size, False, box[1], -(len(found) + 1), box, False,
+                    [{"text": "x" * chars, "bbox": box, "size": size, "flags": 0, "font": ""}])
+            for c in seg:
+                for sp in c["spans"]:
+                    used[id(sp)] = (len(found), r, mark)
+        found.append(out)
+    if not found:
+        return [], lines, False
+    rest, placed = [], set()
+    for ln in lines:
+        owners = [used.get(id(sp)) for sp in ln[7]]
+        for o in owners:
+            if o and o[:2] not in placed:          # the row's placeholder goes where its first cell stood
+                placed.add(o[:2])
+                rest.append(o[2])
+        keep = [sp for sp, o in zip(ln[7], owners) if o is None]
+        if len(keep) == len(ln[7]):
+            rest.append(ln)
+        elif keep:
+            rest.append(_make_line(keep, ln[4]))   # prose that shares a line with a cell keeps its place
+    return found, rest, unlabelled
+
+
 FIGURE_PAD = 2.0
 FIGURE_GAP = 6.0          # drawing items closer than this belong to one figure
 FIGURE_MIN_ITEMS = 4
@@ -761,12 +1058,18 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                   if not (pg["lines"][i][2] and canonical_section(pg["lines"][i][0], exact=True))}
         pg["margin"] = [ln for i, ln in enumerate(pg["lines"]) if i in margin]
         pg["lines"] = [ln for i, ln in enumerate(pg["lines"]) if i not in margin]
+        pg["open_tables"], pg["unlabelled"] = [], False
+        if not pg["toc"]:
+            pg["open_tables"], pg["lines"], pg["unlabelled"] = _open_tables(pg["lines"], pg["width"])
         pg["lines"], pg["layout"] = _reorder_columns(pg["lines"])
         for ln in pg["lines"]:
             size_chars[round(ln[1], 1)] += len(ln[0])
     total_chars = sum(len(ln[0]) for pg in pages for ln in pg["lines"])
     if total_chars < 40 * max(1, len(pdf)):
         warnings.append(UNREADABLE_WARNING)
+    nolabel = [pg["pno"] for pg in pages if pg["unlabelled"]]
+    if nolabel:
+        warnings.append(UNLABELLED_ROWS.format(pages=", ".join(map(str, nolabel))))
     amb = [pg["pno"] for pg in pages if pg["layout"]["ambiguous"]]
     if amb:
         warnings.append(AMBIGUOUS_LAYOUT.format(pages=", ".join(map(str, amb))))
@@ -784,6 +1087,7 @@ def _build(pdf, doc_id: str, name: str) -> Document:
     st["held"] = None                          # (lines, page, size) of a sentence interrupted by a caption
     st["cap_block"] = None
     st["buf_page"] = None                      # page on which the first text in `buf` started
+    st["deferred"] = []                        # table rows met in the middle of a sentence: emitted once it is complete
     st["carried"] = False                      # `buf` holds the unfinished last sentence of the previous page
 
     for pg in pages:
@@ -824,6 +1128,18 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                 buf.append(tail)
                 st["buf_page"] = first_page if not sents else pno
                 st["carried"] = True
+            elif lines is None and st["deferred"]:
+                for rows, page, tsec, thead in st["deferred"]:
+                    emit_rows(rows, page, tsec, thead)
+                st["deferred"] = []
+
+        def emit_rows(rows, page, sec, heading):
+            for row in rows:
+                row, kind = row if isinstance(row, tuple) else (row, "table")
+                row, n_bad = _clean(row)
+                st["unmapped"] += n_bad
+                sentences.append(Sentence(st["sid"], row, page, sec, heading, kind))
+                st["sid"] += 1
 
         def release_held():
             """Close the caption that interrupted a sentence and put the sentence back into the running text."""
@@ -843,22 +1159,31 @@ def _build(pdf, doc_id: str, name: str) -> Document:
 
         pending_tables = sorted(tables, key=lambda t: t[0][1])
 
-        def emit_tables(until_y, xc=None):
+        def emit_tables(until_y, xc=None, next_line=None):
             """Tables are placed before the first line below their top edge in their own column (in the reading
-            order a column-wise page has no single vertical position)."""
+            order a column-wise page has no single vertical position). A table that stands inside a sentence (the
+            text before it is unfinished and the line after it goes on in lower case) is emitted after that sentence."""
             while pending_tables and pending_tables[0][0][1] <= until_y and (
                     xc is None or pending_tables[0][0][0] - 6 <= xc <= pending_tables[0][0][2] + 6):
                 _, rows = pending_tables.pop(0)
-                flush()
-                if st["section"] == "references":
-                    continue
-                sec = st["section"] if st["section"] != "front" else "results"
-                for row in rows:
-                    row, n_bad = _clean(row)
-                    st["unmapped"] += n_bad
-                    sentences.append(Sentence(st["sid"], row, pno, sec, st["heading"], "table"))
-                    st["sid"] += 1
+                place_table(rows, next_line)
 
+        def place_table(rows, next_line):
+            """Emit table rows here, or after the current sentence if the table stands inside it: the text before
+            is unfinished, the line after the table goes on in lower case, and both lines are in the same column."""
+            sec = st["section"] if st["section"] != "front" else "results"
+            last = st.get("last_bbox")
+            same_col = bool(next_line and last and
+                            _x_overlap(last, next_line[5]) > 0.5 * min(last[2] - last[0], next_line[5][2] - next_line[5][0]))
+            if buf and same_col and next_line[0][:1].islower() and not st["held"] \
+                    and st["section"] not in ("references", "front") and not _SENTENCE_END.search(buf[-1]):
+                st["deferred"].append((rows, pno, sec, st["heading"]))
+                return
+            flush()
+            if st["section"] != "references":
+                emit_rows(rows, pno, sec, st["heading"])
+
+        open_done: set[int] = set()
         prev_block = last_block = note_block = None
         prev_size = prev_y = note_y = None
         dropcap = ""
@@ -868,7 +1193,12 @@ def _build(pdf, doc_id: str, name: str) -> Document:
         while i < len(lines):
             text, size, bold, y, block_no = lines[i][:5]
             i += 1
-            emit_tables(y, (lines[i - 1][5][0] + lines[i - 1][5][2]) / 2)
+            if block_no < 0:                       # the place of a row of a table without a grid
+                if block_no not in open_done:
+                    open_done.add(block_no)
+                    place_table(pg["open_tables"][-block_no - 1], next((ln for ln in lines[i:] if ln[4] >= 0), None))
+                continue
+            emit_tables(y, (lines[i - 1][5][0] + lines[i - 1][5][2]) / 2, lines[i - 1])
             if re.fullmatch(r"\d{1,3}", text) and (y < 60 or y > 700):
                 continue  # page number
             if block_no != last_block:
@@ -959,6 +1289,7 @@ def _build(pdf, doc_id: str, name: str) -> Document:
                 st["buf_size"] = size
                 st["buf_page"] = pno
             buf.append(dropcap + text)
+            st["last_bbox"] = lines[i - 1][5]
             dropcap = ""
         emit_tables(1e9)
         release_held()

@@ -1,0 +1,106 @@
+{
+ "common_claims": 144,
+ "common_set": {
+  "old": {
+   "claims": 144,
+   "claims_without_label": 0,
+   "real_claims": 99,
+   "returned": 61,
+   "returned_without_label": 0,
+   "labelled_returned": 61,
+   "strict_y": 23,
+   "lenient_yp": 49,
+   "strict": [
+    0.377,
+    0.27,
+    0.5
+   ],
+   "lenient": [
+    0.803,
+    0.69,
+    0.88
+   ],
+   "coverage": [
+    0.616,
+    0.52,
+    0.71
+   ]
+  },
+  "new": {
+   "claims": 144,
+   "claims_without_label": 0,
+   "real_claims": 99,
+   "returned": 59,
+   "returned_without_label": 0,
+   "labelled_returned": 59,
+   "strict_y": 22,
+   "lenient_yp": 48,
+   "strict": [
+    0.373,
+    0.26,
+    0.5
+   ],
+   "lenient": [
+    0.814,
+    0.7,
+    0.89
+   ],
+   "coverage": [
+    0.596,
+    0.5,
+    0.69
+   ]
+  }
+ },
+ "whole_old": {
+  "claims": 144,
+  "claims_without_label": 0,
+  "real_claims": 99,
+  "returned": 61,
+  "returned_without_label": 0,
+  "labelled_returned": 61,
+  "strict_y": 23,
+  "lenient_yp": 49,
+  "strict": [
+   0.377,
+   0.27,
+   0.5
+  ],
+  "lenient": [
+   0.803,
+   0.69,
+   0.88
+  ],
+  "coverage": [
+   0.616,
+   0.52,
+   0.71
+  ]
+ },
+ "whole_new": {
+  "claims": 144,
+  "claims_without_label": 0,
+  "real_claims": 99,
+  "returned": 59,
+  "returned_without_label": 0,
+  "labelled_returned": 59,
+  "strict_y": 22,
+  "lenient_yp": 48,
+  "strict": [
+   0.373,
+   0.26,
+   0.5
+  ],
+  "lenient": [
+   0.814,
+   0.7,
+   0.89
+  ],
+  "coverage": [
+   0.596,
+   0.5,
+   0.69
+  ]
+ },
+ "same_top_passage_on_common": 139
+}

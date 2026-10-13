@@ -128,3 +128,25 @@ Not run: official held-out scorers, `eval/dev_threshold_sweep.py`, anything on t
 | `PY -m eval.run_eval --n 100 --seed 7`, `PY -m eval.scifact_eval` | identical to 0.4.0-dev except timings |
 
 Not run: the application in the browser this sprint (parser-only change on top of the sprint-4 check), official held-out scorers, anything on the held-out folders.
+
+## 0.6.0-dev (2026-10-13, branch `dev/reading-order-v0.5`)
+
+| Command | Outcome |
+|---|---|
+| `PY -m pytest -q` at the start (`adce476`) | 189 passed |
+| `PY -m eval.layout_bench` with the parser of `adce476` on the 8 new unruled-table layouts | table-row recall 0.00, 8 sentences with glued cells, 9 spliced sentences, paragraph reconstruction 0.91 (the failure, measured before the parser was touched) |
+| first run with detection | new layouts 1.00 except `L15` paragraph reconstruction 0.91: the last word of a reference line in the next column was taken into a table row, and two values in a narrow column were merged into one cell; fixed (stray-cell rule, cell gap 0.7) |
+| `PY -m pytest -q tests/test_unruled_tables.py`, first run | 14 passed, **4 failed**: table emitted after the text below it on a two-column page (fixed: rows keep a placeholder during reading-order analysis); "F1" counted as a number; display equations read as a table; all fixed in the parser, no test changed |
+| development papers, first comparison | regressions found by reading the changed sentences: numbered headings ("4 Experiments") read as rows, short prose lines of the neighbouring column pulled into tables, a loosely justified line cut into cells, a table bridging two unrelated text fragments; each fixed at its cause |
+| single-row rule, first version | cut wrapped citation lists ("35, 37-43, 46,") out of their sentences in one development paper; restricted, regression test added |
+| a test-file edit made with `sed` wrote a literal `\n` | collection error on the next run; repaired by hand, no assertion lost |
+| `PY -m pytest -q` final | **217 passed, 0 failed, 0 skipped** (28 new: 20 in `tests/test_unruled_tables.py`, 8 benchmark layouts) |
+| `PY -m eval.layout_bench --out eval/results/layout_bench/after_0.6.0-dev.json` | 29 layouts, 0 crashed; all measures 1.00 on the new layouts; the 21 earlier layouts identical to `after_0.5.1-dev.json` |
+| `PAPERLENS_SRC=<adce476> PY -m eval.layout_bench --out .../baseline_adce476_29_layouts.json` | table-row recall 0.20 over 29 layouts, `table_leaks` 8 |
+| `PY -m eval.real_papers data/Papers eval/results/dev_v0.6.0` | 16 papers, 0 crashed, 144 claims |
+| `PY -m eval.table_text_dev data/Papers ...` for both versions | number-run prose sentences 48 -> 14; table sentences 406 -> 689 |
+| `PY -m eval.claim_map map / merge / compare` (0.5.1-dev vs 0.6.0-dev) | 144 identical claims; 2 fresh pair labels; strict 23/61 vs 22/59, lenient 49/61 vs 48/59, coverage 61/99 vs 59/99 |
+| `PY -m eval.structure_dev`, `PY -m eval.run_eval --n 100 --seed 7`, `PY -m eval.scifact_eval` | abstract 16/16, headings 83/85; synthetic and SciFact identical to 0.5.1-dev |
+
+Not run: the application in the browser (parser-only change), the official held-out scorers, anything on the held-out
+folders or audit files. `git stash` was used twice during the work and restored at once; no file was lost.

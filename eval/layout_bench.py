@@ -33,6 +33,8 @@ the parser, never out of the denominator):
   abstract_p / _r   precision / recall (characters) of the sentences labelled abstract against the abstract block.
   quantity_recall   ground-truth quantities (units, exponents, intervals) found in the sentences of their own block / quantities.
   table_recall      ground-truth table data rows found as one table sentence containing all their cells / rows.
+  table_leaks       number of parser text/caption sentences that contain two neighbouring cells of one ground-truth
+                    table row run together (cell text glued into prose or into a caption).
   title_ok          the extracted title equals the ground-truth title.
   ambiguity_safe    (ambiguous layouts only) 1 if nothing was spliced OR the document carries a layout warning.
   layout_warning    1 if the document carries a warning about layout / reading order.
@@ -225,6 +227,10 @@ def evaluate(truth: dict, analysis) -> dict:
     tabs = [alnum(s.text) for s in doc.sentences if s.kind == "table"]
     r["table_recall"] = (sum(any(all(alnum(c) in t for c in row) for t in tabs) for _, row in rows) / len(rows)
                          if rows else float("nan"))
+    pairs = {alnum(a) + alnum(b) for b_ in truth["blocks"] if b_["kind"] == "table" for row in b_["rows"]
+             for a, b in zip(row, row[1:]) if alnum(a) and alnum(b) and len(alnum(a) + alnum(b)) >= 6}
+    r["table_leaks"] = sum(1 for s in doc.sentences if s.kind in ("text", "caption")
+                           and any(p in alnum(s.text) for p in pairs))
     r["title_ok"] = float(alnum(doc.title) == alnum(truth["title"]))
     warn = any(re.search(r"layout|reading order|column", w, re.I) for w in doc.warnings)
     r["layout_warning"] = float(warn)
@@ -235,7 +241,7 @@ def evaluate(truth: dict, analysis) -> dict:
 METRICS = ["block_recall", "block_precision", "order_acc", "para_recon", "page_acc", "claim_recall", "claim_page_ok",
            "evidence_rate", "heading_recall", "section_acc", "abstract_p", "abstract_r", "quantity_recall",
            "table_recall", "title_ok"]
-COUNTS = ["spliced", "furniture_leaks", "spurious_claims", "evidence_mixed", "layout_warning"]
+COUNTS = ["spliced", "furniture_leaks", "spurious_claims", "evidence_mixed", "layout_warning", "table_leaks"]
 
 
 def _mean(xs):
@@ -302,7 +308,7 @@ def _print(res):
     print("also: " + ", ".join(f"{k}={_fmt(a[k]).strip()}" for k in ["heading_recall", "section_acc", "abstract_p", "abstract_r",
                                                                     "quantity_recall", "table_recall", "title_ok", "claim_page_ok",
                                                                     "ambiguity_safe", "spurious_claims", "evidence_mixed",
-                                                                    "false_layout_warnings"]))
+                                                                    "false_layout_warnings", "table_leaks"]))
 
 
 if __name__ == "__main__":

@@ -823,3 +823,96 @@ The one lenient loss is a claim in the Attention paper whose top passage changed
 Confounders: the 12 fresh labels were written knowing the system output and by the session that edited the parser; the old labels by the session that wrote 0.2.0-dev; neither is human;
 59 passages is a small denominator; the 5 fragment-to-sentence claims are new items that were previously judged on their fragments. Synthetic seed 7 and SciFact dev are identical to 0.4.0-dev.
 Synthetic reading-order benchmark: unchanged by the figure fixes (macro 1.00, `L13` still 0.92 for order).
+
+## 13. Development version 0.6.0-dev: tables without a grid (synthetic and development data only)
+
+Branch `dev/reading-order-v0.5`, continued from `adce476`. Synthetic PDFs and the 16 development papers only; no held-out
+data was opened. Labels quoted are AI-assisted and not human ground truth.
+
+### 13.1 The failure (`paperlens/ingest.py` before the change)
+
+Tables were found only by `page.find_tables()`, which needs drawn rules. A table set with white space only, or with a few
+horizontal rules, reached the parser as ordinary lines. Seen on the development papers: a whole table as one `text`
+sentence (GLUE and SQuAD tables in the BERT paper, the model and result tables of the GPT-3 paper, the BLEU table of the
+Attention paper, two event-count tables of the ATLAS paper); a row running into the next paragraph ("... 78.7 81.9 80.0
+83.1 tuning data, we only lose ...") or into a caption ("... 87.7 79.3 Figure 3.2: ..."). Such text could be chosen as an
+evidence passage. A sentence with a (ruled) table in its middle was also cut in two.
+
+### 13.2 What was added
+
+`_open_tables` recognises a table from geometry: lines are cut into cells at wide gaps; cells on one baseline form a row; a
+row with at least two values (or a label and one value) is a data row; data rows whose values stand above each other form a
+table; the rows of column heads above and short lines between the rows belong to it. Never a cell: a line of running prose
+(five or more mostly lower-case words), a numbered heading, a formula, an equation number, a contents entry, a wrapped
+citation list. A row never crosses a column gutter unless both sides hold at least two values. Data rows with a row label
+become `table` sentences in the format of ruled tables; column heads, group labels and rows without a label become `meta`
+(never a claim, never evidence), and rows without a label raise a warning. Each row leaves a placeholder so that reading
+order is computed with the table in place and the rows are emitted where the table stands. A table inside an unfinished
+sentence (same column, text continuing in lower case) is emitted after that sentence; this also applies to ruled tables.
+
+### 13.3 Synthetic benchmark (`python -m eval.layout_bench`; 8 new layouts, 29 in all)
+
+New layouts, category `unruled_tables`: a 6 x 5 table with right-aligned numbers, a unit, an error bar and a dash, with no
+grid, in a single column and in one column of a two-column page, with the page stream in natural, block, line and shuffled
+order; the same with three horizontal rules; and with the cells written column by column or shuffled. New count
+`table_leaks`: prose or caption sentences containing two neighbouring cells of one table row.
+
+| Measure, mean over the 8 new layouts | parser of `adce476` (0.5.1-dev) | 0.6.0-dev |
+|---|---|---|
+| table-row recall (rows found as one table sentence with all their cells) | 0.00 | 1.00 |
+| sentences with glued table cells (`table_leaks`, total) | 8 | 0 |
+| spliced sentences (total) | 9 | 0 |
+| block precision | 0.96 | 1.00 |
+| paragraph reconstruction | 0.91 | 1.00 |
+| block recall | 0.98 | 1.00 |
+| reading order, page accuracy, claim recall, evidence rate | 1.00 | 1.00 |
+
+Over all 29 layouts the table-row recall goes from 0.20 to 1.00. The 21 earlier layouts score exactly as recorded for
+0.5.1-dev (`after_0.5.1-dev.json`), so nothing regressed there. Files: `eval/results/layout_bench/after_0.6.0-dev.json`,
+`baseline_adce476_29_layouts.json`. The layouts and the parser change were written by the same session, and the table is a
+template: **these scores say the geometry is handled, not that real tables are.**
+
+### 13.4 The 16 development papers (real PDFs; automatic counts, `python -m eval.table_text_dev`)
+
+| Count over the 16 papers | 0.5.1-dev | 0.6.0-dev |
+|---|---|---|
+| sentences of kind text / table / meta / caption | 8257 / 406 / 483 / 189 | 8263 / 689 / 607 / 191 |
+| prose sentences with a run of four or more numbers (an upper bound on table text read as prose; citation lists also match) | 48 | 14 |
+| rows newly marked as table content | | 407: 283 labelled `table` rows, 56 rows without a label (`meta`), 52 column-head rows, 16 other |
+| papers with the new "rows without labels" warning | 0 | 7 |
+| crashes | 0 | 0 |
+
+Read by the assistant, not labelled: of the 80 `text` sentences that disappeared, 32 looked like prose by a word-count
+test; all of them were table or figure text mixed with prose, or sentences that are now re-formed without the table text.
+9 papers changed, 7 did not. Abstract detection (16/16) and heading detection (83/85) are unchanged.
+
+What these counts cannot show: whether a row was read correctly (cells in the right order, heads attached to the right
+values). Reading samples shows correct rows (BERT GLUE table, SciFact tables, ResNet error table) and wrong ones (rows
+split in two, a value pair merged into one cell, heads left as prose). No row-level ground truth exists for real papers.
+
+### 13.5 Claims and evidence on the development papers (`python -m eval.claim_map compare`, AI-assisted labels)
+
+All 144 claims are identical in text to 0.5.1-dev, so every claim label carries over. 139 of 144 top passages are the
+same. Two new passages needed labels (both judged partial, by the session that changed the parser, so not independent).
+
+| On the 144 common claims (99 real) | 0.5.1-dev | 0.6.0-dev |
+|---|---|---|
+| coverage (real claims with a passage) | 61/99 = 0.616 (95% CI 0.52 to 0.71) | 59/99 = 0.596 (0.50 to 0.69) |
+| strict precision (y) | 23/61 = 0.377 (0.27 to 0.50) | 22/59 = 0.373 (0.26 to 0.50) |
+| lenient precision (y or p) | 49/61 = 0.803 (0.69 to 0.88) | 48/59 = 0.814 (0.70 to 0.89) |
+
+The five changes: two claims lost their passage (old labels: one wrong, one partial; the pool of candidate passages
+changed, which shifts the lexical scores); one passage went from a glued sentence labelled `y` to a single table row
+labelled `p` (the row holds one of the claim's two quantities; the other is now in a separate row); one went from a
+partial sentence to a partial table row; one belongs to a sentence that is not a claim. **No improvement and no loss in
+evidence precision is demonstrated**: one or two passages out of about 60, intervals overlapping completely.
+Synthetic claim benchmark (seed 7) and SciFact dev are identical to 0.5.1-dev.
+
+### 13.6 Not measured, not fixed
+
+- Row-level correctness on real papers; anything on unseen papers; any human-labelled figure.
+- Two development cases that motivated the work are still glued: a ResNet architecture table whose cells are words
+  ("... output size: 1 avg pool We evaluate our method ..."), and a row of ten scores in the protein-contact paper that
+  follows "protein of 182" (the new single-row rule covers the synthetic version of this, not this page).
+- Tables whose cells are sentences or long phrases (the CheckList paper) stay prose; only their number columns are removed.
+- Column heads that PyMuPDF delivers as one line of words stay prose ("System Dev Test EM F1 ...").

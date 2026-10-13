@@ -62,6 +62,8 @@ class Item:
     bid: str = ""
     grid: str = ""                  # grid cell name for the ambiguous layout
     split_lines: int = 0            # break the region after this many lines of the paragraph (a page or column break mid-text)
+    style: str = ""                 # table: "" ruled grid, "unruled" no rules at all, "hrules" three horizontal rules only
+    cell_order: str = "rows"        # table without a grid: order in which the cells are written (rows, cols, shuffled)
 
 
 @dataclass
@@ -88,6 +90,8 @@ class Unit:
     rows: list = field(default_factory=list)
     w: float = 0.0
     h: float = 0.0
+    style: str = ""
+    cell_order: str = "rows"
 
 
 # ---------------------------------------------------------------------------------------------------- text content
@@ -142,7 +146,8 @@ class Content:
 
 
 def logical_items(seed: int, n_filler: int, tables: bool = False, quantities: bool = False,
-                  intro_after_abstract_break: bool = True) -> tuple[list[Item], Content]:
+                  intro_after_abstract_break: bool = True, table_style: str = "",
+                  cell_order: str = "rows") -> tuple[list[Item], Content]:
     """The logical document: title, abstract with two claims, four numbered sections, references."""
     c = Content(seed)
     (c1, e1), (c2, e2) = c.claims()
@@ -175,7 +180,15 @@ def logical_items(seed: int, n_filler: int, tables: bool = False, quantities: bo
                 [c.method, f"{c.a1}", f"{c.red}.4"], ["Ablation", f"{round(c.a1 - 1.3, 1)}", f"{c.red + 3}.7"]]
         it.append(Item("caption", f"Table 1: Accuracy and error of the baseline and the {c.method} on {c.b1}.",
                        section="results", size=8.5, bid="cap_t1"))
-        it.append(Item("table", rows=rows, section="results", bid="table1"))
+        if table_style:
+            # a table with no grid: more columns, right-aligned numbers, a unit, an error bar, a percentage, a dash
+            rows = [["Model", "Accuracy", "Error", "Params", "Time"],
+                    ["Baseline", f"{c.a0}", f"{c.red + 10}.1 ± 0.4", "12.4M", "3.5 h"],
+                    [c.method, f"{c.a1}", f"{c.red}.4 ± 0.2", "48.0M", "9.0 h"],
+                    ["Ablation", f"{round(c.a1 - 1.3, 1)}", f"{c.red + 3}.7 ± 0.3", "47.1M", "8.5 h"],
+                    ["No pretraining", f"{round(c.a0 - 4.2, 1)}", "-", "48.0M", "8.9 h"],
+                    ["Ensemble of 5", f"{round(c.a1 + 0.9, 1)}", f"{c.red - 1}.8 ± 0.2", "240M", "45 h"]]
+        it.append(Item("table", rows=rows, section="results", bid="table1", style=table_style, cell_order=cell_order))
         it.append(Item("figure", section="results", bid="fig1"))
         it.append(Item("caption", f"Figure 1: Training curves of the {c.method} for three random seeds on {c.b1}.",
                        section="results", size=8.5, bid="cap_f1"))
@@ -300,7 +313,7 @@ class Flow:
                 self._advance()
                 reg = self.regions[self.ri]
             self.units.append(Unit(reg.page, reg.x0, self.y, [], size, False, it.bid, it.kind, it.rows,
-                                   reg.x1 - reg.x0, h))
+                                   reg.x1 - reg.x0, h, it.style, it.cell_order))
             self._record(it, reg.page, "")
             self.y += h + 6
             return
@@ -473,7 +486,9 @@ def draw(units, n_pages, stream, seed, furniture) -> bytes:
         if fn:
             pg.insert_text((56, 733), fn, fontsize=7.5, fontname=FONT)
     for u in units:
-        if u.kind == "table":
+        if u.kind == "table" and u.style:
+            _draw_open_table(pdf[u.page - 1], u, seed)
+        elif u.kind == "table":
             pg = pdf[u.page - 1]
             cw, rh = u.w / len(u.rows[0]), 13.0
             for ri, row in enumerate(u.rows):
@@ -489,6 +504,32 @@ def draw(units, n_pages, stream, seed, furniture) -> bytes:
         pdf[page - 1].insert_text((x, y), text, fontsize=size, fontname=BOLD if bold else FONT)
     pdf.set_metadata({})
     return pdf.tobytes(deflate=True, no_new_id=True)
+
+
+def _draw_open_table(pg, u: Unit, seed: int):
+    """A table without a grid: the first column is left-aligned, the others right-aligned, as typeset tables are.
+    "hrules" adds the three horizontal rules of a book-style table. Each cell is its own drawing operation."""
+    n, rh, fs = len(u.rows[0]), 13.0, 7.5
+    first = 0.30 * u.w
+    cw = (u.w - first) / (n - 1)
+    ops = []
+    for ri, row in enumerate(u.rows):
+        for ci, cell in enumerate(row):
+            font = BOLD if ri == 0 else FONT
+            if ci == 0:
+                x = u.x + 3
+            else:
+                x = u.x + first + ci * cw - 4 - pymupdf.get_text_length(cell, fontname=font, fontsize=fs)
+            ops.append((ri, ci, x, u.y + ri * rh + 9.5, cell, font))
+    if u.cell_order == "cols":
+        ops.sort(key=lambda o: (o[1], o[0]))
+    elif u.cell_order == "shuffled":
+        random.Random(seed + 17).shuffle(ops)
+    for _ri, _ci, x, y, cell, font in ops:
+        pg.insert_text((x, y), cell, fontsize=fs, fontname=font)
+    if u.style == "hrules":
+        for y in (u.y - 1.5, u.y + rh - 0.5, u.y + len(u.rows) * rh + 0.5):
+            pg.draw_line((u.x, y), (u.x + u.w, y), color=(0, 0, 0), width=0.6)
 
 
 # ---------------------------------------------------------------------------------------------------- ground truth
@@ -597,6 +638,17 @@ LAYOUTS = [
     ("L12_unequal_blocks_y", "stress_unequal_columns", "blocks_y", dict(tpl="unequal", fill=3)),
     ("L13_sparse_column_blocks_y", "stress_sparse_column", "blocks_y", dict(tpl="sparse", fill=3)),
     ("L10_grid_lines_y", "ambiguous", "lines_y", dict(tpl="grid")),
+    # tables without a grid (0.6.0-dev): the cells are ordinary text, only their geometry says "table"
+    ("L14_unruled_single_natural", "unruled_tables", "natural", dict(tpl="single", fill=3, tables=True, table_style="unruled")),
+    ("L14_unruled_twocol_natural", "unruled_tables", "natural", dict(tpl="two", fill=3, tables=True, table_style="unruled")),
+    ("L14_unruled_twocol_blocks_y", "unruled_tables", "blocks_y", dict(tpl="two", fill=3, tables=True, table_style="unruled")),
+    ("L14_unruled_twocol_lines_y", "unruled_tables", "lines_y", dict(tpl="two", fill=3, tables=True, table_style="unruled")),
+    ("L14_unruled_twocol_shuffled", "unruled_tables", "shuffled", dict(tpl="two", fill=3, tables=True, table_style="unruled")),
+    ("L15_hrules_twocol_blocks_y", "unruled_tables", "blocks_y", dict(tpl="two", fill=3, tables=True, table_style="hrules")),
+    ("L16_unruled_colmajor_twocol", "unruled_tables", "natural",
+     dict(tpl="two", fill=3, tables=True, table_style="unruled", cell_order="cols")),
+    ("L16_unruled_cellshuffle_single", "unruled_tables", "natural",
+     dict(tpl="single", fill=3, tables=True, table_style="unruled", cell_order="shuffled")),
 ]
 
 
@@ -617,7 +669,8 @@ def make(doc_id: str) -> tuple[bytes, dict]:
                  "excluded": [{"id": "pagenum1", "kind": "pagenum", "section": "", "text": "1",
                                "units": [{"page": 1, "text": "1"}], "quantities": [], "rows": []}]}
         return pdf, truth
-    items, c = logical_items(seed, kw.get("fill", 3), tables=kw.get("tables", False), quantities=kw.get("quantities", False))
+    items, c = logical_items(seed, kw.get("fill", 3), tables=kw.get("tables", False), quantities=kw.get("quantities", False),
+                             table_style=kw.get("table_style", ""), cell_order=kw.get("cell_order", "rows"))
     furniture: dict = {"pagenum": True}
     if kw.get("furniture"):
         furniture["header"] = lambda p: "A. Writer and B. Author" if p % 2 == 0 else "Synthetic Layout Benchmark"

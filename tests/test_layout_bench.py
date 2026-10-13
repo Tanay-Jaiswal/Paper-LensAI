@@ -31,7 +31,7 @@ def test_generator_is_deterministic_and_independent_of_the_parser(tmp_path):
     assert a == b and len(a) == len(layout_synth.LAYOUTS) >= 21
     assert {v["category"] for v in a.values()} >= {"single_column", "two_column", "two_column_spanning", "page_boundaries",
                                                   "captions_tables", "quantities", "furniture", "mixed_columns",
-                                                  "tight_gutter", "ambiguous"}
+                                                  "tight_gutter", "ambiguous", "unruled_tables"}
 
 
 def test_ground_truth_is_complete_and_consistent(tmp_path):
@@ -85,6 +85,7 @@ def test_layout_scores_do_not_regress(bench, doc_id):
         if m[k] == m[k]:                              # NaN: not applicable to this layout
             assert m[k] >= floor, (doc_id, k, m[k])
     assert m["spliced"] == 0 and m["furniture_leaks"] == 0 and m["spurious_claims"] == 0 and m["evidence_mixed"] == 0, m
+    assert m["table_leaks"] == 0, m
 
 
 def test_only_the_ambiguous_layout_is_flagged(bench):

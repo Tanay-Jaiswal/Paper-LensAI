@@ -12,7 +12,7 @@ Analysis(A), Analysis(B) ──compare──▶ aligned claims, shared datasets/
 ## Components
 
 **ingest.py** (PyMuPDF). Lines are read with font size/boldness; headings are recognised by a vocabulary of canonical
-paper sections plus typography. Tables are detected with `page.find_tables()` and turned into `Table row: Dataset: X; Method: Y; F1: 73.6`
+paper sections plus typography. Tables are detected with `page.find_tables()` (ruled) or from cell geometry (`_open_tables`, tables without a grid) and turned into `Table row: Dataset: X; Method: Y; F1: 73.6`
 sentences, removed from running prose so cells never pollute sentences. Running headers/footers (text repeated on ≥50% of pages),
 page numbers and end-of-line hyphenation are cleaned. Every sentence keeps `page`, `section`, `kind` (text/table/caption).
 Warnings are attached when text is scarce (scanned PDF) or no results section is found.

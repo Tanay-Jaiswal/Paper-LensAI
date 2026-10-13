@@ -106,3 +106,25 @@ Synthetic layouts and development papers only; `docs/EVALUATION.md` section 11.
   Rules-only tables are deliberately not figures. Text of unruled tables can still be glued to the nearest sentence (ResNet development paper).
 - **A caption inside an unfinished sentence** is separated only when it starts its own block and has more than a bare label.
 - **Labels are AI-assisted.** `eval/claim_map.py` carries a label only across identical claim text; every other claim needs a fresh label, which so far came from the session that edited the parser.
+
+## Added for 0.6.0-dev (tables without a grid)
+
+- **Only tables with numeric columns are recognised.** A table needs rows with at least two values (or a label and one
+  value) whose values line up. A table of words or phrases (an architecture table, a table of example sentences) is still
+  read as prose and can still be glued to the text next to it.
+- **Rows can be read wrongly.** Two values closer together than about 0.7 of the font size become one cell; a row label
+  of seven or more words, or five mostly lower-case words, is taken for prose and left out; a value that stands alone in
+  its column at the end of a row is left out. Cells are never re-ordered or guessed, but nothing checks them either.
+- **Column heads are attached only when unambiguous** (one head over one cell). With two-level heads only the lower level
+  is attached; heads delivered as a single line of words stay in the text as a short junk sentence.
+- **Rows without a row label are not evidence.** They are kept as `meta` with a warning. This loses real evidence when
+  the label sits in a merged cell or on another line.
+- **Formulas.** A row with a mathematical operator is not table data, so equation arrays stay prose, as before.
+- **A single row of values** is recognised only as "at most three label words, then four or more numbers and nothing
+  else". Comma-separated number lists are deliberately excluded (wrapped citation lists).
+- **A table inside a sentence** is moved behind the sentence only when the text before and after it is in the same column
+  and continues in lower case; otherwise the sentence is still cut at the table.
+- **More table rows change the evidence ranking.** Passages are ranked against the pool of candidates; on the development
+  papers two claims lost their passage this way. No effect on evidence precision could be shown in either direction.
+- **Synthetic scores are not real-paper accuracy.** The eight new layouts use one template table; row-level correctness
+  on real papers has not been measured, and nothing was measured on unseen papers.
