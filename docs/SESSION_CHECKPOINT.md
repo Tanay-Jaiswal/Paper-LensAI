@@ -1,7 +1,25 @@
-# PaperLens AI session checkpoint (2026-10-13, sprint 7: tables without a grid)
+# PaperLens AI session checkpoint (2026-10-13, sprint 7: tables without a grid; sprint 8: row-level table benchmark)
 
 Written by the session that did the work, from commands it ran (`docs/TEST_REPORT.md` "0.6.0-dev", `docs/EVALUATION.md` section 13).
 Previous checkpoint: `git show adce476:docs/SESSION_CHECKPOINT.md` (sprint 6, figure text and label carry-over).
+
+## Sprint 8 (after `4d15ba8`): row-level benchmark on real development tables. No parser change.
+- **Start verified:** branch `dev/reading-order-v0.5`, HEAD `4d15ba8`, tree clean, 217 tests passed, tags unmoved.
+- **Added:** `eval/table_truth/` (11 tables, 71 rows, 333 cells; `PROTOCOL.md`; `VERIFICATION_SHEET.md`; lock file), `eval/table_rows_bench.py`
+  (`check`, `score`, `sheet`, `render`), `tests/test_table_rows_bench.py` (5), results in `eval/results/table_rows_dev/`, docs/EVALUATION.md section 14.
+- **Annotations are AI-transcribed** from page images, each cell confirmed in the PDF text layer, locked before scoring. **Not human-verified.**
+  Five of the 11 tables are on pages read while writing 0.6.0-dev (optimistic for that version). Nothing was tuned on the benchmark.
+- **Results (strict), 70 scored rows / 330 cells / 15 header rows:** 0.6.0-dev exact rows 43 (0.614), cells 249 (0.755), split 1, partial 13, missing 13 (1 glued),
+  header rows 5, wrong heads 0 of 134. Parser of `adce476`: exact rows 8 (0.114), cells 33 (0.100), missing 62 (50 glued into prose). Tests: **222 passed**.
+- **Main finding:** the running-header filter deletes every integer-only line on every page (pattern `#`, triggered by page numbers): 65 of 243 number-only lines
+  in the SciFact paper, 394 of 1313 in GPT-3. Integer table cells vanish before table detection (both SciFact tables score 0 or partial for this reason).
+- **Next recommended task (one change):** restrict the page-number pattern of `_running_headers` to the top and bottom page strips, add a synthetic layout with
+  integer-only cells and a page number, then re-score with `python -m eval.table_rows_bench score` (do not tune on individual annotated rows).
+  After that: word tables (T04), values split at super/subscripts (T09, T07), heads delivered as one line.
+- **Owner:** check `eval/table_truth/VERIFICATION_SHEET.md` against the PDFs if a human-verified benchmark is wanted
+  (`python -m eval.table_rows_bench render <folder>` writes the page crops locally; do not commit them).
+- **Protected assets:** no held-out folder, raw output, sealed key or audit file was opened, listed or searched; no held-out scorer run; no tag moved; nothing pushed;
+  `git diff --stat 4d15ba8 HEAD` over the held-out, audit and earlier result folders shows no change (names only).
 
 ## Verified state
 - Folder `C:\Users\imcal\OneDrive\Desktop\PaperLens-AI`. Start: branch `dev/reading-order-v0.5`, commit `adce476`, tree clean, 189 tests passed (run, not assumed).

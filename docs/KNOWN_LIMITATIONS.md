@@ -128,3 +128,13 @@ Synthetic layouts and development papers only; `docs/EVALUATION.md` section 11.
   papers two claims lost their passage this way. No effect on evidence precision could be shown in either direction.
 - **Synthetic scores are not real-paper accuracy.** The eight new layouts use one template table; row-level correctness
   on real papers has not been measured, and nothing was measured on unseen papers.
+
+## Added with the row-level table benchmark (0.6.0-dev, no parser change)
+
+- **Integer-only lines are deleted as page numbers on every page** (running-header filter, present since 0.1.0). Table
+  cells that are bare integers therefore never reach the table detector or any sentence. Measured: 65 of 243 number-only
+  lines in one development paper, 394 of 1313 in another. Not fixed yet (docs/EVALUATION.md 14.3).
+- **Row-level accuracy on real tables is modest**: 43 of 70 annotated rows exact (0.61) on 11 development tables, with
+  annotations that are AI-transcribed, not human-verified, and partly from pages used while writing the detector.
+- **A value printed with superscript and subscript parts, or with separate uncertainty parts, is split into two cells.**
+- **Rows under a group label can lose their row label** and are then kept only as unlabelled rows.

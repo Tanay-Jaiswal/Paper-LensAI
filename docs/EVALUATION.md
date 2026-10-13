@@ -916,3 +916,81 @@ Synthetic claim benchmark (seed 7) and SciFact dev are identical to 0.5.1-dev.
   follows "protein of 182" (the new single-row rule covers the synthetic version of this, not this page).
 - Tables whose cells are sentences or long phrases (the CheckList paper) stay prose; only their number columns are removed.
 - Column heads that PyMuPDF delivers as one line of words stay prose ("System Dev Test EM F1 ...").
+
+## 14. Row-level benchmark on real tables of the development papers (AI-transcribed annotations; first results, no tuning)
+
+Annotations, protocol and sheet: `eval/table_truth/` (`tables.json`, `PROTOCOL.md`, `VERIFICATION_SHEET.md`,
+`ANNOTATIONS_LOCKED.txt`). Scorer: `python -m eval.table_rows_bench`. Results: `eval/results/table_rows_dev/`.
+
+**Read first.** The annotations were transcribed by the AI assistant from images of the PDF pages and each cell string was
+confirmed in the PDF text layer. They are **not human-verified**. They were locked by hash before any scoring, and the
+parser was not changed in this step. The 11 tables are from development papers, were not chosen at random, and five of
+them (T01, T02, T03, T05, T06) are on pages whose output was read while 0.6.0-dev was written, so the 0.6.0-dev figures
+are optimistic for those. Nothing here is a result on unseen papers.
+
+Sample: 11 tables, 71 data rows (1 marked ambiguous and left out), **70 scored rows, 330 non-empty cells, 15 header rows**.
+
+### 14.1 Totals (strict comparison; lenient in brackets where it differs)
+
+| Measure | Denominator | parser of `adce476` (0.5.1-dev) | 0.6.0-dev |
+|---|---|---|---|
+| Exact-row accuracy | 70 rows | 8 = 0.114 | 43 = 0.614 (lenient 46 = 0.657) |
+| Cell accuracy | 330 cells | 33 = 0.100 | 249 = 0.755 (lenient 252 = 0.764) |
+| Rows returned exactly but unusable (no row label) | 70 | 0 | 0 |
+| Merged rows | 70 | 0 | 0 |
+| Split rows | 70 | 0 | 1 (lenient 2) |
+| Partial rows | 70 | 0 | 13 (lenient 9) |
+| Missing rows | 70 | 62, of which 50 glued into prose | 13, of which 1 glued into prose |
+| Header rows returned | 15 | 0 | 5 |
+| Wrong column heads / heads attached | attached heads | 0 / 25 | 0 / 134 |
+| Values carrying their correct column head | 255 values that have a head | 0.098 | 0.525 |
+
+### 14.2 Per table, 0.6.0-dev, strict (rows: exact / split / partial / missing)
+
+| Table | Kind | Rows | Exact | Split | Partial | Missing | Cells found | Header rows |
+|---|---|---|---|---|---|---|---|---|
+| T01 BERT Table 2 | two-level head, group labels | 10 | 10 | 0 | 0 | 0 | 50/50 | 0/2 |
+| T02 BERT Table 5 | three-level head, near prose | 4 | 4 | 0 | 0 | 0 | 24/24 | 2/3 |
+| T03 Attention Table 2 | empty cells, exponents | 10 | 10 | 0 | 0 | 0 | 41/41 | 1/2 |
+| T04 ResNet Table 1 | architecture table of words | 7 (+1 ambiguous) | 0 | 0 | 0 | 7 | 0/39 | 0/1 |
+| T05 ResNet Table 2 | small, in a text column | 2 | 2 | 0 | 0 | 0 | 6/6 | 1/1 |
+| T06 GPT-3 Table 2.1 | wide, units | 8 | 8 | 0 | 0 | 0 | 64/64 | 1/1 |
+| T07 ATLAS Table 2 | ± values, group labels | 6 | 1 | 1 | 4 | 0 | 13/18 | 0/2 |
+| T08a SciFact Table 2 (a) | integers only | 4 | 0 | 0 | 0 | 4 | 0/20 | 0/1 |
+| T08b SciFact Table 2 (b) | integers, dashes | 4 | 0 | 0 | 3 | 1 | 12/20 | 0/1 |
+| T09 GW Table I | label and value, no header | 6 | 0 | 0 | 6 | 0 | 6/12 | 0/0 |
+| T10 PMC4930190 Table 1 | fully ruled | 9 | 8 | 0 | 0 | 1 | 33/36 | 0/1 |
+
+With the `adce476` parser only T10 (found by the ruled-table finder) scores: 8 exact rows of 9; every other row is missing.
+Lenient comparison changes only T07 (4 exact, 2 split): three of its rows differ from the page only in the position of a
+bar accent ("tt¯" for "t¯t").
+
+### 14.3 Error patterns (read from the non-exact rows; causes checked, nothing fixed)
+
+1. **Integer cells are deleted before table detection (T08a, T08b; 24 cells on that page).** The running-header filter
+   replaces digits by `#` and removes every line whose pattern repeats on half the pages. A page number makes `#` such a
+   pattern, so **every line that consists only of an integer is removed from every page**: 65 of 243 number-only lines in
+   the SciFact paper, 394 of 1313 in the GPT-3 paper, 29 of 165 in the BERT paper. Run on the unfiltered lines of that
+   page, `_open_tables` returns both SciFact tables with every cell. The filter predates 0.6.0-dev (it is in 0.1.0), and
+   the deleted cells are in no sentence at all: this is silent loss of table values, not a misreading.
+2. **A table of words is not recognised (T04, 7 rows, 39 cells).** Known limit of the numeric-column rule.
+3. **One printed value becomes two cells (T09: 6 rows; T07: parts of 5 rows).** A value with a superscript and
+   subscript ("36 +5/−4 M☉") or with separate uncertainty parts ("0.3± 0.1 ±0.1") is cut at the gap between its pieces, or
+   its second piece is dropped.
+4. **Group labels detach rows from their labels (T07).** After a group line ("2e2µ") a row loses its label and is
+   returned as a number-only row.
+5. **Column heads (10 of 15 header rows not returned).** Heads delivered as one line of words stay prose (T01); upper
+   levels of multi-level heads are not attached. No wrongly attached head was found (0 of 134).
+6. **One row of the ruled table is missing (T10)**: the row whose label contains a letter with a dot above.
+
+### 14.4 Recommendation (one change)
+
+Stop the running-header filter from deleting integer-only lines inside the page body: treat a number-only line as a page
+number only in the top or bottom strip of the page (or when it stands alone on its baseline there). It is the largest
+single loss seen (hundreds of table cells per paper, silently), it is upstream of table detection, and its effect can be
+measured with this benchmark and the synthetic layouts without tuning on individual rows.
+
+### 14.5 Not measured
+
+Human-verified accuracy (no human has checked the transcriptions); table boundaries as boxes; anything on unseen papers;
+rows of the tables that were not annotated (the remaining tables of these papers).

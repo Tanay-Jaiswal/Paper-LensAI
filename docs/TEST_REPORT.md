@@ -150,3 +150,19 @@ Not run: the application in the browser this sprint (parser-only change on top o
 
 Not run: the application in the browser (parser-only change), the official held-out scorers, anything on the held-out
 folders or audit files. `git stash` was used twice during the work and restored at once; no file was lost.
+
+## Row-level table benchmark (2026-10-13, branch `dev/reading-order-v0.5`, no parser change)
+
+| Command | Outcome |
+|---|---|
+| `git status`, `git rev-parse HEAD`, tags | clean, `4d15ba8`, tags at `d6951bf` and `a549f25` |
+| `PY -m pytest -q` at the start | 217 passed |
+| `PY -m eval.table_rows_bench check` | 11 tables, 71 rows, 333 cells: every cell token found in the PDF text layer of its region (two region anchors corrected first; no cell changed) |
+| annotations locked (`eval/table_truth/ANNOTATIONS_LOCKED.txt`) | sha256 recorded before the first scoring run |
+| `PY -m eval.table_rows_bench score eval/results/table_rows_dev/rows_0.6.0-dev.json` | exact rows 43/70, cells 249/330, header rows 5/15, wrong heads 0/134 |
+| `git archive adce476 paperlens` into a temporary folder; `PAPERLENS_SRC=<folder> PY -m eval.table_rows_bench score .../rows_baseline_adce476.json` | exact rows 8/70, cells 33/330, 50 rows glued into prose; branch and working tree untouched |
+| `PY -m pytest -q tests/test_table_rows_bench.py` | 5 passed on the first run |
+| `PY -m pytest -q` final | **222 passed, 0 failed, 0 skipped** |
+| `PY -m eval.layout_bench` | unchanged from `after_0.6.0-dev.json` (the parser was not edited) |
+
+Not run: any parser change, the held-out scorers, anything on held-out or audit folders.
