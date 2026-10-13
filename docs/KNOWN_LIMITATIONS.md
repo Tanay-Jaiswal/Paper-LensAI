@@ -151,3 +151,22 @@ Synthetic layouts and development papers only; `docs/EVALUATION.md` section 11.
 - **More figure text reaches the output.** Tick labels and legend numbers that used to be deleted by accident are now
   kept: runs of three or more bare numbers as `meta`, single ones in the text, where a few form short junk sentences.
 - **Formula fragments** that were deleted by accident are back in the text; display equations remain unreadable prose.
+
+## Added for 1.0.0 (finalisation; engine unchanged from 0.6.1-dev)
+
+Open items found while testing the application, not fixed because none corrupts a citation or loses data silently:
+
+- **Reproducibility credits are pattern matches.** Example: "Variance / uncertainty reported" in the Attention paper is
+  credited with a footnote about the variance of random variables. Every credit shows its quote so a reader can overrule it.
+- **A moderate rating can rest on one of several claimed figures.** The Ledger states "1 of 2 claimed figures matched;
+  not found: 41.8", but the rating itself ignores that (see 0.3.0-dev).
+- **Image-only pages inside an otherwise readable PDF** are not detected; only a nearly empty document is flagged.
+- **Password-protected PDFs** are rejected (HTTP 422 / CLI exit 2), not opened.
+- **Page highlights** are found by text search for the first 110 characters of a sentence. A sentence rebuilt across a
+  column or page break can fail to highlight; the page image is still correct, so the citation can be checked by eye.
+- **Single-user local tool.** The server has no authentication, keeps analysed papers in `data/store/` until deleted by
+  hand and is meant for `127.0.0.1`. Do not expose it to a network.
+- **Word-based tables, values split at superscripts or uncertainty parts, and some partial table rows** remain as listed
+  for 0.6.0-dev and 0.6.1-dev. They were judged not to block delivery and were not tuned further in this release.
+- **No human-verified result exists** for any version (see `docs/EVALUATION.md`).
+

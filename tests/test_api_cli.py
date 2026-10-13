@@ -3,7 +3,7 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
-from paperlens import api
+from paperlens import __version__, api
 from paperlens.cli import main
 
 
@@ -97,9 +97,34 @@ def test_corrupt_encrypted_and_odd_requests_fail_cleanly(client, make_pdf):
 
 def test_ledger_json_served_by_the_api_has_the_evidence_status_fields(client, make_pdf):
     j = client.post("/api/analyze", files={"file": ("b.pdf", make_pdf(2, unsupported=1)[0].read_bytes(), "application/pdf")}).json()
-    assert j["version"] == "0.6.1-dev"
+    assert j["version"] == __version__
     assert sum(j["ledger_stats"]["evidence_status"].values()) == j["ledger_stats"]["n_claims"]
     for c in j["ledger"]:
         assert c["evidence_status"] in ("found", "no_supporting_evidence", "no_searchable_text")
         assert bool(c["evidence"]) == (c["evidence_status"] == "found")
         assert (c["evidence_note"] == "") == bool(c["evidence"])
+
+
+def test_cli_reports_bad_input_in_one_line_with_exit_code_2(tmp_path, capsys):
+    txt = tmp_path / "notes.pdf"; txt.write_text("not a pdf")
+    broken = tmp_path / "broken.pdf"; broken.write_bytes(b"%PDF-1.4 not really")
+    for bad in (tmp_path / "missing.pdf", txt, broken):
+        assert main(["analyze", str(bad), "--out", str(tmp_path / "o")]) == 2
+    assert main(["compare", str(txt), str(broken), "--out", str(tmp_path / "o")]) == 2
+    err = capsys.readouterr().err
+    assert "file not found" in err and "not a PDF" in err and "could not read" in err and "Traceback" not in err
+
+
+def test_html_report_is_standalone_and_escapes_paper_text(client, make_pdf):
+    from paperlens.pipeline import analyze_pdf
+    from paperlens.report import to_html
+    a = analyze_pdf(make_pdf(1)[0])
+    a.doc.title = "<script>alert(1)</script>"
+    out = to_html(a)
+    assert "<script" not in out and "&lt;script&gt;" in out
+    assert "Research Evidence Ledger" in out and "Reproducibility checklist" in out
+
+
+def test_ui_files_are_not_cached_and_health_reports_version(client):
+    assert client.get("/static/app.js").headers["cache-control"] == "no-cache"
+    assert client.get("/api/health").json() == {"ok": True, "version": __version__}

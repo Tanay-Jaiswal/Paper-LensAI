@@ -8,35 +8,53 @@
 </head>
 <body>
 <header>
-  <h1>PaperLens <span>AI</span></h1>
-  <p>Research evidence &amp; reproducibility auditor</p>
+  <div>
+    <h1>PaperLens <span>AI</span></h1>
+    <p>Research evidence &amp; reproducibility auditor</p>
+  </div>
+  <div class="muted small" id="version"></div>
 </header>
 <main>
   <section id="intake" class="card">
     <div class="row">
-      <label class="drop" id="drop">
-        <input type="file" id="file" accept="application/pdf" hidden>
-        <strong>Drop a paper PDF here</strong> or click to choose
+      <label class="drop" id="drop" tabindex="0">
+        <input type="file" id="file" accept="application/pdf,.pdf" hidden>
+        <strong>Drop a research-paper PDF here</strong> or click to choose
+        <div class="small">Text PDFs up to 25 MB. The file is analysed on this computer and never leaves it.</div>
       </label>
       <div class="side">
-        <button id="demo">Load demo papers</button>
-        <div id="status" role="status"></div>
+        <button id="demo" class="ghost">Load synthetic demo papers</button>
+        <div class="small muted">Two generated example papers (not real studies), analysed live.</div>
       </div>
     </div>
+    <div id="status" role="status" aria-live="polite"></div>
     <div id="recent"></div>
+  </section>
+
+  <section id="welcome" class="card">
+    <h3>What you get for each paper</h3>
+    <div class="grid4">
+      <div><h4>Summary</h4><p class="muted">Sentences quoted verbatim from the paper, each with its page.</p></div>
+      <div><h4>Evidence Ledger</h4><p class="muted">Each headline claim linked to the passages in the paper body that back it, or marked "no supporting evidence found".</p></div>
+      <div><h4>Reproducibility</h4><p class="muted">A 15-item reporting checklist with the quote that earned each credit and the items that are missing.</p></div>
+      <div><h4>Evidence gaps</h4><p class="muted">Rule-based flags for a reviewer, such as a figure in the abstract that never appears in the results.</p></div>
+    </div>
   </section>
 
   <section id="workspace" hidden>
     <div class="card head">
       <div>
         <h2 id="title"></h2>
-        <div id="meta" class="muted"></div>
+        <div id="meta" class="muted small"></div>
       </div>
       <div class="actions">
-        <a id="dl-md" class="btn" href="#">Markdown</a>
-        <a id="dl-json" class="btn" href="#">JSON</a>
+        <span class="muted small">Report:</span>
+        <a id="dl-html" class="btn ghost" href="#" target="_blank" rel="noopener">HTML</a>
+        <a id="dl-md" class="btn ghost" href="#">Markdown</a>
+        <a id="dl-json" class="btn ghost" href="#">JSON</a>
       </div>
     </div>
+    <div id="tiles" class="tiles"></div>
     <div id="warnings"></div>
     <nav class="tabs" id="tabs">
       <button data-tab="summary" class="on">Summary</button>
@@ -49,7 +67,7 @@
     <div id="tab-ledger" class="tab" hidden>
       <div class="split">
         <div class="card" id="ledger"></div>
-        <div class="card" id="viewer"><p class="muted">Select a claim to see its source page with the claim and its evidence highlighted.</p></div>
+        <div class="card" id="viewer"></div>
       </div>
     </div>
     <div id="tab-repro" class="tab card" hidden></div>
@@ -57,7 +75,7 @@
     <div id="tab-compare" class="tab card" hidden></div>
   </section>
 </main>
-<footer>Scores reflect what a paper states and cites; they are heuristics for a human reviewer, not verdicts.</footer>
+<footer>Ratings and scores are lexical and numeric heuristics over what the paper itself states. They are aids for a human reviewer, not verdicts: check every quote against the cited page.</footer>
 <script src="/static/app.js"></script>
 </body>
 </html>

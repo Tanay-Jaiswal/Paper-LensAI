@@ -26,6 +26,15 @@ MAX_BYTES = 25 * 1024 * 1024
 ID_RE = re.compile(r"^[a-f0-9]{8,32}$")
 
 app = FastAPI(title="PaperLens AI", version=__version__)
+
+
+@app.middleware("http")
+async def _no_cache_for_ui(request, call_next):
+    """The UI files change between versions; never let the browser reuse an old copy."""
+    resp = await call_next(request)
+    if request.url.path == "/" or request.url.path.startswith("/static/"):
+        resp.headers["Cache-Control"] = "no-cache"
+    return resp
 _cache: dict[str, Analysis] = {}
 _lock = threading.Lock()
 
@@ -65,7 +74,8 @@ def _store(raw: bytes, name: str) -> Analysis:
     try:
         a = analyze_pdf(d / "paper.pdf", aid)
     except Exception as e:  # corrupt / encrypted PDFs
-        raise HTTPException(422, f"Could not read PDF: {e}")
+        why = "it is password-protected" if "encrypted" in str(e) else "the file is damaged or not a valid PDF"
+        raise HTTPException(422, f"Could not read this PDF: {why} ({e})")
     a.doc.source_name = name
     (d / "analysis.json").write_text(json.dumps(a.to_dict(), ensure_ascii=False), encoding="utf-8")
     with _lock:
@@ -92,9 +102,12 @@ def list_analyses():
         for d in sorted(DATA_DIR.iterdir(), key=lambda p: -p.stat().st_mtime):
             f = d / "analysis.json"
             if f.exists():
-                j = json.loads(f.read_text(encoding="utf-8"))
-                out.append({"id": d.name, "title": j["document"]["title"], "name": j["document"]["source_name"],
-                            "repro": j["reproducibility"]["score"], "claims": j["ledger_stats"]["n_claims"]})
+                try:
+                    j = json.loads(f.read_text(encoding="utf-8"))
+                    out.append({"id": d.name, "title": j["document"]["title"], "name": j["document"]["source_name"],
+                                "repro": j["reproducibility"]["score"], "claims": j["ledger_stats"]["n_claims"]})
+                except (ValueError, KeyError, TypeError):   # a damaged or older stored result must not break the list
+                    continue
     return out[:50]
 
 
@@ -177,7 +190,7 @@ def favicon():
 
 @app.get("/api/health")
 def health():
-    return {"ok": True}
+    return {"ok": True, "version": __version__}
 
 
 if WEB_DIR.exists():

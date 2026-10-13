@@ -1,86 +1,140 @@
 # PaperLens AI: Research Evidence & Reproducibility Auditor
 
-PaperLens reads a research-paper PDF and answers four questions with checkable evidence:
+Reading a research paper, it is hard to see which claims are actually backed by the paper's own results, what is left
+unsaid, and whether anyone could repeat the work from what is reported. PaperLens reads a paper PDF and answers four
+questions with checkable evidence, so a reviewer can verify every statement against the source page.
 
-1. **What does the paper say?** A page-cited extractive summary (every sentence is quoted verbatim).
-2. **What does it claim, and where is the proof?** The **Research Evidence Ledger** links each headline claim to the
-   passages and pages in the paper body (including table rows) that support it, with a support rating
-   (`strong / moderate / weak / none`), the shared numbers, and a page image with both passages highlighted.
-3. **How reproducible does it look?** A transparent 15-item rubric (code, data, splits, hyperparameters, seeds,
-   variance, significance tests, baselines, compute, versions, ethics, limitations ...) with fixed weights and the quote
-   that earned each credit.
-4. **Where are the evidence gaps?** Rule-based flags such as "number in abstract never appears in results",
-   "claims 'significant' with no statistical test", "state-of-the-art claim with no described baselines",
-   "generalisation claim backed by ≤2 datasets".
+1. **What does the paper say?** A page-cited extractive summary. Every sentence is quoted verbatim.
+2. **What does it claim, and where is the proof?** The **Research Evidence Ledger** links each headline claim to passages
+   in the paper body (including table rows) with a support rating (`strong / moderate / weak / none`), the figures the
+   passage shares with the claim, the reason a passage was chosen, and a page image with claim and evidence highlighted.
+   When nothing suitable exists it says **"No supporting evidence found"** instead of attaching the least-bad passage.
+3. **How reproducible does it look?** A transparent 15-item reporting checklist (code, data, splits, hyperparameters,
+   seeds, variance, significance tests, baselines, compute, versions, ethics, limitations ...) with fixed weights, the
+   quote that earned each credit and the items that are missing. It measures what the paper *reports*, not whether the
+   work reproduces.
+4. **Where are the evidence gaps?** Rule-based flags for a reviewer, such as "number in abstract never appears in
+   results" or "claims 'significant' with no statistical test".
 
-It can also **compare two papers** (aligned claims, shared datasets/metrics, rubric differences, verdict).
+It can also **compare two papers** (similar claims, shared datasets and metrics, checklist differences).
 
-It runs fully **offline and free**: no API keys, no GPU, no model downloads. Everything is deterministic, so results are
-reproducible and testable. Trade-off: it is lexical/numeric, not a language model, so "support" means *the paper's own
-numbers and wording agree*, not that a model judged the argument sound. See `docs/ARCHITECTURE.md` and the limits in
-`docs/EVALUATION.md`.
+**How it differs from a generic summariser.** Nothing is generated or paraphrased. Each output is a quote with a page
+number or a rule you can read in the source, unsupported claims are shown as unsupported, and unreadable PDFs are
+reported as unreadable rather than scored as poor papers. It runs offline: no API key, no GPU, no model download.
+The price is that it is lexical and numeric, not a language model: "support" means the paper's own numbers and wording
+agree, not that the argument is sound.
 
-## Quick start (Windows PowerShell)
+## Install and run (Windows PowerShell)
+
+Prerequisite: Python 3.10 or newer (`python --version`). Checked with Python 3.13 and 3.14 on Windows 11.
 
 ```powershell
 cd PaperLens-AI
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-
-python -m paperlens serve            # open http://127.0.0.1:8000  (click "Load demo papers" for an instant tour)
-python -m paperlens analyze paper.pdf --out report          # JSON + Markdown + HTML report
-python -m paperlens compare a.pdf b.pdf --out report
-python -m pytest -q                  # automated tests (235 on the current development branch)
 ```
 
-Run every command with the virtual environment active (or as `.venv\Scripts\python.exe -m ...`): the system Python does not
-have the dependencies.
+If PowerShell refuses to run the activation script, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once, or
+skip activation and prefix every command with `.venv\Scripts\python.exe` instead of `python`.
 
-**Versions.** `0.1.0` is tag `v0.1.0-frozen-heldout`, the version run on the held-out papers. Branch
-`dev/evidence-linking-v0.2` is `0.2.0-dev`: the ledger can now answer "No supporting evidence found" instead of attaching
-the best-scoring passage, numbers match only when they measure the same quantity, and unsuitable passages are filtered.
-On development data it returns fewer wrong passages and covers fewer claims (`docs/EVALUATION.md` section 6); it was
-frozen as tag `v0.2.0-dev-frozen-heldout2` and run on 11 unseen papers, whose human labels are still missing (section 8).
-Branch `dev/partial-support-v0.3` is `0.3.0-dev`: for a claim that cites several figures the three returned passages are
-chosen to cover different figures, and the ledger says which claimed figures were not found (section 9; development
-data only, top-passage precision unchanged).
-Branch `dev/section-detection-v0.4` is `0.4.0-dev`: abstract and section-heading detection was reworked (appendices,
-wrapped and italic headings, contents pages, headless abstracts, an honest "no abstract" warning); development data only
-(`docs/EVALUATION.md` section 10).
-Branch `dev/reading-order-v0.5` is `0.5.0-dev`: reading order is rebuilt from page geometry for multi-column pages, sentences that
-run over a page break are kept whole, and a grid-like page is reported as ambiguous. `python -m eval.layout_bench` measures this on 21
-synthetic layouts (`docs/EVALUATION.md` section 11); the result is a synthetic one, not an accuracy figure for real papers.
-
-Python 3.10+ required. macOS/Linux: same commands with `source .venv/bin/activate`.
-
-## Evaluation
+Start the web app (one process serves both the API and the web UI; there is no separate frontend build):
 
 ```powershell
-python -m eval.run_eval --n 100                       # controlled synthetic benchmark (fast, offline)
-python -m eval.scifact_eval --download                # real data: SciFact dev (needs internet)
-python -m eval.real_papers data/Papers eval/results   # real PDFs: diagnostics + human audit sheet (see data/Papers/README.md)
-python -m eval.held_out_audit score eval/results/held_out   # held-out audit: works only after a person has labelled the sheet
-python -m eval.abstention_curve --split train --out eval/results/dev_v0.2      # 0.2.0-dev: abstention threshold vs precision/coverage
-python -m eval.real_papers data/Papers eval/results/dev_v0.2                   # 0.2.0-dev results are kept apart from 0.1.0
-python -m eval.quantity_coverage data/Papers eval/results/dev_v0.3 eval/results/dev_v0.2/dev_pairs_labelled.csv   # 0.3.0-dev: figures covered per claim
+python -m paperlens serve
 ```
 
-Read `docs/EVALUATION.md` before quoting any number: it states exactly what each benchmark does and does not show.
+Open <http://127.0.0.1:8000>. Stop with Ctrl+C. Use `--port 8001` if port 8000 is busy.
+
+### Use the web app
+
+1. Drop a text-based PDF (up to 25 MB) on the box, or click it to choose a file. Analysis takes a few seconds.
+2. **Summary**: page-cited sentences. **Evidence Ledger**: click a claim to see its passages, why each was chosen and the
+   highlighted source page (click an image to open it full size). **Reproducibility**: score, missing items and the quotes.
+   **Evidence gaps**: flags for review. **Compare**: contrast the current paper with one analysed earlier.
+3. "Report: HTML / Markdown / JSON" downloads the analysis. Results are stored under `data/store/` (git-ignored).
+4. "Load synthetic demo papers" generates two fake papers for a first look. They are not real studies.
+
+### Command line
+
+```powershell
+python -m paperlens analyze paper.pdf --out report      # writes report\paper.json, .md and .html
+python -m paperlens compare a.pdf b.pdf --out report    # writes report\comparison.json and prints the verdict
+python -m paperlens --version
+```
+
+A missing, non-PDF, damaged or password-protected file prints one line (`paperlens: ...`) and exits with code 2.
+
+### API
+
+`POST /api/analyze` (multipart field `file`), `GET /api/analyses`, `GET /api/analyses/{id}`,
+`GET /api/analyses/{id}/page/{n}.png?highlight=<sentence ids>`, `GET /api/analyses/{id}/report.{html,md,json}`,
+`POST /api/compare` (`{"a": id, "b": id}`), `POST /api/demo`, `GET /api/health`. Interactive docs: `/docs`.
+Errors: 400 not a PDF, 413 over 25 MB, 422 damaged or encrypted PDF, 404 unknown id.
+
+## Tests
+
+```powershell
+python -m pytest -q          # 238 tests, about one minute, no network
+```
+
+## Demonstration
+
+`docs/DEMO_GUIDE.md` has a repeatable walk-through with exact steps and what to expect.
+
+## Evaluation: what the numbers mean
+
+`docs/EVALUATION.md` is the full record and must be read before quoting any number. Three kinds of result exist and
+they are not interchangeable:
+
+| Kind | Examples | What it shows |
+|---|---|---|
+| **Synthetic** | `python -m eval.run_eval`, `python -m eval.layout_bench` (generated PDFs, written by the same project) | The code does what it was designed to do. **Not** accuracy on real papers. |
+| **AI-assisted labels** | evidence precision on 16 development papers; row-level table benchmark in `eval/table_truth/` | Labels were written by AI sessions (some of them the sessions that edited the parser). Useful for finding faults. **Not** independent ground truth. The table annotations are locked and unchanged. |
+| **Human-verified** | none | No result in this repository has been checked by an independent person. |
+
+Held-out evaluations (`eval/results/held_out*`) belong to earlier sprints and are frozen; they were not touched or used
+for this release.
+
+## Known limitations (short list)
+
+No OCR (scanned PDFs are reported as unreadable); multi-column layouts are reconstructed from geometry and can be wrong;
+tables of words and values split around super/subscripts are read imperfectly; claims without cue words are missed;
+evidence that exists only in a figure or an equation is invisible; English only; support ratings are lexical and
+unverified by humans. Full list: `docs/KNOWN_LIMITATIONS.md`.
+
+## Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| `python` not found | Install Python 3.10+ from python.org and tick "Add to PATH", or use `py -3 -m venv .venv`. |
+| `Activate.ps1 cannot be loaded` | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, or call `.venv\Scripts\python.exe` directly. |
+| `ModuleNotFoundError: pymupdf` / `fastapi` | The virtual environment is not active or `pip install -r requirements.txt` was not run in it. |
+| Port 8000 already in use | `python -m paperlens serve --port 8001`. |
+| Page images do not show / UI looks old | Hard-refresh the page (Ctrl+F5). Static files are sent with `no-cache`, so this should not be needed after an update. |
+| "Could not read this PDF" | The file is damaged or password-protected. Remove the password and retry. |
+| Warning "Very little extractable text" | The PDF is scanned images. PaperLens has no OCR and refuses to score it. |
+| Folder inside OneDrive is slow or locked | Move the project to a path outside OneDrive. |
 
 ## Layout
 
 ```
 paperlens/   ingest.py claims.py reproducibility.py gaps.py summarize.py compare.py pipeline.py api.py cli.py report.py
-web/         single-page UI (no build step)
-eval/        synth.py (PDF generator) run_eval.py scifact_eval.py audit.py results/
+web/         single-page UI (plain HTML/CSS/JS, no build step)
+eval/        generators, benchmarks and frozen results (see docs/EVALUATION.md)
 tests/       pytest suite
-docs/        ARCHITECTURE.md EVALUATION.md RELATED_WORK.md KNOWN_LIMITATIONS.md EVIDENCE_LINKING_FIX_PLAN.md
-             TEST_REPORT.md SESSION_CHECKPOINT.md
+data/Papers/ development PDFs are kept locally only (git-ignored); MANIFEST.csv records source and licence
+docs/        ARCHITECTURE.md EVALUATION.md DEMO_GUIDE.md KNOWN_LIMITATIONS.md TEST_REPORT.md SESSION_CHECKPOINT.md RELATED_WORK.md
 ```
 
-## Known limitations (short list)
+Stack: Python, PyMuPDF (PDF text and geometry), FastAPI + Uvicorn (API and static UI), NumPy and scikit-learn
+(TF-IDF and TextRank), pytest. Architecture: `docs/ARCHITECTURE.md`.
 
-Scanned PDFs (no OCR), heavily multi-column layouts where PDF text order is scrambled, non-English papers, claims
-expressed without cue words, and evidence living only in figures. Full list in `docs/KNOWN_LIMITATIONS.md`.
-Version `0.5.1-dev` (same branch): text inside figures is kept out of sentences and claims, a caption that interrupts a sentence no longer joins it, and `eval/claim_map.py` carries development labels between versions only for unchanged claim text (`docs/EVALUATION.md` section 12).
+## Version history
+
+`1.0.0` is the finalisation release (CLI and API error handling, standalone HTML report, reworked web UI, documentation);
+the analysis engine is unchanged from `0.6.1-dev`. Earlier development versions on this branch: `0.5.0-dev` column-aware
+reading order; `0.5.1-dev` figure text kept out of sentences; `0.6.0-dev` tables without a grid; `0.6.1-dev` numbers in
+the page body no longer deleted as page numbers. `0.2.0-dev` added abstention in the Ledger and `0.3.0-dev` and `0.4.0-dev`
+compound-claim coverage and section detection (`docs/EVALUATION.md`). Tags: `v0.1.0-frozen-heldout`,
+`v0.2.0-dev-frozen-heldout2`.

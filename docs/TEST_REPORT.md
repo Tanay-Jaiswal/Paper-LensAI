@@ -184,3 +184,21 @@ Not run: any parser change, the held-out scorers, anything on held-out or audit 
 | `PY -m eval.claim_map map / merge / compare` (0.6.0-dev vs 0.6.1-dev) | 144 identical claims, 143 same top passage, 1 fresh pair label; coverage, strict and lenient unchanged |
 
 Not run: the application in the browser, the held-out scorers, anything on held-out or audit folders.
+
+## 1.0.0 (finalisation sprint, 2026-10-13)
+
+Commands run in the repository folder with `.venv/Scripts/python.exe` (Python 3.13.7):
+
+| Command | Result |
+|---|---|
+| `python -m pytest -q` at start (HEAD `181b7ac`) | exit 0, 235 passed, 54 s |
+| `python -m pytest -q` after changes | exit 0, 238 passed, 53 s (3 new tests in `tests/test_api_cli.py`; no test weakened; the one version assertion now compares with `__version__`) |
+| fresh venv (Python 3.14.4) + `pip install -r requirements.txt` | exit 0; `paperlens analyze` on BERT paper ok; `tests/test_api_cli.py` 10 passed |
+| `python -m paperlens analyze` Attention, HIIT, BERT PDFs; `compare` Attention vs BERT | exit 0 each; 10 / 20 / 5 claims; reproducibility 63.0 / 60.5 / 87.0 |
+| CLI on missing, non-PDF, damaged, encrypted file | before: Python traceback and exit 0 for a non-PDF/damaged file; after: one line, exit 2 |
+| `python -m paperlens serve`, `/api/health`, upload of 3 development PDFs, 2 synthetic demo papers | HTTP 200; 2.1-3.7 s per paper |
+| API with non-PDF (400), damaged PDF (422), encrypted PDF (422), 26 MB file (413), blank PDF (200, "not assessed"), bad ids (400/404) | as listed |
+| Browser (built-in browser pane, 1366x768): load, open analysis, Ledger claim C4 and C2, Compare, Reproducibility, invalid file upload | worked; no console errors. Dark colour scheme only was viewed; mobile layout and other browsers were not checked. |
+
+Not run in this sprint: `eval.*` benchmarks, held-out scorers (forbidden), `eval.layout_bench` (engine unchanged).
+

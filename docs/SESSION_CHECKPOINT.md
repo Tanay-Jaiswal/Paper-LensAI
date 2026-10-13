@@ -1,4 +1,16 @@
-# PaperLens AI session checkpoint (2026-10-13, sprint 7: tables without a grid; sprint 8: row-level table benchmark; sprint 9: page-number filter)
+# PaperLens AI session checkpoint (2026-10-13, sprint 10: finalisation release 1.0.0)
+
+## Sprint 10 (after `181b7ac`): release 1.0.0. Engine unchanged; application finished and verified.
+- **Start verified:** branch `dev/reading-order-v0.5`, HEAD `181b7ac`, tree clean, 235 tests passed.
+- **Changed:** `paperlens/cli.py` (one-line errors, exit 2, warnings printed, `--version`), `paperlens/api.py` (clear 422 text,
+  robust recent list, `no-cache` for UI files, version in `/api/health`), `paperlens/report.py` (real HTML report),
+  `paperlens/__init__.py` (version 1.0.0, silences a PyMuPDF advert), `web/*` (summary tiles, filters, "why this passage",
+  rejection reasons, loading/error/empty states, keyboard access, report links), README, `docs/DEMO_GUIDE.md`, limitations, test report.
+- **Tests:** 235 -> 238 passed. Browser check of the running app: see `docs/TEST_REPORT.md` 1.0.0.
+- **Not done on purpose:** no parser change, no new benchmark, no annotation change, no held-out access, nothing pushed.
+- **Verdict recorded:** ready with documented limitations. Next work, if wanted: human check of `eval/table_truth/VERIFICATION_SHEET.md`,
+  then word tables and split values (see the sprint 9 list below).
+
 
 Written by the session that did the work, from commands it ran (`docs/TEST_REPORT.md` "0.6.0-dev", `docs/EVALUATION.md` section 13).
 Previous checkpoint: `git show adce476:docs/SESSION_CHECKPOINT.md` (sprint 6, figure text and label carry-over).
