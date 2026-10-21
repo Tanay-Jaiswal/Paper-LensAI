@@ -67,6 +67,7 @@ def _store(raw: bytes, name: str) -> Analysis:
     aid = hashlib.sha1(raw).hexdigest()[:16]   # content-addressed: re-uploading the same PDF reuses it
     d = _path(aid)
     if (d / "analysis.json").exists() and aid in _cache:
+        os.utime(d)     # the recent list is ordered by folder mtime; rewriting files inside does not update it on Windows
         return _cache[aid]
     d.mkdir(parents=True, exist_ok=True)
     (d / "paper.pdf").write_bytes(raw)
@@ -78,6 +79,7 @@ def _store(raw: bytes, name: str) -> Analysis:
         raise HTTPException(422, f"Could not read this PDF: {why} ({e})")
     a.doc.source_name = name
     (d / "analysis.json").write_text(json.dumps(a.to_dict(), ensure_ascii=False), encoding="utf-8")
+    os.utime(d)
     with _lock:
         _cache[aid] = a
     return a

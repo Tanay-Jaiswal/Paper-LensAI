@@ -203,7 +203,7 @@ def logical_items(seed: int, n_filler: int, tables: bool = False, quantities: bo
     it.append(Item("para", c.paragraph(4 + n_filler), section="results", bid="results1"))
     it.append(Item("heading", "4 Conclusion", section="conclusion", bid="h_conc"))
     it.append(Item("para", c.paragraph(4), section="conclusion", bid="conc0"))
-    refs = "\n".join(f"[{i}] A. Author and B. Writer, {" ".join(c.sentence().split()[:6])} Journal of Made-up Results {10 + i}, "
+    refs = "\n".join(f"[{i}] A. Author and B. Writer, {' '.join(c.sentence().split()[:6])} Journal of Made-up Results {10 + i}, "
                      f"{100 + 7 * i}-{110 + 7 * i} (20{10 + i})." for i in range(1, 6 + n_filler))
     it.append(Item("heading", "References", section="references", bid="h_ref"))
     it.append(Item("reference", refs, section="references", size=8.5, bid="refs"))

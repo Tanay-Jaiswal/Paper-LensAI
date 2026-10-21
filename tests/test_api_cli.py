@@ -45,6 +45,23 @@ def test_same_pdf_is_deduplicated(client, make_pdf):
     assert len(ids) == 1
 
 
+def test_reuploaded_pdf_moves_to_the_top_of_the_recent_list(client, make_pdf):
+    # a re-upload rewrites files inside the folder, which does not change the folder's own mtime on Windows (NTFS),
+    # so the paper stayed far down "Analysed earlier" and demo step 7 could not find it
+    import os, time
+    raw_a, raw_b = make_pdf(1)[0].read_bytes(), make_pdf(2)[0].read_bytes()
+    a = client.post("/api/analyze", files={"file": ("a.pdf", raw_a)}).json()["id"]
+    b = client.post("/api/analyze", files={"file": ("b.pdf", raw_b)}).json()["id"]
+    for restarted in (False, True):
+        now = time.time()
+        os.utime(api.DATA_DIR / a, (now - 100, now - 100)); os.utime(api.DATA_DIR / b, (now - 50, now - 50))
+        assert client.get("/api/analyses").json()[0]["id"] == b
+        if restarted:
+            api._cache.clear()
+        client.post("/api/analyze", files={"file": ("a.pdf", raw_a)})
+        assert client.get("/api/analyses").json()[0]["id"] == a
+
+
 def test_cli_analyze_and_compare(tmp_path, make_pdf, capsys):
     p1, _ = make_pdf(1); p2, _ = make_pdf(2)
     out = tmp_path / "out"

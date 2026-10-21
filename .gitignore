@@ -9,3 +9,4 @@ data/Papers/*.pdf
 data/held_out_papers/*.pdf
 report/
 data/held_out_v0.2_papers/*.pdf
+data/held_out_papers/
