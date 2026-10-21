@@ -1087,3 +1087,23 @@ Reading the changed sentences (8 of 16 papers changed; 58 `text` sentences repla
 Unseen papers; human-verified table rows; page numbers that are neither in the edge strip nor the lowest or highest line
 (for example beside a footer line set lower), or that do not count with the pages (roman numerals, "A-3"); documents of
 fewer than four pages rely on the strip rule alone.
+
+## 16. Version 1.1.0: Numbers check on 35 real papers (AI-reviewed, not human-verified)
+
+Full record: `eval/results/consistency_v1/README.md`. The rules were written on the 16 development papers, frozen, and
+run once on the 19 held-out PDFs (raw output kept). That run showed three kinds of false alarm (a category column added
+into a row total, a table with subtotal rows summed twice, F1 averaged over runs), and the rules were fixed, so **the
+held-out folders are now development data for this feature**. After the fixes: 101 checks in 8 of 35 papers; 86 check
+out, 11 are "not reproduced" (all with a legitimate explanation), 4 "do not add up". All 4 were confirmed against the PDF
+text by the AI session that wrote the code: a wrong denominator in a PLOS Medicine trial ("22/307 (8.5%)", where the
+text uses 258), a regional subtotal 93 cases off its states in a PLoS NTD table, and two trivial rounding slips (14.6497%
+printed as 14.7%). Four flags are too few for a precision figure, recall is unknown, and coverage is the main limitation.
+
+## 17. Version 1.1.0: re-evaluation after the glossary change (development data only)
+
+Full record: `eval/results/dev_v1.1/README.md`. Claim-to-evidence ranking now expands abbreviations the paper defines;
+the parser is unchanged. Synthetic seed 7 and SciFact dev are identical to 0.6.1-dev. On the 16 development papers the
+144 claims are identical and 131 top passages unchanged; coverage of the 99 real claims went from 59 to 63, strict
+precision from 22/59 = 0.373 to 24/63 = 0.381, lenient precision from 48/59 = 0.814 to 50/63 = 0.794. The 8 new passages
+carry AI-assisted labels by the session that made the change (1 y, 4 p, 3 n). Intervals overlap; no improvement or loss
+is demonstrated.

@@ -16,6 +16,14 @@ questions with checkable evidence, so a reviewer can verify every statement agai
 4. **Where are the evidence gaps?** Rule-based flags for a reviewer, such as "number in abstract never appears in
    results" or "claims 'significant' with no statistical test".
 
+5. **Do the paper's own numbers add up?** The **Numbers check** finds statements that print a result next to the numbers
+   it is computed from and redoes the arithmetic: percentages of counts ("45 of 120 (37.5%)"), stated differences
+   ("from 81.2 to 84.6 (+3.4)"), table row and column totals including subtotal rows, row averages, F1 from precision
+   and recall, estimates inside their confidence intervals, and p-values from test statistics. Every check shows the
+   formula, the printed value and the page, and the checks that pass are listed too. On 35 real papers it found two
+   substantive errors in published papers (a wrong denominator, a regional subtotal that does not match its rows);
+   see `eval/results/consistency_v1/README.md` for what that does and does not show.
+
 It can also **compare two papers** (similar claims, shared datasets and metrics, checklist differences).
 
 **How it differs from a generic summariser.** Nothing is generated or paraphrased. Each output is a quote with a page
@@ -75,7 +83,7 @@ Errors: 400 not a PDF, 413 over 25 MB, 422 damaged or encrypted PDF, 404 unknown
 ## Tests
 
 ```powershell
-python -m pytest -q          # 240 tests, about one minute, no network
+python -m pytest -q          # 277 tests, under two minutes, no network
 ```
 
 ## Demonstration
@@ -119,7 +127,7 @@ unverified by humans. Full list: `docs/KNOWN_LIMITATIONS.md`.
 ## Layout
 
 ```
-paperlens/   ingest.py claims.py reproducibility.py gaps.py summarize.py compare.py pipeline.py api.py cli.py report.py
+paperlens/   ingest.py claims.py reproducibility.py gaps.py consistency.py summarize.py compare.py pipeline.py api.py cli.py report.py
 web/         single-page UI (plain HTML/CSS/JS, no build step)
 eval/        generators, benchmarks and frozen results (see docs/EVALUATION.md)
 tests/       pytest suite
@@ -132,6 +140,7 @@ Stack: Python, PyMuPDF (PDF text and geometry), FastAPI + Uvicorn (API and stati
 
 ## Version history
 
+`1.1.0` adds the Numbers check (`paperlens/consistency.py`, web tab, report section, `eval/consistency_eval.py`).
 `1.0.0` is the finalisation release (CLI and API error handling, standalone HTML report, reworked web UI, documentation);
 the analysis engine is unchanged from `0.6.1-dev`. Earlier development versions on this branch: `0.5.0-dev` column-aware
 reading order; `0.5.1-dev` figure text kept out of sentences; `0.6.0-dev` tables without a grid; `0.6.1-dev` numbers in

@@ -1,0 +1,117 @@
+
+=== acl_2022.emnlp-main.200_setgner-general-named-entity-recogni  checked=26 bad=8
+  [incon] f1_harmonic_mean p6: 2 × 83.3 × 77.0 / (83.3 + 77.0) = 80.03 | stated 80.2 | Table row: Wang et al. (2021b)⋆ [BERT-Large]; P: 70.5; R: 72.5; F1: 71.5; P: 83.3; R: 77.0; F1: 80.2
+  [incon] f1_harmonic_mean p6: 2 × 84.90 × 77.20 / (84.90 + 77.20) = 80.867 | stated 80.30 | Table row: 73.50; R: 71.80; F1: 72.40; P: 84.90; R: 77.20; F1: 80.30
+  [incon] f1_harmonic_mean p6: 2 × 83.58 × 77.82 / (83.58 + 77.82) = 80.597 | stated 80.63 | Table row: 74.57; R: 71.78; F1: 73.15; P: 83.58; R: 77.82; F1: 80.63
+  [incon] f1_harmonic_mean p6: 2 × 83.45 × 78.48 / (83.45 + 78.48) = 80.889 | stated 80.91 | Table row: 74.42; R: 72.72; F1: 73.56; P: 83.45; R: 78.48; F1: 80.91
+  [incon] f1_harmonic_mean p6: 2 × 85.70 × 85.20 / (85.70 + 85.20) = 85.449 | stated 85.40 | Table row: 86.90; R: 85.80; F1: 86.30; P: 85.70; R: 85.20; F1: 85.40
+  [incon] f1_harmonic_mean p6: 2 × 86.73 × 86.08 / (86.73 + 86.08) = 86.404 | stated 86.38 | Table row: 88.05; R: 85.78; F1: 86.94; P: 86.73; R: 86.08; F1: 86.38
+  [incon] f1_harmonic_mean p6: 2 × 85.88 × 86.40 / (85.88 + 86.40) = 86.139 | stated 86.23 | Table row: 87.61; R: 86.69; F1: 87.15; P: 85.88; R: 86.40; F1: 86.23
+  [incon] f1_harmonic_mean p6: 2 × 85.86 × 86.92 / (85.86 + 86.92) = 86.387 | stated 86.50 | Table row: 87.45; R: 87.14; F1: 87.37; P: 85.86; R: 86.92; F1: 86.50
+  [consi] f1_harmonic_mean p6: 2 × 80.5 × 75.0 / (80.5 + 75.0) = 77.65 | stated 77.7 | Table row: 68.9; R: 69.0; F1: 69.0; P: 80.5; R: 75.0; F1: 77.7
+  [consi] f1_harmonic_mean p6: 2 × 70.5 × 72.5 / (70.5 + 72.5) = 71.49 | stated 71.5 | Table row: Wang et al. (2021b)⋆ [BERT-Large]; P: 70.5; R: 72.5; F1: 71.5; P: 83.3; R: 77.0; F1: 80.2
+  [consi] f1_harmonic_mean p6: 2 × 82.09 × 77.42 / (82.09 + 77.42) = 79.687 | stated 79.69 | Table row: 70.08; R: 71.21; F1: 70.64; P: 82.09; R: 77.42; F1: 79.69
+  [consi] f1_harmonic_mean p6: 2 × 81.09 × 78.13 / (81.09 + 78.13) = 79.582 | stated 79.58 | Table row: 71.35; R: 71.86; F1: 71.60; P: 81.09; R: 78.13; F1: 79.58
+  [consi] f1_harmonic_mean p6: 2 × 85.20 × 85.60 / (85.20 + 85.60) = 85.4 | stated 85.40 | Table row: 87.30; R: 86.00; F1: 86.70; P: 85.20; R: 85.60; F1: 85.40
+  [consi] f1_harmonic_mean p6: 2 × 85.01 × 84.13 / (85.01 + 84.13) = 84.568 | stated 84.57 | Table row: 85.83; R: 85.77; F1: 85.80; P: 85.01; R: 84.13; F1: 84.57
+  [consi] f1_harmonic_mean p6: 2 × 87.44 × 87.38 / (87.44 + 87.38) = 87.41 | stated 87.41 | Table row: Shen et al. (2021)† ‡ [BERT-Large]; P: 87.44; R: 87.38; F1: 87.41; P: 86.09; R: 87.27; F1: 86.67
+  [consi] f1_harmonic_mean p6: 2 × 86.09 × 87.27 / (86.09 + 87.27) = 86.676 | stated 86.67 | Table row: Shen et al. (2021)† ‡ [BERT-Large]; P: 87.44; R: 87.38; F1: 87.41; P: 86.09; R: 87.27; F1: 86.67
+  [consi] f1_harmonic_mean p6: 2 × 88.46 × 86.10 / (88.46 + 86.10) = 87.264 | stated 87.26 | Table row: Tan et al. (2021)† ‡ [BERT-Large]; P: 88.46; R: 86.10; F1: 87.26; P: 87.48; R: 86.63; F1: 87.05
+  [consi] f1_harmonic_mean p6: 2 × 87.48 × 86.63 / (87.48 + 86.63) = 87.053 | stated 87.05 | Table row: Tan et al. (2021)† ‡ [BERT-Large]; P: 88.46; R: 86.10; F1: 87.26; P: 87.48; R: 86.63; F1: 87.05
+  [consi] f1_harmonic_mean p6: 2 × 83.16 × 86.38 / (83.16 + 86.38) = 84.739 | stated 84.74 | Table row: 87.27; R: 86.41; F1: 86.84; P: 83.16; R: 86.38; F1: 84.74
+  [consi] f1_harmonic_mean p6: 2 × 82.92 × 87.05 / (82.92 + 87.05) = 84.935 | stated 84.93 | Table row: 86.36; R: 84.54; F1: 85.44; P: 82.92; R: 87.05; F1: 84.93
+  [consi] f1_harmonic_mean p7: 2 × 70.08 × 71.21 / (70.08 + 71.21) = 70.64 | stated 70.64 | Table row: Yan et al. (2021) [BART-Large]; P: 70.08; R: 71.21; F1: 70.64; P: 87.27; R: 86.41; F1: 86.84
+  [consi] f1_harmonic_mean p7: 2 × 87.27 × 86.41 / (87.27 + 86.41) = 86.838 | stated 86.84 | Table row: Yan et al. (2021) [BART-Large]; P: 70.08; R: 71.21; F1: 70.64; P: 87.27; R: 86.41; F1: 86.84
+  [consi] f1_harmonic_mean p7: 2 × 71.35 × 71.86 / (71.35 + 71.86) = 71.604 | stated 71.60 | Table row: Zhang et al. (2022) [T5-Base]; P: 71.35; R: 71.86; F1: 71.60; P: 86.36; R: 84.54; F1: 85.44
+  [consi] f1_harmonic_mean p7: 2 × 86.36 × 84.54 / (86.36 + 84.54) = 85.44 | stated 85.44 | Table row: Zhang et al. (2022) [T5-Base]; P: 71.35; R: 71.86; F1: 71.60; P: 86.36; R: 84.54; F1: 85.44
+  [consi] f1_harmonic_mean p7: 2 × 74.57 × 71.78 / (74.57 + 71.78) = 73.148 | stated 73.15 | Table row: SetGNER [BART-Large]; P: 74.57; R: 71.78; F1: 73.15; P: 87.61; R: 86.69; F1: 87.15
+  [consi] f1_harmonic_mean p7: 2 × 87.61 × 86.69 / (87.61 + 86.69) = 87.148 | stated 87.15 | Table row: SetGNER [BART-Large]; P: 74.57; R: 71.78; F1: 73.15; P: 87.61; R: 86.69; F1: 87.15
+
+=== acl_2023.acl-long.100_white-box-multi-objective-adversarial-  checked=0 bad=0
+
+=== arxiv_2303.00141v2_containing-a-spread-through-sequential-le  checked=0 bad=0
+
+=== arxiv_2303.00194v1_the-ionization-and-dynamics-of-the.pdf  checked=0 bad=0
+
+=== copernicus_acp-21-8357-2021_isotopic-constraints-on-atmosphe  checked=0 bad=0
+
+=== pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf  checked=5 bad=5
+  [incon] table_column_total p7: 1768204 + 803513 + 3938336 + 505665 + 8175113 + 766679 + 1515126 + 17472636 + 6904241 + 3204028 + 8904459 + 3442175 + 3972202 + 9345173 + 3340932 + 2242937 + 15203934 + 56560081 + 20869101 + 3929911 + 16550024 + 44396484 + 85745520 + 11163018 + 6819190 + 11247972 + 29230180 + 2651235 + 3265486 + 6610681 + 2914830 + 15442232 = 408901298 | stated 204450649 | Table row: Total; Pop.
+2015: 204,450,649; No.
+snakebites: 135,598; Avg.
+cases: 27,…
+  [incon] table_column_total p7: 2471 + 2389 + 8035 + 1842 + 25210 + 1842 + 3796 + 45492 + 6991 + 1102 + 3084 + 1667 + 1747 + 3894 + 1607 + 788 + 12377 + 33257 + 14647 + 3688 + 2753 + 9441 + 30529 + 4167 + 3515 + 4227 + 11909 + 2570 + 6010 + 5329 + 502 + 14411 = 271289 | stated 135598 | Table row: Total; Pop.
+2015: 204,450,649; No.
+snakebites: 135,598; Avg.
+cases: 27,…
+  [incon] table_column_total p7: 494 + 478 + 1607 + 368 + 5042 + 368 + 759 + 9098 + 1398 + 220 + 617 + 333 + 349 + 779 + 321 + 158 + 2475 + 6651 + 2929 + 738 + 551 + 1888 + 6106 + 833 + 703 + 845 + 2382 + 514 + 1202 + 1066 + 100 + 2882 = 54254 | stated 27120 | Table row: Total; Pop.
+2015: 204,450,649; No.
+snakebites: 135,598; Avg.
+cases: 27,…
+  [incon] table_column_total p7: 8 + 7 + 50 + 14 + 82 + 6 + 13 + 180 + 43 + 6 + 15 + 3 + 5 + 22 + 1 + 7 + 62 + 164 + 35 + 7 + 6 + 27 + 75 + 13 + 8 + 12 + 33 + 6 + 28 + 26 + 2 + 62 = 1028 | stated 514 | Table row: Total; Pop.
+2015: 204,450,649; No.
+snakebites: 135,598; Avg.
+cases: 27,…
+  [incon] table_column_total p7: 2 + 1 + 10 + 3 + 16 + 1 + 3 + 36 + 9 + 1 + 3 + 1 + 1 + 4 + 0 + 1 + 12 + 33 + 7 + 1 + 1 + 5 + 15 + 3 + 2 + 2 + 7 + 1 + 6 + 5 + 0 + 12 = 204 | stated 103 | Table row: Total; Pop.
+2015: 204,450,649; No.
+snakebites: 135,598; Avg.
+cases: 27,…
+
+=== pmc_PMC7875355_assessing-the-potential-impact-of-transmissio  checked=6 bad=0
+  [consi] ci_contains_estimate p2: 5.5 ≤ 7.5 ≤ 19 | stated 7.5 [5.5, 19] | …estimated the generation time distribution to have a mean of 7.5 (95%CI 5.5–19) days based on 6 observations, whereas Ganyani et al. estim…
+  [consi] ci_contains_estimate p2: 3.78 ≤ 5.20 ≤ 6.78 | stated 5.20 [3.78, 6.78] | …estimated the generation time distribution to have a mean of 5.20 (95%CI 3.78–6.78) days for Singapore and 3.95 (95%CI 3.01–4.91) days for Tia…
+  [consi] ci_contains_estimate p2: 3.01 ≤ 3.95 ≤ 4.91 | stated 3.95 [3.01, 4.91] | …have a mean of 5.20 (95%CI 3.78–6.78) days for Singapore and 3.95 (95%CI 3.01–4.91) days for Tianjin [11], Bi et al. estimated the generation…
+  [consi] ci_contains_estimate p2: 5.2 ≤ 6.3 ≤ 7.6 | stated 6.3 [5.2, 7.6] | …estimated the generation time distribution to have a mean of 6.3 (95% CI 5.2–7.6) days [12], He et al. estimated the generation time distrib…
+  [consi] ci_contains_estimate p2: 4.8 ≤ 5.8 ≤ 6.8 | stated 5.8 [4.8, 6.8] | …estimated the generation time distribution to have a mean of 5.8 (95%CI 4.8–6.8) days [13], and Hiroshi et al. estimated the generation tim…
+  [consi] ci_contains_estimate p2: 3.70 ≤ 4.7 ≤ 6.00 | stated 4.7 [3.70, 6.00] | …estimated the generation time distribution to have a mean of 4.7 (95%CI 3.70–6.00) days.
+
+=== pmc_PMC7886193_kinetochore-independent-mechanisms-of-sister-  checked=0 bad=0
+
+=== acl_2023.emnlp-main.250_atformer-a-learned-performance-model  checked=0 bad=0
+
+=== acl_2024.acl-long.150_itd-large-language-models-can-teach.pd  checked=0 bad=0
+
+=== acl_2024.naacl-long.50_neurocache-efficient-vector-retrieval  checked=0 bad=0
+
+=== arxiv_2403.00204v1_la-4-co-4-x-x.pdf  checked=0 bad=0
+
+=== arxiv_2403.00209v2_chartreformer-natural-language-driven-cha  checked=1 bad=0
+  [consi] table_row_total p8: 23875 + 9550 + 19100 + 57300 = 109825 | stated 109825 | Table row: Total; Style: 23875; Layout: 9550; Format: 19100; Data-centric: 57300; Total: 109825
+
+=== arxiv_2403.00458v2_electric-vehicle-pricing-and-battery-cost  checked=0 bad=0
+
+=== arxiv_2403.00947v1_history-dependence-shapes-causal-inferenc  checked=0 bad=0
+
+=== doi_10.5194-gmd-16-3029-2023_technical-descriptions-of-the-e  checked=0 bad=0
+
+=== doi_10.7554-elife.76927_the-rna-helicase-ddx39b-activates-fo  checked=0 bad=0
+
+=== pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.  checked=25 bad=6
+  [incon] percent_of_count p11: 22 / 307 × 100 = 7.17% | stated 8.5% | [3] Approximately 22/307 (8.5%), 11 in control and 11 in intervention, did not have a viral…
+  [incon] percent_of_count p2: 23 / 157 × 100 = 14.65% | stated 14.7% | …sign, data collection and analysis, decision to publish, or 23 of 157 (14.7%) had transferred out (adjusted OR 0.53; 95% CI [0.25 to 1.13…
+  [incon] table_row_total p9: 1 + 46 + 35 = 82 | stated 81 | Table row: Level: 1; Total: 81 (26.4); Control: 46 (29.3); Intervention: 35 (23.3)
+  [incon] table_row_total p9: 2 + 18 + 6 = 26 | stated 24 | Table row: Level: 2; Total: 24 (7.8); Control: 18 (11.5); Intervention: 6 (4.0)
+  [incon] table_row_total p9: 3 + 2 + 0 = 5 | stated 2 | Table row: Level: 3; Total: 2 (0.7); Control: 2 (1.3); Intervention: 0 (0.0)
+  [incon] percent_of_count p10: 23 / 157 × 100 = 14.65% | stated 14.7% | Twelve of 150 (8%) in the intervention versus 23 of 157 (14.7%) in the control arm had transferred out at 12 months (aOR 0.…
+  [consi] percent_of_count p1: 99 / 150 × 100 = 66% | stated 66% | At 12 months, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) par…
+  [consi] percent_of_count p1: 95 / 157 × 100 = 60.51% | stated 61% | …hs, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm had viral suppression (adju…
+  [consi] percent_of_count p2: 4 / 150 × 100 = 2.67% | stated 2.7% | confidence interval [CI] [0.79 to 2.03]; p = 0.327); 4 of 150 (2.7%) versus 1 of 157 (0.6%) had died (adjusted OR 4.12; 95% CI […
+  [consi] percent_of_count p2: 1 / 157 × 100 = 0.64% | stated 0.6% | …val [CI] [0.79 to 2.03]; p = 0.327); 4 of 150 (2.7%) versus 1 of 157 (0.6%) had died (adjusted OR 4.12; 95% CI [0.45 to 37.62]; p = 0.2…
+  [consi] percent_of_count p2: 12 / 150 × 100 = 8% | stated 8% | …(adjusted OR 4.12; 95% CI [0.45 to 37.62]; p = 0.210); and 12 of 150 (8%) versus https://zenodo.org/record/7307834#.
+  [consi] ci_contains_estimate p2: 0.45 ≤ 4.12 ≤ 37.62 | stated 4.12 [0.45, 37.62] | …4 of 150 (2.7%) versus 1 of 157 (0.6%) had died (adjusted OR 4.12; 95% CI [0.45 to 37.62]; p = 0.210); and 12 of 150 (8%) versus https://zenodo.org/…
+  [consi] ci_contains_estimate p2: 0.25 ≤ 0.53 ≤ 1.13 | stated 0.53 [0.25, 1.13] | …blish, or 23 of 157 (14.7%) had transferred out (adjusted OR 0.53; 95% CI [0.25 to 1.13]; p = 0.099).
+  [consi] percent_of_count p8: 99 / 150 × 100 = 66% | stated 66% | At the 12-month follow-up, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) par…
+  [consi] percent_of_count p8: 95 / 157 × 100 = 60.51% | stated 61% | …up, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm achieved viral suppression…
+  [consi] ci_contains_estimate p8: 0.79 ≤ 1.27 ≤ 2.03 | stated 1.27 [0.79, 2.03] | …m achieved viral suppression below 20 copies/mL (adjusted OR 1.27; 95% CI [0.79 to 2.03]; p = 0.327; Table 2).
+  [consi] table_row_total p9: 9 + 13 = 22 | stated 22 | Table row: Primary occupation; Level: (self-)employed with regular
+income; Total: 22 (7.2); Control: 9 (5.7); Intervention: 13…
+  [consi] table_row_total p9: 0 + 91 + 109 = 200 | stated 200 | Table row: Number of children; Level: 0; Total: 200 (65.1); Control: 91 (58.0); Intervention: 109 (72.7)
+  [consi] percent_of_count p10: 268 / 307 × 100 = 87.3% | stated 87% | At the end of the study, 268/307 (87%) participants were taking DTG-based ART as compared to 13% a…
+  [consi] ci_contains_estimate p10: 0.25 ≤ 0.53 ≤ 1.13 | stated 0.53 [0.25, 1.13] | …7%) in the control arm had transferred out at 12 months (aOR 0.53; 95% CI [0.25 to 1.13]; p = 0.099; Table 2).
+  [consi] ci_contains_estimate p10: 0.45 ≤ 4.12 ≤ 37.62 | stated 4.12 [0.45, 37.62] | …in the intervention versus 1 (0.6%) in the control arm (aOR 4.12; 95% CI [0.45 to 37.62]; p = 0.210).
+  [consi] percent_of_count p10: 166 / 307 × 100 = 54.07% | stated 54% | Overall, viral suppression increased from 166/307 (54%) at baseline to 194/307 (63%) at 12 months of follow-up.
+  [consi] percent_of_count p10: 194 / 307 × 100 = 63.19% | stated 63% | …ral suppression increased from 166/307 (54%) at baseline to 194/307 (63%) at 12 months of follow-up.
+  [consi] percent_of_count p11: 31 / 157 × 100 = 19.75% | stated 20% | …e in addition adjusted for the respective baseline measure; 31/157 (20%) in control and 58/150 (39%) in Intervention were missing.
+  [consi] percent_of_count p11: 58 / 150 × 100 = 38.67% | stated 39% | …he respective baseline measure; 31/157 (20%) in control and 58/150 (39%) in Intervention were missing.
+
+=== pmc_PMC9815661_a-dsrna-binding-mutant-reveals-only.pdf  checked=0 bad=0

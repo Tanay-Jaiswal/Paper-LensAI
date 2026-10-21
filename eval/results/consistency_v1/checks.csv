@@ -1,0 +1,157 @@
+folder,paper,id,status,severity,kind,page,formula,stated,quote,review
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N1,consistent,low,table_row_total,5,332 + 304 + 173 = 809,809,Table row: Train; SUPPORTS: 332; NOINFO: 304; REFUTES: 173; All: 809,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N2,consistent,low,table_row_total,5,124 + 112 + 64 = 300,300,Table row: Dev; SUPPORTS: 124; NOINFO: 112; REFUTES: 64; All: 300,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N3,consistent,low,table_row_total,5,100 + 100 + 100 = 300,300,Table row: Test; SUPPORTS: 100; NOINFO: 100; REFUTES: 100; All: 300,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N4,consistent,low,table_row_total,5,556 + 516 + 337 = 1409,1409,Table row: All; SUPPORTS: 556; NOINFO: 516; REFUTES: 337; All: 1409,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N5,consistent,low,table_column_total,5,332 + 124 + 100 = 556,556,Table row: All; SUPPORTS: 556; NOINFO: 516; REFUTES: 337; All: 1409,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N6,consistent,low,table_column_total,5,304 + 112 + 100 = 516,516,Table row: All; SUPPORTS: 556; NOINFO: 516; REFUTES: 337; All: 1409,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N7,consistent,low,table_column_total,5,173 + 64 + 100 = 337,337,Table row: All; SUPPORTS: 556; NOINFO: 516; REFUTES: 337; All: 1409,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N8,consistent,low,table_column_total,5,809 + 300 + 300 = 1409,1409,Table row: All; SUPPORTS: 556; NOINFO: 516; REFUTES: 337; All: 1409,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N9,consistent,low,f1_harmonic_mean,6,2 × 41.5 × 57.9 / (41.5 + 57.9) = 48.3471,48.4,Table row: FEVER; P: 41.5; R: 57.9; F1: 48.4; ACC.: 67.6,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N10,consistent,low,f1_harmonic_mean,6,2 × 42.5 × 62.3 / (42.5 + 62.3) = 50.5296,50.5,Table row: UKP Snopes; P: 42.5; R: 62.3; F1: 50.5; ACC.: 71.3,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N11,consistent,low,f1_harmonic_mean,6,2 × 73.7 × 70.5 / (73.7 + 70.5) = 72.0645,72.1,Table row: SCIFACT; P: 73.7; R: 70.5; F1: 72.1; ACC.: 75.7,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N12,consistent,low,f1_harmonic_mean,6,2 × 72.4 × 67.2 / (72.4 + 67.2) = 69.7032,69.7,Table row: FEVER + SCIFACT; P: 72.4; R: 67.2; F1: 69.7; ACC.: 81.9,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N13,consistent,low,f1_harmonic_mean,6,2 × 74.5 × 74.3 / (74.5 + 74.3) = 74.3999,74.4,Table row: SCIBERT; P: 74.5; R: 74.3; F1: 74.4; ACC.: 69.2,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N14,consistent,low,f1_harmonic_mean,6,2 × 75.3 × 69.9 / (75.3 + 69.9) = 72.4996,72.5,Table row: BioMedRoBERTa; P: 75.3; R: 69.9; F1: 72.5; ACC.: 71.7,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N15,consistent,low,f1_harmonic_mean,6,2 × 76.1 × 66.1 / (76.1 + 66.1) = 70.7484,70.8,Table row: RoBERTa-base; P: 76.1; R: 66.1; F1: 70.8; ACC.: 62.9,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N16,consistent,low,f1_harmonic_mean,6,2 × 73.7 × 70.5 / (73.7 + 70.5) = 72.0645,72.1,Table row: RoBERTa-large; P: 73.7; R: 70.5; F1: 72.1; ACC.: 75.7,
+Papers,acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf,N17,consistent,low,table_column_total,14,60 + 8 + 8 + 51 + 10 + 41 + 12 + 33 + 79 + 27 + 5 + 29 + 26 + 19 + 8 + 89 + 1 + 10 + 36 + 38 + 7 + 2 + 22 + 120 = 741,741,Table row: Total; Count: 741,
+Papers,acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf,N1,consistent,low,table_row_average,6,(80.6 + 80.1 + 66.1 + 82.3 + 93.2 + 35.0 + 81.0 + 86.0 + 61.7) / 9 = 74,74.0,Table row: Pre-OpenAI SOTA; MNLI-(m/mm): 80.6/80.1; QQP: 66.1; QNLI: 82.3; SST-2: 93.2; CoLA: 35.0; STS-B: 81.0; MRPC: 86.0; RTE: 61.7; Average: 74.0,
+Papers,acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf,N2,consistent,low,table_row_average,6,(76.4 + 76.1 + 64.8 + 79.8 + 90.4 + 36.0 + 73.3 + 84.9 + 56.8) / 9 = 70.9444,71.0,Table row: BiLSTM+ELMo+Attn; MNLI-(m/mm): 76.4/76.1; QQP: 64.8; QNLI: 79.8; SST-2: 90.4; CoLA: 36.0; STS-B: 73.3; MRPC: 84.9; RTE: 56.8; Average: 71.0,
+Papers,acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf,N3,consistent,low,table_row_average,6,(82.1 + 81.4 + 70.3 + 87.4 + 91.3 + 45.4 + 80.0 + 82.3 + 56.0) / 9 = 75.1333,75.1,Table row: OpenAI GPT; MNLI-(m/mm): 82.1/81.4; QQP: 70.3; QNLI: 87.4; SST-2: 91.3; CoLA: 45.4; STS-B: 80.0; MRPC: 82.3; RTE: 56.0; Average: 75.1,
+Papers,acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf,N4,consistent,low,table_row_average,6,(84.6 + 83.4 + 71.2 + 90.5 + 93.5 + 52.1 + 85.8 + 88.9 + 66.4) / 9 = 79.6,79.6,Table row: BERTBASE; MNLI-(m/mm): 84.6/83.4; QQP: 71.2; QNLI: 90.5; SST-2: 93.5; CoLA: 52.1; STS-B: 85.8; MRPC: 88.9; RTE: 66.4; Average: 79.6,
+Papers,acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf,N5,consistent,low,table_row_average,6,(86.7 + 85.9 + 72.1 + 92.7 + 94.9 + 60.5 + 86.5 + 89.3 + 70.1) / 9 = 82.0778,82.1,Table row: BERTLARGE; MNLI-(m/mm): 86.7/85.9; QQP: 72.1; QNLI: 92.7; SST-2: 94.9; CoLA: 60.5; STS-B: 86.5; MRPC: 89.3; RTE: 70.1; Average: 82.1,
+Papers,arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf,N1,not_reproduced,low,table_row_average,19,(91.0 + 96.9 + 93.9 + 94.8 + 92.5) / 5 = 93.82,89.0,Table row: Fine-tuned SOTA; Average: 89.0; Accuracy: 91.0; Accuracy: 96.9; F1: 93.9; Accuracy: 94.8; Accuracy: 92.5,
+Papers,arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf,N2,not_reproduced,low,table_row_average,19,(77.4 + 83.6 + 75.7 + 70.6 + 71.7) / 5 = 75.8,69.0,Table row: Fine-tuned BERT-Large; Average: 69.0; Accuracy: 77.4; Accuracy: 83.6; F1: 75.7; Accuracy: 70.6; Accuracy: 71.7,
+Papers,arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf,N3,not_reproduced,low,table_row_average,19,(76.4 + 75.6 + 52.0 + 92.0 + 69.0) / 5 = 73,71.8,Table row: GPT-3 Few-Shot; Average: 71.8; Accuracy: 76.4; Accuracy: 75.6; F1: 52.0; Accuracy: 92.0; Accuracy: 69.0,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N1,not_reproduced,low,f1_harmonic_mean,6,2 × 83.3 × 77.0 / (83.3 + 77.0) = 80.0262,80.2,Table row: Wang et al. (2021b)⋆ [BERT-Large]; P: 70.5; R: 72.5; F1: 71.5; P: 83.3; R: 77.0; F1: 80.2,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N2,not_reproduced,low,f1_harmonic_mean,6,2 × 84.90 × 77.20 / (84.90 + 77.20) = 80.86712,80.30,Table row: 73.50; R: 71.80; F1: 72.40; P: 84.90; R: 77.20; F1: 80.30,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N3,not_reproduced,low,f1_harmonic_mean,6,2 × 83.58 × 77.82 / (83.58 + 77.82) = 80.59722,80.63,Table row: 74.57; R: 71.78; F1: 73.15; P: 83.58; R: 77.82; F1: 80.63,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N4,not_reproduced,low,f1_harmonic_mean,6,2 × 83.45 × 78.48 / (83.45 + 78.48) = 80.88873,80.91,Table row: 74.42; R: 72.72; F1: 73.56; P: 83.45; R: 78.48; F1: 80.91,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N5,not_reproduced,low,f1_harmonic_mean,6,2 × 85.70 × 85.20 / (85.70 + 85.20) = 85.44927,85.40,Table row: 86.90; R: 85.80; F1: 86.30; P: 85.70; R: 85.20; F1: 85.40,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N6,not_reproduced,low,f1_harmonic_mean,6,2 × 86.73 × 86.08 / (86.73 + 86.08) = 86.40378,86.38,Table row: 88.05; R: 85.78; F1: 86.94; P: 86.73; R: 86.08; F1: 86.38,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N7,not_reproduced,low,f1_harmonic_mean,6,2 × 85.88 × 86.40 / (85.88 + 86.40) = 86.13922,86.23,Table row: 87.61; R: 86.69; F1: 87.15; P: 85.88; R: 86.40; F1: 86.23,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N8,not_reproduced,low,f1_harmonic_mean,6,2 × 85.86 × 86.92 / (85.86 + 86.92) = 86.38675,86.50,Table row: 87.45; R: 87.14; F1: 87.37; P: 85.86; R: 86.92; F1: 86.50,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N9,consistent,low,f1_harmonic_mean,6,2 × 80.5 × 75.0 / (80.5 + 75.0) = 77.6527,77.7,Table row: 68.9; R: 69.0; F1: 69.0; P: 80.5; R: 75.0; F1: 77.7,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N10,consistent,low,f1_harmonic_mean,6,2 × 70.5 × 72.5 / (70.5 + 72.5) = 71.486,71.5,Table row: Wang et al. (2021b)⋆ [BERT-Large]; P: 70.5; R: 72.5; F1: 71.5; P: 83.3; R: 77.0; F1: 80.2,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N11,consistent,low,f1_harmonic_mean,6,2 × 82.09 × 77.42 / (82.09 + 77.42) = 79.68664,79.69,Table row: 70.08; R: 71.21; F1: 70.64; P: 82.09; R: 77.42; F1: 79.69,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N12,consistent,low,f1_harmonic_mean,6,2 × 81.09 × 78.13 / (81.09 + 78.13) = 79.58249,79.58,Table row: 71.35; R: 71.86; F1: 71.60; P: 81.09; R: 78.13; F1: 79.58,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N13,consistent,low,f1_harmonic_mean,6,2 × 85.20 × 85.60 / (85.20 + 85.60) = 85.39953,85.40,Table row: 87.30; R: 86.00; F1: 86.70; P: 85.20; R: 85.60; F1: 85.40,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N14,consistent,low,f1_harmonic_mean,6,2 × 85.01 × 84.13 / (85.01 + 84.13) = 84.56771,84.57,Table row: 85.83; R: 85.77; F1: 85.80; P: 85.01; R: 84.13; F1: 84.57,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N15,consistent,low,f1_harmonic_mean,6,2 × 87.44 × 87.38 / (87.44 + 87.38) = 87.40999,87.41,Table row: Shen et al. (2021)† ‡ [BERT-Large]; P: 87.44; R: 87.38; F1: 87.41; P: 86.09; R: 87.27; F1: 86.67,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N16,consistent,low,f1_harmonic_mean,6,2 × 86.09 × 87.27 / (86.09 + 87.27) = 86.67598,86.67,Table row: Shen et al. (2021)† ‡ [BERT-Large]; P: 87.44; R: 87.38; F1: 87.41; P: 86.09; R: 87.27; F1: 86.67,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N17,consistent,low,f1_harmonic_mean,6,2 × 88.46 × 86.10 / (88.46 + 86.10) = 87.26405,87.26,Table row: Tan et al. (2021)† ‡ [BERT-Large]; P: 88.46; R: 86.10; F1: 87.26; P: 87.48; R: 86.63; F1: 87.05,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N18,consistent,low,f1_harmonic_mean,6,2 × 87.48 × 86.63 / (87.48 + 86.63) = 87.05293,87.05,Table row: Tan et al. (2021)† ‡ [BERT-Large]; P: 88.46; R: 86.10; F1: 87.26; P: 87.48; R: 86.63; F1: 87.05,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N19,consistent,low,f1_harmonic_mean,6,2 × 83.16 × 86.38 / (83.16 + 86.38) = 84.73942,84.74,Table row: 87.27; R: 86.41; F1: 86.84; P: 83.16; R: 86.38; F1: 84.74,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N20,consistent,low,f1_harmonic_mean,6,2 × 82.92 × 87.05 / (82.92 + 87.05) = 84.93482,84.93,Table row: 86.36; R: 84.54; F1: 85.44; P: 82.92; R: 87.05; F1: 84.93,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N21,consistent,low,f1_harmonic_mean,7,2 × 70.08 × 71.21 / (70.08 + 71.21) = 70.64048,70.64,Table row: Yan et al. (2021) [BART-Large]; P: 70.08; R: 71.21; F1: 70.64; P: 87.27; R: 86.41; F1: 86.84,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N22,consistent,low,f1_harmonic_mean,7,2 × 87.27 × 86.41 / (87.27 + 86.41) = 86.83787,86.84,Table row: Yan et al. (2021) [BART-Large]; P: 70.08; R: 71.21; F1: 70.64; P: 87.27; R: 86.41; F1: 86.84,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N23,consistent,low,f1_harmonic_mean,7,2 × 71.35 × 71.86 / (71.35 + 71.86) = 71.60409,71.60,Table row: Zhang et al. (2022) [T5-Base]; P: 71.35; R: 71.86; F1: 71.60; P: 86.36; R: 84.54; F1: 85.44,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N24,consistent,low,f1_harmonic_mean,7,2 × 86.36 × 84.54 / (86.36 + 84.54) = 85.44031,85.44,Table row: Zhang et al. (2022) [T5-Base]; P: 71.35; R: 71.86; F1: 71.60; P: 86.36; R: 84.54; F1: 85.44,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N25,consistent,low,f1_harmonic_mean,7,2 × 74.57 × 71.78 / (74.57 + 71.78) = 73.14841,73.15,Table row: SetGNER [BART-Large]; P: 74.57; R: 71.78; F1: 73.15; P: 87.61; R: 86.69; F1: 87.15,
+held_out_papers,acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf,N26,consistent,low,f1_harmonic_mean,7,2 × 87.61 × 86.69 / (87.61 + 86.69) = 87.14757,87.15,Table row: SetGNER [BART-Large]; P: 74.57; R: 71.78; F1: 73.15; P: 87.61; R: 86.69; F1: 87.15,
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N1,inconsistent,high,table_column_total,7,2471 + 2389 + 8035 + 1842 + 25210 + 1842 + 3796 = 45585,45492,"Table row: North region; Pop.
+2015: 17,472,636; No.
+snakebites: 45,492; Avg.
+cases: 9,098…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N2,consistent,low,table_column_total,7,1768204 + 803513 + 3938336 + 505665 + 8175113 + 766679 + 1515126 = 17472636,17472636,"Table row: North region; Pop.
+2015: 17,472,636; No.
+snakebites: 45,492; Avg.
+cases: 9,098…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N3,consistent,low,table_column_total,7,8 + 7 + 50 + 14 + 82 + 6 + 13 = 180,180,"Table row: North region; Pop.
+2015: 17,472,636; No.
+snakebites: 45,492; Avg.
+cases: 9,098…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N4,consistent,low,table_column_total,7,6904241 + 3204028 + 8904459 + 3442175 + 3972202 + 9345173 + 3340932 + 2242937 + 15203934 = 56560081,56560081,"Table row: Northeast region; Pop.
+2015: 56,560,081; No.
+snakebites: 33,257; Avg.
+cases: 6,651…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N5,consistent,low,table_column_total,7,6991 + 1102 + 3084 + 1667 + 1747 + 3894 + 1607 + 788 + 12377 = 33257,33257,"Table row: Northeast region; Pop.
+2015: 56,560,081; No.
+snakebites: 33,257; Avg.
+cases: 6,651…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N6,consistent,low,table_column_total,7,43 + 6 + 15 + 3 + 5 + 22 + 1 + 7 + 62 = 164,164,"Table row: Northeast region; Pop.
+2015: 56,560,081; No.
+snakebites: 33,257; Avg.
+cases: 6,651…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N7,consistent,low,table_column_total,7,20869101 + 3929911 + 16550024 + 44396484 = 85745520,85745520,"Table row: Southeast region; Pop.
+2015: 85,745,520; No.
+snakebites: 30,529; Avg.
+cases: 6,106…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N8,consistent,low,table_column_total,7,14647 + 3688 + 2753 + 9441 = 30529,30529,"Table row: Southeast region; Pop.
+2015: 85,745,520; No.
+snakebites: 30,529; Avg.
+cases: 6,106…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N9,consistent,low,table_column_total,7,35 + 7 + 6 + 27 = 75,75,"Table row: Southeast region; Pop.
+2015: 85,745,520; No.
+snakebites: 30,529; Avg.
+cases: 6,106…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N10,consistent,low,table_column_total,7,11163018 + 6819190 + 11247972 = 29230180,29230180,"Table row: South region; Pop.
+2015: 29,230,180; No.
+snakebites: 11,909; Avg.
+cases: 2,382…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N11,consistent,low,table_column_total,7,4167 + 3515 + 4227 = 11909,11909,"Table row: South region; Pop.
+2015: 29,230,180; No.
+snakebites: 11,909; Avg.
+cases: 2,382…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N12,consistent,low,table_column_total,7,13 + 8 + 12 = 33,33,"Table row: South region; Pop.
+2015: 29,230,180; No.
+snakebites: 11,909; Avg.
+cases: 2,382…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N13,consistent,low,table_column_total,7,2651235 + 3265486 + 6610681 + 2914830 = 15442232,15442232,"Table row: Central-West region; Pop.
+2015: 15,442,232; No.
+snakebites: 14,411; Avg.
+cases: 2,882…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N14,consistent,low,table_column_total,7,2570 + 6010 + 5329 + 502 = 14411,14411,"Table row: Central-West region; Pop.
+2015: 15,442,232; No.
+snakebites: 14,411; Avg.
+cases: 2,882…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N15,consistent,low,table_column_total,7,6 + 28 + 26 + 2 = 62,62,"Table row: Central-West region; Pop.
+2015: 15,442,232; No.
+snakebites: 14,411; Avg.
+cases: 2,882…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N16,consistent,low,table_column_total,7,17472636 + 56560081 + 85745520 + 29230180 + 15442232 = 204450649,204450649,"Table row: Total; Pop.
+2015: 204,450,649; No.
+snakebites: 135,598; Avg.
+cases: 27,…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N17,consistent,low,table_column_total,7,45492 + 33257 + 30529 + 11909 + 14411 = 135598,135598,"Table row: Total; Pop.
+2015: 204,450,649; No.
+snakebites: 135,598; Avg.
+cases: 27,…",
+held_out_papers,pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf,N18,consistent,low,table_column_total,7,180 + 164 + 75 + 33 + 62 = 514,514,"Table row: Total; Pop.
+2015: 204,450,649; No.
+snakebites: 135,598; Avg.
+cases: 27,…",
+held_out_papers,pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf,N1,consistent,low,ci_contains_estimate,2,5.5 ≤ 7.5 ≤ 19,"7.5 [5.5, 19]","…estimated the generation time distribution to have a mean of 7.5 (95%CI 5.5–19) days based on 6 observations, whereas Ganyani et al. estim…",
+held_out_papers,pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf,N2,consistent,low,ci_contains_estimate,2,3.78 ≤ 5.20 ≤ 6.78,"5.20 [3.78, 6.78]",…estimated the generation time distribution to have a mean of 5.20 (95%CI 3.78–6.78) days for Singapore and 3.95 (95%CI 3.01–4.91) days for Tia…,
+held_out_papers,pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf,N3,consistent,low,ci_contains_estimate,2,3.01 ≤ 3.95 ≤ 4.91,"3.95 [3.01, 4.91]","…have a mean of 5.20 (95%CI 3.78–6.78) days for Singapore and 3.95 (95%CI 3.01–4.91) days for Tianjin [11], Bi et al. estimated the generation…",
+held_out_papers,pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf,N4,consistent,low,ci_contains_estimate,2,5.2 ≤ 6.3 ≤ 7.6,"6.3 [5.2, 7.6]","…estimated the generation time distribution to have a mean of 6.3 (95% CI 5.2–7.6) days [12], He et al. estimated the generation time distrib…",
+held_out_papers,pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf,N5,consistent,low,ci_contains_estimate,2,4.8 ≤ 5.8 ≤ 6.8,"5.8 [4.8, 6.8]","…estimated the generation time distribution to have a mean of 5.8 (95%CI 4.8–6.8) days [13], and Hiroshi et al. estimated the generation tim…",
+held_out_papers,pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf,N6,consistent,low,ci_contains_estimate,2,3.70 ≤ 4.7 ≤ 6.00,"4.7 [3.70, 6.00]",…estimated the generation time distribution to have a mean of 4.7 (95%CI 3.70–6.00) days.,
+held_out_v0.2_papers,arxiv_2403.00209v2_chartreformer-natural-language-driven-chart-image.pdf,N1,consistent,low,table_row_total,8,23875 + 9550 + 19100 + 57300 = 109825,109825,Table row: Total; Style: 23875; Layout: 9550; Format: 19100; Data-centric: 57300; Total: 109825,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N1,inconsistent,high,percent_of_count,11,22 / 307 × 100 = 7.1661%,8.5%,"[3] Approximately 22/307 (8.5%), 11 in control and 11 in intervention, did not have a viral…",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N2,inconsistent,low,percent_of_count,2,23 / 157 × 100 = 14.6497%,14.7%,"…sign, data collection and analysis, decision to publish, or 23 of 157 (14.7%) had transferred out (adjusted OR 0.53; 95% CI [0.25 to 1.13…",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N3,inconsistent,low,percent_of_count,10,23 / 157 × 100 = 14.6497%,14.7%,Twelve of 150 (8%) in the intervention versus 23 of 157 (14.7%) in the control arm had transferred out at 12 months (aOR 0.…,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N4,consistent,low,percent_of_count,1,99 / 150 × 100 = 66%,66%,"At 12 months, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) par…",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N5,consistent,low,percent_of_count,1,95 / 157 × 100 = 60.5096%,61%,"…hs, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm had viral suppression (adju…",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N6,consistent,low,percent_of_count,2,4 / 150 × 100 = 2.6667%,2.7%,confidence interval [CI] [0.79 to 2.03]; p = 0.327); 4 of 150 (2.7%) versus 1 of 157 (0.6%) had died (adjusted OR 4.12; 95% CI […,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N7,consistent,low,percent_of_count,2,1 / 157 × 100 = 0.6369%,0.6%,…val [CI] [0.79 to 2.03]; p = 0.327); 4 of 150 (2.7%) versus 1 of 157 (0.6%) had died (adjusted OR 4.12; 95% CI [0.45 to 37.62]; p = 0.2…,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N8,consistent,low,percent_of_count,2,12 / 150 × 100 = 8%,8%,…(adjusted OR 4.12; 95% CI [0.45 to 37.62]; p = 0.210); and 12 of 150 (8%) versus https://zenodo.org/record/7307834#.,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N9,consistent,low,ci_contains_estimate,2,0.45 ≤ 4.12 ≤ 37.62,"4.12 [0.45, 37.62]",…4 of 150 (2.7%) versus 1 of 157 (0.6%) had died (adjusted OR 4.12; 95% CI [0.45 to 37.62]; p = 0.210); and 12 of 150 (8%) versus https://zenodo.org/…,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N10,consistent,low,ci_contains_estimate,2,0.25 ≤ 0.53 ≤ 1.13,"0.53 [0.25, 1.13]","…blish, or 23 of 157 (14.7%) had transferred out (adjusted OR 0.53; 95% CI [0.25 to 1.13]; p = 0.099).",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N11,consistent,low,percent_of_count,8,99 / 150 × 100 = 66%,66%,"At the 12-month follow-up, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) par…",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N12,consistent,low,percent_of_count,8,95 / 157 × 100 = 60.5096%,61%,"…up, 99 of 150 (66%) participants in the intervention versus 95 of 157 (61%) participants in the control arm achieved viral suppression…",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N13,consistent,low,ci_contains_estimate,8,0.79 ≤ 1.27 ≤ 2.03,"1.27 [0.79, 2.03]",…m achieved viral suppression below 20 copies/mL (adjusted OR 1.27; 95% CI [0.79 to 2.03]; p = 0.327; Table 2).,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N14,consistent,low,table_row_total,9,9 + 13 = 22,22,"Table row: Primary occupation; Level: (self-)employed with regular
+income; Total: 22 (7.2); Control: 9 (5.7); Intervention: 13…",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N15,consistent,low,table_row_total,9,0 + 91 + 109 = 200,200,Table row: Number of children; Level: 0; Total: 200 (65.1); Control: 91 (58.0); Intervention: 109 (72.7),
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N16,consistent,low,table_row_total,9,46 + 35 = 81,81,Table row: Level: 1; Total: 81 (26.4); Control: 46 (29.3); Intervention: 35 (23.3),
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N17,consistent,low,table_row_total,9,18 + 6 = 24,24,Table row: Level: 2; Total: 24 (7.8); Control: 18 (11.5); Intervention: 6 (4.0),
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N18,consistent,low,table_row_total,9,2 + 0 = 2,2,Table row: Level: 3; Total: 2 (0.7); Control: 2 (1.3); Intervention: 0 (0.0),
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N19,consistent,low,percent_of_count,10,268 / 307 × 100 = 87.2964%,87%,"At the end of the study, 268/307 (87%) participants were taking DTG-based ART as compared to 13% a…",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N20,consistent,low,ci_contains_estimate,10,0.25 ≤ 0.53 ≤ 1.13,"0.53 [0.25, 1.13]",…7%) in the control arm had transferred out at 12 months (aOR 0.53; 95% CI [0.25 to 1.13]; p = 0.099; Table 2).,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N21,consistent,low,ci_contains_estimate,10,0.45 ≤ 4.12 ≤ 37.62,"4.12 [0.45, 37.62]",…in the intervention versus 1 (0.6%) in the control arm (aOR 4.12; 95% CI [0.45 to 37.62]; p = 0.210).,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N22,consistent,low,percent_of_count,10,166 / 307 × 100 = 54.0717%,54%,"Overall, viral suppression increased from 166/307 (54%) at baseline to 194/307 (63%) at 12 months of follow-up.",
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N23,consistent,low,percent_of_count,10,194 / 307 × 100 = 63.1922%,63%,…ral suppression increased from 166/307 (54%) at baseline to 194/307 (63%) at 12 months of follow-up.,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N24,consistent,low,percent_of_count,11,31 / 157 × 100 = 19.7452%,20%,…e in addition adjusted for the respective baseline measure; 31/157 (20%) in control and 58/150 (39%) in Intervention were missing.,
+held_out_v0.2_papers,pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf,N25,consistent,low,percent_of_count,11,58 / 150 × 100 = 38.6667%,39%,…he respective baseline measure; 31/157 (20%) in control and 58/150 (39%) in Intervention were missing.,

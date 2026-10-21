@@ -20,3 +20,14 @@ datasets (e.g. arXiv/PubMed, SciTLDR) were considered but need model training/in
 
 **Datasets reachable in this build environment:** none of the above could be downloaded from the cloud container (hosts blocked by policy), which is why SciFact and the audit
 are provided as scripts to run on a machine with internet.
+
+**Checking a paper's own numbers.** statcheck (Nuijten & Epskamp) recomputes p-values from APA-formatted test statistics;
+GRIM (Brown & Heathers, 2016) and its relatives (GRIMMER, SPRITE) test whether reported means are possible for integer
+data and a given n. The Black Spatula project and YesNoError (2024-25) prompt large language models to look for errors in
+papers; by their own reports these runs cost cents to dollars per paper and a share of flagged errors are false, so
+each flag needs expert review. PaperLens's Numbers check reuses the statcheck idea for p-values and adds plain-arithmetic
+checks that those tools do not cover in one place (percentages of counts, stated differences and fold changes, table row
+and column totals with subtotals, row averages, F1 from P and R, estimates inside confidence intervals). Its difference
+from the LLM projects is that every check is deterministic, offline and free, shows its formula, and lists what passed as
+well as what failed. These descriptions come from a web search on 2026-10-21 (secondary sources for Black Spatula and
+YesNoError); verify before citing.

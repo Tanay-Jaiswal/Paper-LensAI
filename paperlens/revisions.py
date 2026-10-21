@@ -1,0 +1,77 @@
+"""Revision checklist: the analysis findings rewritten as concrete, page-cited fixes for the authors.
+
+Nothing here is new analysis or generated text. Each item is one finding from the Numbers check, the evidence-gap rules
+or the reproducibility checklist, turned into "what to change, why, where" with fixed wording per finding type, so the
+same paper always gets the same list and every item points back to the finding it came from.
+"""
+from __future__ import annotations
+
+# gap kinds that the reproducibility checklist already covers item by item; listing both would repeat the advice
+_COVERED_BY_RUBRIC = {"no_code", "no_hyperparameters", "no_limitations", "no_splits"}
+
+_GAP_FIX = {
+    "unsupported_claim": ("Back this claim with a result in the paper, or soften it",
+                          "No passage in the results, tables or discussion supports it as written."),
+    "number_not_in_results": ("Show where the figure in this claim comes from",
+                              "The value is stated here but never appears in the results text or tables."),
+    "superlative_without_baselines": ("Describe the baselines behind the 'best / state-of-the-art' wording, or drop it",
+                                      "A superlative needs a comparison, and no baselines are described."),
+    "superlative_unsupported": ("Add the head-to-head comparison that supports the superlative, or tone it down",
+                                "The results do not show a clear comparison backing it."),
+    "significance_without_test": ("Name the statistical test and give the p-value or confidence interval",
+                                  "'Significant' is used, but no test is reported."),
+    "improvement_without_variance": ("Report variance (standard deviation, several seeds or a confidence interval) for this gain",
+                                     "A single number cannot show the improvement is larger than run-to-run noise."),
+    "generalization_narrow_evidence": ("Evaluate on more datasets, or narrow the claim to the datasets tested",
+                                       "The claim is general, but the evidence covers few datasets."),
+    "comparison_without_baselines": ("Describe the baselines used in the comparisons",
+                                     "Comparative claims are made without saying what is compared against."),
+}
+_SEV_RANK = {"high": 0, "medium": 1, "low": 2}
+
+
+def _numbers_item(c: dict) -> dict:
+    where = f"p.{c['page']}"
+    if c["kind"] == "percent_of_count":
+        action = f"Correct the percentage on {where}: {c['formula']}, but {c['stated']} is printed"
+    elif c["kind"] in ("table_row_total", "table_column_total"):
+        action = f"Correct the table total on {where}: {c['formula']}, but {c['stated']} is printed"
+    elif c["kind"] == "p_value":
+        action = f"Check the reported {c['stated']} on {where}: {c['formula']}"
+    elif c["kind"] == "ci_contains_estimate":
+        action = f"Check the estimate and interval on {where}: the estimate lies outside {c['stated']}"
+    else:
+        action = f"Correct the arithmetic on {where}: {c['formula']}, but {c['stated']} is printed"
+    return {"priority": c["severity"], "category": "Numbers", "action": action + ".",
+            "why": c["message"], "page": c["page"], "quote": c["quote"], "source": f"Numbers check {c['id']}"}
+
+
+def revision_checklist(analysis) -> list[dict]:
+    """Ordered list of fixes; empty when the paper could not be read."""
+    items: list[dict] = []
+    for c in (analysis.consistency or {}).get("checks", []):
+        if c["status"] == "inconsistent":
+            items.append(_numbers_item(c))
+    for g in analysis.gaps:
+        if g.kind in _COVERED_BY_RUBRIC or g.kind not in _GAP_FIX:
+            continue
+        action, why = _GAP_FIX[g.kind]
+        items.append({"priority": g.severity, "category": "Claims", "action": action + (f" (p.{g.page})." if g.page else "."),
+                      "why": why + " " + g.message, "page": g.page, "quote": g.quote,
+                      "source": f"Evidence gap {g.id}" + (f", claim {g.claim_id}" if g.claim_id else "")})
+    if analysis.rubric.get("band") != "not assessed":
+        for it in analysis.rubric.get("items", []):
+            if it["status"] not in ("missing", "partial"):
+                continue
+            ev = it["evidence"][0] if it["evidence"] else None
+            prio = "high" if it["status"] == "missing" and it["weight"] >= 2 else "medium" if it["status"] == "missing" else "low"
+            items.append({"priority": prio, "category": "Reproducibility", "action": it["advice"],
+                          "why": f"Checklist item '{it['label']}' is {it['status']}"
+                                 + (" (only mentioned in passing)." if it["status"] == "partial" else " (not found in the paper)."),
+                          "page": ev["page"] if ev else None, "quote": ev["quote"] if ev else "",
+                          "source": f"Reproducibility item '{it['key']}' (weight {it['weight']})"})
+    cat = {"Numbers": 0, "Claims": 1, "Reproducibility": 2}
+    items.sort(key=lambda x: (_SEV_RANK[x["priority"]], cat[x["category"]], x["page"] or 0))
+    for i, x in enumerate(items, 1):
+        x["id"] = f"R{i}"
+    return items

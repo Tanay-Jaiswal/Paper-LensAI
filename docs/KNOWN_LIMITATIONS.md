@@ -170,3 +170,15 @@ Open items found while testing the application, not fixed because none corrupts 
   for 0.6.0-dev and 0.6.1-dev. They were judged not to block delivery and were not tuned further in this release.
 - **No human-verified result exists** for any version (see `docs/EVALUATION.md`).
 
+## Added for 1.1.0 (Numbers check)
+
+- **Low coverage.** Only statements that print a result next to its operands are checked. 27 of 35 real papers produced
+  no check at all; most ML papers state results without the numbers they come from.
+- **Only these forms are recognised**: "x of y (p%)", "x/y (p%)", "from A to B" with "by D", "(+D)" or "an increase of D",
+  "N-fold ... from A to B", "estimate (95% CI lo to hi)", APA-style `t(df) = v, p = ...` (also F, χ², r, z), and table
+  rows with Total/All, Average/Mean or P/R/F1 headers. Numbers written in words ("Twelve of 150") are skipped.
+- **Ratios between columns are not checked** (a "% deaths" column against deaths and cases), so such errors are missed.
+- **Tables are only as good as the parser.** A wrongly split row can produce a wrong sum; the formula is always shown.
+- **"Not reproduced" is a judgement call** built into fixed rules (F1 within 1 point, averages that are not plain means,
+  column sums that only work with subtotals). A real error inside those margins is reported as "not reproduced".
+- **p-values are two-tailed** for t, r and z; a paper reporting one-tailed tests will be flagged.

@@ -63,8 +63,15 @@ async function upload(file) {
 }
 async function loadRecent() {
   try { recent = await api("/api/analyses"); } catch (_) { recent = []; }
-  $("recent").innerHTML = recent.length ? '<div class="recent"><span class="muted small">Analysed earlier:</span> ' +
-    recent.slice(0, 8).map((r) => `<a href="#" data-id="${esc(r.id)}" title="${esc(r.title)}" class="${cur && cur.id === r.id ? "cur" : ""}">${esc(r.name || r.title)}</a>`).join("") + "</div>" : "";
+  const shown = recent.slice(0, 8);
+  $("recent").innerHTML = '<div class="recent"><div class="recent-head"><h3 class="section-label" id="recent-label">Analysed earlier</h3>' +
+    (recent.length > shown.length ? `<span class="small muted">latest ${shown.length} of ${recent.length}</span>` : "") + "</div>" +
+    (shown.length ? '<ul class="recent-list" aria-labelledby="recent-label">' + shown.map((r) => {
+      const name = r.name || r.title, sub = r.title && r.title !== name ? r.title : "";
+      return `<li><a href="#" data-id="${esc(r.id)}" title="${esc(sub ? name + "\n" + sub : name)}" class="${cur && cur.id === r.id ? "cur" : ""}"${cur && cur.id === r.id ? ' aria-current="true"' : ""}>` +
+        `<span class="r-text"><span class="r-name">${esc(name)}</span>${sub ? `<span class="r-title">${esc(sub)}</span>` : ""}</span>` +
+        `<span class="r-count">${esc(r.claims)} claim${r.claims === 1 ? "" : "s"}</span></a></li>`;
+    }).join("") + "</ul>" : '<p class="recent-empty">No papers analysed yet. Upload a PDF or load the synthetic demo to start.</p>') + "</div>";
   $("recent").querySelectorAll("a").forEach((a) => a.onclick = async (ev) => {
     ev.preventDefault();
     if (busy) return;
@@ -88,15 +95,17 @@ function show(a) {
   $("tiles").innerHTML =
     tile(a.ledger_stats.n_claims, "claims found", `${st.strong} strong · ${st.moderate} moderate · ${st.weak} weak · ${st.none} without evidence`, "ledger") +
     tile(assessed ? r.score : "n/a", assessed ? "reporting checklist / 100" : "checklist not assessed", assessed ? `${r.items.filter((i) => i.status === "missing").length} of ${r.items.length} items not reported` : "too little text was extracted", "repro") +
-    tile(a.gaps.length, "candidate evidence gaps", `${high} high severity`, "gaps");
+    tile(a.gaps.length, "candidate evidence gaps", `${high} high severity`, "gaps") +
+    (a.consistency && a.consistency.checks ? tile(a.consistency.n_inconsistent, "numbers that do not add up",
+      `of ${a.consistency.n_checked} statements recomputed`, "numbers") : "");
   document.querySelectorAll("#tiles .tile").forEach((t) => t.onclick = () => tab(t.dataset.tab));
-  renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderCompareTab();
+  renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderGlossary(a); renderCompareTab();
   tab("summary");
   loadRecent();
 }
 function tile(big, label, sub, t) { return `<button class="tile" data-tab="${t}"><div class="big">${esc(big)}</div><div>${esc(label)}</div><div class="muted small">${esc(sub)}</div></button>`; }
 function tab(name) {
-  document.querySelectorAll("#tabs button").forEach((b) => b.classList.toggle("on", b.dataset.tab === name));
+  document.querySelectorAll("#tabs button").forEach((b) => { b.classList.toggle("on", b.dataset.tab === name); b.setAttribute("aria-pressed", b.dataset.tab === name); });
   document.querySelectorAll(".tab").forEach((t) => t.hidden = t.id !== "tab-" + name);
 }
 document.querySelectorAll("#tabs button").forEach((b) => b.onclick = () => tab(b.dataset.tab));
@@ -165,7 +174,7 @@ function openClaim(id) {
     if (e.shared_numbers.length) why.push(`shares the figure${e.shared_numbers.length > 1 ? "s" : ""} <strong>${esc(e.shared_numbers.join(", "))}</strong> with the claim`);
     if (e.shared_terms && e.shared_terms.length) why.push(`shares the terms <em>${esc(e.shared_terms.join(", "))}</em>`);
     if (!why.length) why.push("overall wording overlap only");
-    h += `<div class="ev"><div><strong>Evidence ${i + 1}</strong> <span class="cite">p.${e.page} · ${esc(e.section)}</span></div><blockquote>${esc(e.quote)}</blockquote>` +
+    h += `<div class="ev"><div><strong>Evidence ${i + 1} for ${esc(c.id)}</strong> <span class="cite">p.${e.page} · ${esc(e.section)}</span></div><blockquote>${esc(e.quote)}</blockquote>` +
       `<div class="small muted"><strong>Why this passage:</strong> ${why.join("; ")}. Match score ${e.score} (wording relevance ${e.lexical}).</div></div>`;
   });
   const pages = [...new Set([c.page, ...ev.map((e) => e.page)])];
@@ -212,6 +221,49 @@ function renderGaps(a) {
     ev.preventDefault(); supportFilter = "all"; renderLedger(cur); tab("ledger"); openClaim(l.dataset.id);
     const tr = document.querySelector(`tr.claim[data-id="${l.dataset.id}"]`); if (tr) tr.scrollIntoView({block: "center"});
   });
+}
+
+const NUM_STATUS = {inconsistent: ["none", "does not add up"], not_reproduced: ["partial", "not reproduced"], consistent: ["strong", "checks out"]};
+function renderNumbers(a) {
+  const c = a.consistency;
+  if (!c || !c.checks) { $("tab-numbers").innerHTML = `<p class="empty">This analysis was made by an older version. Upload the PDF again to run the numbers check.</p>`; return; }
+  let h = `<h3>${c.n_checked} statement${c.n_checked === 1 ? "" : "s"} recomputed: ${c.n_inconsistent} do${c.n_inconsistent === 1 ? "es" : ""} not add up, ${c.n_not_reproduced} not reproduced, ${c.n_consistent} check out</h3>
+    <p class="muted small">${esc(c.method)}</p><p class="muted small">${esc(c.caveat)}</p>`;
+  if (!c.checks.length) { $("tab-numbers").innerHTML = h + `<p class="empty">No statement in this paper prints a result next to the numbers it is computed from in a form the checks recognise.</p>`; return; }
+  const kinds = Object.entries(c.by_kind).map(([k, v]) => `${esc(c.labels[k] || words(k))}: ${v.checked}` + (v.inconsistent ? ` (${v.inconsistent} not adding up)` : "")).join(" · ");
+  h += `<p class="cite">${kinds}</p><table><thead><tr><th>Result</th><th>Check</th><th>Detail and recomputation</th><th>Page</th></tr></thead><tbody>`;
+  for (const x of c.checks) {
+    const [cls, label] = NUM_STATUS[x.status];
+    h += `<tr><td>${pill(cls, label)}${x.status === "inconsistent" ? `<div class="cite">${esc(x.severity)}</div>` : ""}</td><td>${esc(c.labels[x.kind] || words(x.kind))}</td>
+      <td>${esc(x.message)}<div class="cite">Recomputed: ${esc(x.formula)} · printed: ${esc(x.stated)}</div><blockquote>${esc(x.quote)}</blockquote></td>
+      <td><a href="/api/analyses/${esc(a.id)}/page/${x.page}.png?highlight=${x.sentence_id}" target="_blank" rel="noopener">p.${x.page}</a></td></tr>`;
+  }
+  $("tab-numbers").innerHTML = h + "</tbody></table>";
+}
+
+function renderRevise(a) {
+  const r = a.revisions;
+  if (!r) { $("tab-revise").innerHTML = `<p class="empty">This analysis was made by an older version. Upload the PDF again to build the checklist.</p>`; return; }
+  const n = (p) => r.filter((x) => x.priority === p).length;
+  let h = `<h3>${r.length} suggested revision${r.length === 1 ? "" : "s"} for the authors</h3><p class="muted small">${n("high")} high, ${n("medium")} medium, ${n("low")} low priority. Each item is one finding from the Numbers check, the evidence gaps or the reproducibility checklist, rewritten as a fix; the source column says which. Nothing is generated, so the same paper always gets the same list.</p>`;
+  if (!r.length) { $("tab-revise").innerHTML = h + `<p class="empty">No finding needs a revision.</p>`; return; }
+  h += `<table><thead><tr><th>Priority</th><th>Area</th><th>What to change and why</th><th>Page</th></tr></thead><tbody>`;
+  for (const x of r) {
+    h += `<tr><td>${pill(x.priority)}</td><td>${esc(x.category)}</td><td><strong>${esc(x.action)}</strong><div class="small">${esc(x.why)}</div>` +
+      (x.quote ? `<blockquote>${esc(x.quote)}</blockquote>` : "") + `<div class="cite">${esc(x.id)} · from ${esc(x.source)}</div></td><td>${x.page ? `p.${x.page}` : "—"}</td></tr>`;
+  }
+  $("tab-revise").innerHTML = h + "</tbody></table>";
+}
+
+function renderGlossary(a) {
+  const g = a.glossary;
+  if (!g || !g.defined) { $("tab-glossary").innerHTML = `<p class="empty">This analysis was made by an older version. Upload the PDF again to build the glossary.</p>`; return; }
+  let h = `<h3>${g.defined.length} abbreviation${g.defined.length === 1 ? "" : "s"} defined by the paper</h3><p class="muted small">${esc(g.note)} When claims are matched to evidence, an abbreviation and its long form count as the same words.</p>`;
+  h += g.defined.length ? `<table><thead><tr><th>Abbreviation</th><th>Meaning (as the paper defines it)</th><th>Uses</th><th>Defined on</th></tr></thead><tbody>` +
+    g.defined.map((d) => `<tr><td><strong>${esc(d.abbr)}</strong></td><td>${esc(d.long)}<div class="cite">${esc(d.quote)}</div></td><td>${d.uses}</td><td>p.${d.page}</td></tr>`).join("") + "</tbody></table>"
+    : `<p class="empty">The paper does not define any abbreviation in the form "long form (ABBR)".</p>`;
+  h += `<h4>Used but never defined in the paper</h4>` + (g.undefined.length ? `<p class="small">${g.undefined.map((u) => `<strong>${esc(u.abbr)}</strong> <span class="muted">×${u.uses}, first p.${u.page}</span>`).join(" · ")}</p><p class="muted small">These may be standard in the field (or names of instruments and software). PaperLens does not guess their meaning.</p>` : `<p class="empty">None found.</p>`);
+  $("tab-glossary").innerHTML = h;
 }
 
 async function renderCompareTab() {

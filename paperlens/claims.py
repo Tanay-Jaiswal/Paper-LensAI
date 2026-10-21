@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import re
 
+from .glossary import CURRENT as GLOSSARY_TOKENS, build_glossary, expand_tokens, token_map
 from .models import Claim, Document, EvidenceLink, Sentence
 from .textutils import BM25, jaccard, match_quantities, numbers_in, quantities_in, tokenize
 
@@ -258,9 +259,9 @@ def rank_passages(claim_text: str, claim_numbers: list[str], pool: list[Sentence
     """
     if not pool:
         return []
-    docs = [tokenize(s.text) for s in pool]
+    docs = [expand_tokens(tokenize(s.text)) for s in pool]
     bm = BM25(docs)
-    q = tokenize(claim_text)
+    q = expand_tokens(tokenize(claim_text))
     qset = set(q)
     norm = bm.self_score(q)
     cqs = _claim_quantities(claim_text, claim_numbers)
@@ -401,5 +402,10 @@ def link_evidence(doc: Document, claims: list[Claim], k: int = 3) -> list[Claim]
     return claims
 
 
-def build_ledger(doc: Document, max_claims: int = 25) -> list[Claim]:
-    return link_evidence(doc, extract_claims(doc, max_claims=max_claims))
+def build_ledger(doc: Document, max_claims: int = 25, glossary: dict | None = None) -> list[Claim]:
+    # the paper's own abbreviation definitions let "FEM" in a claim match "finite element method" in the results
+    token = GLOSSARY_TOKENS.set(token_map(glossary if glossary is not None else build_glossary(doc)))
+    try:
+        return link_evidence(doc, extract_claims(doc, max_claims=max_claims))
+    finally:
+        GLOSSARY_TOKENS.reset(token)

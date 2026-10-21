@@ -1,16 +1,19 @@
-"""End-to-end analysis: PDF -> Analysis (summary, ledger, rubric, gaps)."""
+"""End-to-end analysis: PDF -> Analysis (summary, ledger, rubric, gaps, numeric consistency)."""
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from . import __version__
 from .claims import THRESHOLDS, build_ledger
+from .consistency import audit as consistency_audit
+from .glossary import build_glossary
 from .gaps import detect_gaps, detected_datasets
 from .ingest import UNREADABLE_WARNING, parse_pdf
 from .models import Claim, Document, Gap
 from .reproducibility import assess
+from .revisions import revision_checklist
 from .summarize import summarize
 
 
@@ -23,6 +26,8 @@ class Analysis:
     gaps: list[Gap]
     datasets: list[str]
     metrics: list[str]
+    consistency: dict = field(default_factory=dict)   # see consistency.audit
+    glossary: dict = field(default_factory=dict)      # see glossary.build_glossary
 
     def to_dict(self) -> dict:
         support = {k: sum(1 for c in self.claims if c.support == k) for k in ("strong", "moderate", "weak", "none")}
@@ -39,6 +44,9 @@ class Analysis:
             "gaps": [g.to_dict() for g in self.gaps],
             "datasets": self.datasets,
             "metrics": self.metrics,
+            "consistency": self.consistency,
+            "revisions": revision_checklist(self),
+            "glossary": self.glossary,
         }
 
 
@@ -59,7 +67,8 @@ def detect_metrics(doc: Document) -> list[str]:
 
 
 def analyze_document(doc: Document) -> Analysis:
-    claims = build_ledger(doc)
+    glossary = build_glossary(doc)
+    claims = build_ledger(doc, glossary=glossary)
     rubric = assess(doc)
     if UNREADABLE_WARNING in doc.warnings:
         # almost no text came out of the PDF: "no code link" or a score of 0 would describe the extraction, not the paper
@@ -71,7 +80,8 @@ def analyze_document(doc: Document) -> Analysis:
                     "reproducibility rubric and evidence gaps could not be assessed.")]
     else:
         gaps = detect_gaps(doc, claims, rubric)
-    return Analysis(doc, summarize(doc), claims, rubric, gaps, sorted(detected_datasets(doc)), detect_metrics(doc))
+    return Analysis(doc, summarize(doc), claims, rubric, gaps, sorted(detected_datasets(doc)), detect_metrics(doc),
+                    consistency_audit(doc), glossary)
 
 
 def analyze_pdf(path: str | Path, doc_id: str | None = None) -> Analysis:

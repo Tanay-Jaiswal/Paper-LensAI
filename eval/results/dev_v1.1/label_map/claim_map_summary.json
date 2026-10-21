@@ -1,0 +1,13 @@
+{
+ "old_claims": 144,
+ "new_claims": 144,
+ "identical": 144,
+ "partially_changed": 0,
+ "materially_changed": 0,
+ "removed": 0,
+ "added": 0,
+ "claim_labels_carried": 144,
+ "evidence_judgments_still_valid": 53,
+ "fresh_claim_labels_needed": 0,
+ "fresh_pair_labels_needed": 8
+}

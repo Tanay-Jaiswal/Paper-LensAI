@@ -35,6 +35,15 @@ Related Work are ignored. Each item returns up to 3 quotes with page numbers and
 `superlative_without_baselines`, `superlative_unsupported`, `significance_without_test`, `improvement_without_variance`,
 `generalization_narrow_evidence`, `no_code`, `no_hyperparameters`, `no_limitations`, `no_splits`, `comparison_without_baselines`.
 
+**consistency.py** (Numbers check). Fixed patterns find statements that print a result beside its operands; the
+result is recomputed and compared with the printed value, allowing for rounding or truncation of every printed number
+(interval arithmetic on half a unit of the last digit). Checks: `percent_of_count`, `stated_change`, `change_direction`,
+`fold_change`, `ci_contains_estimate`, `p_value` (SciPy distributions, as statcheck does), and on `Table row:` sentences
+`table_row_total`, `table_row_average`, `f1_harmonic_mean`, `table_column_total` (rows of one table are consecutive rows
+on a page with the same headers; a failed column sum is re-read as groups closed by subtotal rows). Status:
+`consistent`, `inconsistent`, or `not_reproduced` when a legitimate convention (weighted average, F1 averaged over runs,
+macro-F1) could explain the gap. All checks, including passing ones, are returned with formula, quote and page.
+
 **summarize.py**. Per facet (problem/approach/results/limitations) choose sentences by section prior + cue regex + TextRank centrality
 (TF-IDF cosine graph), skipping near-duplicates. Output is verbatim text with page, so the summary cannot hallucinate.
 
