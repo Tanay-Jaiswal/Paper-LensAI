@@ -51,7 +51,7 @@ def compare(a: Analysis, b: Analysis, align_threshold: float = 0.35) -> dict:
     ra = {i["key"]: i for i in a.rubric["items"]}
     rb = {i["key"]: i for i in b.rubric["items"]}
     rubric_rows = []
-    for key in ra:
+    for key in [k for k in ra if k in rb]:      # CS items exist only when both papers were checked in CS mode
         rubric_rows.append({"key": key, "label": ra[key]["label"], "a": ra[key]["status"], "b": rb[key]["status"],
                             "differs": ra[key]["status"] != rb[key]["status"]})
 
@@ -65,6 +65,9 @@ def compare(a: Analysis, b: Analysis, align_threshold: float = 0.35) -> dict:
     gb = sum(1 for g in b.gaps if g.severity == "high")
     verdict = []
     ra_s, rb_s = a.rubric["score"], b.rubric["score"]
+    if a.rubric.get("field", "general") != b.rubric.get("field", "general"):
+        # one paper got the CS checklist and the other did not: only the shared 15-item score is comparable
+        ra_s, rb_s = a.rubric.get("standard_score", ra_s), b.rubric.get("standard_score", rb_s)
     if abs(ra_s - rb_s) >= 5:
         verdict.append(f"Reproducibility checklist coverage is higher for paper {'A' if ra_s > rb_s else 'B'} "
                        f"({max(ra_s, rb_s)} vs {min(ra_s, rb_s)}).")

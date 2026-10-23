@@ -10,13 +10,14 @@ import threading
 from pathlib import Path
 
 import pymupdf
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from . import __version__
 from .compare import compare
+from .field import MODES
 from .pipeline import Analysis, analyze_pdf
 from .report import to_html, to_markdown
 
@@ -45,6 +46,12 @@ def _path(aid: str) -> Path:
     return DATA_DIR / aid
 
 
+def _mode_of(d: Path) -> str:
+    f = d / "mode.txt"
+    m = f.read_text(encoding="utf-8").strip() if f.exists() else "auto"
+    return m if m in MODES else "auto"
+
+
 def _load(aid: str) -> Analysis:
     with _lock:
         if aid in _cache:
@@ -52,19 +59,22 @@ def _load(aid: str) -> Analysis:
     pdf = _path(aid) / "paper.pdf"
     if not pdf.exists():
         raise HTTPException(404, "Unknown analysis id")
-    a = analyze_pdf(pdf, aid)
+    a = analyze_pdf(pdf, aid, _mode_of(_path(aid)))
     a.doc.source_name = (_path(aid) / "name.txt").read_text(encoding="utf-8") if (_path(aid) / "name.txt").exists() else pdf.name
     with _lock:
         _cache[aid] = a
     return a
 
 
-def _store(raw: bytes, name: str) -> Analysis:
+def _store(raw: bytes, name: str, mode: str = "auto") -> Analysis:
     if len(raw) > MAX_BYTES:
         raise HTTPException(413, "PDF too large (limit 25 MB)")
     if not raw.startswith(b"%PDF"):
         raise HTTPException(400, "Not a PDF file")
-    aid = hashlib.sha1(raw).hexdigest()[:16]   # content-addressed: re-uploading the same PDF reuses it
+    if mode not in MODES:
+        raise HTTPException(400, f"Unknown mode {mode!r}; use one of {', '.join(MODES)}")
+    # content-addressed: re-uploading the same PDF in the same mode reuses it ("auto" keeps the earlier ids)
+    aid = hashlib.sha1(raw if mode == "auto" else raw + mode.encode()).hexdigest()[:16]
     d = _path(aid)
     if (d / "analysis.json").exists() and aid in _cache:
         os.utime(d)     # the recent list is ordered by folder mtime; rewriting files inside does not update it on Windows
@@ -72,8 +82,9 @@ def _store(raw: bytes, name: str) -> Analysis:
     d.mkdir(parents=True, exist_ok=True)
     (d / "paper.pdf").write_bytes(raw)
     (d / "name.txt").write_text(name[:200], encoding="utf-8")
+    (d / "mode.txt").write_text(mode, encoding="utf-8")
     try:
-        a = analyze_pdf(d / "paper.pdf", aid)
+        a = analyze_pdf(d / "paper.pdf", aid, mode)
     except Exception as e:  # corrupt / encrypted PDFs
         why = "it is password-protected" if "encrypted" in str(e) else "the file is damaged or not a valid PDF"
         raise HTTPException(422, f"Could not read this PDF: {why} ({e})")
@@ -92,9 +103,9 @@ def _payload(a: Analysis) -> dict:
 
 
 @app.post("/api/analyze")
-async def analyze(file: UploadFile = File(...)):
+async def analyze(file: UploadFile = File(...), mode: str = Form("auto")):
     raw = await file.read()
-    return _payload(_store(raw, file.filename or "paper.pdf"))
+    return _payload(_store(raw, file.filename or "paper.pdf", mode))
 
 
 @app.get("/api/analyses")
@@ -107,7 +118,8 @@ def list_analyses():
                 try:
                     j = json.loads(f.read_text(encoding="utf-8"))
                     out.append({"id": d.name, "title": j["document"]["title"], "name": j["document"]["source_name"],
-                                "repro": j["reproducibility"]["score"], "claims": j["ledger_stats"]["n_claims"]})
+                                "repro": j["reproducibility"]["score"], "claims": j["ledger_stats"]["n_claims"],
+                                "field": (j.get("field") or {}).get("field", "general")})
                 except (ValueError, KeyError, TypeError):   # a damaged or older stored result must not break the list
                     continue
     return out[:50]

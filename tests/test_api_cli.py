@@ -164,3 +164,26 @@ def test_serve_refuses_a_busy_port_with_a_clear_message(capsys):
         s.bind(("127.0.0.1", 0)); s.listen(1)
         assert main(["serve", "--port", str(s.getsockname()[1])]) == 2
     assert "already in use" in capsys.readouterr().err
+
+
+def test_mode_is_chosen_on_upload_and_kept_after_restart(client, make_pdf):
+    raw = make_pdf(4)[0].read_bytes()
+    auto = client.post("/api/analyze", files={"file": ("a.pdf", raw)}).json()
+    gen = client.post("/api/analyze", files={"file": ("a.pdf", raw)}, data={"mode": "general"}).json()
+    cse = client.post("/api/analyze", files={"file": ("a.pdf", raw)}, data={"mode": "cse"}).json()
+    assert len({auto["id"], gen["id"], cse["id"]}) == 3
+    assert gen["field"]["field"] == "general" and cse["field"]["field"] == "cse"
+    assert any(i["key"].startswith("cs_") for i in cse["reproducibility"]["items"])
+    api._cache.clear()                                   # a restart re-analyses from the stored PDF and mode
+    assert client.get(f"/api/analyses/{cse['id']}").json()["field"]["mode"] == "cse"
+    assert client.post("/api/compare", json={"a": gen["id"], "b": cse["id"]}).json()["verdict"]
+    assert "(CS)" in client.get(f"/api/analyses/{cse['id']}/report.md").text
+    bad = client.post("/api/analyze", files={"file": ("a.pdf", raw)}, data={"mode": "physics"})
+    assert bad.status_code == 400
+
+
+def test_cli_mode_flag(tmp_path, make_pdf, capsys):
+    pdf = make_pdf(5)[0]
+    assert main(["analyze", str(pdf), "--out", str(tmp_path), "--mode", "cse"]) == 0
+    assert "Computer Science" in capsys.readouterr().out
+    assert json.loads((tmp_path / f"{pdf.stem}.json").read_text(encoding="utf-8"))["field"]["field"] == "cse"

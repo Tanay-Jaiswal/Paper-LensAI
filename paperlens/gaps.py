@@ -22,7 +22,7 @@ def _quote(t: str) -> str:
     return t if len(t) <= 220 else t[:217] + "..."
 
 
-def detect_gaps(doc: Document, claims: list[Claim], rubric: dict) -> list[Gap]:
+def detect_gaps(doc: Document, claims: list[Claim], rubric: dict, field: str = "general") -> list[Gap]:
     gaps: list[Gap] = []
     n = 0
 
@@ -96,6 +96,8 @@ def detect_gaps(doc: Document, claims: list[Claim], rubric: dict) -> list[Gap]:
         add("no_splits", "medium", "Data splits are not described.")
     if claims and status.get("baselines") == "missing" and any(c.claim_type == "comparison" for c in claims):
         add("comparison_without_baselines", "high", "Comparative claims are made but baselines are not described.")
+    if field == "cse":
+        _cse_gaps(doc, claims, status, add)
     order = {"high": 0, "medium": 1, "low": 2}
     gaps.sort(key=lambda g: (order[g.severity], g.page or 0))
     # de-duplicate identical kind+claim
@@ -109,6 +111,57 @@ def detect_gaps(doc: Document, claims: list[Claim], rubric: dict) -> list[Gap]:
     for i, g in enumerate(out, 1):
         g.id = f"G{i}"
     return out
+
+
+# ---- Computer Science & Engineering rules (field="cse") -------------------------------------------------------------
+TEST_TUNING_RE = re.compile(
+    r"\b(tun(?:e|ed|ing)|select(?:ed|ing)?|chose|chosen|early[- ]stop\w*|pick(?:ed)?)\b[^.]{0,50}"
+    r"\b(on|using|based on|according to) (the )?test (set|data|split|accuracy|performance|results?)\b", re.I)
+NEGATION_RE = re.compile(r"\b(not|never|no|without)\b", re.I)
+COPIED_RE = re.compile(
+    r"\b((results|numbers|scores|figures) (of|for) (the |all |other )?(baselines?|prior|previous|other|competing)"
+    r"[^.]{0,40}\b(are|were) (taken|copied|quoted|reported) from|(are|were) (taken|copied|quoted) from (the )?"
+    r"(original|respective|corresponding|their|prior|previous)? ?(papers?|works?|publications?|\[|\())", re.I)
+SMALL_GAIN_RE = re.compile(
+    r"\b(by|of|\+)\s*(0?\.\d+|1(?:\.0+)?)\s*(%|points?|pp|percentage points?|absolute|BLEU|F1|accuracy)", re.I)
+
+
+def _cse_gaps(doc: Document, claims: list[Claim], status: dict, add) -> None:
+    sents = [s for s in doc.sentences if s.section not in ("references", "related", "acknowledgments")
+             and s.kind != "meta"]
+    for s in sents:
+        m = TEST_TUNING_RE.search(s.text)
+        if m and not NEGATION_RE.search(s.text[max(0, m.start() - 25):m.end()]):
+            add("test_set_tuning", "high",
+                "Hyperparameters, checkpoints or settings appear to be chosen using the test set; this makes test "
+                "results optimistic. Check the wording: a held-out validation set should be used for choices.",
+                s.page, None, s.text)
+            break
+    for s in sents:
+        if COPIED_RE.search(s.text):
+            add("baseline_numbers_copied", "low",
+                "Baseline numbers are taken from earlier papers rather than re-run. That is common, but the comparison "
+                "is only fair if dataset version, split, preprocessing and metric are the same.", s.page, None, s.text)
+            break
+    if status.get("cs_code_link") == "partial":
+        ev = next((s for s in sents if re.search(r"will be (made )?(publicly )?(available|released|open[- ]sourced)", s.text, re.I)), None)
+        add("code_promised_not_linked", "medium",
+            "Code is promised or available on request, but no repository link is given.",
+            ev.page if ev else None, None, ev.text if ev else "")
+    no_spread = status.get("seeds") != "present" and status.get("cs_table_uncertainty") in ("missing", "partial", None) \
+        and status.get("variance") != "present"
+    for c in claims:
+        if c.claim_type not in ("result", "comparison") or c.section not in ("abstract", "introduction", "conclusion"):
+            continue
+        m = SMALL_GAIN_RE.search(c.text)
+        if m and IMPROVE_RE.search(c.text) and status.get("stat_test") != "present":
+            add("small_gain_without_test", "medium",
+                f"Claims an improvement of {m.group(2)} {m.group(3)}, a margin that run-to-run variation can produce, "
+                "with no significance test reported.", c.page, c, c.text)
+        elif SUPER_RE.search(c.text) and no_spread and not c.numbers:
+            add("sota_single_run", "medium",
+                "State-of-the-art or 'best' claim, but no seeds, repeated runs or spread are reported, so a single "
+                "lucky run cannot be ruled out.", c.page, c, c.text)
 
 
 _NOT_DATASET = {"the", "this", "that", "each", "both", "our", "these", "those", "same", "test", "training",

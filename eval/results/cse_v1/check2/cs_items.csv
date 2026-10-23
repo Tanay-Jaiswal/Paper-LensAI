@@ -1,0 +1,82 @@
+paper,item,status,page,quote,status_correct,note
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_code_link,missing,,,y,
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_data_access,partial,6,This represents an 8% improvement over a previously reported sub- 12 second benchmark [9] and a 26% gain over another measurement of 14.42 seconds [46].,u,systems paper; data item barely applies
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_hardware_spec,present,7,"Specifically, as illustrated in Figure 7, on an NVIDIA GeForce RTX 4090, ML Drift’s OpenCL implementation (employing FP32 precision) exhibits a 5% to 25% performance reduction compared to CUDA-backed llama.cpp, as measured by llama.cpp’s be",y,
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_compute_budget,missing,,,n,"reports running times (seconds, tokens/s) that the item misses"
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_hyper_search,not_applicable,,,y,
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_model_selection,not_applicable,,,y,
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_model_size,not_applicable,,,y,
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_baseline_setup,missing,,,u,how compared engines were run is described only loosely
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_table_uncertainty,partial,,,u,
+arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf,cs_efficiency,present,1,"While server-based deployments offer substantial computational resources, on-device execution remains crucial for user privacy, reduced latency, offline functionality, and lower server costs.",y,
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_code_link,missing,,,y,
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_data_access,partial,1,"Figure 1: The EnronQA benchmark enables personalized and private retrieval benchmarking on a cleaned corpus of over 100,000 emails spanning 528,304 quality question-answer pairs over 150 users.",y,
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_hardware_spec,missing,,,y,
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_compute_budget,missing,,,y,
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_hyper_search,partial,3,"Tuning the cutoff for each of these rules for our email domain, we set the cutoffs to emails with between 50 and 1000 words, a length between 3 to 10, the ratio of alphanumeric characters to symbols greater than or equal to 0.65, and fewer ",u,tuning of data-filter cutoffs
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_model_selection,present,4,Our optimization objective was to reduce the number of refinement steps from our early stopping pipeline.,n,"'early stopping' of a prompt-refinement loop, not model selection"
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_model_size,missing,,,y,
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_baseline_setup,partial,2,We benchmark popular RAG pipelines on EnronQA as a baseline for future work (§5).,y,
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_table_uncertainty,missing,,,y,
+arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf,cs_efficiency,missing,,,y,
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_code_link,missing,,,y,
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_data_access,partial,2,"One standard approach to creating a test dataset for measuring consistency is to multiply the prompts in one or more existing benchmarks using perturbation rules or prompt templates (Jang et al., 2022; Fierro & Søgaard, 2022).",y,
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_hardware_spec,missing,,,y,
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_compute_budget,missing,,,y,
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_hyper_search,missing,,,n,"survey: trains no model, item should be not applicable"
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_model_selection,missing,,,n,same
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_model_size,missing,,,n,same
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_baseline_setup,partial,4,"Although automatic evaluation can ensure objectivity and fast assessment, human evaluation is important to establish an acceptable baseline, especially in highly sensitive or subjective culture-specific applications (e.g. social appropriate",u,survey
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_table_uncertainty,not_applicable,,,y,
+arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf,cs_efficiency,partial,5,"We call on the research community to address several key challenges: (1) developing standardized definitions and taxonomies of consistency types; (2) creating comprehensive, multilingual, and cross-lingual benchmarks for consistency evaluat",y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_code_link,missing,,,y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_data_access,partial,1,"Experiments on a real-world dataset demonstrate that DeCo achieves the highest task-handling success rates in different scenarios, exceeding 80%, while also maintaining balanced workloads on both scarce or expanded defect data.",y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_hardware_spec,partial,5,"All experiments are conducted on a system with 12 CPU cores and 64GB RAM, running CUDA 12.1.",y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_compute_budget,missing,,,y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_hyper_search,missing,,,y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_model_selection,missing,,,y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_model_size,missing,,,y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_baseline_setup,partial,5,"We compare DeCo with the following baselines: LowestWL, MostEXP, CF, as well as our variant CA. LowestWL and MostEXP are widely used strategies in industries.",y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_table_uncertainty,present,6,"Table row: 69.33±7.60 48.66±11.69 64.00±2.79 76.67±1.82 82.66±4.34 82.00±4.47 86.00 ± 2.79
+1.38±0.10 2.21±0.51 1.66±0.11 1.60±0.05 1.66±0.06 1.71±0.08 1.69±0.08: 1.38±0.10; 1.69±0.08",y,
+arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf,cs_efficiency,partial,1,Identifying IC defects and assigning IC testing tasks to the right engineers improves efficiency and reduces losses.,y,
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_code_link,present,1,The source code is available at https://github.com/michigan-traffic-lab/LightEMMA.,y,
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_data_access,partial,1,"Using this protocol, we evaluate 15 models from five major families on the challenging nuScenes prediction benchmark.",y,
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_hardware_spec,present,3,"Commercial models are accessed via paid APIs, while open-source models are downloaded from Hugging Face and deployed locally with H100 GPUs.",y,
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_compute_budget,partial,4,TABLE I COMPARISON OF MODEL EFFICIENCY AND COMPUTATIONAL COST. † DENOTES ANOMALOUS VALUES DISCUSSED IN SECTION IV-B.,y,
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_hyper_search,missing,,,n,evaluates pretrained models only; should be not applicable
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_model_selection,missing,,,n,same
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_model_size,missing,,,n,same (model sizes are in the model names)
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_baseline_setup,present,4,"For frames in which format errors persist after correction, we rerun inference until a valid prediction is obtained, ensuring all 3,908 frames are evaluated for every model.",u,'rerun inference' for all evaluated models
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_table_uncertainty,missing,,,y,
+arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf,cs_efficiency,present,1,"Bubble size is proportional to average inference time per frame, with larger bubbles corresponding to slower models.",y,
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_code_link,missing,,,y,
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_data_access,partial,6,Important Settings: We employ the LLM-empowered channel prediction method (LLM4CP) as the base model [14] and utilize QuaDRiGa to generate 3GPP-compliant channel realizations as the training dataset.,y,
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_hardware_spec,present,1,"For example, GPT-3 has 170 billion parameters and is trained on tens of thousands of Nvidia V100 GPUs, utilizing approximately 300 billion words and 570 GB of training data.",n,"V100 sentence is about GPT-3, not this paper's experiments"
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_compute_budget,partial,6,"Moreover, low-rank matrix decomposition methods, such as LoRA, can be employed in federated LAM adaptation, given their capabilities in achieving learning performance comparable to full-parameter tuning with only 5% of the parameters, signi",n,no running time reported; LoRA sentence is not a compute budget
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_hyper_search,partial,3,"To address these issues, we propose a FedFT framework, as shown in Fig. 2, which enables the collaborative tuning of a global foundation model by coordinating distributed edge devices [8] in a privacy-preserving manner.",n,'collaborative tuning' of a model is not hyperparameter search
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_model_selection,missing,,,y,
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_model_size,present,1,"The main characteristics of LAM can be summarized as three “gigantic” aspects: a massive number of parameters, extensive data supply, and substantial computational demands.",n,"generic 'massive number of parameters', not a model size"
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_baseline_setup,partial,6,"For comparison, we consider three baselines: fine-tuning LLM4CP, gated recurrent unit (GRU), and recurrent neural network (RNN) using only local data with a stochastic gradient descent (SGD) optimizer.",y,
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_table_uncertainty,not_applicable,,,y,
+arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf,cs_efficiency,present,1,"However, many emerging applications (e.g., autonomous driving and robots) are supported by cloud servers, inevitably leading to severe privacy concerns and high-latency decision-making.",n,generic mention of latency in the introduction
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_code_link,present,1,"PVLDB, 14(1): XXX-XXX, 2020. doi:XX.XX/XXX.XX PVLDB Artifact Availability: The source code, data, and/or other artifacts have been made available at https://github.com/Luminous-wq/S3AND.",y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_data_access,present,1,"PVLDB, 14(1): XXX-XXX, 2020. doi:XX.XX/XXX.XX PVLDB Artifact Availability: The source code, data, and/or other artifacts have been made available at https://github.com/Luminous-wq/S3AND.",y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_hardware_spec,present,11,"We ran all the experiments on a PC with an AMD Ryzen Threadripper 3990X CPU, 256 GB of memory, and 128 threads.",y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_compute_budget,present,11,"Measures: We evaluate the S3AND query performance, in terms of pruning power and wall clock time.",y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_hyper_search,not_applicable,,,y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_model_selection,not_applicable,,,y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_model_size,not_applicable,,,y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_baseline_setup,partial,11,"Thus, we will compare our S3AND approach (i.e., Algorithm 5) with three methods, a straightforward baseline method (named 𝐵𝑎𝑠𝑒𝑙𝑖𝑛𝑒),𝐶𝑆𝐼_𝐺𝐸𝐷 [15], and 𝑀𝐶𝑆𝑃𝐿𝐼𝑇 [33].",y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_table_uncertainty,missing,,,y,
+arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf,cs_efficiency,present,8,"Time Complexity Analysis: For Algorithm 2, for each vertex 𝑣𝑖 ∈ 𝑉 (𝐺), the time complexity of computing a keyword bit vector 𝑣𝑖 .𝐵𝑉 is given by 𝑂(|𝑣𝑖 .𝑊 |) (lines 1-3).",y,
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_code_link,missing,,,u,materials on osf.io; code unclear
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_data_access,present,16,"For difficulty, a rating of 1 denoted ‘comprehensible to a lay audience,’ 3 indicated ‘known to all domain experts but not to lay audiences,’ and 5 signified ‘understandable only to certain specialized domain experts.’ 2https://www.politica",n,no data source given; false match
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_hardware_spec,missing,,,y,
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_compute_budget,present,16,This phase took approximately 15 to 20 minutes.,n,"user-study phase duration, not compute"
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_hyper_search,missing,,,n,"uses an LLM, trains nothing; should be not applicable"
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_model_selection,missing,,,n,same
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_model_size,missing,,,n,same
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_baseline_setup,partial,6,"The Data Therapist advances beyond these baselines by (1) generating questions tailored to the dataset and its intended audience, (2) allowing flexible references to specific dataset elements, and (3) supporting in-situ analysis so that exp",y,
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_table_uncertainty,missing,,,y,
+arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf,cs_efficiency,missing,,,y,

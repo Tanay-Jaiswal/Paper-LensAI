@@ -1,0 +1,84 @@
+paper,item,status,page,quote,status_correct,note
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_code_link,present,1,We release our data and code at https://github.com/ baoguangsheng/truth-mirror.,y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_data_access,present,1,We release our data and code at https://github.com/ baoguangsheng/truth-mirror.,y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_hardware_spec,missing,,,y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_compute_budget,partial,5,"We mainly focus on metric-based detectors, which generally leverage existing pretrained LLMs to compute a metric as an indicator of AI-generated text.",n,'compute' as a verb
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_hyper_search,missing,,,y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_model_selection,missing,,,u,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_model_size,missing,,,y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_baseline_setup,present,5,"We take log-perplexity, logrank, LRR (Su et al., 2023), Fast-Detect (Bao et al., 2024), Binoculars (Hans et al., 2024), and Glimpse (Bao et al., 2025) as representatives, as described in Appendix B. For fair comparison, we unify the scoring",u,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_table_uncertainty,partial,,,u,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,cs_efficiency,missing,,,y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_code_link,present,1,https://miniature-3dgs.github.io/,n,"project page, not a code link"
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_data_access,present,7,"We validate our approach on our simulated data, and compare our results with recent state-of-the-art 3DGS algo- 2https://github.com/agisoft-llc rithms: Hierarchical 3DGS [13], FSGS [42], DNGaussian [19] and SparseGS [37].",n,"link to a tool (agisoft), not data"
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_hardware_spec,partial,7,All our code are run on a computer with NVIDIA 4090 GPU.,n,'NVIDIA 4090' without RTX not recognised
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_compute_budget,missing,,,n,'around 2 minutes' running time missed
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_hyper_search,not_applicable,,,y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_model_selection,not_applicable,,,y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_model_size,not_applicable,,,y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_baseline_setup,present,7,"For fair comparison, we use our pre-calibrated camera parameters and initial point cloud as input for all compared algorithms.",y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_table_uncertainty,missing,,,y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,cs_efficiency,partial,5,"It is a more compact and efficient 3D representation, comparing to NeRF [21] and classical triangle meshes.",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_code_link,missing,,,n,"code link in a footnote placed in Related Work, which is not searched"
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_data_access,partial,7,We use CIFAR-100 as the dataset.,y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_hardware_spec,present,6,"OS Hardware Browser Windows AMD Ryzen7 5700X, NVIDIA RTX 4070 Chrome macOS MacBook Air 2020 (M1) Chrome macOS MacBook Air 2020 (M1) Safari Android Pixel 8 Chrome iOS iPhone 13 Mini Safari",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_compute_budget,partial,1,"On the other hand, Pyodide, a Python runtime that operates on web browsers, allows web applications to be written in Python, but it can only utilize the CPU, leaving room for acceleration.",n,'Python runtime' is not a compute budget
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_hyper_search,present,8,"In this experiment, we used the simplest grid search method to train a CNN for each hyperparameter candidate and measured the time to complete the training and evaluation of accuracy on the validation set for all candidates.",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_model_selection,partial,8,"In this experiment, we used the simplest grid search method to train a CNN for each hyperparameter candidate and measured the time to complete the training and evaluation of accuracy on the validation set for all candidates.",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_model_size,missing,,,y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_baseline_setup,missing,,,u,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_table_uncertainty,missing,,,y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,cs_efficiency,present,6,"With a custom kernel, the speedup was 170 times faster than the CPU in the Windows and Chrome cases.",y,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_code_link,present,13,2The code for standard PCA and EigOpt is available at https://github.com/JunhuiShen/Fair-PCA-via-EigOpt.,y,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_data_access,present,13,3https://archive.ics.uci.edu/dataset/222/bank+marketing 4https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients 5https://archive.ics.uci.edu/dataset/525/crop+mapping+using+fused+optical+radar+data+set 6https://vis-www.cs.uma,y,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_hardware_spec,missing,,,y,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_compute_budget,partial,6,"Secondly, this approach is expensive, with a theoretical runtime of O n3/tol2 where tol is the error tolerance of the SDP and LP.",y,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_hyper_search,missing,,,n,no model is trained; item should be not applicable
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_model_selection,missing,,,n,same
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_model_size,missing,,,n,same
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_baseline_setup,missing,,,n,official baseline code linked but not recognised
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_table_uncertainty,not_applicable,,,u,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,cs_efficiency,present,2,"• We validate our method through extensive experiments on human-centric datasets, demonstrating that the new algorithm produces numerically accurate solutions, and meanwhile, gains up to 8× speedup over the FPCA algorithm via semidefinite r",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_code_link,missing,,,y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_data_access,present,11,"Table row: Metadata
+Analysis [19]; Model: RF
+DT
+SVM
+GB; Unseen Most Popular and Downloaded Packages (1,000): 0.9041
+0.8980
+0.8440
+0.8819; 0.8536
+0.8376
+0.7932
+0.8320; 452
+449
+422
+441; 393
+377
+358
+381; 48
+51
+78
+59; 107
+123
+142
+119; Cmn. FP
+P",n,word 'Downloaded' in a table header
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_hardware_spec,present,5,"The execution environment utilized 16 Raspberry Pi 4 devices, each running Ubuntu 24.4 LTS with Python 3.8–3.12 in virtualized environments.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_compute_budget,partial,12,"Therefore, further exploration of runtime behavior monitoring is necessary to complement the install-time analysis and improve detection capabilities.",n,'runtime behavior' is not a compute budget
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_hyper_search,present,5,"The ML models were then trained on the processed data, with hyperparameters fine-tuned using the validation subset to mitigate overfitting.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_model_selection,present,5,"The ML models were then trained on the processed data, with hyperparameters fine-tuned using the validation subset to mitigate overfitting.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_model_size,missing,,,u,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_baseline_setup,present,1,"According to the Open Source Security and Risk Analysis (OSSRA) report of 2024, 96% of the 1,067 codebases scanned contain open source code, while 77% of all code in the total codebases originates from open source code [1].",n,'report of 2024' is not about baselines
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_table_uncertainty,missing,,,y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,cs_efficiency,present,1,"Experimental results demonstrate that DySec achieves a 95.99% detection accuracy with a latency of <0.5s, reducing false negatives by 78.65% compared to static analysis and 82.24% compared to metadata analysis.",y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_code_link,missing,,,n,'open-sourced our implementation' without link should be partial
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_data_access,present,3,"All these 33 patches fix the test failure in MannWhitneyUTestTest.testBigDatasSet without 1https://sites.google.com/view/ifixuserstudy 2We use CURE [25] as an example, but it can be any APR tool.",n,footnote URL glued to 'testBigDatasSet'
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_hardware_spec,missing,,,y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_compute_budget,partial,1,"To address this challenge, we propose an interactive approach called iFix to facilitate patch understanding and comparison based on their runtime difference. iFix performs static analysis to identify runtime variables related to the buggy s",n,'runtime difference' is not a compute budget
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_hyper_search,missing,,,n,no model is trained; should be not applicable
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_model_selection,missing,,,n,same
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_model_size,missing,,,n,same
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_baseline_setup,present,12,"For our user study, we utilized the official implementation provided by the authors of InPaFer.",y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_table_uncertainty,missing,,,y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,cs_efficiency,partial,4,"In some cases, it may be more efficient to fix the bug herself rather than rely on auto-generated patches.",y,

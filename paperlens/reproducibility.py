@@ -11,6 +11,11 @@ The rubric is adapted from the ML Reproducibility Checklist (Pineau et al.) and
 common venue checklists (NeurIPS/ACL). It measures what the paper *states*, not
 whether the work actually reproduces. Matches are reported with page and quote
 so a reader can overrule any individual decision.
+
+In the Computer Science & Engineering mode (field="cse") ten more items are scored (CSE_RUBRIC): a working code link
+rather than a promise, dataset sources, exact hardware, compute budget, hyperparameter search, model selection on
+validation data, model size, how baselines were obtained, uncertainty in the results tables, and efficiency. The main
+score then covers all items; "standard_score" keeps the 15-item score so papers stay comparable across modes.
 """
 from __future__ import annotations
 
@@ -97,6 +102,91 @@ RUBRIC = [
          partial=[r"\bhowever\b.{0,60}\b(only|not|cannot)\b"],
          advice="Add a limitations section naming settings where the method fails."),
 ]
+_GPU_MODEL = (r"(?:a100|v100|h100|h200|p100|p40|k80|k40|t4|a10g?|a40|a6000|l4|l40s?|mi\d{3}x?|"
+              r"rtx\s?(?:a?\d{4})(?:\s?ti)?|gtx\s?\d{3,4}(?:\s?ti)?|titan\s?(?:x|xp|v|rtx|black)|tpu\s?v\d\w*)")
+CSE_RUBRIC = [
+    dict(key="cs_code_link", label="Working link to the code", category="Artifacts", weight=1.0,
+         full=[r"https?://(?!\S*github\.io)\S*(github|gitlab|bitbucket|huggingface|zenodo|codeocean|4open\.science|sourceforge)\S*",
+               r"\b(github|gitlab)\.com/\S+"],
+         partial=[r"(code|implementation|models?|checkpoints?)[^.]{0,40}\bwill be (made )?(publicly )?(available|released|open[- ]sourced)",
+                  r"\b(open[- ]sourced?|released?|publish(ed)?) (our|the) (code|implementation|tool|library|software|plugin)",
+                  r"https?://\S*github\.io\S*",
+                  r"(code|implementation) (is )?available (upon|on) request", r"anonymi[sz]ed (repository|code)"],
+         advice="Give a permanent link to the code (a repository or archive), not a promise to release it later."),
+    dict(key="cs_data_access", label="Dataset sources or versions given", category="Data", weight=1.0,
+         full=[r"\b(datasets?|data|corpus|corpora|benchmarks?)\b[^.]{0,80}(https?://|available (at|from)|download\w*)",
+               r"https?://\S*(dataset|kaggle|huggingface\.co/datasets|archive\.ics\.uci|paperswithcode)",
+               r"(dataset|corpus|benchmark)[^.]{0,30}\b(version|v)\s?\d",
+               r"\b(official|standard|public|publicly available) (train(ing)?|test|dev|development|validation)?\s?(splits?|release|version)"],
+         partial=[r"\b[A-Z][A-Za-z0-9\-]{2,} (dataset|corpus|benchmark)\b"],
+         advice="For every dataset give its source (link or citation), the version and the split used."),
+    dict(key="cs_hardware_spec", label="Exact hardware model", category="Resources", weight=1.0,
+         full=[r"\b(?:nvidia\s+)?(?:tesla\s+)?(?:geforce\s+)?" + _GPU_MODEL + r"\b", r"\bnvidia\s+(geforce\s+)?\d{4}\b",
+               r"\b(xeon|epyc|ryzen|core i\d|apple m\d|arm cortex|raspberry pi|jetson)\b"],
+         partial=[r"\b(gpus?|tpus?|cpus?|accelerators?)\b"],
+         advice="Name the exact hardware (for example '8 NVIDIA V100 32 GB GPUs' or the CPU model) and how many units."),
+    dict(key="cs_compute_budget", label="Training or running time / compute budget", category="Resources", weight=1.0,
+         full=[r"\b[gt]pu[- ](hours?|days?)\b", r"petaflop", r"wall[- ]clock", r"compute budget",
+               r"\b(train(ed|ing)?|took|takes|ran|runs?|running time|converge[sd]?)\b[^.]{0,60}?\b\d+(\.\d+)?\s*"
+               r"(hours?|days?|minutes?|weeks?|hrs?)\b",
+               r"\b\d+(\.\d+)?\s*(hours?|days?|minutes?)\s+(on|using|with)\b",
+               r"\b(running|training|inference|execution|reconstruction|average) (time|running)\b[^.]{0,120}"
+               r"\b\d+(\.\d+)?\s*(seconds?|minutes?|hours?|days?|ms)\b"],
+         partial=[r"training time", r"running time", r"\bFLOPs?\b", r"computational cost"],
+         advice="Report training and inference time on the stated hardware, and the total compute (for example GPU-hours)."),
+    dict(key="cs_hyper_search", label="Hyperparameter search described", category="Method", weight=1.0, model_only=True,
+         full=[r"grid search", r"random(ised|ized)? search", r"bayesian optimi[sz]ation", r"search (space|range)",
+               r"(hyper-?parameters?|learning rates?)[^.]{0,60}\b(tuned|selected|chosen|searched|swept)\b[^.]{0,40}"
+               r"\b(on|using|over|from|among|in)\b",
+               r"\b(selected|chosen|tuned|swept|searched) (from|among|over|in) (\{|\d)",
+               r"(tun\w+|select\w*|chose\w*|search\w*)[^.]{0,30}hyper-?parameters?[^.]{0,60}(validation|dev|development)",
+               r"\b(is|are|was|were) tuned on the (validation|dev|development)",
+               r"(learning rates?|batch sizes?|dropout|weight decay|\blr\b)[^.]{0,40}(\{|∈|\bin \[)\s*\d[\d.e\-]*\s*,"],
+         partial=[r"(?<!fine-)(?<!fine )(?<!fine)\b(tuned|tuning)\b", r"hyper-?parameter (tuning|search|optimi[sz]ation|sweep)"],
+         advice="Say how hyperparameters were chosen: the search method, the ranges tried and the data used to choose."),
+    dict(key="cs_model_selection", label="Model selection on validation data, not test", category="Evaluation",
+         weight=1.0, model_only=True,
+         full=[r"early stopping",
+               r"(best|selected?|chose|choose|pick\w*) (the )?(checkpoint|model|epoch|run)[^.]{0,50}"
+               r"(validation|dev|development|held[- ]out)",
+               r"(validation|dev|development|held[- ]out) (set|split|data|performance|accuracy|loss)[^.]{0,60}"
+               r"(select|choose|chose|tun|pick|early|stop)",
+               r"(select\w*|choose|chose|chosen|tun\w+|pick\w*)[^.]{0,60}(on|using|based on|according to) (the )?"
+               r"(validation|dev|development|held[- ]out)"],
+         partial=[r"\bcheckpoints?\b", r"\b(validation|dev) (set|split)\b"],
+         advice="State which data chose the final model or checkpoint (a validation set, not the test set)."),
+    dict(key="cs_model_size", label="Model size (number of parameters)", category="Method", weight=0.5, model_only=True,
+         full=[r"\b\d+(\.\d+)?\s?[MBK]\s+(trainable\s+)?(parameters|params)\b",
+               r"\b\d+(\.\d+)?\s?(million|billion|thousand) (trainable )?(parameters|params)\b",
+               r"(number of|#)\s?(trainable\s+)?(parameters|params)\b", r"\bparams\b\W{0,3}\d",
+               r"\bparams\b[^.;]{0,20}(×|x)\s*10"],      # a table column "params ×10^6"
+         partial=[r"model size", r"parameter count"],
+         advice="Report the number of trainable parameters of each model compared."),
+    dict(key="cs_baseline_setup", label="How baselines were obtained", category="Evaluation", weight=1.0,
+         full=[r"(official|publicly available|released|authors'?) (code|implementation|checkpoints?)",               r"\b(we|were|was|are|is|been) re-?(implement|train|ran|run)\w*",
+               r"\bre-?(implemented|trained|ran|run) (the |all |each |their |these |those )?(baselines?|models?|methods?|systems?)",
+               r"(numbers|results|scores) (are |were )?(taken|copied|quoted) from",
+               r"(results?|numbers|scores|accuracy|accuracies|baselines?|performance)[^.]{0,60}\b(as )?reported "
+               r"(in|by) (the )?(original|\[|\(|\w+ et al)",
+               r"same (hyper-?parameters|training (budget|setup|data|protocol|schedule)|budget|settings?|setup|protocol)",
+               r"\bfair comparison\b"],
+         partial=[r"\bbaselines?\b"],
+         advice="For each baseline say whether it was re-run (with which code and tuning budget) or its numbers were copied."),
+    dict(key="cs_table_uncertainty", label="Uncertainty shown in the results tables", category="Statistics", weight=1.0,
+         full=[], partial=[],
+         advice="Show the spread over runs (± standard deviation or a confidence interval) in the main results tables."),
+    dict(key="cs_efficiency", label="Efficiency reported (runtime, memory or complexity)", category="Resources",
+         weight=0.5,
+         full=[r"time complexity", r"space complexity", r"\bO\([^)]{0,20}[nNkKdDmMT][^)]{0,20}\)",
+               r"\b(latency|throughput|inference (speed|cost)|inference time (of|is|was|per)|memory (usage|footprint|consumption|cost)|speed-?ups?|"
+               r"(tokens|images|frames|samples|queries|requests) per second|fps|ms per|msec)\b"],
+         partial=[r"\b(faster|efficien(t|cy)|cheaper|lightweight)\b"],
+         advice="Report runtime, memory use or computational complexity next to accuracy, so cost can be weighed."),
+]
+CSE_ITEM_KEYS = tuple(r["key"] for r in CSE_RUBRIC)
+_UNC_TABLE = re.compile(r"±|\+/-|\+-\s?\d|\bstd\.?\b|standard deviation|standard error|confidence interval|"
+                        r"\b(mean|average[sd]?) (over|of|across) \d+ (runs|seeds|trials)|error bars?", re.I)
+
 SEARCH_SECTIONS = {"abstract", "introduction", "background", "method", "experiments", "results", "discussion",
                    "limitations", "conclusion", "reproducibility", "ethics", "appendix", "related", "other", "front"}
 
@@ -122,10 +212,29 @@ def _trains_a_model(doc: Document) -> bool:
     return sum(1 for s in body if _TRAINING_RE.search(s.text)) >= 3
 
 
+_FITS_A_MODEL = re.compile(
+    r"\b(learning rates?|batch sizes?|epochs?|optimi[sz]er|fine-?tun\w+|pre-?train\w+|we train(?:ed)?|"
+    r"(?:is|are|was|were|be) trained|trained (?:on|for|with|using)|training (?:set|data|loss|split)|gradient descent|"
+    r"hyper-?parameters?)\b", re.I)
+
+
+def _fits_a_model(doc: Document) -> bool:
+    """Stricter than _trains_a_model, for the CS items about training (search, model selection, model size): at
+    least 3 body sentences that talk about training a model, not only about models in general."""
+    body = [s for s in doc.sentences if s.section in SEARCH_SECTIONS and s.section != "related" and s.kind == "text"]
+    return sum(1 for s in body if _FITS_A_MODEL.search(s.text)) >= 3
+
+
+# CS items read prose and captions only: a table cell ("Downloaded", "params") is not a statement about the method
+_CS_TABLE_ITEMS = ("cs_model_size", "cs_table_uncertainty")
+
+
 def _scan(doc: Document, patterns: list[str], key: str):
     hits = []
     for s in doc.sentences:
         if s.section not in SEARCH_SECTIONS:
+            continue
+        if key.startswith("cs_") and key not in _CS_TABLE_ITEMS and s.kind == "table":
             continue
         if key == "limitations" and s.section == "limitations":
             hits.append(s)
@@ -137,17 +246,46 @@ def _scan(doc: Document, patterns: list[str], key: str):
     return hits
 
 
-def assess(doc: Document) -> dict:
+def _table_uncertainty(doc: Document, text_has_variance: bool):
+    """Results tables (rows and captions) that show spread over runs; None when the paper has no results table."""
+    tab = [s for s in doc.sentences if s.kind in ("table", "caption") and s.section in SEARCH_SECTIONS
+           and s.section != "related"]
+    if not any(s.kind == "table" and re.search(r"\d\.\d", s.text) for s in tab):
+        return None
+    hits = [s for s in tab if _UNC_TABLE.search(s.text)]
+    if hits:
+        return "present", hits
+    return ("partial", []) if text_has_variance else ("missing", [])
+
+
+def assess(doc: Document, field: str = "general") -> dict:
     items: list[RubricItem] = []
     trains = _trains_a_model(doc)
-    for r in RUBRIC:
-        if not trains and r["key"] in MODEL_ONLY_ITEMS:
+    fits = field == "cse" and trains and _fits_a_model(doc)
+    for r in RUBRIC + (CSE_RUBRIC if field == "cse" else []):
+        if r["key"] == "cs_table_uncertainty":
+            var = next((i for i in items if i.key == "variance"), None)
+            res = _table_uncertainty(doc, var is not None and var.status == "present")
+            if res is None:
+                items.append(RubricItem(r["key"], r["label"], r["category"], r["weight"], "not_applicable", 0.0, [],
+                                        "Not scored: no results table with decimal numbers was found."))
+                continue
+            status, ev = res
+            advice = "" if status == "present" else r["advice"] + (
+                " Spread is mentioned in the text but not in the tables." if status == "partial" else "")
+            items.append(RubricItem(r["key"], r["label"], r["category"], r["weight"], status,
+                                    {"present": 1.0, "partial": 0.5, "missing": 0.0}[status],
+                                    [{"page": s.page, "section": s.section, "quote": s.text[:240], "sentence_id": s.id}
+                                     for s in ev[:3]], advice))
+            continue
+        if (not trains and r["key"] in MODEL_ONLY_ITEMS) or (r.get("model_only") and not fits):
             items.append(RubricItem(r["key"], r["label"], r["category"], r["weight"], "not_applicable", 0.0, [],
                                     "Not scored: no model training was detected in this paper."))
             continue
         full = _scan(doc, r["full"], r["key"])
         # for the 'related' section, statements about other people's work should not count
-        full = [s for s in full if s.section != "related" or r["key"] in ("code",)]
+        full = [s for s in full if s.section != "related" or r["key"] == "code"
+                or (r["key"] == "cs_code_link" and re.search(r"\b(our|we|code)\b", s.text, I))]
         part = [] if full else [s for s in _scan(doc, r["partial"], r["key"]) if s.section != "related"]
         if full:
             status, credit, ev = "present", 1.0, full
@@ -162,6 +300,8 @@ def assess(doc: Document) -> dict:
     scored = [i for i in items if i.status != "not_applicable"]
     total_w = sum(i.weight for i in scored)
     score = 100.0 * sum(i.weight * i.credit for i in scored) / total_w
+    base = [i for i in scored if i.key not in CSE_ITEM_KEYS]
+    standard = 100.0 * sum(i.weight * i.credit for i in base) / sum(i.weight for i in base)
     cats: dict[str, dict] = {}
     for i in scored:
         c = cats.setdefault(i.category, {"weight": 0.0, "earned": 0.0})
@@ -171,7 +311,8 @@ def assess(doc: Document) -> dict:
         c["score"] = round(100 * c["earned"] / c["weight"], 1)
     band = "high" if score >= 75 else "moderate" if score >= 50 else "low"
     return {
-        "score": round(score, 1), "band": band,
+        "score": round(score, 1), "band": band, "field": field, "standard_score": round(standard, 1),
+        "cse_items": [i.key for i in items if i.key in CSE_ITEM_KEYS],
         "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; "
                    "not_applicable items are left out of both sums",
         "not_applicable": [i.key for i in items if i.status == "not_applicable"],

@@ -7,7 +7,7 @@ same paper always gets the same list and every item points back to the finding i
 from __future__ import annotations
 
 # gap kinds that the reproducibility checklist already covers item by item; listing both would repeat the advice
-_COVERED_BY_RUBRIC = {"no_code", "no_hyperparameters", "no_limitations", "no_splits"}
+_COVERED_BY_RUBRIC = {"no_code", "no_hyperparameters", "no_limitations", "no_splits", "code_promised_not_linked"}
 
 _GAP_FIX = {
     "unsupported_claim": ("Back this claim with a result in the paper, or soften it",
@@ -26,6 +26,18 @@ _GAP_FIX = {
                                        "The claim is general, but the evidence covers few datasets."),
     "comparison_without_baselines": ("Describe the baselines used in the comparisons",
                                      "Comparative claims are made without saying what is compared against."),
+    # Computer Science & Engineering mode
+    "test_set_tuning": ("Choose hyperparameters and checkpoints on a validation set and re-report the test results",
+                        "Choices made on the test set make the test numbers optimistic."),
+    "baseline_numbers_copied": ("State that copied baseline numbers use the same dataset version, split and metric, "
+                                "or re-run the baselines",
+                                "Numbers from other papers are only comparable under an identical setup."),
+    "code_promised_not_linked": ("Replace the promise to release code with a working repository link",
+                                 "Reviewers and readers cannot check or rerun code that is not linked."),
+    "small_gain_without_test": ("Report a significance test or the spread over several seeds for this small gain",
+                                "A gain of about one point or less can come from random seeds alone."),
+    "sota_single_run": ("Report results over several seeds with standard deviation before claiming state of the art",
+                        "A single run cannot show the method is reliably the best."),
 }
 _SEV_RANK = {"high": 0, "medium": 1, "low": 2}
 

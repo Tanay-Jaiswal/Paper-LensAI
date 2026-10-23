@@ -28,6 +28,13 @@
         <span class="drop-title">Drop a PDF here, or <span class="link">choose a file</span></span>
         <span class="drop-help" id="drop-help">PDF only, up to 25 MB. Text PDFs work best. The file is analysed on this computer and never leaves it.</span>
       </label>
+      <p class="small mode-pick"><label for="mode">Field checks</label>
+        <select id="mode">
+          <option value="auto" selected>Detect automatically</option>
+          <option value="cse">Computer Science &amp; Engineering</option>
+          <option value="general">General (any field)</option>
+        </select>
+        <span class="muted">The CS mode adds 10 CS reproducibility items, CS evidence gaps and a built-in abbreviation dictionary.</span></p>
       <div id="status" role="status" aria-live="polite"></div>
       <div class="demo">
         <button id="demo" class="ghost">Load synthetic demo papers</button>
@@ -44,7 +51,7 @@
     <ol class="outputs">
       <li><h3>Summary</h3><p>Sentences quoted verbatim from the paper, each with its page.</p></li>
       <li><h3>Evidence Ledger</h3><p>Each headline claim linked to the passages in the paper body that back it, or marked "no supporting evidence found".</p></li>
-      <li><h3>Reproducibility</h3><p>A 15-item reporting checklist with the quote that earned each credit and the items that are missing.</p></li>
+      <li><h3>Reproducibility</h3><p>A 15-item reporting checklist with the quote that earned each credit and the items that are missing; 10 more items for Computer Science papers (code link, hardware, compute, seeds in tables, baselines ...).</p></li>
       <li><h3>Evidence gaps</h3><p>Rule-based flags for a reviewer, such as a figure in the abstract that never appears in the results.</p></li>
       <li><h3>Numbers check</h3><p>The paper's own arithmetic redone: percentages of counts, stated differences, table totals and averages, F1, confidence intervals and p-values.</p></li>
       <li><h3>Revision checklist</h3><p>Every finding turned into a concrete fix for the authors: what to change, why, and on which page.</p></li>

@@ -1,0 +1,58 @@
+paper,abbr,dictionary_meaning,ambiguous,uses,page,first_use,meaning_fits_paper,note
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,AI,artificial intelligence,False,56,1,The wide usage of LLMs raises critical requirements on detecting AI participation in texts.,y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,F1,F1 score (harmonic mean of precision and recall),False,5,5,We also report F1 and,y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,API,application programming interface,False,3,4,"In terms of costs, the data construction process involves approximately $2,000 for LLM API usage, $2,000 for human editing, $500 for AI tools, and $500 for the manual review step.",y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,GPT,Generative Pre-trained Transformer,False,1,5,"We also consider trained detectors, such as RADAR (Hu et al., 2023) and RoBERTa (Chat- GPT) (Guo et al., 2023).",y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,ROC,receiver operating characteristic,False,1,2,Further improvements are observed when content and expression features are integrated; the 2D framework boosts the best AU- ROC for the level-2 detection task from 0.711 to 0.855 and TPR5% from 47% to 59%; and it enhances the best AUROC on ,y,
+arxiv_2503.00258v1_decoupling-content-and-expression-two-dimensional.pdf,TPR,true positive rate,False,1,8,"As Table 4 shows, the columns AUROC, F1, and TPR@5% are evaluated across all domains, where we find the best development threshold for calculating F1.",y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,PSNR,peak signal-to-noise ratio,False,8,7,Table row: Hierarchical 3DGS; SSIM ↑ PSNR ↑ LPIPS ↓: 0.9750 26.8259 0.0298,y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,SSIM,structural similarity index,False,6,7,Table row: Hierarchical 3DGS; SSIM ↑ PSNR ↑ LPIPS ↓: 0.9750 26.8259 0.0298,y,
+arxiv_2503.00260v2_seeing-a-3d-world-in-a.pdf,GPU,graphics processing unit,False,1,7,All our code are run on a computer with NVIDIA 4090 GPU.,y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,GPU,graphics processing unit,False,50,1,"To execute scientific computing programs such as deep learning at high speed, GPU acceleration is a powerful option.",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,CPU,central processing unit,False,24,1,"On the other hand, Pyodide, a Python runtime that operates on web browsers, allows web applications to be written in Python, but it can only utilize the CPU, leaving room for acceleration.",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,API,application programming interface,False,19,2,"The graphics APIs built into web browsers to control GPUs include standards like WebGL and WebGPU, necessitating array libraries compatible with these standards.",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,CUDA,Compute Unified Device Architecture (NVIDIA),False,12,1,"WgPy also implements a special thread synchronization mechanism, which bridges asynchronous semantics of JavaScript with Python’s synchronous semantics, allows code written for CuPy, the NumPy-compatible array library for CUDA, to run direc",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,ReLU,rectified linear unit,False,5,5,"For example, this is used to implement the backward function of ReLU.",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,ResNet,residual network,False,3,7,The training speed of ResNet-18 on different backends and device configurations.,y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,JIT,just-in-time (compilation),False,1,9,"While this study offers a means to accelerate various operations through user-defined custom kernels, future work may include developing functionality to automatically integrate complex computations into a single kernel using JIT, thereby p",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,MNIST,Modified NIST handwritten digits dataset,False,1,8,"We used the MNIST dataset, performing 10-class digit image classification using a CNN.",y,
+arxiv_2503.00279v1_wgpy-gpu-accelerated-numpy-like-array.pdf,OS,operating system,False,1,6,"OS Hardware Browser Windows AMD Ryzen7 5700X, NVIDIA RTX 4070 Chrome macOS MacBook Air 2020 (M1) Chrome macOS MacBook Air 2020 (M1) Safari Android Pixel 8 Chrome iOS iPhone 13 Mini Safari",y,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,CV,computer vision / cross-validation,True,2,12,"(4.12) Our goal is to find a particular V such that the fairness condition is satisfied: 0 = Tr(U T ∗ HA U∗) − Tr(U T ∗ HB U∗) = Tr(U T ∗ [HA − HB ]U∗) = γ + Tr(V T CV ), (4.13) where γ = Tr(U T 1 (HA − HB )U1) is a constant and C = U T 2 (",n,CV here is not computer vision or cross-validation
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,SVD,singular value decomposition,False,2,12,This complexity consists of the following key components: • The SVD of A and B requires O(m1n2) + O(m2n2) time complexity in step 1.,y,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,RAM,random-access memory,False,1,13,"In this section, we demonstrate the performance of EigOpt on real-world datasets and compare the performance with those of the standard PCA and the SDR-based FPCA.2 Experiments were conducted on a MacBook Pro with a 12-core M2 Max processor",y,
+arxiv_2503.00299v1_hidden-convexity-of-fair-pca-and.pdf,UCI,"University of California, Irvine machine learning repository",False,1,13,This dataset is from the UCI Machine Learning Repository.5.,y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,F1,F1 score (harmonic mean of precision and recall),False,24,7,"A. Evaluation Metrics The evaluation of the selected models used four key metrics - accuracy, precision, recall, and F1-score - to assess performance across various scenarios.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,TCP,Transmission Control Protocol,False,5,8,"Table row: RF; Metrics: Accuracy
+Precision
+Recall
+F1 Score; Filetop Traces: 0.9201
+0.9210
+0.9201
+0.9200; Install Traces: 0.6945
+0.8028
+0.6945
+0.6647; Opensnoop
+Traces: 0.9355
+0.9362
+0.9355
+0.9355; TCP Traces: 0.8374
+0.8374
+0.8374
+0.8374; Sy",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,API,application programming interface,False,4,1,"The malicious packages caused different types of attacks such as data exfiltration using AWS keys or remote API, credential theft through typosquatting, and remote code execution via dependency confusion attacks [15]–[17].",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,HPC,high-performance computing,False,4,4,"7 foreach package πj ∈ Package/ do 8 if πj /∈{.zip, .tar.gz} then 9 continue 10 end 11 2.1 Extract πj metadata: (namej, versionj) ← parse_filename(πj) 12 2.2 Select target device: dk ←D[rand(|D|)] 13 2.3 Establish secure channel: 14 session",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,AUC,area under the curve,False,3,8,"ROC AUC curve comparing metadata, static, and dynamic analysis using the best-performing RF model.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,IP,Internet Protocol,False,3,6,"• TCPTraces: Captured network interactions (remote IP/- port access, connection states), identifying anomalous ports (e.g., port 6667) tied to malicious payload delivery.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,ROC,receiver operating characteristic,False,3,8,"ROC AUC curve comparing metadata, static, and dynamic analysis using the best-performing RF model.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,CPU,central processing unit,False,1,5,"For scalable ML analysis, an HPC cluster with 16-core CPUs, NVIDIA A100 GPUs, and 128 GB RAM was used to enable parallel processing and accelerate model training.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,GPU,graphics processing unit,False,1,5,"For scalable ML analysis, an HPC cluster with 16-core CPUs, NVIDIA A100 GPUs, and 128 GB RAM was used to enable parallel processing and accelerate model training.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,I/O,input/output,False,1,6,"• SystemCallTraces: Recorded OS-level operations (file I/O, network, security, process management), correlating with system-level sabotage (e.g., shutdowns, freezes).",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,NLP,natural language processing,False,1,3,"Similarly, Zhuravchak and Dudykevych [35] combined eBPF with NLP to classify ransomware behavior in real-time.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,OS,operating system,False,1,8,"SystemCall- Traces, while effective (RF accuracy 88.51%), focuses on lowlevel OS interactions that may require additional context for optimal classification.",y,
+arxiv_2503.00324v1_dysec-a-machine-learning-based-dynamic.pdf,RAM,random-access memory,False,1,5,"For scalable ML analysis, an HPC cluster with 16-core CPUs, NVIDIA A100 GPUs, and 128 GB RAM was used to enable parallel processing and accelerate model training.",y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,IDE,integrated development environment,False,4,12,"To faithfully represent the real-world usage scenario, participants were allowed to freely edit the code, navigate the codebase, run test cases, search online, and use the default debugger integrated into the IDE in all three settings.",y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,KNN,k-nearest neighbours,False,2,8,"Compared with other clustering algorithms such as K-Means [3] and KNN [4], hierarchical clustering is not sensitive to initialization conditions such as the random seeds and the original ranking.",y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,ACM,Association for Computing Machinery,False,1,1,"Additional Key Words and Phrases: Automatic Program Repair, User Trust, Interaction Support ACM Reference Format: Ruixin Wang, Zhongkai Zhao, Le Fang, Nan Jiang, Yiling Lou, Lin Tan, and Tianyi Zhang.",y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,API,application programming interface,False,1,8,"Specifically, iFix leverages the java.lang.getStackTrace API to log the call stack trace of the patched statement.",y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,SOTA,state of the art,False,1,10,It was also the SOTA approach at the time of the tool development of iFix.,y,
+arxiv_2503.00618v1_show-me-why-it-s-correct.pdf,XML,Extensible Markup Language,False,1,10,"Given the related variables identified from the previous step, iFix instruments the defined and used locations of these variables to log their runtime values. iFix utilizes the XStream library [6] to serialize the runtime values of those va",y,

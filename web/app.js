@@ -56,7 +56,7 @@ async function upload(file) {
   if (file.size > MAX_BYTES) return status(`"${file.name}" is larger than the 25 MB limit.`, "bad");
   setBusy(true);
   status(`Analysing ${file.name} … long papers can take several seconds.`, "busy");
-  const fd = new FormData(); fd.append("file", file);
+  const fd = new FormData(); fd.append("file", file); fd.append("mode", $("mode").value);
   try { show(await api("/api/analyze", {method: "POST", body: fd})); status(`Analysed ${file.name}.`, "ok"); }
   catch (e) { status(`Could not analyse ${file.name}: ${e.message}`, "bad"); }
   finally { setBusy(false); $("file").value = ""; }
@@ -87,14 +87,16 @@ function show(a) {
   $("welcome").hidden = true;
   $("workspace").hidden = false;
   $("title").textContent = a.document.title;
-  $("meta").textContent = `${a.document.source_name} · ${a.document.n_pages} pages · ${a.document.n_sentences} sentences read`;
+  $("meta").textContent = `${a.document.source_name} · ${a.document.n_pages} pages · ${a.document.n_sentences} sentences read` +
+    (a.field && a.field.label ? ` · checks: ${a.field.label}` : "");
+  $("meta").title = a.field && a.field.reason ? a.field.reason : "";
   $("dl-md").href = `/api/analyses/${a.id}/report.md`; $("dl-json").href = `/api/analyses/${a.id}/report.json`; $("dl-html").href = `/api/analyses/${a.id}/report.html`;
   $("warnings").innerHTML = a.document.warnings.map((w) => `<div class="warn"><strong>Parsing warning.</strong> ${esc(w)}</div>`).join("");
   const st = a.ledger_stats.support, r = a.reproducibility, high = a.gaps.filter((g) => g.severity === "high").length;
   const assessed = r.band !== "not assessed";
   $("tiles").innerHTML =
     tile(a.ledger_stats.n_claims, "claims found", `${st.strong} strong · ${st.moderate} moderate · ${st.weak} weak · ${st.none} without evidence`, "ledger") +
-    tile(assessed ? r.score : "n/a", assessed ? "reporting checklist / 100" : "checklist not assessed", assessed ? `${r.items.filter((i) => i.status === "missing").length} of ${r.items.length} items not reported` : "too little text was extracted", "repro") +
+    tile(assessed ? r.score : "n/a", assessed ? (r.field === "cse" ? "CS reporting checklist / 100" : "reporting checklist / 100") : "checklist not assessed", assessed ? `${r.items.filter((i) => i.status === "missing").length} of ${r.items.length} items not reported` : "too little text was extracted", "repro") +
     tile(a.gaps.length, "candidate evidence gaps", `${high} high severity`, "gaps") +
     (a.consistency && a.consistency.checks ? tile(a.consistency.n_inconsistent, "numbers that do not add up",
       `of ${a.consistency.n_checked} statements recomputed`, "numbers") : "");
@@ -191,7 +193,10 @@ function openClaim(id) {
 function renderRepro(a) {
   const r = a.reproducibility, assessed = r.band !== "not assessed";
   const missing = r.items.filter((i) => i.status === "missing"), na = r.items.filter((i) => i.status === "not_applicable");
-  let h = `<h3>Reproducibility reporting checklist</h3><div class="warn"><strong>What this score means.</strong> ${esc(r.disclaimer)} A high score is not proof that the study reproduces, and a low score is not proof that it does not.</div>`;
+  const cse = r.field === "cse";
+  let h = `<h3>Reproducibility reporting checklist${cse ? ": Computer Science &amp; Engineering" : ""}</h3><div class="warn"><strong>What this score means.</strong> ${esc(r.disclaimer)} A high score is not proof that the study reproduces, and a low score is not proof that it does not.</div>`;
+  if (a.field && a.field.reason) h += `<p class="muted small">Checks used: ${esc(a.field.label)}. ${esc(a.field.reason)}` +
+    (cse ? ` The score covers the 15 standard items and ${r.cse_items.length} CS items (marked CS); the standard 15-item score is <strong>${esc(r.standard_score)}</strong>, which is the one to compare with papers checked in the general mode.` : "") + `</p>`;
   h += `<div class="row"><div class="scorebox"><div class="score">${assessed ? r.score : "n/a"}</div><div class="muted">${assessed ? "/ 100 · " + esc(r.band) + " coverage" : "not assessed"}</div></div><div style="flex:1;min-width:240px">`;
   for (const [k, v] of Object.entries(r.categories)) h += `<div class="cat"><span>${esc(k)}</span> <span class="muted small">${v.score}</span><div class="bar"><i style="width:${Math.max(0, Math.min(100, v.score))}%"></i></div></div>`;
   h += `</div></div>`;
@@ -200,7 +205,7 @@ function renderRepro(a) {
   h += "<table><thead><tr><th>Item</th><th>Status</th><th>Weight</th><th>Quote that earned the credit, or what to add</th></tr></thead><tbody>";
   for (const i of r.items) {
     const ev = i.evidence[0];
-    h += `<tr><td>${esc(i.label)}<div class="cite">${esc(i.category)}</div></td><td>${pill(i.status)}</td><td>${i.weight}</td><td>` +
+    h += `<tr><td>${esc(i.label)}<div class="cite">${esc(i.category)}${i.key.startsWith("cs_") ? " · CS" : ""}</div></td><td>${pill(i.status)}</td><td>${i.weight}</td><td>` +
       (ev ? `<span class="cite">p.${ev.page}</span> ${esc(ev.quote)}` : `<span class="muted">${esc(i.advice)}</span>`) + "</td></tr>";
   }
   h += `</tbody></table><p class="cite">Score = ${esc(r.formula)}. Items are found by fixed text patterns, so a quote can be a false match: read it before relying on the credit.</p>`;
@@ -260,9 +265,16 @@ function renderGlossary(a) {
   if (!g || !g.defined) { $("tab-glossary").innerHTML = `<p class="empty">This analysis was made by an older version. Upload the PDF again to build the glossary.</p>`; return; }
   let h = `<h3>${g.defined.length} abbreviation${g.defined.length === 1 ? "" : "s"} defined by the paper</h3><p class="muted small">${esc(g.note)} When claims are matched to evidence, an abbreviation and its long form count as the same words.</p>`;
   h += g.defined.length ? `<table><thead><tr><th>Abbreviation</th><th>Meaning (as the paper defines it)</th><th>Uses</th><th>Defined on</th></tr></thead><tbody>` +
-    g.defined.map((d) => `<tr><td><strong>${esc(d.abbr)}</strong></td><td>${esc(d.long)}<div class="cite">${esc(d.quote)}</div></td><td>${d.uses}</td><td>p.${d.page}</td></tr>`).join("") + "</tbody></table>"
+    g.defined.map((d) => `<tr><td><strong>${esc(d.abbr)}</strong></td><td>${esc(d.long)} <span class="tag">paper</span><div class="cite">${esc(d.quote)}</div></td><td>${d.uses}</td><td>p.${d.page}</td></tr>`).join("") + "</tbody></table>"
     : `<p class="empty">The paper does not define any abbreviation in the form "long form (ABBR)".</p>`;
-  h += `<h4>Used but never defined in the paper</h4>` + (g.undefined.length ? `<p class="small">${g.undefined.map((u) => `<strong>${esc(u.abbr)}</strong> <span class="muted">×${u.uses}, first p.${u.page}</span>`).join(" · ")}</p><p class="muted small">These may be standard in the field (or names of instruments and software). PaperLens does not guess their meaning.</p>` : `<p class="empty">None found.</p>`);
+  if (g.dictionary_used) {
+    const fd = g.from_dictionary || [];
+    h += `<h4>${fd.length} meaning${fd.length === 1 ? "" : "s"} from the built-in CS dictionary</h4><p class="muted small">Not defined in the paper. These are standard Computer Science meanings, not the paper's own words, and the paper may mean something else. "Ambiguous" means the abbreviation has several common meanings and all are shown. Dictionary meanings are not used when matching claims to evidence.</p>` +
+      (fd.length ? `<table><thead><tr><th>Abbreviation</th><th>Dictionary meaning</th><th>Uses</th><th>First on</th></tr></thead><tbody>` +
+        fd.map((d) => `<tr><td><strong>${esc(d.abbr)}</strong></td><td>${esc(d.long)} <span class="tag dict">dictionary</span>${d.ambiguous ? ' <span class="tag">ambiguous</span>' : ""}<div class="cite">${esc(d.kind)}</div></td><td>${d.uses}</td><td>p.${d.page}</td></tr>`).join("") + "</tbody></table>"
+        : `<p class="empty">No dictionary abbreviation is used without a definition.</p>`);
+  }
+  h += `<h4>Used but never defined in the paper</h4>` + (g.undefined.length ? `<p class="small">${g.undefined.map((u) => `<strong>${esc(u.abbr)}</strong> <span class="muted">×${u.uses}, first p.${u.page}</span>`).join(" · ")}</p><p class="muted small">These may be standard in the field (or names of instruments and software). PaperLens does not guess their meaning${g.dictionary_used ? "; they are not in the built-in CS dictionary either" : ""}.</p>` : `<p class="empty">None found.</p>`);
   $("tab-glossary").innerHTML = h;
 }
 

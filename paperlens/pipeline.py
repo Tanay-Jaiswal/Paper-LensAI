@@ -8,6 +8,7 @@ from pathlib import Path
 from . import __version__
 from .claims import THRESHOLDS, build_ledger
 from .consistency import audit as consistency_audit
+from .field import resolve_mode
 from .glossary import build_glossary
 from .gaps import detect_gaps, detected_datasets
 from .ingest import UNREADABLE_WARNING, parse_pdf
@@ -28,6 +29,7 @@ class Analysis:
     metrics: list[str]
     consistency: dict = field(default_factory=dict)   # see consistency.audit
     glossary: dict = field(default_factory=dict)      # see glossary.build_glossary
+    mode: dict = field(default_factory=dict)          # see field.resolve_mode (which field-specific checks ran)
 
     def to_dict(self) -> dict:
         support = {k: sum(1 for c in self.claims if c.support == k) for k in ("strong", "moderate", "weak", "none")}
@@ -47,6 +49,7 @@ class Analysis:
             "consistency": self.consistency,
             "revisions": revision_checklist(self),
             "glossary": self.glossary,
+            "field": self.mode,
         }
 
 
@@ -66,10 +69,12 @@ def detect_metrics(doc: Document) -> list[str]:
     return out
 
 
-def analyze_document(doc: Document) -> Analysis:
-    glossary = build_glossary(doc)
+def analyze_document(doc: Document, mode: str = "auto") -> Analysis:
+    fld = resolve_mode(doc, mode)
+    cse = fld["field"] == "cse"
+    glossary = build_glossary(doc, use_dictionary=cse)
     claims = build_ledger(doc, glossary=glossary)
-    rubric = assess(doc)
+    rubric = assess(doc, fld["field"])
     if UNREADABLE_WARNING in doc.warnings:
         # almost no text came out of the PDF: "no code link" or a score of 0 would describe the extraction, not the paper
         rubric["band"] = NOT_ASSESSED
@@ -79,13 +84,13 @@ def analyze_document(doc: Document) -> Analysis:
                     "Too little text could be extracted from this PDF (it may be scanned). Claims, evidence, the "
                     "reproducibility rubric and evidence gaps could not be assessed.")]
     else:
-        gaps = detect_gaps(doc, claims, rubric)
+        gaps = detect_gaps(doc, claims, rubric, fld["field"])
     return Analysis(doc, summarize(doc), claims, rubric, gaps, sorted(detected_datasets(doc)), detect_metrics(doc),
-                    consistency_audit(doc), glossary)
+                    consistency_audit(doc), glossary, fld)
 
 
-def analyze_pdf(path: str | Path, doc_id: str | None = None) -> Analysis:
-    return analyze_document(parse_pdf(path, doc_id))
+def analyze_pdf(path: str | Path, doc_id: str | None = None, mode: str = "auto") -> Analysis:
+    return analyze_document(parse_pdf(path, doc_id), mode)
 
 
 def save_json(a: Analysis, path: str | Path) -> None:

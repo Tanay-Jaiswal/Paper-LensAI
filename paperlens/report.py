@@ -15,6 +15,9 @@ def to_markdown(a: Analysis) -> str:
     d = a.to_dict()
     out = [f"# PaperLens report: {a.doc.title}", "",
            f"*{a.doc.n_pages} pages · {len(a.claims)} claims · reproducibility {a.rubric['score']}/100 ({a.rubric['band']})*", ""]
+    if a.mode:
+        out += [f"*Checks: {a.mode['label']}. {a.mode['reason']}*" + (
+            f" *Standard 15-item score: {a.rubric['standard_score']}/100.*" if a.mode["field"] == "cse" else ""), ""]
     if a.doc.warnings:
         out += ["> **Warnings:** " + " ".join(a.doc.warnings), ""]
     out += ["## Summary", ""]
@@ -36,7 +39,7 @@ def to_markdown(a: Analysis) -> str:
             "| Item | Status | Weight | Evidence |", "|---|---|---|---|"]
     for i in a.rubric["items"]:
         ev = i["evidence"][0] if i["evidence"] else None
-        out.append(f"| {i['label']} | {i['status']} | {i['weight']} | " +
+        out.append(f"| {i['label']}{' (CS)' if i['key'].startswith('cs_') else ''} | {i['status']} | {i['weight']} | " +
                    (f"p.{ev['page']}: {ev['quote'][:80]}…" if ev else i["advice"]) + " |")
     out += ["", f"_{a.rubric['disclaimer']}_", "", "## Evidence gaps", ""]
     if not a.gaps:
@@ -48,6 +51,11 @@ def to_markdown(a: Analysis) -> str:
     if g:
         out += ["", "## Glossary (abbreviations defined by the paper)", ""]
         out += [f"- **{d['abbr']}**: {d['long']} *(p.{d['page']})*" for d in g["defined"]] or ["None defined."]
+        if g.get("from_dictionary"):
+            out += ["", "Meanings from the built-in CS dictionary (not defined in the paper; standard meanings, the "
+                    "paper may differ):", ""]
+            out += [f"- **{d['abbr']}**: {d['long']}" + (" *(ambiguous)*" if d["ambiguous"] else "")
+                    + f" *(first p.{d['page']}, ×{d['uses']})*" for d in g["from_dictionary"]]
         if g["undefined"]:
             out += ["", "Used but never defined: " + ", ".join(u["abbr"] for u in g["undefined"]) + "."]
     rev = revision_checklist(a)
@@ -91,6 +99,9 @@ def to_html(a: Analysis) -> str:
            f"<style>{_CSS}</style><body>", f"<h1>PaperLens report: {e(a.doc.title)}</h1>",
            f"<p class=m>{a.doc.n_pages} pages · {len(a.claims)} claims · reproducibility checklist "
            f"{a.rubric['score']}/100 ({e(a.rubric['band'])}) · {len(a.gaps)} candidate evidence gaps</p>"]
+    if a.mode:
+        out.append(f"<p class=m>Checks: <b>{e(a.mode['label'])}</b>. {e(a.mode['reason'])}" + (
+            f" Standard 15-item score: {a.rubric['standard_score']}/100." if a.mode["field"] == "cse" else "") + "</p>")
     out += [f"<div class=w>{e(w)}</div>" for w in a.doc.warnings]
     out.append("<h2>Summary</h2><ul>")
     out += [f"<li>{e(t['text'])} <span class=m>p.{t['page']}</span></li>" for t in a.summary.get("tldr", [])]
@@ -116,7 +127,8 @@ def to_html(a: Analysis) -> str:
                "<table><tr><th>Item</th><th>Status</th><th>Weight</th><th>Evidence in paper / advice</th></tr>")
     for i in a.rubric["items"]:
         ev = i["evidence"][0] if i["evidence"] else None
-        out.append(f"<tr><td>{e(i['label'])}</td><td>{pill(i['status'])}</td><td>{i['weight']}</td><td>" +
+        cs = " <span class=m>(CS)</span>" if i["key"].startswith("cs_") else ""
+        out.append(f"<tr><td>{e(i['label'])}{cs}</td><td>{pill(i['status'])}</td><td>{i['weight']}</td><td>" +
                    (f"<span class=m>p.{ev['page']}</span> {e(ev['quote'])}" if ev else f"<span class=m>{e(i['advice'])}</span>") +
                    "</td></tr>")
     out.append("</table><h2>Evidence gaps (candidates for a reviewer)</h2>")
@@ -135,6 +147,13 @@ def to_html(a: Analysis) -> str:
             out.append("<table><tr><th>Abbreviation</th><th>Meaning</th><th>Page</th></tr>" + "".join(
                 f"<tr><td><b>{e(d['abbr'])}</b></td><td>{e(d['long'])}</td><td>{d['page']}</td></tr>" for d in g["defined"])
                 + "</table>")
+        if g.get("from_dictionary"):
+            out.append("<p><b>Meanings from the built-in CS dictionary</b> <span class=m>(not defined in the paper; "
+                       "standard meanings, the paper may mean something else)</span></p><table><tr><th>Abbreviation</th>"
+                       "<th>Dictionary meaning</th><th>First page</th></tr>" + "".join(
+                           f"<tr><td><b>{e(d['abbr'])}</b></td><td>{e(d['long'])}"
+                           f"{' <span class=m>(ambiguous)</span>' if d['ambiguous'] else ''}</td><td>{d['page']}</td></tr>"
+                           for d in g["from_dictionary"]) + "</table>")
         if g["undefined"]:
             out.append("<p class=m>Used but never defined: " + e(", ".join(u["abbr"] for u in g["undefined"])) + ".</p>")
     rev = revision_checklist(a)

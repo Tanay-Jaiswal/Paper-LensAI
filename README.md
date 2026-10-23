@@ -26,6 +26,17 @@ questions with checkable evidence, so a reviewer can verify every statement agai
 
 It can also **compare two papers** (similar claims, shared datasets and metrics, checklist differences).
 
+**Computer Science & Engineering mode** (new in 1.2.0, on by default for CS papers). PaperLens detects a CS paper from
+its vocabulary and its reference list (or you choose with `--mode cse` / `--mode general`, or the "Field checks" menu)
+and then adds: 10 CS checklist items (a working code link rather than a promise, dataset sources, exact hardware,
+training/running time, hyperparameter search, model selection on validation data, model size, how baselines were
+obtained, spread over runs in the results tables, efficiency); 5 CS evidence gaps (choices made on the test set, copied
+baseline numbers, promised but unlinked code, gains of about one point with no significance test, state-of-the-art from
+a single run); and a built-in offline dictionary of about 260 standard CS abbreviations (CNN, LSTM, BERT, GPU, F1, mAP
+...), used only for abbreviations the paper does not define and always labelled "dictionary". The 15-item score is still
+reported as `standard_score` so papers stay comparable across modes. Rules, thresholds and test results:
+`docs/CSE_MODE.md`.
+
 **How it differs from a generic summariser.** Nothing is generated or paraphrased. Each output is a quote with a page
 number or a rule you can read in the source, unsupported claims are shown as unsupported, and unreadable PDFs are
 reported as unreadable rather than scored as poor papers. It runs offline: no API key, no GPU, no model download.
@@ -67,6 +78,7 @@ Open <http://127.0.0.1:8000>. Stop with Ctrl+C. Use `--port 8001` if port 8000 i
 
 ```powershell
 python -m paperlens analyze paper.pdf --out report      # writes report\paper.json, .md and .html
+python -m paperlens analyze paper.pdf --mode cse        # force the CS checks (auto | cse | general; default auto)
 python -m paperlens compare a.pdf b.pdf --out report    # writes report\comparison.json and prints the verdict
 python -m paperlens --version
 ```
@@ -75,7 +87,7 @@ A missing, non-PDF, damaged or password-protected file prints one line (`paperle
 
 ### API
 
-`POST /api/analyze` (multipart field `file`), `GET /api/analyses`, `GET /api/analyses/{id}`,
+`POST /api/analyze` (multipart field `file`, optional field `mode`: auto, cse or general), `GET /api/analyses`, `GET /api/analyses/{id}`,
 `GET /api/analyses/{id}/page/{n}.png?highlight=<sentence ids>`, `GET /api/analyses/{id}/report.{html,md,json}`,
 `POST /api/compare` (`{"a": id, "b": id}`), `POST /api/demo`, `GET /api/health`. Interactive docs: `/docs`.
 Errors: 400 not a PDF, 413 over 25 MB, 422 damaged or encrypted PDF, 404 unknown id.
@@ -83,7 +95,7 @@ Errors: 400 not a PDF, 413 over 25 MB, 422 damaged or encrypted PDF, 404 unknown
 ## Tests
 
 ```powershell
-python -m pytest -q          # 277 tests, under two minutes, no network
+python -m pytest -q          # 306 tests, under two minutes, no network
 ```
 
 ## Demonstration

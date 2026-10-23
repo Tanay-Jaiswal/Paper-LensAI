@@ -217,6 +217,8 @@ figure{margin:0}figcaption{margin-bottom:4px}
 .cmpcol h4{margin:0 0 4px;padding:0;border:0}
 .cmpcol>div:first-of-type{font:600 17px/1.35 var(--serif);margin-bottom:2px}
 .cmpcol strong{font-family:var(--mono)}
+.tag{display:inline-block;font:600 11px/1.4 var(--sans);letter-spacing:.04em;text-transform:uppercase;padding:0 6px;border:1px solid var(--rule-strong);border-radius:3px;color:var(--muted);vertical-align:1px}.tag.dict{border-style:dashed}
+.mode-pick{margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}.mode-pick label{font-weight:600}
 select{font:inherit;font-size:14px;padding:6px 10px;border-radius:var(--r);border:1px solid var(--rule-strong);background:var(--sheet);color:var(--ink);max-width:100%}
 
 /* narrow screens: wide tables scroll inside themselves instead of the page */
