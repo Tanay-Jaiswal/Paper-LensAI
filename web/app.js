@@ -7,7 +7,9 @@ let cur = null;      // current analysis
 let recent = [];
 let busy = false;
 let supportFilter = "all";
-let votes = {};      // feedback on findings for the current paper: {target: {vote, note, text}}
+let votes = {};
+let aiConfig = {enabled: false};   // optional AI second opinion (paperlens/second_opinion.py); off unless the server enables it
+let opinions = {};                 // stored AI answers for the current paper, by claim id      // feedback on findings for the current paper: {target: {vote, note, text}}
 
 // How each rating is decided (docs/ARCHITECTURE.md, claims.py). Shown next to the ledger.
 const SUPPORT_HELP = {
@@ -86,6 +88,8 @@ async function loadRecent() {
 async function show(a) {
   cur = a; supportFilter = "all";
   await loadVotes(a.id);
+  opinions = {};
+  if (aiConfig.enabled) { try { opinions = await api(`/api/analyses/${a.id}/second-opinion`); } catch (_) {} }
   $("welcome").hidden = true;
   $("workspace").hidden = false;
   $("title").textContent = a.document.title;
@@ -232,6 +236,7 @@ function openClaim(id) {
       `<div class="small"><button type="button" class="ghost showon" data-sid="${e.sentence_id}" data-page="${e.page}">Show on page ${e.page}</button> ` +
       `<a href="/api/analyses/${esc(cur.id)}/highlighted.pdf?claim=${esc(c.id)}#page=${e.page}" target="_blank" rel="noopener">open in the PDF</a> <span class="loc muted" id="loc-${e.sentence_id}"></span></div></div>`;
   });
+  if (aiConfig.enabled) h += `<div class="ai" id="ai-box">${opinionHtml(c)}</div>`;
   const pages = [...new Set([c.page, ...ev.map((e) => e.page)])];
   h += `<h4>Source page${pages.length > 1 ? "s" : ""}</h4><p class="small muted">Highlighted: the claim (yellow, labelled C) and its evidence (labelled E1, E2 ...). Use "Show on page" to enlarge a page at a passage, or open the original PDF with the same highlights: <a href="/api/analyses/${esc(cur.id)}/highlighted.pdf?claim=${esc(c.id)}#page=${c.page}" target="_blank" rel="noopener">highlighted PDF, p.${c.page}</a>. If a passage is not highlighted, the page number is still its citation: its wording could not be located automatically on the page.</p><div class="pages">${pages.map((p) => {
     const ids = [c.sentence_id, ...ev.filter((e) => e.page === p).map((e) => e.sentence_id)].join(",");
@@ -242,7 +247,25 @@ function openClaim(id) {
   v.dataset.claim = id; v.innerHTML = h; v.scrollTop = 0;
   v.querySelectorAll("img").forEach((img) => img.onerror = () => { img.closest("figure").innerHTML = `<p class="empty">The image of this page could not be loaded.</p>`; });
   v.querySelectorAll("button.showon").forEach((b) => b.onclick = () => showOnPage(+b.dataset.sid, +b.dataset.page));
+  const ab = $("ai-ask"); if (ab) ab.onclick = () => askOpinion(c);
   markPassages(c, id);
+}
+const VERDICT = {supported: "supported", partly_supported: "partly supported", not_supported: "not supported", not_checked: "not checked"};
+function opinionHtml(c) {
+  const o = opinions[c.id];
+  let h = `<div class="ai-head"><span class="tag ai-tag">AI-assisted</span> <strong>Second opinion for evidence in other words</strong></div>` +
+    `<p class="small muted">Optional. A language model (${esc(aiConfig.model)}) reads ${esc(aiConfig.sends)} and says whether any passage supports the claim. This sends that text to Anthropic. It does not change the rule-based rating above or any score.</p>`;
+  if (!o) return h + `<button type="button" class="ghost" id="ai-ask">Ask an AI second opinion</button> <span id="ai-status" class="small"></span>`;
+  h += `<p><strong>AI verdict: ${esc(VERDICT[o.verdict] || o.verdict)}</strong> <span class="muted small">(rule-based rating: ${esc(SUPPORT_LABEL[o.rule_based_support] || o.rule_based_support)}; ${o.n_passages_sent} passages sent; ${esc(o.model)}, ${esc(o.at)})</span></p><p class="small">${esc(o.explanation)}</p>`;
+  h += o.supporting.map((x) => `<div class="ev ai-ev"><div class="small"><strong>Passage the AI points to</strong> <span class="cite">p.${x.page} · ${esc(x.section)}${x.also_found_by_rules ? " · also returned by the rules" : " · not returned by the rules"}</span></div><blockquote>${esc(x.quote)}</blockquote></div>`).join("");
+  return h + `<p class="small muted">The quote is copied from the paper by PaperLens, not written by the AI. Check it on the page before relying on it. <button type="button" class="ghost" id="ai-ask">Ask again</button> <span id="ai-status" class="small"></span></p>`;
+}
+async function askOpinion(c) {
+  const b = $("ai-ask"); b.disabled = true; $("ai-status").innerHTML = '<span class="spin"></span>Asking …';
+  try {
+    opinions[c.id] = await api(`/api/analyses/${cur.id}/second-opinion`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({claim: c.id})});
+    if ($("viewer").dataset.claim === c.id) { $("ai-box").innerHTML = opinionHtml(c); const ab = $("ai-ask"); if (ab) ab.onclick = () => askOpinion(c); }
+  } catch (e) { $("ai-status").className = "small bad"; $("ai-status").textContent = e.message; b.disabled = false; }
 }
 // Boxes and labels over the page images, from the same text search that draws the highlights (paperlens/highlight.py).
 async function markPassages(c, id) {
@@ -475,5 +498,6 @@ $("demo").onclick = async () => {
   } catch (e) { status("Could not load the demo: " + e.message, "bad"); }
   finally { setBusy(false); }
 };
+api("/api/config").then((c) => { aiConfig = c.ai_second_opinion || {enabled: false}; }).catch(() => {});
 api("/api/health").then((h) => { if (h.version) $("version").textContent = "version " + h.version + " · offline, deterministic, no language model"; }).catch(() => {});
 loadRecent();

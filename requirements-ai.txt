@@ -1,0 +1,1 @@
+anthropic>=2.0   # optional: only for the AI second opinion (off by default), see docs/AI_SECOND_OPINION.md

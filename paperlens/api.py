@@ -17,6 +17,7 @@ from pydantic import BaseModel
 
 from . import __version__
 from . import feedback as fb
+from . import second_opinion as so
 from .benchmark import benchmark
 from .compare import compare
 from .field import MODES
@@ -222,6 +223,41 @@ def benchmark_endpoint(aid: str, set: str = "builtin"):
     if set not in ("builtin", "mine"):
         raise HTTPException(400, "set must be 'builtin' or 'mine'")
     return benchmark(_payload(_load(aid)), DATA_DIR, set, exclude_id=aid)
+
+
+class OpinionReq(BaseModel):
+    claim: str
+
+
+@app.get("/api/config")
+def config():
+    """What this server allows; the UI shows or hides optional features from this."""
+    return {"ai_second_opinion": so.status()}
+
+
+@app.get("/api/analyses/{aid}/second-opinion")
+def get_opinions(aid: str):
+    a = _load(aid)
+    texts = {c.id: c.text for c in a.claims}
+    # a stored answer is shown only while the claim id still names the same sentence
+    return {k: v for k, v in so.load(_path(aid)).items() if texts.get(k) == v.get("claim")}
+
+
+@app.post("/api/analyses/{aid}/second-opinion")
+def post_opinion(aid: str, req: OpinionReq):
+    st = so.status()
+    if not st["enabled"]:
+        raise HTTPException(403, st["reason"])
+    a = _load(aid)
+    try:
+        res = so.ask(a, req.claim)
+    except KeyError:
+        raise HTTPException(404, "Unknown claim id")
+    except RuntimeError as e:
+        raise HTTPException(502, str(e))
+    with _lock:
+        so.save(_path(aid), res)
+    return res
 
 
 class FeedbackReq(BaseModel):

@@ -287,3 +287,9 @@ td .fb{display:flex;margin:4px 0 0}
 #viewer figure.focus{grid-column:1/-1}
 button.showon{padding:2px 9px;font-size:12.5px;margin-top:4px}
 .loc{font-size:12.5px}
+
+/* optional AI second opinion: always visibly separate from the rule-based result */
+.ai{margin:18px 0 6px;padding:12px 14px;border:1px dashed var(--info);background:rgba(45,95,134,.05)}
+.ai-head{margin-bottom:6px}
+.tag.ai-tag{border-color:var(--info);color:var(--info);border-style:dashed}
+.ai-ev{border-left-color:var(--info)}.ai-ev::before{border-top-color:var(--info)}
