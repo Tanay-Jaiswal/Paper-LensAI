@@ -1,5 +1,5 @@
 """PaperLens AI: research evidence and reproducibility auditor."""
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 
 try:  # PyMuPDF prints an advertisement for an optional package on first table search; keep the console clean
     import pymupdf as _pymupdf

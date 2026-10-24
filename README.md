@@ -37,9 +37,19 @@ a single run); and a built-in offline dictionary of about 260 standard CS abbrev
 reported as `standard_score` so papers stay comparable across modes. Rules, thresholds and test results:
 `docs/CSE_MODE.md`.
 
+**New in 1.3.0** (details and what was checked: `docs/NEW_IN_1.3.md`): a one-page **score card** with a letter grade,
+the top 3 problems and fixes, as a page and a PDF; **citation and reference checks** (cited but not listed, listed but
+never cited, duplicates, missing years); a **CS comparison** of a paper's reporting against 16 development CS papers or
+your own; claim and evidence **marked on the PDF page** with labelled boxes and a highlighted copy of the original PDF;
+**thumbs up / down** on every finding, stored locally; an optional, clearly labelled **AI second opinion** for evidence
+written in other words (off by default, `docs/AI_SECOND_OPINION.md`); a **blinded labelling kit** so classmates can
+check PaperLens by hand (`eval/labelling/INSTRUCTIONS.md`); and **deployment files** for putting it online
+(`docs/DEPLOY.md`; nothing is deployed).
+
 **How it differs from a generic summariser.** Nothing is generated or paraphrased. Each output is a quote with a page
 number or a rule you can read in the source, unsupported claims are shown as unsupported, and unreadable PDFs are
-reported as unreadable rather than scored as poor papers. It runs offline: no API key, no GPU, no model download.
+reported as unreadable rather than scored as poor papers. It runs offline: no API key, no GPU, no model download
+(the optional AI second opinion is the one exception, and only when the person running PaperLens turns it on).
 The price is that it is lexical and numeric, not a language model: "support" means the paper's own numbers and wording
 agree, not that the argument is sound.
 
@@ -68,16 +78,18 @@ Open <http://127.0.0.1:8000>. Stop with Ctrl+C. Use `--port 8001` if port 8000 i
 ### Use the web app
 
 1. Drop a text-based PDF (up to 25 MB) on the box, or click it to choose a file. Analysis takes a few seconds.
-2. **Summary**: page-cited sentences. **Evidence Ledger**: click a claim to see its passages, why each was chosen and the
+2. **Score card**: grade, top 3 problems and fixes (PDF or print). **Summary**: page-cited sentences. **Evidence Ledger**: click a claim to see its passages, why each was chosen and the
    highlighted source page (click an image to open it full size). **Reproducibility**: score, missing items and the quotes.
-   **Evidence gaps**: flags for review. **Compare**: contrast the current paper with one analysed earlier.
+   **Evidence gaps**: flags for review. **References**: citation checks. **CS comparison**: this paper against other CS
+   papers. **Compare**: contrast the current paper with one analysed earlier. The thumbs buttons next to findings record
+   whether you found each one useful ("Feedback CSV" downloads them).
 3. "Report: HTML / Markdown / JSON" downloads the analysis. Results are stored under `data/store/` (git-ignored).
 4. "Load synthetic demo papers" generates two fake papers for a first look. They are not real studies.
 
 ### Command line
 
 ```powershell
-python -m paperlens analyze paper.pdf --out report      # writes report\paper.json, .md and .html
+python -m paperlens analyze paper.pdf --out report      # writes report\paper.json, .md, .html and the score card (.scorecard.html, .scorecard.pdf)
 python -m paperlens analyze paper.pdf --mode cse        # force the CS checks (auto | cse | general; default auto)
 python -m paperlens compare a.pdf b.pdf --out report    # writes report\comparison.json and prints the verdict
 python -m paperlens --version
@@ -89,13 +101,17 @@ A missing, non-PDF, damaged or password-protected file prints one line (`paperle
 
 `POST /api/analyze` (multipart field `file`, optional field `mode`: auto, cse or general), `GET /api/analyses`, `GET /api/analyses/{id}`,
 `GET /api/analyses/{id}/page/{n}.png?highlight=<sentence ids>`, `GET /api/analyses/{id}/report.{html,md,json}`,
+`GET /api/analyses/{id}/scorecard.{json,html,pdf}`, `GET /api/analyses/{id}/benchmark?set=builtin|mine`,
+`GET /api/analyses/{id}/locate?ids=<sentence ids>`, `GET /api/analyses/{id}/highlighted.pdf?claim=C3`,
+`GET /api/analyses/{id}/paper.pdf`, `GET|POST /api/analyses/{id}/feedback`, `GET /api/feedback.csv`,
+`GET|POST /api/analyses/{id}/second-opinion` (403 unless enabled), `GET /api/config`,
 `POST /api/compare` (`{"a": id, "b": id}`), `POST /api/demo`, `GET /api/health`. Interactive docs: `/docs`.
 Errors: 400 not a PDF, 413 over 25 MB, 422 damaged or encrypted PDF, 404 unknown id.
 
 ## Tests
 
 ```powershell
-python -m pytest -q          # 306 tests, under two minutes, no network
+python -m pytest -q          # 375 tests, under two minutes, no network
 ```
 
 ## Demonstration
@@ -140,6 +156,7 @@ unverified by humans. Full list: `docs/KNOWN_LIMITATIONS.md`.
 
 ```
 paperlens/   ingest.py claims.py reproducibility.py gaps.py consistency.py summarize.py compare.py pipeline.py api.py cli.py report.py
+             scorecard.py citations.py benchmark.py highlight.py feedback.py second_opinion.py (1.3.0)
 web/         single-page UI (plain HTML/CSS/JS, no build step)
 eval/        generators, benchmarks and frozen results (see docs/EVALUATION.md)
 tests/       pytest suite
@@ -152,6 +169,9 @@ Stack: Python, PyMuPDF (PDF text and geometry), FastAPI + Uvicorn (API and stati
 
 ## Version history
 
+`1.3.0` adds the score card, citation checks, CS comparison, evidence marked on the PDF page, feedback buttons, the
+optional AI second opinion, the labelling kit and deployment files (`docs/NEW_IN_1.3.md`); the rule-based analysis is
+unchanged. `1.2.0` added the Computer Science & Engineering mode.
 `1.1.0` adds the Numbers check (`paperlens/consistency.py`, web tab, report section, `eval/consistency_eval.py`).
 `1.0.0` is the finalisation release (CLI and API error handling, standalone HTML report, reworked web UI, documentation);
 the analysis engine is unchanged from `0.6.1-dev`. Earlier development versions on this branch: `0.5.0-dev` column-aware
