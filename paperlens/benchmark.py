@@ -44,14 +44,14 @@ def load_reference() -> dict:
     return json.loads(REFERENCE_FILE.read_text(encoding="utf-8"))
 
 
-def local_profiles(store: Path, exclude_id: str = "") -> list[dict]:
+def local_profiles(store: Path, exclude_id: str = "", only: set | None = None) -> list[dict]:
     """CS-mode analyses stored on this computer; one per paper name (the newest), the current paper left out."""
     out, seen = [], set()
     if not store.exists():
         return out
     for d in sorted(store.iterdir(), key=lambda p: -p.stat().st_mtime):
         f = d / "analysis.json"
-        if d.name == exclude_id or not f.exists():
+        if d.name == exclude_id or not f.exists() or (only is not None and d.name not in only):
             continue
         try:
             j = json.loads(f.read_text(encoding="utf-8"))
@@ -126,14 +126,15 @@ def compare_to_set(me: dict, others: list[dict], set_name: str) -> dict:
     return res
 
 
-def benchmark(analysis_dict: dict, store: Path, which: str = "builtin", exclude_id: str = "") -> dict:
+def benchmark(analysis_dict: dict, store: Path, which: str = "builtin", exclude_id: str = "",
+              only: set | None = None) -> dict:
     me = profile(analysis_dict)
     if me is None:
         return {"available": False,
                 "reason": "The CS comparison needs a paper checked in Computer Science & Engineering mode. Choose "
                           "\"Computer Science & Engineering\" under Field checks and upload the PDF again."}
     if which == "mine":
-        others, name = local_profiles(store, exclude_id), "Your CS papers analysed on this computer"
+        others, name = local_profiles(store, exclude_id, only), "Your CS papers analysed on this computer"
     else:
         ref = load_reference()
         title = me["title"].strip().lower()

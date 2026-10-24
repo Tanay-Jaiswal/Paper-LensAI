@@ -1,7 +1,9 @@
 """FastAPI service + static web UI."""
 from __future__ import annotations
 
+import base64
 import hashlib
+import secrets
 import json
 import os
 import re
@@ -31,7 +33,29 @@ WEB_DIR = Path(__file__).resolve().parent.parent / "web"
 MAX_BYTES = 25 * 1024 * 1024
 ID_RE = re.compile(r"^[a-f0-9]{8,32}$")
 
+# Online deployment (docs/DEPLOY.md). PAPERLENS_HOSTED=1: the UI says files are uploaded to a server, and each browser
+# sees only the papers it uploaded itself. PAPERLENS_PASSWORD: one shared password (HTTP basic auth, any user name).
+HOSTED = os.environ.get("PAPERLENS_HOSTED", "") == "1"
+PASSWORD = os.environ.get("PAPERLENS_PASSWORD", "")
+
 app = FastAPI(title="PaperLens AI", version=__version__)
+
+
+@app.middleware("http")
+async def _password(request, call_next):
+    if PASSWORD and request.url.path != "/api/health":     # the health check stays open for the host's monitor
+        ok = False
+        auth = request.headers.get("authorization", "")
+        if auth.lower().startswith("basic "):
+            try:
+                _user, _, given = base64.b64decode(auth[6:]).decode("utf-8").partition(":")
+                ok = secrets.compare_digest(given.encode(), PASSWORD.encode())
+            except (ValueError, UnicodeDecodeError):
+                ok = False
+        if not ok:
+            return Response("Password required", status_code=401,
+                            headers={"WWW-Authenticate": 'Basic realm="PaperLens", charset="UTF-8"'})
+    return await call_next(request)
 
 
 @app.middleware("http")
@@ -114,12 +138,23 @@ async def analyze(file: UploadFile = File(...), mode: str = Form("auto")):
     return _payload(_store(raw, file.filename or "paper.pdf", mode))
 
 
+def _visible(ids: str) -> set[str] | None:
+    """Which stored analyses this request may list: all of them on a local install; on a hosted one only the ids the
+    browser sends (the papers it uploaded), so one visitor never sees another's papers."""
+    if not HOSTED:
+        return None
+    return {x for x in ids.split(",") if ID_RE.match(x)}
+
+
 @app.get("/api/analyses")
-def list_analyses():
+def list_analyses(ids: str = ""):
     out = []
+    only = _visible(ids)
     if DATA_DIR.exists():
         for d in sorted(DATA_DIR.iterdir(), key=lambda p: -p.stat().st_mtime):
             f = d / "analysis.json"
+            if only is not None and d.name not in only:
+                continue
             if f.exists():
                 try:
                     j = json.loads(f.read_text(encoding="utf-8"))
@@ -219,10 +254,10 @@ def scorecard(aid: str, fmt: str):
 
 
 @app.get("/api/analyses/{aid}/benchmark")
-def benchmark_endpoint(aid: str, set: str = "builtin"):
+def benchmark_endpoint(aid: str, set: str = "builtin", ids: str = ""):
     if set not in ("builtin", "mine"):
         raise HTTPException(400, "set must be 'builtin' or 'mine'")
-    return benchmark(_payload(_load(aid)), DATA_DIR, set, exclude_id=aid)
+    return benchmark(_payload(_load(aid)), DATA_DIR, set, exclude_id=aid, only=_visible(ids))
 
 
 class OpinionReq(BaseModel):
@@ -232,7 +267,7 @@ class OpinionReq(BaseModel):
 @app.get("/api/config")
 def config():
     """What this server allows; the UI shows or hides optional features from this."""
-    return {"ai_second_opinion": so.status()}
+    return {"ai_second_opinion": so.status(), "hosted": HOSTED}
 
 
 @app.get("/api/analyses/{aid}/second-opinion")
@@ -290,8 +325,8 @@ def post_feedback(aid: str, req: FeedbackReq):
 
 
 @app.get("/api/feedback.csv")
-def feedback_csv():
-    return PlainTextResponse(fb.export_csv(DATA_DIR), media_type="text/csv",
+def feedback_csv(ids: str = ""):
+    return PlainTextResponse(fb.export_csv(DATA_DIR, _visible(ids)), media_type="text/csv",
                              headers={"Content-Disposition": 'attachment; filename="paperlens-feedback.csv"'})
 
 

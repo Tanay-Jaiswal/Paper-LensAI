@@ -71,13 +71,13 @@ def summary(data: dict) -> dict:
     return out
 
 
-def export_csv(store: Path) -> str:
+def export_csv(store: Path, only: set | None = None) -> str:
     """Every vote in the store as CSV: one row per vote, with the paper name and the finding text."""
     buf = io.StringIO()
     w = csv.writer(buf)
     w.writerow(["analysis_id", "paper", "finding", "kind", "vote", "note", "finding_text", "version", "at"])
     if store.exists():
-        for d in sorted(p for p in store.iterdir() if p.is_dir()):
+        for d in sorted(p for p in store.iterdir() if p.is_dir() and (only is None or p.name in only)):
             data = _read(d)
             if not data:
                 continue

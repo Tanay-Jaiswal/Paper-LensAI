@@ -9,7 +9,13 @@ let busy = false;
 let supportFilter = "all";
 let votes = {};
 let aiConfig = {enabled: false};   // optional AI second opinion (paperlens/second_opinion.py); off unless the server enables it
-let opinions = {};                 // stored AI answers for the current paper, by claim id      // feedback on findings for the current paper: {target: {vote, note, text}}
+let opinions = {};
+// Online deployment (PAPERLENS_HOSTED=1): the server lists only the papers this browser uploaded, by id.
+let hosted = false;
+const MY_IDS = "paperlens-my-papers";
+function myIds() { try { return JSON.parse(localStorage.getItem(MY_IDS) || "[]"); } catch (_) { return []; } }
+function remember(id) { if (!hosted) return; const ids = [id, ...myIds().filter((x) => x !== id)].slice(0, 200); try { localStorage.setItem(MY_IDS, JSON.stringify(ids)); } catch (_) {} }
+const idsQuery = (sep) => hosted ? `${sep}ids=${encodeURIComponent(myIds().join(","))}` : "";                 // stored AI answers for the current paper, by claim id      // feedback on findings for the current paper: {target: {vote, note, text}}
 
 // How each rating is decided (docs/ARCHITECTURE.md, claims.py). Shown next to the ledger.
 const SUPPORT_HELP = {
@@ -65,7 +71,7 @@ async function upload(file) {
   finally { setBusy(false); $("file").value = ""; }
 }
 async function loadRecent() {
-  try { recent = await api("/api/analyses"); } catch (_) { recent = []; }
+  try { recent = await api("/api/analyses" + idsQuery("?")); } catch (_) { recent = []; }
   const shown = recent.slice(0, 8);
   $("recent").innerHTML = '<div class="recent"><div class="recent-head"><h3 class="section-label" id="recent-label">Analysed earlier</h3>' +
     (recent.length > shown.length ? `<span class="small muted">latest ${shown.length} of ${recent.length}</span>` : "") + "</div>" +
@@ -87,6 +93,8 @@ async function loadRecent() {
 
 async function show(a) {
   cur = a; supportFilter = "all";
+  remember(a.id);
+  $("dl-fb").href = "/api/feedback.csv" + idsQuery("?");
   await loadVotes(a.id);
   opinions = {};
   if (aiConfig.enabled) { try { opinions = await api(`/api/analyses/${a.id}/second-opinion`); } catch (_) {} }
@@ -413,7 +421,7 @@ async function renderBench(a, which) {
   const mine = a.id;
   $("tab-bench").innerHTML = `<p class="muted small"><span class="spin"></span>Comparing …</p>`;
   let b;
-  try { b = await api(`/api/analyses/${a.id}/benchmark?set=${which}`); }
+  try { b = await api(`/api/analyses/${a.id}/benchmark?set=${which}${idsQuery("&")}`); }
   catch (e) { $("tab-bench").innerHTML = `<p class="empty">The comparison could not be made: ${esc(e.message)}</p>`; return; }
   if (!cur || cur.id !== mine) return;
   const pick = `<p class="small">Compare with: <select id="bench-set" aria-label="Comparison set"><option value="builtin"${which === "builtin" ? " selected" : ""}>Built-in set of development CS papers</option><option value="mine"${which === "mine" ? " selected" : ""}>My CS papers analysed on this computer</option></select></p>`;
@@ -446,7 +454,7 @@ function bindBench(a) { const s = $("bench-set"); if (s) s.onchange = () => rend
 
 async function renderCompareTab() {
   const mine = cur.id;
-  try { recent = await api("/api/analyses"); } catch (_) {}
+  try { recent = await api("/api/analyses" + idsQuery("?")); } catch (_) {}
   if (!cur || cur.id !== mine) return;
   const others = recent.filter((r) => r.id !== cur.id);
   let h = `<h3>Compare with another analysed paper</h3>`;
@@ -493,11 +501,19 @@ $("demo").onclick = async () => {
   setBusy(true); status("Generating and analysing two synthetic demo papers …", "busy");
   try {
     const d = await api("/api/demo", {method: "POST"});
+    remember(d.b);
     await show(await api("/api/analyses/" + d.a));
     status("Synthetic demo loaded (generated papers, not real studies). Open the Compare tab to contrast it with demo-overclaiming.pdf.", "ok");
   } catch (e) { status("Could not load the demo: " + e.message, "bad"); }
   finally { setBusy(false); }
 };
-api("/api/config").then((c) => { aiConfig = c.ai_second_opinion || {enabled: false}; }).catch(() => {});
-api("/api/health").then((h) => { if (h.version) $("version").textContent = "version " + h.version + " · offline, deterministic, no language model"; }).catch(() => {});
-loadRecent();
+const configReady = api("/api/config").then((c) => {
+  aiConfig = c.ai_second_opinion || {enabled: false};
+  hosted = !!c.hosted;
+  if (hosted) $("drop-help").textContent = "PDF only, up to 25 MB. Text PDFs work best. The file is uploaded to this PaperLens server and stored there so it can be analysed; only this browser lists it.";
+}).catch(() => {});
+configReady.then(() => api("/api/health")).then((h) => {
+  if (h.version) $("version").textContent = "version " + h.version + (hosted ? " · online server" : " · offline") + " · deterministic rules" +
+    (aiConfig.enabled ? " · optional AI second opinion on" : " · no language model");
+}).catch(() => {});
+configReady.then(loadRecent);
