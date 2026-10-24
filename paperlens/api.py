@@ -17,6 +17,7 @@ from pydantic import BaseModel
 
 from . import __version__
 from . import feedback as fb
+from .benchmark import benchmark
 from .compare import compare
 from .field import MODES
 from .pipeline import Analysis, analyze_pdf
@@ -203,6 +204,13 @@ def scorecard(aid: str, fmt: str):
         return Response(to_scorecard_pdf(a), media_type="application/pdf",
                         headers={"Content-Disposition": f'attachment; filename="paperlens-scorecard-{aid}.pdf"'})
     raise HTTPException(404, "Unknown format")
+
+
+@app.get("/api/analyses/{aid}/benchmark")
+def benchmark_endpoint(aid: str, set: str = "builtin"):
+    if set not in ("builtin", "mine"):
+        raise HTTPException(400, "set must be 'builtin' or 'mine'")
+    return benchmark(_payload(_load(aid)), DATA_DIR, set, exclude_id=aid)
 
 
 class FeedbackReq(BaseModel):

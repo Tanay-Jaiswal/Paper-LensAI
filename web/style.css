@@ -261,3 +261,13 @@ td .fb{display:flex;margin:4px 0 0}
 .card-grade{text-align:center;border:1px solid var(--rule-strong);background:var(--sheet);padding:12px}
 .grade-letter{font:600 64px/1 var(--serif);color:var(--accent)}
 .card-parts td:first-child{color:var(--ink-2)}
+
+/* CS comparison */
+.bench-head{display:flex;gap:28px;align-items:center;flex-wrap:wrap;border-top:2px solid var(--ink);padding-top:12px;margin:6px 0 4px}
+.big-num{font:500 46px/1 var(--serif);color:var(--accent)}.big-num span{font-size:18px;margin-left:2px}
+.strip{width:100%;max-width:640px;height:auto;display:block;margin:8px 0 4px}
+.strip .axis{stroke:var(--rule-strong);stroke-width:1}.strip .tick{stroke:var(--muted);stroke-width:2}
+.strip text{font:11px var(--mono);fill:var(--muted)}.strip .me{fill:var(--accent);stroke:var(--sheet);stroke-width:2}
+.strip .me-label{fill:var(--accent);font-weight:600}
+.share{display:inline-block;width:90px;height:7px;border:1px solid var(--rule);background:var(--paper-2);vertical-align:middle;margin-right:6px}
+.share>i{display:block;height:100%;background:var(--accent)}

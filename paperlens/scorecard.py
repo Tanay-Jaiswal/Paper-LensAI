@@ -4,9 +4,12 @@ The grade summarises how completely the paper *reports* its work and backs its c
 science. It is computed from four numbers that are already in the full report, with a fixed formula printed on the
 card, so anyone can recompute it:
 
-    points = 0.6 x reporting checklist score + 0.4 x evidence score      (checklist score only, if no claim has numbers)
-             - 5 for each high-severity evidence gap or number that does not add up (at most 20 off)
+    points = 0.7 x reporting checklist score + 0.3 x evidence score      (checklist score only, if no claim has numbers)
+             - 5 for each number that does not add up - 2 for each high-severity evidence gap (at most 15 off)
     A >= 80, B >= 65, C >= 50, D >= 35, otherwise E
+
+The weights were set on development papers only (no held-out paper): with 0.6 / 0.4 and 5 points per gap, 9 of 16
+development CS papers got an E, mostly because an unsupported claim lowers both the evidence score and the gap count.
 
 The problems and fixes are the first three items of the revision checklist (already ordered by priority), so the card
 adds no finding of its own.
@@ -20,15 +23,15 @@ from . import __version__
 from .pipeline import NOT_ASSESSED, Analysis
 from .revisions import revision_checklist
 
-W_REPRO, W_EVIDENCE = 0.6, 0.4
-PENALTY, MAX_PENALTY = 5, 20
+W_REPRO, W_EVIDENCE = 0.7, 0.3
+PENALTY_NUMBER, PENALTY_GAP, MAX_PENALTY = 5, 2, 15
 GRADES = ((80, "A"), (65, "B"), (50, "C"), (35, "D"))
 GRADE_TEXT = {"A": "very complete reporting", "B": "mostly complete reporting", "C": "partly complete reporting",
               "D": "many reporting gaps", "E": "most checks not met"}
 _SUPPORT_POINTS = {"strong": 1.0, "moderate": 0.6, "weak": 0.25, "none": 0.0}
 FORMULA = (f"points = {W_REPRO} x checklist score + {W_EVIDENCE} x evidence score (checklist only if no claim has "
-           f"numbers), minus {PENALTY} per high-severity gap or number that does not add up (at most {MAX_PENALTY}); "
-           "A >= 80, B >= 65, C >= 50, D >= 35, else E")
+           f"numbers), minus {PENALTY_NUMBER} per number that does not add up and {PENALTY_GAP} per high-severity "
+           f"evidence gap (at most {MAX_PENALTY} off); A >= 80, B >= 65, C >= 50, D >= 35, else E")
 
 
 def evidence_score(a: Analysis) -> float | None:
@@ -47,7 +50,7 @@ def build_scorecard(a: Analysis) -> dict:
     ev = evidence_score(a)
     high_gaps = sum(1 for g in a.gaps if g.severity == "high")
     bad_numbers = (a.consistency or {}).get("n_inconsistent", 0)
-    penalty = min(MAX_PENALTY, PENALTY * (high_gaps + bad_numbers))
+    penalty = min(MAX_PENALTY, PENALTY_NUMBER * bad_numbers + PENALTY_GAP * high_gaps)
     base = repro if ev is None else W_REPRO * repro + W_EVIDENCE * ev
     points = round(max(0.0, base - penalty), 1)
     assessed = rubric.get("band") != NOT_ASSESSED

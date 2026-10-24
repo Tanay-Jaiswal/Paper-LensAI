@@ -21,8 +21,8 @@ def test_points_follow_the_printed_formula(make_pdf):
     c = build_scorecard(a)
     p = c["parts"]
     ev = evidence_score(a)
-    base = p["checklist_score"] if ev is None else 0.6 * p["checklist_score"] + 0.4 * ev
-    assert p["penalty"] == min(20, 5 * (p["high_severity_gaps"] + p["numbers_not_adding_up"]))
+    base = p["checklist_score"] if ev is None else 0.7 * p["checklist_score"] + 0.3 * ev
+    assert p["penalty"] == min(15, 5 * p["numbers_not_adding_up"] + 2 * p["high_severity_gaps"])
     assert c["points"] == round(max(0, base - p["penalty"]), 1)
     assert c["grade"] == grade_of(c["points"])
 
@@ -40,7 +40,7 @@ def test_top_three_are_the_first_revision_items(make_pdf):
 def test_penalty_is_capped(make_pdf):
     a = analyze_pdf(make_pdf(1)[0])
     a.gaps = [Gap(f"G{i}", "unsupported_claim", "high", "x") for i in range(9)]
-    assert build_scorecard(a)["parts"]["penalty"] == 20
+    assert build_scorecard(a)["parts"]["penalty"] == 15
 
 
 def test_unreadable_pdf_is_not_graded(tmp_path):

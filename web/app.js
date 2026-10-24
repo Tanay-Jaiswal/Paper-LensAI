@@ -104,7 +104,7 @@ async function show(a) {
     (a.consistency && a.consistency.checks ? tile(a.consistency.n_inconsistent, "numbers that do not add up",
       `of ${a.consistency.n_checked} statements recomputed`, "numbers") : "");
   document.querySelectorAll("#tiles .tile").forEach((t) => t.onclick = () => tab(t.dataset.tab));
-  renderCard(a); renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderRefs(a); renderGlossary(a); renderCompareTab();
+  renderCard(a); renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderRefs(a); renderGlossary(a); renderBench(a, "builtin"); renderCompareTab();
   tab("card");
   loadRecent();
 }
@@ -350,6 +350,42 @@ function renderGlossary(a) {
   h += `<h4>Used but never defined in the paper</h4>` + (g.undefined.length ? `<p class="small">${g.undefined.map((u) => `<strong>${esc(u.abbr)}</strong> <span class="muted">×${u.uses}, first p.${u.page}</span>`).join(" · ")}</p><p class="muted small">These may be standard in the field (or names of instruments and software). PaperLens does not guess their meaning${g.dictionary_used ? "; they are not in the built-in CS dictionary either" : ""}.</p>` : `<p class="empty">None found.</p>`);
   $("tab-glossary").innerHTML = h;
 }
+
+const ITEM_STATUS = {present: "reported", partial: "partly", missing: "not reported", not_applicable: "not applicable"};
+async function renderBench(a, which) {
+  const mine = a.id;
+  $("tab-bench").innerHTML = `<p class="muted small"><span class="spin"></span>Comparing …</p>`;
+  let b;
+  try { b = await api(`/api/analyses/${a.id}/benchmark?set=${which}`); }
+  catch (e) { $("tab-bench").innerHTML = `<p class="empty">The comparison could not be made: ${esc(e.message)}</p>`; return; }
+  if (!cur || cur.id !== mine) return;
+  const pick = `<p class="small">Compare with: <select id="bench-set" aria-label="Comparison set"><option value="builtin"${which === "builtin" ? " selected" : ""}>Built-in set of development CS papers</option><option value="mine"${which === "mine" ? " selected" : ""}>My CS papers analysed on this computer</option></select></p>`;
+  let h = `<h3>CS comparison: this paper's reporting against other Computer Science papers</h3>` + pick;
+  if (!b.available) { $("tab-bench").innerHTML = h + `<p class="empty">${esc(b.reason)}</p>`; bindBench(a); return; }
+  const sc = b.score;
+  h += `<p class="muted small">${esc(b.set)} · ${b.n} paper${b.n === 1 ? "" : "s"}</p>`;
+  if (b.warning) h += `<div class="warn">${esc(b.warning)}</div>`;
+  h += `<div class="bench-head"><div><div class="big-num">${sc.percentile}<span>th</span></div><div class="small">percentile for the CS checklist score</div></div>` +
+    `<div class="small">This paper <strong>${b.paper.score}</strong> / 100 · median of the set <strong>${sc.median}</strong> · range ${sc.min}–${sc.max} · rank ${sc.rank} of ${b.n + 1}` +
+    `<br>Standard 15-item score: ${b.paper.standard_score} (percentile ${b.standard_score.percentile}, set median ${b.standard_score.median})` +
+    (b.evidence_score ? `<br>Evidence for numeric claims: ${b.paper.evidence_score} (percentile ${b.evidence_score.percentile} of ${b.evidence_score.n} papers with numeric claims, median ${b.evidence_score.median})` : "") + `</div></div>`;
+  // dot strip: every paper in the set as a tick, this paper as a marked dot
+  const W = 600, x = (v) => 10 + (W - 20) * v / 100;
+  h += `<svg class="strip" viewBox="0 0 ${W} 54" role="img" aria-label="CS checklist scores of the set with this paper marked at ${b.paper.score}">` +
+    `<line x1="10" x2="${W - 10}" y1="26" y2="26" class="axis"/>` + [0, 25, 50, 75, 100].map((t) => `<text x="${x(t)}" y="50" text-anchor="middle">${t}</text>`).join("") +
+    sc.values.map((v) => `<line x1="${x(v)}" x2="${x(v)}" y1="16" y2="36" class="tick"><title>${v}</title></line>`).join("") +
+    `<circle cx="${x(b.paper.score)}" cy="26" r="7" class="me"><title>This paper: ${b.paper.score}</title></circle><text x="${x(b.paper.score)}" y="10" text-anchor="middle" class="me-label">this paper</text></svg>`;
+  const notes = b.items.filter((i) => i.note);
+  if (notes.length) h += `<h4>Where this paper differs from the set</h4><ul>${notes.map((i) => `<li><strong>${esc(i.label)}</strong>${i.cs ? ' <span class="tag">CS</span>' : ""}: ${esc(i.note)}</li>`).join("")}</ul>`;
+  h += `<h4>Every checklist item</h4><table><thead><tr><th>Item</th><th>This paper</th><th>Papers in the set reporting it</th></tr></thead><tbody>` +
+    b.items.map((i) => `<tr><td>${esc(i.label)}${i.cs ? ' <span class="tag">CS</span>' : ""}</td><td>${pill(i.status, ITEM_STATUS[i.status])}</td>` +
+      `<td>${i.set_reporting_share === null ? '<span class="muted">not rated</span>' : `<span class="share"><i style="width:${i.set_reporting_share}%"></i></span> ${i.set_reporting_share}% <span class="muted small">of ${i.set_rated}</span>`}</td></tr>`).join("") + "</tbody></table>";
+  h += `<details class="legend"><summary>Papers in this set</summary><ul class="small">${b.papers.map((p) => `<li>${esc(p.title)} · ${p.score}</li>`).join("")}</ul></details>`;
+  h += `<p class="muted small">${esc(b.caveat)} "Reporting it" counts present and partly present.</p>`;
+  $("tab-bench").innerHTML = h;
+  bindBench(a);
+}
+function bindBench(a) { const s = $("bench-set"); if (s) s.onchange = () => renderBench(a, s.value); }
 
 async function renderCompareTab() {
   const mine = cur.id;
