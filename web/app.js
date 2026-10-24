@@ -147,12 +147,13 @@ function renderSummary(a) {
   $("tab-summary").innerHTML = h;
 }
 
+const THUMB = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M5 7v7H2V7h3zm1 7V7l3-5c1 0 2 .7 2 2l-.5 3H14c.7 0 1.2.7 1 1.4l-1.3 4.8c-.2.5-.6.8-1.1.8H6z" fill="currentColor"/></svg>';
 // Thumbs up / down on one finding. Stored on this computer next to the analysis (paperlens/feedback.py).
 function fbButtons(target, text) {
   const v = (votes[target] || {}).vote;
   return `<span class="fb" data-target="${esc(target)}" data-text="${esc(String(text || "").slice(0, 600))}">` +
-    `<button type="button" class="fbb up${v === "up" ? " on" : ""}" aria-pressed="${v === "up"}" title="Useful / correct" aria-label="Thumbs up: this finding is useful">&#x1F44D;&#xFE0E;</button>` +
-    `<button type="button" class="fbb down${v === "down" ? " on" : ""}" aria-pressed="${v === "down"}" title="Not useful / wrong" aria-label="Thumbs down: this finding is wrong or not useful">&#x1F44E;&#xFE0E;</button></span>`;
+    `<button type="button" class="fbb up${v === "up" ? " on" : ""}" aria-pressed="${v === "up"}" title="Useful / correct" aria-label="Thumbs up: this finding is useful">${THUMB}</button>` +
+    `<button type="button" class="fbb down${v === "down" ? " on" : ""}" aria-pressed="${v === "down"}" title="Not useful / wrong" aria-label="Thumbs down: this finding is wrong or not useful">${THUMB}</button></span>`;
 }
 async function loadVotes(id) {
   try { votes = (await api(`/api/analyses/${id}/feedback`)).votes || {}; } catch (_) { votes = {}; }
