@@ -1,7 +1,7 @@
 """Revision checklist: the analysis findings rewritten as concrete, page-cited fixes for the authors.
 
-Nothing here is new analysis or generated text. Each item is one finding from the Numbers check, the evidence-gap rules
-or the reproducibility checklist, turned into "what to change, why, where" with fixed wording per finding type, so the
+Nothing here is new analysis or generated text. Each item is one finding from the Numbers check, the evidence-gap rules,
+the reproducibility checklist or the reference checks, turned into "what to change, why, where" with fixed wording per finding type, so the
 same paper always gets the same list and every item points back to the finding it came from.
 """
 from __future__ import annotations
@@ -40,6 +40,12 @@ _GAP_FIX = {
                         "A single run cannot show the method is reliably the best."),
 }
 _SEV_RANK = {"high": 0, "medium": 1, "low": 2}
+_CITATION_FIX = {
+    "cited_not_listed": "Add the missing entry to the reference list, or correct the citation",
+    "listed_not_cited": "Cite this entry where it is used, or remove it from the reference list",
+    "duplicate_entry": "Remove the duplicate reference entry",
+    "entry_without_year": "Add the year of publication (or an access date) to this reference",
+}
 
 
 def _numbers_item(c: dict) -> dict:
@@ -82,7 +88,10 @@ def revision_checklist(analysis) -> list[dict]:
                                  + (" (only mentioned in passing)." if it["status"] == "partial" else " (not found in the paper)."),
                           "page": ev["page"] if ev else None, "quote": ev["quote"] if ev else "",
                           "source": f"Reproducibility item '{it['key']}' (weight {it['weight']})"})
-    cat = {"Numbers": 0, "Claims": 1, "Reproducibility": 2}
+    for f in (getattr(analysis, "citations", None) or {}).get("findings", []):
+        items.append({"priority": f["severity"], "category": "References", "action": _CITATION_FIX[f["kind"]] + ".",
+                      "why": f["message"], "page": f["page"], "quote": f["quote"], "source": f"Reference check {f['id']}"})
+    cat = {"Numbers": 0, "Claims": 1, "Reproducibility": 2, "References": 3}
     items.sort(key=lambda x: (_SEV_RANK[x["priority"]], cat[x["category"]], x["page"] or 0))
     for i, x in enumerate(items, 1):
         x["id"] = f"R{i}"

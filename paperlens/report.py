@@ -65,6 +65,14 @@ def to_markdown(a: Analysis) -> str:
     for x in rev:
         loc = f" (p.{x['page']})" if x["page"] else ""
         out.append(f"- [ ] **[{x['priority'].upper()}] {x['category']}**{loc}: {x['action']} {x['why']} *({x['source']})*")
+    r = a.citations
+    if r:
+        out += ["", "## Citation and reference checks", "",
+                f"*Style: {r['style']} · {r['n_entries']} entries · {r['n_citations']} in-text citations.*", ""]
+        if r["note"]:
+            out += [f"> {r['note']}", ""]
+        out += [f"- **[{f['severity'].upper()}] {f['kind']}**" + (f" (p.{f['page']})" if f["page"] else "") + f": {f['message']}"
+                for f in r["findings"]] or ["No citation or reference problem found by the rules."]
     c = a.consistency
     if c:
         out += ["", "## Numbers check", "",
@@ -167,6 +175,19 @@ def to_html(a: Analysis) -> str:
                        f"<div>{e(x['why'])}</div>" + (f"<div class=m>“{e(x['quote'])}”</div>" if x["quote"] else "")
                        + f"<div class=m>{e(x['id'])} · from {e(x['source'])}</div></td><td>{x['page'] or '—'}</td></tr>")
         out.append("</table>")
+    r = a.citations
+    if r:
+        out.append(f"<h2>Citation and reference checks</h2><p class=m>Style: {e(r['style'])} · {r['n_entries']} entries · "
+                   f"{r['n_citations']} in-text citations. {e(r['caveat'])}</p>")
+        if r["note"]:
+            out.append(f"<div class=w>{e(r['note'])}</div>")
+        if r["findings"]:
+            out.append("<table><tr><th>Severity</th><th>Check</th><th>Detail</th><th>Page</th></tr>" + "".join(
+                f"<tr><td>{pill(f['severity'])}</td><td>{e(f['kind'].replace('_', ' '))}</td><td>{e(f['message'])}"
+                + (f"<div class=m>“{e(f['quote'])}”</div>" if f["quote"] else "") + f"</td><td>{f['page'] or '—'}</td></tr>"
+                for f in r["findings"]) + "</table>")
+        else:
+            out.append("<p>No citation or reference problem found by the rules.</p>")
     c = a.consistency
     if c:
         out.append(f"<h2>Numbers check: {c['n_checked']} statements recomputed</h2><p class=m>{c['n_inconsistent']} do not "

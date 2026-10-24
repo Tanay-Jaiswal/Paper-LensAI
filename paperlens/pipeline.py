@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from . import __version__
+from .citations import check_citations, reference_text
 from .claims import THRESHOLDS, build_ledger
 from .consistency import audit as consistency_audit
 from .field import resolve_mode
@@ -30,6 +31,7 @@ class Analysis:
     consistency: dict = field(default_factory=dict)   # see consistency.audit
     glossary: dict = field(default_factory=dict)      # see glossary.build_glossary
     mode: dict = field(default_factory=dict)          # see field.resolve_mode (which field-specific checks ran)
+    citations: dict = field(default_factory=dict)     # see citations.check_citations
 
     def to_dict(self) -> dict:
         support = {k: sum(1 for c in self.claims if c.support == k) for k in ("strong", "moderate", "weak", "none")}
@@ -50,6 +52,7 @@ class Analysis:
             "revisions": revision_checklist(self),
             "glossary": self.glossary,
             "field": self.mode,
+            "citations": self.citations,
         }
 
 
@@ -69,7 +72,7 @@ def detect_metrics(doc: Document) -> list[str]:
     return out
 
 
-def analyze_document(doc: Document, mode: str = "auto") -> Analysis:
+def analyze_document(doc: Document, mode: str = "auto", raw_refs: str = "") -> Analysis:
     fld = resolve_mode(doc, mode)
     cse = fld["field"] == "cse"
     glossary = build_glossary(doc, use_dictionary=cse)
@@ -86,11 +89,11 @@ def analyze_document(doc: Document, mode: str = "auto") -> Analysis:
     else:
         gaps = detect_gaps(doc, claims, rubric, fld["field"])
     return Analysis(doc, summarize(doc), claims, rubric, gaps, sorted(detected_datasets(doc)), detect_metrics(doc),
-                    consistency_audit(doc), glossary, fld)
+                    consistency_audit(doc), glossary, fld, check_citations(doc, raw_refs))
 
 
 def analyze_pdf(path: str | Path, doc_id: str | None = None, mode: str = "auto") -> Analysis:
-    return analyze_document(parse_pdf(path, doc_id), mode)
+    return analyze_document(parse_pdf(path, doc_id), mode, reference_text(path))
 
 
 def save_json(a: Analysis, path: str | Path) -> None:

@@ -104,7 +104,7 @@ async function show(a) {
     (a.consistency && a.consistency.checks ? tile(a.consistency.n_inconsistent, "numbers that do not add up",
       `of ${a.consistency.n_checked} statements recomputed`, "numbers") : "");
   document.querySelectorAll("#tiles .tile").forEach((t) => t.onclick = () => tab(t.dataset.tab));
-  renderCard(a); renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderGlossary(a); renderCompareTab();
+  renderCard(a); renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderRefs(a); renderGlossary(a); renderCompareTab();
   tab("card");
   loadRecent();
 }
@@ -308,6 +308,29 @@ function renderRevise(a) {
       (x.quote ? `<blockquote>${esc(x.quote)}</blockquote>` : "") + `<div class="cite">${esc(x.id)} · from ${esc(x.source)}</div></td><td>${x.page ? `p.${x.page}` : "—"}</td></tr>`;
   }
   $("tab-revise").innerHTML = h + "</tbody></table>";
+}
+
+const CITE_KIND = {cited_not_listed: "cited but not in the list", listed_not_cited: "in the list but never cited",
+  duplicate_entry: "listed twice", entry_without_year: "entry without a year"};
+function renderRefs(a) {
+  const c = a.citations;
+  if (!c || !c.method) { $("tab-refs").innerHTML = `<p class="empty">This analysis was made by an older version. Upload the PDF again to check the references.</p>`; return; }
+  const f = c.findings;
+  let h = `<h3>Citation and reference checks</h3><p class="muted small">${esc(c.method)} ${esc(c.caveat)}</p>`;
+  h += `<p>${c.style === "none" ? "Citation style not recognised" : `Style: <strong>${esc(c.style)}</strong>`} · ${c.n_entries} reference entries read · ${c.n_citations} in-text citations found` +
+    (c.checked ? ` · <strong>${f.filter((x) => x.kind === "cited_not_listed" || x.kind === "listed_not_cited").length}</strong> citation mismatches` : "") + `</p>`;
+  if (c.note) h += `<div class="warn">${esc(c.note)}</div>`;
+  const pr = c.profile || {};
+  if (pr.n_entries) h += `<p class="small">List profile (information, not a problem): ${pr.with_year} of ${pr.n_entries} entries have a year` +
+    (pr.median_year ? `; median year ${pr.median_year}, newest ${pr.newest_year}` : "") +
+    (pr.last_5_years !== undefined ? `; ${pr.last_5_years} from the five years up to ${pr.reference_year}` : "") +
+    `; ${pr.preprints} preprint${pr.preprints === 1 ? "" : "s"} (arXiv and similar); ${pr.with_doi_or_link} with a DOI or link.</p>`;
+  if (!f.length) { $("tab-refs").innerHTML = h + `<p class="empty">${c.checked || pr.n_entries ? "No citation or reference problem was found by these rules." : "Nothing could be checked."}</p>`; return; }
+  h += `<table><thead><tr><th>Severity</th><th>Check</th><th>Detail</th><th>Page</th></tr></thead><tbody>` + f.map((x) =>
+    `<tr><td>${pill(x.severity)}${fbButtons("reference:" + x.id, x.kind + ": " + x.message)}</td><td>${esc(CITE_KIND[x.kind] || words(x.kind))}</td><td>${esc(x.message)}${x.quote ? `<blockquote>${esc(x.quote)}</blockquote>` : ""}</td>` +
+    `<td>${x.page ? (x.sentence_id != null ? `<a href="/api/analyses/${esc(a.id)}/page/${x.page}.png?highlight=${x.sentence_id}" target="_blank" rel="noopener">p.${x.page}</a>` : "p." + x.page) : "—"}</td></tr>`).join("") + "</tbody></table>";
+  h += `<p class="cite">Not checked: whether a cited work was retracted, whether a DOI resolves, or whether a work says what it is cited for (no online lookups).</p>`;
+  $("tab-refs").innerHTML = h;
 }
 
 function renderGlossary(a) {
