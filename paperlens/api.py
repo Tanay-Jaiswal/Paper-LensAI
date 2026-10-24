@@ -16,10 +16,12 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from . import __version__
+from . import feedback as fb
 from .compare import compare
 from .field import MODES
 from .pipeline import Analysis, analyze_pdf
 from .report import to_html, to_markdown
+from .scorecard import build_scorecard, to_scorecard_html, to_scorecard_pdf
 
 DATA_DIR = Path(os.environ.get("PAPERLENS_DATA", Path(__file__).resolve().parent.parent / "data" / "store"))
 WEB_DIR = Path(__file__).resolve().parent.parent / "web"
@@ -99,6 +101,7 @@ def _store(raw: bytes, name: str, mode: str = "auto") -> Analysis:
 def _payload(a: Analysis) -> dict:
     d = a.to_dict()
     d["id"] = a.doc.doc_id
+    d["scorecard"] = build_scorecard(a)
     return d
 
 
@@ -187,6 +190,54 @@ def report(aid: str, fmt: str):
     if fmt == "html":
         return Response(to_html(a), media_type="text/html")
     raise HTTPException(404, "Unknown format")
+
+
+@app.get("/api/analyses/{aid}/scorecard.{fmt}")
+def scorecard(aid: str, fmt: str):
+    a = _load(aid)
+    if fmt == "json":
+        return build_scorecard(a)
+    if fmt == "html":
+        return Response(to_scorecard_html(a), media_type="text/html")
+    if fmt == "pdf":
+        return Response(to_scorecard_pdf(a), media_type="application/pdf",
+                        headers={"Content-Disposition": f'attachment; filename="paperlens-scorecard-{aid}.pdf"'})
+    raise HTTPException(404, "Unknown format")
+
+
+class FeedbackReq(BaseModel):
+    target: str                 # e.g. "claim:C3", "gap:G2", "repro:code" (see feedback.KINDS)
+    vote: str | None = None     # "up", "down" or "clear"
+    note: str = ""
+    text: str = ""              # the finding as shown, kept because ids can change between versions
+
+
+@app.get("/api/analyses/{aid}/feedback")
+def get_feedback(aid: str):
+    d = _path(aid)
+    if not (d / "paper.pdf").exists():
+        raise HTTPException(404, "Unknown analysis id")
+    data = fb.load(d)
+    return {"votes": data, "summary": fb.summary(data)}
+
+
+@app.post("/api/analyses/{aid}/feedback")
+def post_feedback(aid: str, req: FeedbackReq):
+    d = _path(aid)
+    if not (d / "paper.pdf").exists():
+        raise HTTPException(404, "Unknown analysis id")
+    try:
+        with _lock:
+            data = fb.record(d, req.target, req.vote, req.note, req.text)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    return {"votes": data, "summary": fb.summary(data)}
+
+
+@app.get("/api/feedback.csv")
+def feedback_csv():
+    return PlainTextResponse(fb.export_csv(DATA_DIR), media_type="text/csv",
+                             headers={"Content-Disposition": 'attachment; filename="paperlens-feedback.csv"'})
 
 
 class CompareReq(BaseModel):

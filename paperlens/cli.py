@@ -11,6 +11,7 @@ from .compare import compare
 from .field import MODES
 from .pipeline import Analysis, analyze_pdf
 from .report import to_html, to_markdown
+from .scorecard import build_scorecard, to_scorecard_html, to_scorecard_pdf
 
 
 class InputError(Exception):
@@ -61,9 +62,13 @@ def main(argv=None) -> int:
             (out / f"{stem}.json").write_text(json.dumps(res.to_dict(), indent=2, ensure_ascii=False), encoding="utf-8")
             (out / f"{stem}.md").write_text(to_markdown(res), encoding="utf-8")
             (out / f"{stem}.html").write_text(to_html(res), encoding="utf-8")
+            (out / f"{stem}.scorecard.html").write_text(to_scorecard_html(res), encoding="utf-8")
+            (out / f"{stem}.scorecard.pdf").write_bytes(to_scorecard_pdf(res))
+            card = build_scorecard(res)
             print(f"{res.doc.title}\n  checks: {res.mode['label']} ({res.mode['reason']})\n"
                   f"  claims: {len(res.claims)}  reproducibility: {res.rubric['score']}/100 "
-                  f"({res.rubric['band']})  gaps: {len(res.gaps)}\n  wrote {out}/{stem}.(json|md|html)")
+                  f"({res.rubric['band']})  gaps: {len(res.gaps)}  reporting grade: {card['grade']}\n"
+                  f"  wrote {out}/{stem}.(json|md|html) and {stem}.scorecard.(html|pdf)")
         elif args.cmd == "compare":
             ra, rb = _analyze(args.pdf_a, args.mode), _analyze(args.pdf_b, args.mode)
             out = Path(args.out)

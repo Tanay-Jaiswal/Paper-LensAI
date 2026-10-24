@@ -245,3 +245,19 @@ body{font-size:16px;line-height:1.65}
 @media(min-width:1600px){body{zoom:1.25}}
 @media(min-width:2200px){body{zoom:1.5}}
 @media(max-width:640px){.masthead,main,footer{padding-left:16px;padding-right:16px}}
+
+/* feedback on findings (thumbs up / down, stored locally) */
+.fb{display:inline-flex;gap:2px;margin-left:8px;vertical-align:middle}
+.fbb{background:transparent;color:var(--muted);border:1px solid transparent;border-radius:var(--r);padding:0 5px;font:13px/1.5 var(--sans);filter:grayscale(1);opacity:.55}
+.fbb:hover{background:var(--accent-soft);border-color:var(--rule-strong);color:var(--ink);opacity:1}
+.fbb.on{opacity:1;filter:none;border-color:var(--accent);background:var(--accent-soft)}
+.fbb.down.on{border-color:var(--none)}
+.fbline{margin-top:4px;color:var(--muted)}
+td .fb{display:flex;margin:4px 0 0}
+
+/* score card */
+.card{display:grid;grid-template-columns:minmax(160px,220px) minmax(0,1fr);gap:0 28px;border-top:2px solid var(--ink);padding-top:14px;margin-bottom:6px}
+@media(max-width:640px){.card{grid-template-columns:1fr;gap:12px}}
+.card-grade{text-align:center;border:1px solid var(--rule-strong);background:var(--sheet);padding:12px}
+.grade-letter{font:600 64px/1 var(--serif);color:var(--accent)}
+.card-parts td:first-child{color:var(--ink-2)}

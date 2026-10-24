@@ -69,12 +69,17 @@
         <a id="dl-html" class="btn ghost" href="#" target="_blank" rel="noopener">HTML</a>
         <a id="dl-md" class="btn ghost" href="#">Markdown</a>
         <a id="dl-json" class="btn ghost" href="#">JSON</a>
+        <span class="muted small">Score card</span>
+        <a id="dl-card" class="btn ghost" href="#">PDF</a>
+        <a id="dl-card-html" class="btn ghost" href="#" target="_blank" rel="noopener">Print</a>
+        <a id="dl-fb" class="btn ghost" href="/api/feedback.csv" title="All thumbs up / down votes stored on this computer">Feedback CSV</a>
       </div>
     </div>
     <div id="tiles" class="tiles"></div>
     <div id="warnings"></div>
     <nav class="tabs" id="tabs" aria-label="Analysis sections">
-      <button data-tab="summary" class="on">Summary</button>
+      <button data-tab="card" class="on">Score card</button>
+      <button data-tab="summary">Summary</button>
       <button data-tab="ledger">Evidence Ledger</button>
       <button data-tab="repro">Reproducibility</button>
       <button data-tab="gaps">Evidence gaps</button>
@@ -83,7 +88,8 @@
       <button data-tab="glossary">Glossary</button>
       <button data-tab="compare">Compare</button>
     </nav>
-    <div id="tab-summary" class="tab panel"></div>
+    <div id="tab-card" class="tab panel"></div>
+    <div id="tab-summary" class="tab panel" hidden></div>
     <div id="tab-ledger" class="tab" hidden>
       <div class="split">
         <div class="panel" id="ledger"></div>

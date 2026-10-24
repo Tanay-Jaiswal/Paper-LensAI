@@ -7,6 +7,7 @@ let cur = null;      // current analysis
 let recent = [];
 let busy = false;
 let supportFilter = "all";
+let votes = {};      // feedback on findings for the current paper: {target: {vote, note, text}}
 
 // How each rating is decided (docs/ARCHITECTURE.md, claims.py). Shown next to the ledger.
 const SUPPORT_HELP = {
@@ -57,7 +58,7 @@ async function upload(file) {
   setBusy(true);
   status(`Analysing ${file.name} … long papers can take several seconds.`, "busy");
   const fd = new FormData(); fd.append("file", file); fd.append("mode", $("mode").value);
-  try { show(await api("/api/analyze", {method: "POST", body: fd})); status(`Analysed ${file.name}.`, "ok"); }
+  try { await show(await api("/api/analyze", {method: "POST", body: fd})); status(`Analysed ${file.name}.`, "ok"); }
   catch (e) { status(`Could not analyse ${file.name}: ${e.message}`, "bad"); }
   finally { setBusy(false); $("file").value = ""; }
 }
@@ -76,14 +77,15 @@ async function loadRecent() {
     ev.preventDefault();
     if (busy) return;
     setBusy(true); status("Opening …", "busy");
-    try { show(await api("/api/analyses/" + a.dataset.id)); status(""); }
+    try { await show(await api("/api/analyses/" + a.dataset.id)); status(""); }
     catch (e) { status(e.message, "bad"); }
     finally { setBusy(false); }
   });
 }
 
-function show(a) {
+async function show(a) {
   cur = a; supportFilter = "all";
+  await loadVotes(a.id);
   $("welcome").hidden = true;
   $("workspace").hidden = false;
   $("title").textContent = a.document.title;
@@ -91,6 +93,7 @@ function show(a) {
     (a.field && a.field.label ? ` · checks: ${a.field.label}` : "");
   $("meta").title = a.field && a.field.reason ? a.field.reason : "";
   $("dl-md").href = `/api/analyses/${a.id}/report.md`; $("dl-json").href = `/api/analyses/${a.id}/report.json`; $("dl-html").href = `/api/analyses/${a.id}/report.html`;
+  $("dl-card").href = `/api/analyses/${a.id}/scorecard.pdf`; $("dl-card-html").href = `/api/analyses/${a.id}/scorecard.html`;
   $("warnings").innerHTML = a.document.warnings.map((w) => `<div class="warn"><strong>Parsing warning.</strong> ${esc(w)}</div>`).join("");
   const st = a.ledger_stats.support, r = a.reproducibility, high = a.gaps.filter((g) => g.severity === "high").length;
   const assessed = r.band !== "not assessed";
@@ -101,8 +104,8 @@ function show(a) {
     (a.consistency && a.consistency.checks ? tile(a.consistency.n_inconsistent, "numbers that do not add up",
       `of ${a.consistency.n_checked} statements recomputed`, "numbers") : "");
   document.querySelectorAll("#tiles .tile").forEach((t) => t.onclick = () => tab(t.dataset.tab));
-  renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderGlossary(a); renderCompareTab();
-  tab("summary");
+  renderCard(a); renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderGlossary(a); renderCompareTab();
+  tab("card");
   loadRecent();
 }
 function tile(big, label, sub, t) { return `<button class="tile" data-tab="${t}"><div class="big">${esc(big)}</div><div>${esc(label)}</div><div class="muted small">${esc(sub)}</div></button>`; }
@@ -111,6 +114,25 @@ function tab(name) {
   document.querySelectorAll(".tab").forEach((t) => t.hidden = t.id !== "tab-" + name);
 }
 document.querySelectorAll("#tabs button").forEach((b) => b.onclick = () => tab(b.dataset.tab));
+
+function renderCard(a) {
+  const c = a.scorecard;
+  if (!c) { $("tab-card").innerHTML = `<p class="empty">No score card for this analysis.</p>`; return; }
+  const p = c.parts;
+  let h = `<div class="card"><div class="card-grade"><div class="grade-letter">${esc(c.grade)}</div><div><strong>Reporting grade</strong></div>` +
+    `<div class="muted small">${esc(c.grade_text)}${c.points !== null ? ` · ${c.points} points of 100` : ""}</div></div><div class="card-parts"><table><tbody>` +
+    `<tr><td>Reporting checklist</td><td><strong>${p.checklist_score}</strong> / 100${p.standard_score !== p.checklist_score ? ` <span class="muted small">(standard 15 items: ${p.standard_score})</span>` : ""}</td></tr>` +
+    `<tr><td>Evidence for numeric claims</td><td><strong>${p.evidence_score === null ? "n/a" : p.evidence_score + " / 100"}</strong>${p.evidence_score === null ? ' <span class="muted small">no claim with numbers</span>' : ""}</td></tr>` +
+    `<tr><td>High-severity evidence gaps</td><td><strong>${p.high_severity_gaps}</strong></td></tr>` +
+    `<tr><td>Numbers that do not add up</td><td><strong>${p.numbers_not_adding_up}</strong></td></tr></tbody></table></div></div>`;
+  h += `<h4>Top 3 problems and the fix for each</h4>`;
+  h += c.top.length ? `<table><thead><tr><th>#</th><th>Problem</th><th>Fix</th></tr></thead><tbody>` + c.top.map((t, i) =>
+    `<tr><td>${i + 1}</td><td>${esc(t.problem)}<div class="cite">${esc(t.category)} · ${esc(t.priority)} priority${t.page ? " · p." + t.page : ""} · ${esc(t.id)} in the revision checklist</div></td><td><strong>${esc(t.fix)}</strong></td></tr>`).join("") + "</tbody></table>"
+    : `<p class="empty">${c.assessed ? "No finding needs a revision." : "Not graded: too little text could be extracted from this PDF."}</p>`;
+  h += `<p class="small"><a href="/api/analyses/${esc(a.id)}/scorecard.pdf">Download the score card as PDF</a> · <a href="/api/analyses/${esc(a.id)}/scorecard.html" target="_blank" rel="noopener">Open a printable page</a></p>`;
+  h += `<p class="cite">How the grade is computed: ${esc(c.formula)}. This paper: penalty ${p.penalty}.</p><p class="muted small">${esc(c.caveat)}</p>`;
+  $("tab-card").innerHTML = h;
+}
 
 function renderSummary(a) {
   const s = a.summary; let h = "<h3>Summary in the paper's own words</h3>";
@@ -124,6 +146,33 @@ function renderSummary(a) {
   h += `<p class="cite">${esc(s.method || "")}. Every sentence is quoted verbatim from the paper; nothing is paraphrased or generated.</p>`;
   $("tab-summary").innerHTML = h;
 }
+
+// Thumbs up / down on one finding. Stored on this computer next to the analysis (paperlens/feedback.py).
+function fbButtons(target, text) {
+  const v = (votes[target] || {}).vote;
+  return `<span class="fb" data-target="${esc(target)}" data-text="${esc(String(text || "").slice(0, 600))}">` +
+    `<button type="button" class="fbb up${v === "up" ? " on" : ""}" aria-pressed="${v === "up"}" title="Useful / correct" aria-label="Thumbs up: this finding is useful">&#x1F44D;&#xFE0E;</button>` +
+    `<button type="button" class="fbb down${v === "down" ? " on" : ""}" aria-pressed="${v === "down"}" title="Not useful / wrong" aria-label="Thumbs down: this finding is wrong or not useful">&#x1F44E;&#xFE0E;</button></span>`;
+}
+async function loadVotes(id) {
+  try { votes = (await api(`/api/analyses/${id}/feedback`)).votes || {}; } catch (_) { votes = {}; }
+}
+document.addEventListener("click", async (ev) => {
+  const b = ev.target.closest(".fbb"); if (!b || !cur) return;
+  ev.stopPropagation(); ev.preventDefault();
+  const box = b.closest(".fb"), target = box.dataset.target, want = b.classList.contains("up") ? "up" : "down";
+  const vote = (votes[target] || {}).vote === want ? "clear" : want;
+  try {
+    const r = await api(`/api/analyses/${cur.id}/feedback`, {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({target, vote, text: box.dataset.text})});
+    votes = r.votes || {};
+    document.querySelectorAll(`.fb[data-target="${CSS.escape(target)}"]`).forEach((el) => {
+      const v = (votes[target] || {}).vote;
+      el.querySelector(".up").classList.toggle("on", v === "up"); el.querySelector(".up").setAttribute("aria-pressed", v === "up");
+      el.querySelector(".down").classList.toggle("on", v === "down"); el.querySelector(".down").setAttribute("aria-pressed", v === "down");
+    });
+  } catch (e) { status("Could not save the feedback: " + e.message, "bad"); }
+}, true);
 
 function pill(k, label) { return `<span class="pill ${esc(k)}">${esc(label || words(k))}</span>`; }
 
@@ -139,7 +188,7 @@ function renderLedger(a) {
   const rows = a.ledger.filter((c) => supportFilter === "all" || c.support === supportFilter);
   h += "<table><thead><tr><th>ID</th><th>Claim (as written in the paper)</th><th>Page</th><th>Support</th></tr></thead><tbody>";
   for (const c of rows) {
-    h += `<tr class="claim" data-id="${esc(c.id)}" tabindex="0"><td>${esc(c.id)}</td><td>${esc(c.text)}<div class="cite">${esc(c.claim_type)}${c.hedged ? " · hedged" : ""}</div></td><td>${c.page}</td><td>${pill(c.support, SUPPORT_LABEL[c.support])}</td></tr>`;
+    h += `<tr class="claim" data-id="${esc(c.id)}" tabindex="0"><td>${esc(c.id)}</td><td>${esc(c.text)}<div class="cite">${esc(c.claim_type)}${c.hedged ? " · hedged" : ""}</div></td><td>${c.page}</td><td>${pill(c.support, SUPPORT_LABEL[c.support])}${fbButtons("claim:" + c.id, c.support + ": " + c.text)}</td></tr>`;
   }
   h += "</tbody></table>";
   if (!rows.length) h += `<p class="empty">No claim has this rating.</p>`;
@@ -177,7 +226,8 @@ function openClaim(id) {
     if (e.shared_terms && e.shared_terms.length) why.push(`shares the terms <em>${esc(e.shared_terms.join(", "))}</em>`);
     if (!why.length) why.push("overall wording overlap only");
     h += `<div class="ev"><div><strong>Evidence ${i + 1} for ${esc(c.id)}</strong> <span class="cite">p.${e.page} · ${esc(e.section)}</span></div><blockquote>${esc(e.quote)}</blockquote>` +
-      `<div class="small muted"><strong>Why this passage:</strong> ${why.join("; ")}. Match score ${e.score} (wording relevance ${e.lexical}).</div></div>`;
+      `<div class="small muted"><strong>Why this passage:</strong> ${why.join("; ")}. Match score ${e.score} (wording relevance ${e.lexical}).</div>` +
+      `<div class="small fbline">Does this passage support the claim? ${fbButtons(`evidence:${c.id}-${i + 1}`, `${c.text} || p.${e.page}: ${e.quote}`)}</div></div>`;
   });
   const pages = [...new Set([c.page, ...ev.map((e) => e.page)])];
   h += `<h4>Source page${pages.length > 1 ? "s" : ""}</h4><p class="small muted">Highlighted: the claim and its evidence. Click a page to open it full size. If a passage is not highlighted, the page number is still its citation: its wording could not be located automatically on the page.</p><div class="pages">${pages.map((p) => {
@@ -205,7 +255,7 @@ function renderRepro(a) {
   h += "<table><thead><tr><th>Item</th><th>Status</th><th>Weight</th><th>Quote that earned the credit, or what to add</th></tr></thead><tbody>";
   for (const i of r.items) {
     const ev = i.evidence[0];
-    h += `<tr><td>${esc(i.label)}<div class="cite">${esc(i.category)}${i.key.startsWith("cs_") ? " · CS" : ""}</div></td><td>${pill(i.status)}</td><td>${i.weight}</td><td>` +
+    h += `<tr><td>${esc(i.label)}<div class="cite">${esc(i.category)}${i.key.startsWith("cs_") ? " · CS" : ""}</div></td><td>${pill(i.status)}${fbButtons("repro:" + i.key, i.label + ": " + i.status)}</td><td>${i.weight}</td><td>` +
       (ev ? `<span class="cite">p.${ev.page}</span> ${esc(ev.quote)}` : `<span class="muted">${esc(i.advice)}</span>`) + "</td></tr>";
   }
   h += `</tbody></table><p class="cite">Score = ${esc(r.formula)}. Items are found by fixed text patterns, so a quote can be a false match: read it before relying on the credit.</p>`;
@@ -217,7 +267,7 @@ function renderGaps(a) {
   if (!a.gaps.length) { $("tab-gaps").innerHTML = h + `<p class="empty">No evidence gaps were flagged by the current rules.</p>`; return; }
   h += `<table><thead><tr><th>Severity</th><th>Type</th><th>Detail</th><th>Page</th></tr></thead><tbody>`;
   for (const g of a.gaps) {
-    h += `<tr><td>${pill(g.severity)}</td><td>${esc(words(g.kind))}</td><td>${esc(g.message)}` +
+    h += `<tr><td>${pill(g.severity)}${fbButtons("gap:" + g.id, g.kind + ": " + g.message)}</td><td>${esc(words(g.kind))}</td><td>${esc(g.message)}` +
       (g.quote ? `<blockquote>${esc(g.quote)}</blockquote>` : "") +
       (g.claim_id ? `<a href="#" class="small jump" data-id="${esc(g.claim_id)}">Open claim ${esc(g.claim_id)} in the ledger</a>` : "") + `</td><td>${g.page ?? "—"}</td></tr>`;
   }
@@ -239,7 +289,7 @@ function renderNumbers(a) {
   h += `<p class="cite">${kinds}</p><table><thead><tr><th>Result</th><th>Check</th><th>Detail and recomputation</th><th>Page</th></tr></thead><tbody>`;
   for (const x of c.checks) {
     const [cls, label] = NUM_STATUS[x.status];
-    h += `<tr><td>${pill(cls, label)}${x.status === "inconsistent" ? `<div class="cite">${esc(x.severity)}</div>` : ""}</td><td>${esc(c.labels[x.kind] || words(x.kind))}</td>
+    h += `<tr><td>${pill(cls, label)}${x.status === "inconsistent" ? `<div class="cite">${esc(x.severity)}</div>` : ""}${fbButtons("number:" + x.id, x.status + ": " + x.message)}</td><td>${esc(c.labels[x.kind] || words(x.kind))}</td>
       <td>${esc(x.message)}<div class="cite">Recomputed: ${esc(x.formula)} · printed: ${esc(x.stated)}</div><blockquote>${esc(x.quote)}</blockquote></td>
       <td><a href="/api/analyses/${esc(a.id)}/page/${x.page}.png?highlight=${x.sentence_id}" target="_blank" rel="noopener">p.${x.page}</a></td></tr>`;
   }
@@ -254,7 +304,7 @@ function renderRevise(a) {
   if (!r.length) { $("tab-revise").innerHTML = h + `<p class="empty">No finding needs a revision.</p>`; return; }
   h += `<table><thead><tr><th>Priority</th><th>Area</th><th>What to change and why</th><th>Page</th></tr></thead><tbody>`;
   for (const x of r) {
-    h += `<tr><td>${pill(x.priority)}</td><td>${esc(x.category)}</td><td><strong>${esc(x.action)}</strong><div class="small">${esc(x.why)}</div>` +
+    h += `<tr><td>${pill(x.priority)}${fbButtons("revision:" + x.id, x.action)}</td><td>${esc(x.category)}</td><td><strong>${esc(x.action)}</strong><div class="small">${esc(x.why)}</div>` +
       (x.quote ? `<blockquote>${esc(x.quote)}</blockquote>` : "") + `<div class="cite">${esc(x.id)} · from ${esc(x.source)}</div></td><td>${x.page ? `p.${x.page}` : "—"}</td></tr>`;
   }
   $("tab-revise").innerHTML = h + "</tbody></table>";
@@ -327,7 +377,7 @@ $("demo").onclick = async () => {
   setBusy(true); status("Generating and analysing two synthetic demo papers …", "busy");
   try {
     const d = await api("/api/demo", {method: "POST"});
-    show(await api("/api/analyses/" + d.a));
+    await show(await api("/api/analyses/" + d.a));
     status("Synthetic demo loaded (generated papers, not real studies). Open the Compare tab to contrast it with demo-overclaiming.pdf.", "ok");
   } catch (e) { status("Could not load the demo: " + e.message, "bad"); }
   finally { setBusy(false); }
