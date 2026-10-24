@@ -20,6 +20,7 @@ from . import feedback as fb
 from .benchmark import benchmark
 from .compare import compare
 from .field import MODES
+from .highlight import highlighted_pdf, locate, locate_sentences
 from .pipeline import Analysis, analyze_pdf
 from .report import to_html, to_markdown
 from .scorecard import build_scorecard, to_scorecard_html, to_scorecard_pdf
@@ -144,24 +145,34 @@ def page_image(aid: str, page: int, highlight: str = "", zoom: float = 1.4):
 
 
 def _find_rects(pg, text: str, kind: str = "text") -> list:
-    """Where a sentence is on the page. The extracted text can differ from the page's own text layer (a ligature that
-    became 'fi ', a hyphenated line end, a table row rebuilt from cells), so after the full-sentence search the
-    first and last words, then other short runs of words, are tried; the first search that finds something wins."""
-    rects = pg.search_for(text[:110]) or pg.search_for(text[:50])
-    if rects:
-        return rects
-    if kind == "table":
-        rects = pg.search_for(text.rsplit(":", 1)[-1].strip())
-        if rects:
-            return rects
-    w = text.split()
-    if len(w) >= 8:
-        runs = [w[:5], w[-5:]] + [w[i:i + 5] for i in range(5, len(w) - 5, 5)]
-        for run in runs:
-            rects = pg.search_for(" ".join(run))
-            if rects:
-                return rects
-    return []
+    """Where a sentence is on the page (see highlight.locate)."""
+    return locate(pg, text, kind)[0]
+
+
+@app.get("/api/analyses/{aid}/locate")
+def locate_endpoint(aid: str, ids: str = ""):
+    """Where each sentence (comma-separated ids, at most 12) is on its page, as page fractions, and how it was found."""
+    a = _load(aid)
+    by_id = {s.id: s for s in a.doc.sentences}
+    want = [by_id[int(x)] for x in ids.split(",") if x.strip().isdigit() and int(x) in by_id][:12]
+    return {"pages": a.doc.n_pages, "located": locate_sentences(_path(aid) / "paper.pdf", want)}
+
+
+@app.get("/api/analyses/{aid}/paper.pdf")
+def original_pdf(aid: str):
+    _load(aid)
+    return FileResponse(_path(aid) / "paper.pdf", media_type="application/pdf")
+
+
+@app.get("/api/analyses/{aid}/highlighted.pdf")
+def highlighted(aid: str, claim: str):
+    a = _load(aid)
+    try:
+        data, _page, _found = highlighted_pdf(_path(aid) / "paper.pdf", a, claim)
+    except KeyError:
+        raise HTTPException(404, "Unknown claim id")
+    return Response(data, media_type="application/pdf",
+                    headers={"Content-Disposition": f'inline; filename="paperlens-{aid}-{claim}.pdf"'})
 
 
 def _render_page(pg, a: Analysis, page: int, highlight: str, zoom: float) -> bytes:

@@ -228,17 +228,50 @@ function openClaim(id) {
     if (!why.length) why.push("overall wording overlap only");
     h += `<div class="ev"><div><strong>Evidence ${i + 1} for ${esc(c.id)}</strong> <span class="cite">p.${e.page} · ${esc(e.section)}</span></div><blockquote>${esc(e.quote)}</blockquote>` +
       `<div class="small muted"><strong>Why this passage:</strong> ${why.join("; ")}. Match score ${e.score} (wording relevance ${e.lexical}).</div>` +
-      `<div class="small fbline">Does this passage support the claim? ${fbButtons(`evidence:${c.id}-${i + 1}`, `${c.text} || p.${e.page}: ${e.quote}`)}</div></div>`;
+      `<div class="small fbline">Does this passage support the claim? ${fbButtons(`evidence:${c.id}-${i + 1}`, `${c.text} || p.${e.page}: ${e.quote}`)}</div>` +
+      `<div class="small"><button type="button" class="ghost showon" data-sid="${e.sentence_id}" data-page="${e.page}">Show on page ${e.page}</button> ` +
+      `<a href="/api/analyses/${esc(cur.id)}/highlighted.pdf?claim=${esc(c.id)}#page=${e.page}" target="_blank" rel="noopener">open in the PDF</a> <span class="loc muted" id="loc-${e.sentence_id}"></span></div></div>`;
   });
   const pages = [...new Set([c.page, ...ev.map((e) => e.page)])];
-  h += `<h4>Source page${pages.length > 1 ? "s" : ""}</h4><p class="small muted">Highlighted: the claim and its evidence. Click a page to open it full size. If a passage is not highlighted, the page number is still its citation: its wording could not be located automatically on the page.</p><div class="pages">${pages.map((p) => {
+  h += `<h4>Source page${pages.length > 1 ? "s" : ""}</h4><p class="small muted">Highlighted: the claim (yellow, labelled C) and its evidence (labelled E1, E2 ...). Use "Show on page" to enlarge a page at a passage, or open the original PDF with the same highlights: <a href="/api/analyses/${esc(cur.id)}/highlighted.pdf?claim=${esc(c.id)}#page=${c.page}" target="_blank" rel="noopener">highlighted PDF, p.${c.page}</a>. If a passage is not highlighted, the page number is still its citation: its wording could not be located automatically on the page.</p><div class="pages">${pages.map((p) => {
     const ids = [c.sentence_id, ...ev.filter((e) => e.page === p).map((e) => e.sentence_id)].join(",");
     const src = `/api/analyses/${cur.id}/page/${p}.png?highlight=${ids}`;
-    return `<figure><figcaption class="cite">Page ${p} of ${cur.document.n_pages}</figcaption><a href="${src}&zoom=2.4" target="_blank" rel="noopener"><img loading="lazy" alt="Page ${p} with highlights" src="${src}"></a></figure>`;
+    return `<figure data-page="${p}"><figcaption class="cite">Page ${p} of ${cur.document.n_pages}</figcaption><div class="pagebox"><a href="${src}&zoom=2.4" target="_blank" rel="noopener"><img loading="lazy" alt="Page ${p} with highlights" src="${src}"></a></div></figure>`;
   }).join("")}</div>`;
   const v = $("viewer");
   v.dataset.claim = id; v.innerHTML = h; v.scrollTop = 0;
   v.querySelectorAll("img").forEach((img) => img.onerror = () => { img.closest("figure").innerHTML = `<p class="empty">The image of this page could not be loaded.</p>`; });
+  v.querySelectorAll("button.showon").forEach((b) => b.onclick = () => showOnPage(+b.dataset.sid, +b.dataset.page));
+  markPassages(c, id);
+}
+// Boxes and labels over the page images, from the same text search that draws the highlights (paperlens/highlight.py).
+async function markPassages(c, id) {
+  const sids = [c.sentence_id, ...c.evidence.map((e) => e.sentence_id)];
+  let r;
+  try { r = await api(`/api/analyses/${cur.id}/locate?ids=${sids.join(",")}`); } catch (_) { return; }
+  if ($("viewer").dataset.claim !== id) return;
+  const label = (sid) => sid === c.sentence_id ? "C" : "E" + (c.evidence.findIndex((e) => e.sentence_id === sid) + 1);
+  for (const L of r.located) {
+    const box = document.querySelector(`#viewer figure[data-page="${L.page}"] .pagebox`);
+    const st = $("loc-" + L.sentence_id);
+    if (st) st.textContent = L.method === "exact" ? "· located on the page" : L.method === "partial" ? "· located in part (some of its words)" : "· could not be located on the page; the page number is its citation";
+    if (!box) continue;
+    L.rects.forEach((q, k) => {
+      const d = document.createElement("div");
+      d.className = "hl " + (label(L.sentence_id) === "C" ? "hl-claim" : "hl-ev");
+      d.dataset.sid = L.sentence_id;
+      Object.assign(d.style, {left: q[0] * 100 + "%", top: q[1] * 100 + "%", width: (q[2] - q[0]) * 100 + "%", height: (q[3] - q[1]) * 100 + "%"});
+      if (k === 0) { const t = document.createElement("span"); t.className = "hl-tag"; t.textContent = label(L.sentence_id); d.appendChild(t); }
+      box.appendChild(d);
+    });
+  }
+}
+function showOnPage(sid, page) {
+  const fig = document.querySelector(`#viewer figure[data-page="${page}"]`); if (!fig) return;
+  document.querySelectorAll("#viewer figure").forEach((f) => f.classList.toggle("focus", f === fig));
+  document.querySelectorAll("#viewer .hl").forEach((d) => d.classList.toggle("pulse", +d.dataset.sid === sid));
+  const first = fig.querySelector(`.hl[data-sid="${sid}"]`);
+  (first || fig).scrollIntoView({block: "center", behavior: "smooth"});
 }
 
 function renderRepro(a) {

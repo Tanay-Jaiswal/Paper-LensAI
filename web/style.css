@@ -275,3 +275,15 @@ td .fb{display:flex;margin:4px 0 0}
 .share>i{display:block;height:100%;background:var(--accent)}
 
 #tab-refs td:nth-child(2),#tab-gaps td:nth-child(2){min-width:110px}
+
+/* claim and evidence boxes over the page image */
+.pagebox{position:relative}
+.pagebox a{display:block}
+.hl{position:absolute;pointer-events:none;border:1.5px solid var(--info);border-radius:1px}
+.hl-claim{border-color:var(--moderate)}
+.hl-tag{position:absolute;left:-1.5px;top:-15px;font:700 10px/13px var(--mono);padding:0 3px;background:var(--info);color:#fff}
+.hl-claim .hl-tag{background:var(--moderate)}
+.hl.pulse{border-width:3px;box-shadow:0 0 0 3px rgba(45,95,134,.25)}
+#viewer figure.focus{grid-column:1/-1}
+button.showon{padding:2px 9px;font-size:12.5px;margin-top:4px}
+.loc{font-size:12.5px}
