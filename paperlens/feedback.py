@@ -18,7 +18,7 @@ from pathlib import Path
 
 from . import __version__
 
-KINDS = ("claim", "evidence", "gap", "repro", "number", "revision", "reference", "scorecard")
+KINDS = ("claim", "evidence", "gap", "repro", "number", "revision", "reference", "scorecard", "review")
 TARGET_RE = re.compile(r"^(" + "|".join(KINDS) + r"):[A-Za-z0-9_.\-]{1,64}$")
 VOTES = ("up", "down")
 MAX_NOTE = 1000

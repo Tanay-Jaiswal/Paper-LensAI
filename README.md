@@ -37,6 +37,8 @@ a single run); and a built-in offline dictionary of about 260 standard CS abbrev
 reported as `standard_score` so papers stay comparable across modes. Rules, thresholds and test results:
 `docs/CSE_MODE.md`.
 
+**New in 1.4.0: Reviewer mode.** A short peer-review draft for each paper (summary, strengths, weaknesses, questions for the authors). Every point is an existing PaperLens finding written out with fixed wording and cited to a page; no language model is used, and the draft says what it does not judge (novelty, correctness, acceptance). Web: "Review draft" tab (copy, Markdown, printable page). CLI: `python -m paperlens review paper.pdf`; `analyze` also writes `<name>.review.md`. API: `GET /api/analyses/{id}/review.{json,md,html}`.
+
 **New in 1.3.0** (details and what was checked: `docs/NEW_IN_1.3.md`): a one-page **score card** with a letter grade,
 the top 3 problems and fixes, as a page and a PDF; **citation and reference checks** (cited but not listed, listed but
 never cited, duplicates, missing years); a **CS comparison** of a paper's reporting against 16 development CS papers or
@@ -111,7 +113,7 @@ Errors: 400 not a PDF, 413 over 25 MB, 422 damaged or encrypted PDF, 404 unknown
 ## Tests
 
 ```powershell
-python -m pytest -q          # 375 tests, under two minutes, no network
+python -m pytest -q          # 382 tests, under three minutes, no network
 ```
 
 ## Demonstration
@@ -156,7 +158,7 @@ unverified by humans. Full list: `docs/KNOWN_LIMITATIONS.md`.
 
 ```
 paperlens/   ingest.py claims.py reproducibility.py gaps.py consistency.py summarize.py compare.py pipeline.py api.py cli.py report.py
-             scorecard.py citations.py benchmark.py highlight.py feedback.py second_opinion.py (1.3.0)
+             scorecard.py citations.py benchmark.py highlight.py feedback.py second_opinion.py (1.3.0) review.py (1.4.0)
 web/         single-page UI (plain HTML/CSS/JS, no build step)
 eval/        generators, benchmarks and frozen results (see docs/EVALUATION.md)
 tests/       pytest suite
@@ -169,6 +171,7 @@ Stack: Python, PyMuPDF (PDF text and geometry), FastAPI + Uvicorn (API and stati
 
 ## Version history
 
+`1.4.0` adds Reviewer mode (`paperlens/review.py`); analysis unchanged.
 `1.3.0` adds the score card, citation checks, CS comparison, evidence marked on the PDF page, feedback buttons, the
 optional AI second opinion, the labelling kit and deployment files (`docs/NEW_IN_1.3.md`); the rule-based analysis is
 unchanged. `1.2.0` added the Computer Science & Engineering mode.

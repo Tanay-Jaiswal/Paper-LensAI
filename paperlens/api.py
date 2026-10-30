@@ -26,6 +26,7 @@ from .field import MODES
 from .highlight import highlighted_pdf, locate, locate_sentences
 from .pipeline import Analysis, analyze_pdf
 from .report import to_html, to_markdown
+from .review import build_review, to_review_html, to_review_markdown
 from .scorecard import build_scorecard, to_scorecard_html, to_scorecard_pdf
 
 DATA_DIR = Path(os.environ.get("PAPERLENS_DATA", Path(__file__).resolve().parent.parent / "data" / "store"))
@@ -258,6 +259,19 @@ def benchmark_endpoint(aid: str, set: str = "builtin", ids: str = ""):
     if set not in ("builtin", "mine"):
         raise HTTPException(400, "set must be 'builtin' or 'mine'")
     return benchmark(_payload(_load(aid)), DATA_DIR, set, exclude_id=aid, only=_visible(ids))
+
+
+@app.get("/api/analyses/{aid}/review.{fmt}")
+def review(aid: str, fmt: str):
+    a = _load(aid)
+    if fmt == "json":
+        return build_review(a)
+    if fmt == "md":
+        return PlainTextResponse(to_review_markdown(a), media_type="text/markdown",
+                                 headers={"Content-Disposition": f'attachment; filename="paperlens-review-{aid}.md"'})
+    if fmt == "html":
+        return Response(to_review_html(a), media_type="text/html")
+    raise HTTPException(404, "Unknown format")
 
 
 class OpinionReq(BaseModel):

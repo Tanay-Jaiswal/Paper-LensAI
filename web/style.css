@@ -293,3 +293,8 @@ button.showon{padding:2px 9px;font-size:12.5px;margin-top:4px}
 .ai-head{margin-bottom:6px}
 .tag.ai-tag{border-color:var(--info);color:var(--info);border-style:dashed}
 .ai-ev{border-left-color:var(--info)}.ai-ev::before{border-top-color:var(--info)}
+
+/* review draft */
+ul.rv,ol.rv{max-width:92ch;font:15.5px/1.6 var(--serif)}
+ul.rv li,ol.rv li{margin-bottom:12px}
+ul.rv blockquote{font-size:14.5px}

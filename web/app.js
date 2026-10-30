@@ -116,7 +116,7 @@ async function show(a) {
     (a.consistency && a.consistency.checks ? tile(a.consistency.n_inconsistent, "numbers that do not add up",
       `of ${a.consistency.n_checked} statements recomputed`, "numbers") : "");
   document.querySelectorAll("#tiles .tile").forEach((t) => t.onclick = () => tab(t.dataset.tab));
-  renderCard(a); renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderRefs(a); renderGlossary(a); renderBench(a, "builtin"); renderCompareTab();
+  renderCard(a); renderReview(a); renderSummary(a); renderLedger(a); renderRepro(a); renderGaps(a); renderNumbers(a); renderRevise(a); renderRefs(a); renderGlossary(a); renderBench(a, "builtin"); renderCompareTab();
   tab("card");
   loadRecent();
 }
@@ -144,6 +144,33 @@ function renderCard(a) {
   h += `<p class="small"><a href="/api/analyses/${esc(a.id)}/scorecard.pdf">Download the score card as PDF</a> · <a href="/api/analyses/${esc(a.id)}/scorecard.html" target="_blank" rel="noopener">Open a printable page</a></p>`;
   h += `<p class="cite">How the grade is computed: ${esc(c.formula)}. This paper: penalty ${p.penalty}.</p><p class="muted small">${esc(c.caveat)}</p>`;
   $("tab-card").innerHTML = h;
+}
+
+// Reviewer mode (paperlens/review.py): every point is an existing finding, cited to a page.
+async function renderReview(a) {
+  const mine = a.id;
+  $("tab-review").innerHTML = `<p class="muted small"><span class="spin"></span>Drafting …</p>`;
+  let r;
+  try { r = await api(`/api/analyses/${a.id}/review.json`); }
+  catch (e) { $("tab-review").innerHTML = `<p class="empty">The review could not be drafted: ${esc(e.message)}</p>`; return; }
+  if (!cur || cur.id !== mine) return;
+  const pt = (p, i, kind) => `<li>${esc(p.text)}${p.quote ? `<blockquote>${esc(p.quote)}</blockquote>` : ""}<div class="cite">${esc(p.source)}</div>${fbButtons(`review:${kind}${i + 1}`, p.text)}</li>`;
+  let h = `<h3>Review draft</h3><p class="muted small">${esc(r.method)} <a href="/api/analyses/${esc(a.id)}/review.md">Download as Markdown</a> · <a href="/api/analyses/${esc(a.id)}/review.html" target="_blank" rel="noopener">Open a printable page</a> · <button type="button" class="ghost showon" id="rv-copy">Copy as text</button> <span id="rv-st" class="small"></span></p>`;
+  h += `<h4>Summary</h4>` + r.summary.map((s) => `<p>${esc(s)}</p>`).join("");
+  if (r.assessed) {
+    h += `<h4>Strengths</h4>` + (r.strengths.length ? `<ul class="rv">${r.strengths.map((p, i) => pt(p, i, "S")).join("")}</ul>` : `<p class="empty">None found by the rules.</p>`);
+    h += `<h4>Weaknesses</h4>` + (r.weaknesses.length ? `<ul class="rv">${r.weaknesses.map((p, i) => pt(p, i, "W")).join("")}</ul>` : `<p class="empty">None found by the rules.</p>`);
+    if (r.minor.count) h += `<p class="small muted">Plus ${r.minor.count} minor item(s). ${esc(r.minor.note)}</p>`;
+    h += `<h4>Questions for the authors</h4>` + (r.questions.length ? `<ol class="rv">${r.questions.map((q, i) => `<li>${esc(q.text)}<div class="cite">${esc(q.source)}</div>${fbButtons("review:Q" + (i + 1), q.text)}</li>`).join("")}</ol>` : `<p class="empty">None.</p>`);
+  }
+  h += `<h4>What this draft does not cover</h4><p class="muted small">${esc(r.limits)}</p>`;
+  $("tab-review").innerHTML = h;
+  $("rv-copy").onclick = async () => {
+    try {
+      const md = await (await fetch(`/api/analyses/${a.id}/review.md`)).text();
+      await navigator.clipboard.writeText(md); $("rv-st").textContent = "Copied.";
+    } catch (_) { $("rv-st").textContent = "Copy failed; use Download instead."; }
+  };
 }
 
 function renderSummary(a) {

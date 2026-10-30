@@ -11,6 +11,7 @@ from .compare import compare
 from .field import MODES
 from .pipeline import Analysis, analyze_pdf
 from .report import to_html, to_markdown
+from .review import to_review_markdown
 from .scorecard import build_scorecard, to_scorecard_html, to_scorecard_pdf
 
 
@@ -48,6 +49,10 @@ def main(argv=None) -> int:
     c.add_argument("pdf_b")
     c.add_argument("--out", default="report")
     c.add_argument("--mode", choices=MODES, default="auto", help="as for analyze")
+    r = sub.add_parser("review", help="print a rule-based review draft of one PDF (strengths, weaknesses, questions)")
+    r.add_argument("pdf")
+    r.add_argument("--mode", choices=MODES, default="auto", help="as for analyze")
+    r.add_argument("--out", help="also write the review to this Markdown file")
     s = sub.add_parser("serve", help="start the web app")
     s.add_argument("--host", default="127.0.0.1")
     s.add_argument("--port", type=int, default=8000)
@@ -64,11 +69,12 @@ def main(argv=None) -> int:
             (out / f"{stem}.html").write_text(to_html(res), encoding="utf-8")
             (out / f"{stem}.scorecard.html").write_text(to_scorecard_html(res), encoding="utf-8")
             (out / f"{stem}.scorecard.pdf").write_bytes(to_scorecard_pdf(res))
+            (out / f"{stem}.review.md").write_text(to_review_markdown(res), encoding="utf-8")
             card = build_scorecard(res)
             print(f"{res.doc.title}\n  checks: {res.mode['label']} ({res.mode['reason']})\n"
                   f"  claims: {len(res.claims)}  reproducibility: {res.rubric['score']}/100 "
                   f"({res.rubric['band']})  gaps: {len(res.gaps)}  reporting grade: {card['grade']}\n"
-                  f"  wrote {out}/{stem}.(json|md|html) and {stem}.scorecard.(html|pdf)")
+                  f"  wrote {out}/{stem}.(json|md|html), {stem}.scorecard.(html|pdf) and {stem}.review.md")
         elif args.cmd == "compare":
             ra, rb = _analyze(args.pdf_a, args.mode), _analyze(args.pdf_b, args.mode)
             out = Path(args.out)
@@ -77,6 +83,13 @@ def main(argv=None) -> int:
             (out / "comparison.json").write_text(json.dumps(cmp, indent=2, ensure_ascii=False), encoding="utf-8")
             print("\n".join(cmp["verdict"]))
             print(f"  wrote {out}/comparison.json")
+        elif args.cmd == "review":
+            text = to_review_markdown(_analyze(args.pdf, args.mode))
+            if args.out:
+                Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+                Path(args.out).write_text(text, encoding="utf-8")
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+            print(text, end="")
         elif args.cmd == "serve":
             import socket
             import uvicorn
