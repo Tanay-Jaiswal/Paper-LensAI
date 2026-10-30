@@ -21,7 +21,10 @@ from . import held_out_v2_select as sel
 
 SETS = {"first": (["cs.LG", "cs.CV", "cs.CL", "cs.SE", "cs.DC", "cs.CR"], "202503010000"),
         # chosen after the first check and its fixes: other CS areas, a later month, same rule otherwise
-        "second": (["cs.AI", "cs.IR", "cs.NI", "cs.RO", "cs.DB", "cs.HC", "cs.LG", "cs.CL"], "202505010000")}
+        "second": (["cs.AI", "cs.IR", "cs.NI", "cs.RO", "cs.DB", "cs.HC", "cs.LG", "cs.CL"], "202505010000"),
+        # a larger reference collection: one paper from each of 16 areas, a later month, same rule
+        "third": (["cs.LG", "cs.CV", "cs.CL", "cs.SE", "cs.DC", "cs.CR", "cs.AI", "cs.IR", "cs.NI", "cs.RO", "cs.DB",
+                   "cs.HC", "cs.PL", "cs.AR", "cs.SD", "cs.CY"], "202507010000")}
 MIN_PAGES, MAX_PAGES = 6, 40
 
 
