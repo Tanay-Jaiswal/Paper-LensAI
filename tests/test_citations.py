@@ -129,3 +129,11 @@ def test_findings_become_low_or_medium_revisions(make_pdf):
     refs = [x for x in revision_checklist(a) if x["category"] == "References"]
     assert [x["priority"] for x in refs] == ["medium", "low", "low"]
     assert refs[0]["action"].startswith("Add the missing entry") and refs[0]["source"] == "Reference check C1"
+
+
+def test_three_author_citations_and_sentence_openers():
+    body = ["Earlier work (Smith, Jones, and Brown 2019; White 2020a) found this.",
+            "Recently, Lee and Park (2018) disagreed, and Golub and Van Loan (2013) agree.",
+            "Subsequently, Black and Green (2017) and Grey (2021) tried."]
+    res = check_citations(_doc(body, AY_REFS))
+    assert res["checked"] and res["findings"] == []

@@ -30,8 +30,11 @@ _LINK = re.compile(r"\b(doi|https?://|www\.)", re.I)
 
 # author-year citations: "(Peters et al., 2018a; Radford et al., 2018)", "(Dolan and Brockett, 2005)", "Devlin et al. (2019)"
 _NAME = r"(?:(?:[Vv]an|[Vv]on|[Dd]e|[Dd]er|[Dd]en|[Dd]i|[Dd]a|[Dd]el|[Dd]u|[Ll]e|[Ll]a)\s)*[A-Z][A-Za-z'’À-ſ\-]+"
-_PAREN_ITEM = re.compile(r"(" + _NAME + r")(?:\s(?:and|&)\s" + _NAME + r"|\set\sal\.?)?,?\s(\d{4}[a-z]?)(?=[;,)\s]|$)")
-_NARRATIVE = re.compile(r"(" + _NAME + r")(?:\s(?:and|&)\s" + _NAME + r"|\set\sal\.?)?\s\((\d{4}[a-z]?)(?:[;,][^)]*)?\)")
+# co-authors after the first: " and Brockett", or a list "Chung, and Zisserman" (AAAI style "(Afouras, Chung, and
+# Zisserman 2018)"), or " et al."
+_COAUTHORS = r"(?:(?:,\s" + _NAME + r")*,?\s(?:and|&)\s" + _NAME + r"|\set\sal\.?)?"
+_PAREN_ITEM = re.compile(r"(" + _NAME + r")" + _COAUTHORS + r",?\s(\d{4}[a-z]?)(?=[;,)\s]|$)")
+_NARRATIVE = re.compile(r"(" + _NAME + r")" + _COAUTHORS + r"\s\((\d{4}[a-z]?)(?:[;,][^)]*)?\)")
 _PAREN = re.compile(r"\(([^()]{4,400})\)")
 _NOT_AUTHOR = {"In", "Proceedings", "Journal", "Transactions", "URL", "Available", "Advances", "Conference", "The",
                "Table", "Figure", "Fig", "Section", "Eq", "Equation", "Appendix", "January", "February", "March",
@@ -39,6 +42,13 @@ _NOT_AUTHOR = {"In", "Proceedings", "Journal", "Transactions", "URL", "Available
                "Summer", "Fall", "Winter", "Version", "Accessed", "Retrieved", "Online", "Vol", "Volume", "IEEE",
                "ACM", "Association", "Springer", "Press", "University", "Neural", "International", "Annual",
                "Workshop", "Symposium", "Since", "Until", "Before", "After", "During", "From", "Year", "Step", "Phase"}
+# words that start a sentence before a comma, so "Recently, Smith and Lee (2020)" is not read as three authors
+_OPENERS = {"Subsequently", "Recently", "However", "Moreover", "Similarly", "Furthermore", "Additionally", "Also",
+            "Notably", "Specifically", "Finally", "First", "Second", "Third", "Later", "Earlier", "Next", "Then", "Thus",
+            "Hence", "Therefore", "Instead", "Meanwhile", "Alternatively", "Likewise", "Indeed", "Importantly",
+            "Interestingly", "Conversely", "Nevertheless", "Nonetheless", "Again", "Here", "Overall", "Previously",
+            "Originally", "Concurrently", "Independently", "Separately", "Building", "Following", "Inspired",
+            "Unlike", "Like", "Besides", "Similar", "Further", "Lastly", "Crucially", "Surprisingly", "Today"}
 # a sentence that begins an author-year entry: "Abadi, M., Barham, P., ..." or "Iz Beltagy, Kyle Lo, and Arman Cohan."
 _HEAD_SURNAME_FIRST = re.compile(r"^(" + _NAME + r"),\s(?:[A-Z]\.\s?-?)+")
 _HEAD_NAME_FIRST = re.compile(r"^((?:[A-Z][a-zÀ-ſ'\-]+|[A-Z]\.)(?:\s(?:[A-Z]\.|[A-Z][a-zÀ-ſ'\-]+))*"
@@ -141,8 +151,13 @@ def _intext_author_year(body) -> list[dict]:
         for m in _NARRATIVE.finditer(s.text):
             found.add((m.group(1), m.group(2), m.group(0).strip()))
         for name, year, label in sorted(found):
+            # "Subsequently, Pelegrina and Duarte (2024)": a sentence opener before a comma is not the first author
+            opener = re.match(r"(" + _NAME + r"),\s", label)
+            if opener and opener.group(1) in _OPENERS:
+                label = label[opener.end():]
+                name = re.match(_NAME, label).group(0) if re.match(_NAME, label) else name
             last = name.split()[-1]
-            if last in _NOT_AUTHOR or not _YEAR.fullmatch(year):
+            if last in _NOT_AUTHOR or last in _OPENERS or not _YEAR.fullmatch(year):
                 continue
             out.append({"surname": last, "year": year[:4], "label": label, "page": s.page,
                         "sentence_id": s.id, "quote": s.text})
