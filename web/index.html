@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>PaperLens AI</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 3.5h12l6 6V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 3.5V26h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M11 11h6M11 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="20.5" cy="21.5" r="5" fill="none" stroke="var(--accent)" stroke-width="2"/><path d="M24.3 25.3L28 29" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <div>
+      <h1>PaperLens <span>AI</span></h1>
+      <p>Research evidence &amp; reproducibility audit</p>
+    </div>
+  </div>
+  <div class="meta-line" id="version"></div>
+</header>
+<main id="main">
+  <section id="intake" class="intake" aria-label="Add a paper">
+    <div class="intake-main">
+      <h2 class="eyebrow">Add a paper</h2>
+      <label class="drop" id="drop" tabindex="0" aria-describedby="drop-help">
+        <input type="file" id="file" accept="application/pdf,.pdf" hidden>
+        <span class="drop-title">Drop a PDF here, or <span class="link">choose a file</span></span>
+        <span class="drop-help" id="drop-help">PDF only, up to 25 MB. Text PDFs work best. The file is analysed on this computer and never leaves it.</span>
+      </label>
+      <p class="small mode-pick"><label for="mode">Field checks</label>
+        <select id="mode">
+          <option value="auto" selected>Detect automatically</option>
+          <option value="cse">Computer Science &amp; Engineering</option>
+          <option value="general">General (any field)</option>
+        </select>
+        <span class="muted">The CS mode adds 10 CS reproducibility items, CS evidence gaps and a built-in abbreviation dictionary.</span></p>
+      <div id="status" role="status" aria-live="polite"></div>
+      <div class="demo">
+        <button id="demo" class="ghost">Load synthetic demo papers</button>
+        <span class="small muted">Two generated example papers (not real studies), analysed live.</span>
+      </div>
+    </div>
+    <aside class="intake-side" aria-label="Papers analysed earlier">
+      <div id="recent"></div>
+    </aside>
+  </section>
+
+  <section id="welcome" aria-label="What the audit produces">
+    <h2 class="eyebrow">What the audit produces for each paper</h2>
+    <ol class="outputs">
+      <li><h3>Summary</h3><p>Sentences quoted verbatim from the paper, each with its page.</p></li>
+      <li><h3>Evidence Ledger</h3><p>Each headline claim linked to the passages in the paper body that back it, or marked "no supporting evidence found".</p></li>
+      <li><h3>Reproducibility</h3><p>A 15-item reporting checklist with the quote that earned each credit and the items that are missing; 10 more items for Computer Science papers (code link, hardware, compute, seeds in tables, baselines ...).</p></li>
+      <li><h3>Evidence gaps</h3><p>Rule-based flags for a reviewer, such as a figure in the abstract that never appears in the results.</p></li>
+      <li><h3>Numbers check</h3><p>The paper's own arithmetic redone: percentages of counts, stated differences, table totals and averages, F1, confidence intervals and p-values.</p></li>
+      <li><h3>Revision checklist</h3><p>Every finding turned into a concrete fix for the authors: what to change, why, and on which page.</p></li>
+    </ol>
+  </section>
+
+  <section id="workspace" hidden>
+    <div class="doc-head">
+      <div class="head-text">
+        <h2 id="title"></h2>
+        <div id="meta" class="muted small"></div>
+      </div>
+      <div class="actions">
+        <span class="muted small">Report</span>
+        <a id="dl-html" class="btn ghost" href="#" target="_blank" rel="noopener">HTML</a>
+        <a id="dl-md" class="btn ghost" href="#">Markdown</a>
+        <a id="dl-json" class="btn ghost" href="#">JSON</a>
+        <span class="muted small">Score card</span>
+        <a id="dl-card" class="btn ghost" href="#">PDF</a>
+        <a id="dl-card-html" class="btn ghost" href="#" target="_blank" rel="noopener">Print</a>
+        <a id="dl-fb" class="btn ghost" href="/api/feedback.csv" title="All thumbs up / down votes stored on this computer">Feedback CSV</a>
+      </div>
+    </div>
+    <div id="tiles" class="tiles"></div>
+    <div id="warnings"></div>
+    <nav class="tabs" id="tabs" aria-label="Analysis sections">
+      <button data-tab="card" class="on">Score card</button>
+      <button data-tab="review">Review draft</button>
+      <button data-tab="summary">Summary</button>
+      <button data-tab="ledger">Evidence Ledger</button>
+      <button data-tab="repro">Reproducibility</button>
+      <button data-tab="gaps">Evidence gaps</button>
+      <button data-tab="numbers">Numbers check</button>
+      <button data-tab="revise">Revision checklist</button>
+      <button data-tab="refs">References</button>
+      <button data-tab="glossary">Glossary</button>
+      <button data-tab="bench">CS comparison</button>
+      <button data-tab="compare">Compare</button>
+    </nav>
+    <div id="tab-card" class="tab panel"></div>
+    <div id="tab-review" class="tab panel" hidden></div>
+    <div id="tab-summary" class="tab panel" hidden></div>
+    <div id="tab-ledger" class="tab" hidden>
+      <div class="split">
+        <div class="panel" id="ledger"></div>
+        <div class="panel" id="viewer"></div>
+      </div>
+    </div>
+    <div id="tab-repro" class="tab panel" hidden></div>
+    <div id="tab-gaps" class="tab panel" hidden></div>
+    <div id="tab-numbers" class="tab panel" hidden></div>
+    <div id="tab-revise" class="tab panel" hidden></div>
+    <div id="tab-refs" class="tab panel" hidden></div>
+    <div id="tab-glossary" class="tab panel" hidden></div>
+    <div id="tab-bench" class="tab panel" hidden></div>
+    <div id="tab-compare" class="tab panel" hidden></div>
+  </section>
+</main>
+<footer>
+  <p role="note"><strong>Responsible use.</strong> Ratings and scores are lexical and numeric heuristics over what the paper itself states. They are aids for a human reviewer, not verdicts: check every quote against the cited page.</p>
+</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

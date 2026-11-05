@@ -1,0 +1,31 @@
+== eval/results/held_out_v0.2_ai_audit/pass1/held_out_audit_ai_assisted.csv
+valid: 33 rows, ids and original columns unchanged, labels permitted, blanks where required
+is_real_claim: {'y': 27, 'n': 6} | evidence_correct: {'p': 13, 'y': 5, 'n': 2} | blank: 13 | notes with 'unsure' or 'judgement call': 4
+AI-ASSISTED, not human ground truth:
+  claim precision:                      0.818 (27/33; 95% CI 0.66-0.91)
+  coverage on real claims:              0.741 (20/27; 95% CI 0.55-0.87)
+  abstention rate on real claims:       0.259 (7/27; 95% CI 0.13-0.45)
+  evidence precision, strict  (y):      0.250 (5/20; 95% CI 0.11-0.47)
+  evidence precision, lenient (y or p): 0.900 (18/20; 95% CI 0.70-0.97)
+  end-to-end (real claim with y), rows: 0.152 (5/33; 95% CI 0.07-0.31)
+  real claims with a y passage:         0.185 (5/27; 95% CI 0.08-0.37)
+== eval/results/held_out_v0.2_ai_audit/pass2_fresh_reviewer/held_out_audit_pass2.csv
+valid: 33 rows, ids and original columns unchanged, labels permitted, blanks where required
+is_real_claim: {'y': 26, 'n': 7} | evidence_correct: {'p': 11, 'n': 2, 'y': 6} | blank: 14 | notes with 'unsure' or 'judgement call': 1
+AI-ASSISTED, not human ground truth:
+  claim precision:                      0.788 (26/33; 95% CI 0.62-0.89)
+  coverage on real claims:              0.731 (19/26; 95% CI 0.54-0.86)
+  abstention rate on real claims:       0.269 (7/26; 95% CI 0.14-0.46)
+  evidence precision, strict  (y):      0.316 (6/19; 95% CI 0.15-0.54)
+  evidence precision, lenient (y or p): 0.895 (17/19; 95% CI 0.69-0.97)
+  end-to-end (real claim with y), rows: 0.182 (6/33; 95% CI 0.09-0.34)
+  real claims with a y passage:         0.231 (6/26; 95% CI 0.11-0.42)
+== agreement between the two files (two AI passes agreeing is not human validation)
+  is_real_claim:    agreement 0.970 (32/33), Cohen's kappa 0.904
+  evidence_correct (rows both labelled): agreement 0.737 (14/19), Cohen's kappa 0.513
+  row 5: first y/y  second y/p
+  row 6: first y/p  second y/n
+  row 14: first y/p  second y/y
+  row 17: first y/p  second y/y
+  row 26: first y/p  second n/-
+  row 29: first y/n  second y/p

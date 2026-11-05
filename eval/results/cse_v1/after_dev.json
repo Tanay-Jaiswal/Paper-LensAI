@@ -1,0 +1,2315 @@
+{
+ "acl_2020.acl-main.442_beyond-accuracy-behavioral-testing-of-nlp.pdf": {
+  "field": "cse",
+  "score": 40.6,
+  "standard_score": 47.8,
+  "items": {
+   "code": "present",
+   "data": "present",
+   "splits": "present",
+   "preprocessing": "missing",
+   "hyper": "missing",
+   "seeds": "missing",
+   "variance": "missing",
+   "stat_test": "missing",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "partial",
+   "hardware": "partial",
+   "software": "missing",
+   "license": "missing",
+   "limitations": "present",
+   "cs_code_link": "present",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "missing",
+   "cs_compute_budget": "missing",
+   "cs_hyper_search": "missing",
+   "cs_model_selection": "partial",
+   "cs_model_size": "missing",
+   "cs_baseline_setup": "missing",
+   "cs_table_uncertainty": "missing",
+   "cs_efficiency": "missing"
+  },
+  "cse_evidence": {
+   "cs_code_link": [
+    1,
+    "1https://github.com/marcotcr/checklist Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, pages 4902–4912 July 5 - 10, 202"
+   ],
+   "cs_data_access": [
+    3,
+    "Users can create test cases from scratch, or by perturbing an existing dataset."
+   ],
+   "cs_model_selection": [
+    6,
+    "Finally, and RoB fail simple negation MFTs, even though they are fairly accurate (91.5%, 93.9%, respectively) on the subset of the SST-2 validation set that con"
+   ]
+  },
+  "defined": 6,
+  "undefined": [
+   "VERB",
+   "PROF",
+   "THING",
+   "AC"
+  ],
+  "from_dictionary": [
+   [
+    "NLP",
+    "natural language processing",
+    15
+   ],
+   [
+    "POS",
+    "part of speech",
+    12
+   ],
+   [
+    "QQP",
+    "Quora Question Pairs dataset",
+    10
+   ],
+   [
+    "SRL",
+    "semantic role labelling",
+    5
+   ],
+   [
+    "BERT",
+    "Bidirectional Encoder Representations from Transformers",
+    2
+   ],
+   [
+    "F1",
+    "F1 score (harmonic mean of precision and recall)",
+    1
+   ],
+   [
+    "SOTA",
+    "state of the art",
+    1
+   ],
+   [
+    "SQuAD",
+    "Stanford Question Answering Dataset",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "no_hyperparameters",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Although measuring held-out accuracy has been the primary approach to evaluate generalization, it often overestimates the performance of NLP models, while alter"
+   ],
+   [
+    "generalization_narrow_evidence",
+    "medium",
+    1,
+    "Although measuring held-out accuracy has been the primary approach to evaluate generalization, it often overestimates the performance of NLP models, while alter"
+   ]
+  ],
+  "revisions": 21,
+  "claims": 2
+ },
+ "acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf": {
+  "field": "cse",
+  "score": 78.1,
+  "standard_score": 76.1,
+  "items": {
+   "code": "present",
+   "data": "present",
+   "splits": "present",
+   "preprocessing": "missing",
+   "hyper": "present",
+   "seeds": "partial",
+   "variance": "present",
+   "stat_test": "present",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "present",
+   "hardware": "present",
+   "software": "missing",
+   "license": "missing",
+   "limitations": "missing",
+   "cs_code_link": "present",
+   "cs_data_access": "present",
+   "cs_hardware_spec": "present",
+   "cs_compute_budget": "present",
+   "cs_hyper_search": "present",
+   "cs_model_selection": "present",
+   "cs_model_size": "missing",
+   "cs_baseline_setup": "partial",
+   "cs_table_uncertainty": "present",
+   "cs_efficiency": "missing"
+  },
+  "cse_evidence": {
+   "cs_code_link": [
+    1,
+    "Data and code for this new task are publicly available at https:// github.com/allenai/scifact."
+   ],
+   "cs_data_access": [
+    1,
+    "Data and code for this new task are publicly available at https:// github.com/allenai/scifact."
+   ],
+   "cs_hardware_spec": [
+    12,
+    "All models are trained using a single Nvidia P100 GPU on Google Colabortoary Pro platform.8 For the RATIONALESELECTION module, it takes about 150 minutes to tra"
+   ],
+   "cs_compute_budget": [
+    12,
+    "All models are trained using a single Nvidia P100 GPU on Google Colabortoary Pro platform.8 For the RATIONALESELECTION module, it takes about 150 minutes to tra"
+   ],
+   "cs_hyper_search": [
+    6,
+    "To make predictions, we select all sentences ai with ˜zi > t as rationale sentences, where t ∈ [0, 1] is tuned on the dev set (Appendix A.1)."
+   ],
+   "cs_model_selection": [
+    6,
+    "To make predictions, we select all sentences ai with ˜zi > t as rationale sentences, where t ∈ [0, 1] is tuned on the dev set (Appendix A.1)."
+   ],
+   "cs_baseline_setup": [
+    1,
+    "We develop baseline models for SCIFACT, and demonstrate that simple domain adaptation techniques substantially improve performance compared to models trained on"
+   ],
+   "cs_table_uncertainty": [
+    8,
+    "Table 4 shows the standard deviations in F1 score."
+   ]
+  },
+  "defined": 5,
+  "undefined": [
+   "REFUTES",
+   "NOINFO",
+   "UKP",
+   "ACC",
+   "CLS",
+   "FACT",
+   "SCIBERT",
+   "CVD",
+   "S2ORC",
+   "BMJ",
+   "JAMA",
+   "REFUTE",
+   "SEP",
+   "SUPPORT",
+   "TION",
+   "WA"
+  ],
+  "from_dictionary": [
+   [
+    "F1",
+    "F1 score (harmonic mean of precision and recall)",
+    69
+   ],
+   [
+    "FEVER",
+    "Fact Extraction and VERification dataset",
+    27
+   ],
+   [
+    "NLP",
+    "natural language processing",
+    7
+   ],
+   [
+    "TF-IDF",
+    "term frequency-inverse document frequency",
+    2
+   ],
+   [
+    "GPU",
+    "graphics processing unit",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "unsupported_claim",
+    "high",
+    1,
+    "To study this task, we construct SCI- FACT, a dataset of 1.4K expert-written scientific claims paired with evidence-containing abstracts annotated with labels a"
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "To study this task, we construct SCI- FACT, a dataset of 1.4K expert-written scientific claims paired with evidence-containing abstracts annotated with labels a"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    1,
+    "Finally, the system should interpret p < 0.001 as an indication that the reported finding is statistically significant."
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "Finally, the system should interpret p < 0.001 as an indication that the reported finding is statistically significant."
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    2,
+    "(2) We develop a novel annotation protocol to generate and verify 1.4K naturallyoccurring claims about scientific findings."
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    2,
+    "(2) We develop a novel annotation protocol to generate and verify 1.4K naturallyoccurring claims about scientific findings."
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "We show that our system is able to verify claims related to COVID-19 by identifying evidence from the CORD-19 corpus."
+   ]
+  ],
+  "revisions": 16,
+  "claims": 8
+ },
+ "acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf": {
+  "field": "cse",
+  "score": 85.2,
+  "standard_score": 87.0,
+  "items": {
+   "code": "present",
+   "data": "present",
+   "splits": "present",
+   "preprocessing": "present",
+   "hyper": "present",
+   "seeds": "present",
+   "variance": "missing",
+   "stat_test": "present",
+   "baselines": "present",
+   "ablation": "present",
+   "metrics": "present",
+   "hardware": "present",
+   "software": "partial",
+   "license": "missing",
+   "limitations": "present",
+   "cs_code_link": "present",
+   "cs_data_access": "present",
+   "cs_hardware_spec": "partial",
+   "cs_compute_budget": "present",
+   "cs_hyper_search": "present",
+   "cs_model_selection": "present",
+   "cs_model_size": "present",
+   "cs_baseline_setup": "present",
+   "cs_table_uncertainty": "missing",
+   "cs_efficiency": "partial"
+  },
+  "cse_evidence": {
+   "cs_code_link": [
+    2,
+    "The code and pre-trained models are available at https://github.com/ google-research/bert."
+   ],
+   "cs_data_access": [
+    6,
+    "The Stanford Question Answering Dataset (SQuAD v1.1) is a collection of 100k crowdsourced question/answer pairs (Rajpurkar et al., 2016)."
+   ],
+   "cs_hardware_spec": [
+    5,
+    "All of the results in the paper can be replicated in at most 1 hour on a single Cloud TPU, or a few hours on a GPU, starting from the exact same pre-trained mod"
+   ],
+   "cs_compute_budget": [
+    5,
+    "All of the results in the paper can be replicated in at most 1 hour on a single Cloud TPU, or a few hours on a GPU, starting from the exact same pre-trained mod"
+   ],
+   "cs_hyper_search": [
+    9,
+    "Hyperparameters were selected using the Dev set."
+   ],
+   "cs_model_selection": [
+    6,
+    "For each task, we selected the best fine-tuning learning rate (among 5e-5, 4e-5, 3e-5, and 2e-5) on the Dev set."
+   ],
+   "cs_model_size": [
+    8,
+    "For example, the largest Transformer explored in Vaswani et al. (2017) is (L=6, H=1024, A=16) with 100M parameters for the encoder, and the largest Transformer "
+   ],
+   "cs_baseline_setup": [
+    8,
+    "We trained a number of BERT models with a differing number of layers, hidden units, and attention heads, while otherwise using the same hyperparameters and trai"
+   ],
+   "cs_efficiency": [
+    9,
+    "Second, there are major computational benefits to pre-compute an expensive representation of the training data once and then run many experiments with cheaper m"
+   ]
+  },
+  "defined": 8,
+  "undefined": [
+   "CLS",
+   "SEP",
+   "MASK",
+   "LTR",
+   "EA",
+   "EB",
+   "RH",
+   "ESIM",
+   "RND",
+   "TM",
+   "TN",
+   "BER",
+   "EN",
+   "SAME",
+   "TBASE"
+  ],
+  "from_dictionary": [
+   [
+    "BERT",
+    "Bidirectional Encoder Representations from Transformers",
+    69
+   ],
+   [
+    "GPT",
+    "Generative Pre-trained Transformer",
+    26
+   ],
+   [
+    "F1",
+    "F1 score (harmonic mean of precision and recall)",
+    20
+   ],
+   [
+    "LM",
+    "language model",
+    18
+   ],
+   [
+    "SQuAD",
+    "Stanford Question Answering Dataset",
+    15
+   ],
+   [
+    "MNLI",
+    "Multi-Genre Natural Language Inference dataset",
+    9
+   ],
+   [
+    "MRPC",
+    "Microsoft Research Paraphrase Corpus",
+    9
+   ],
+   [
+    "BiLSTM",
+    "bidirectional long short-term memory",
+    7
+   ],
+   [
+    "QNLI",
+    "Question Natural Language Inference dataset (GLUE)",
+    6
+   ],
+   [
+    "QQP",
+    "Quora Question Pairs dataset",
+    6
+   ],
+   [
+    "EM",
+    "exact match / expectation-maximisation",
+    5
+   ],
+   [
+    "NLP",
+    "natural language processing",
+    5
+   ],
+   [
+    "RTE",
+    "Recognising Textual Entailment dataset",
+    5
+   ],
+   [
+    "Adam",
+    "adaptive moment estimation (optimiser)",
+    2
+   ],
+   [
+    "LSTM",
+    "long short-term memory",
+    2
+   ],
+   [
+    "RTL",
+    "register-transfer level / right-to-left",
+    2
+   ],
+   [
+    "AI",
+    "artificial intelligence",
+    1
+   ],
+   [
+    "CRF",
+    "conditional random field",
+    1
+   ],
+   [
+    "GPU",
+    "graphics processing unit",
+    1
+   ],
+   [
+    "SOTA",
+    "state of the art",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement)"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    2,
+    "BERT is the first finetuning based representation model that achieves state-of-the-art performance on a large suite of sentence-level and token-level tasks, out"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "As a result, the pre-trained BERT model can be finetuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such"
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    1,
+    "As a result, the pre-trained BERT model can be finetuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such"
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    2,
+    "BERT is the first finetuning based representation model that achieves state-of-the-art performance on a large suite of sentence-level and token-level tasks, out"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    9,
+    "Recent empirical improvements due to transfer learning with language models have demonstrated that rich, unsupervised pre-training is an integral part of many l"
+   ]
+  ],
+  "revisions": 12,
+  "claims": 5
+ },
+ "acl_P02-1040_bleu-a-method-for-automatic-evaluation.pdf": {
+  "field": "cse",
+  "score": 36.7,
+  "standard_score": 42.1,
+  "items": {
+   "code": "missing",
+   "data": "partial",
+   "splits": "not_applicable",
+   "preprocessing": "missing",
+   "hyper": "not_applicable",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "present",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "present",
+   "hardware": "partial",
+   "software": "missing",
+   "license": "missing",
+   "limitations": "missing",
+   "cs_code_link": "missing",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "missing",
+   "cs_compute_budget": "missing",
+   "cs_hyper_search": "not_applicable",
+   "cs_model_selection": "not_applicable",
+   "cs_model_size": "not_applicable",
+   "cs_baseline_setup": "partial",
+   "cs_table_uncertainty": "not_applicable",
+   "cs_efficiency": "missing"
+  },
+  "cse_evidence": {
+   "cs_data_access": [
+    3,
+    "Next, we add the clipped n-gram counts for all the candidate sentences and divide by the number of candidate n-grams in the test corpus to compute a modified pr"
+   ],
+   "cs_baseline_setup": [
+    1,
+    "We have selected a promising baseline metric from this family."
+   ]
+  },
+  "defined": 2,
+  "undefined": [],
+  "from_dictionary": [
+   [
+    "BLEU",
+    "Bilingual Evaluation Understudy (translation metric)",
+    23
+   ],
+   [
+    "BP",
+    "backpropagation / brevity penalty (BLEU)",
+    3
+   ],
+   [
+    "NIST",
+    "National Institute of Standards and Technology",
+    1
+   ],
+   [
+    "NLG",
+    "natural language generation",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ]
+  ],
+  "revisions": 15,
+  "claims": 2
+ },
+ "arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf": {
+  "field": "general",
+  "score": 39.5,
+  "standard_score": 39.5,
+  "items": {
+   "code": "missing",
+   "data": "partial",
+   "splits": "not_applicable",
+   "preprocessing": "missing",
+   "hyper": "not_applicable",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "present",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "present",
+   "hardware": "missing",
+   "software": "missing",
+   "license": "missing",
+   "limitations": "missing"
+  },
+  "cse_evidence": {},
+  "defined": 17,
+  "undefined": [
+   "WW",
+   "ZZ",
+   "VBF",
+   "ATLAS",
+   "HERWIG",
+   "QCD",
+   "PYTHIA",
+   "WH",
+   "ZH",
+   "VH",
+   "WZ",
+   "FWHM",
+   "JVF",
+   "POWHEG",
+   "PYTHIA6",
+   "ALPGEN",
+   "BSM",
+   "CB",
+   "MCFM",
+   "PYTHIA8",
+   "SHERPA",
+   "CDF"
+  ],
+  "from_dictionary": [],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "This observation, which has a significance of 5.9 standard deviations, corresponding to a background fluctuation probability of 1.7×10−9, is compatible with the"
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ]
+  ],
+  "revisions": 10,
+  "claims": 5
+ },
+ "arxiv_1412.6980v9_adam-a-method-for-stochastic-optimization.pdf": {
+  "field": "cse",
+  "score": 35.5,
+  "standard_score": 34.8,
+  "items": {
+   "code": "missing",
+   "data": "partial",
+   "splits": "missing",
+   "preprocessing": "missing",
+   "hyper": "present",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "missing",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "partial",
+   "hardware": "partial",
+   "software": "missing",
+   "license": "missing",
+   "limitations": "missing",
+   "cs_code_link": "missing",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "missing",
+   "cs_compute_budget": "present",
+   "cs_hyper_search": "present",
+   "cs_model_selection": "missing",
+   "cs_model_size": "missing",
+   "cs_baseline_setup": "missing",
+   "cs_table_uncertainty": "not_applicable",
+   "cs_efficiency": "present"
+  },
+  "cse_evidence": {
+   "cs_data_access": [
+    5,
+    "6.1 EXPERIMENT: LOGISTIC REGRESSION We evaluate our proposed method on L2-regularized multi-class logistic regression using the MNIST dataset."
+   ],
+   "cs_compute_budget": [
+    6,
+    "Figure 2 shows that Adam makes faster progress in terms of both the number of iterations and wall-clock time."
+   ],
+   "cs_hyper_search": [
+    5,
+    "The hyper-parameters, such as learning rate and momentum, are searched over a dense grid and the results are reported using the best hyper-parameter setting."
+   ],
+   "cs_efficiency": [
+    4,
+    "We show Adam has O( √ T) regret bound and a proof is given in the appendix."
+   ]
+  },
+  "defined": 6,
+  "undefined": [
+   "PT",
+   "NEURAL"
+  ],
+  "from_dictionary": [
+   [
+    "Adam",
+    "adaptive moment estimation (optimiser)",
+    60
+   ],
+   [
+    "IMDB",
+    "Internet Movie Database (movie-review sentiment dataset)",
+    3
+   ],
+   [
+    "MNIST",
+    "Modified NIST handwritten digits dataset",
+    3
+   ],
+   [
+    "ReLU",
+    "rectified linear unit",
+    2
+   ],
+   [
+    "ADAM",
+    "adaptive moment estimation (optimiser)",
+    1
+   ],
+   [
+    "GPU",
+    "graphics processing unit",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ],
+   [
+    "no_splits",
+    "medium",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known "
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    1,
+    "We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known "
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods."
+   ]
+  ],
+  "revisions": 21,
+  "claims": 3
+ },
+ "arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf": {
+  "field": "cse",
+  "score": 60.9,
+  "standard_score": 60.9,
+  "items": {
+   "code": "missing",
+   "data": "present",
+   "splits": "present",
+   "preprocessing": "present",
+   "hyper": "present",
+   "seeds": "partial",
+   "variance": "present",
+   "stat_test": "missing",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "present",
+   "hardware": "present",
+   "software": "missing",
+   "license": "missing",
+   "limitations": "missing",
+   "cs_code_link": "missing",
+   "cs_data_access": "present",
+   "cs_hardware_spec": "partial",
+   "cs_compute_budget": "partial",
+   "cs_hyper_search": "missing",
+   "cs_model_selection": "partial",
+   "cs_model_size": "present",
+   "cs_baseline_setup": "present",
+   "cs_table_uncertainty": "present",
+   "cs_efficiency": "present"
+  },
+  "cse_evidence": {
+   "cs_data_access": [
+    1,
+    "Many other nontrivial visual recognition tasks [8, 12, 7, 32, 27] have also 1http://image-net.org/challenges/LSVRC/2015/ and http://mscoco.org/dataset/#detectio"
+   ],
+   "cs_hardware_spec": [
+    7,
+    "These models are trained with a minibatch size of 128 on two GPUs."
+   ],
+   "cs_compute_budget": [
+    3,
+    "We can fairly compare plain/residual networks that simultaneously have the same number of parameters, depth, width, and computational cost (except for the negli"
+   ],
+   "cs_model_selection": [
+    6,
+    "Error rates (%) of single-model results on the ImageNet validation set (except † reported on the test set)."
+   ],
+   "cs_model_size": [
+    3,
+    "We can fairly compare plain/residual networks that simultaneously have the same number of parameters, depth, width, and computational cost (except for the negli"
+   ],
+   "cs_baseline_setup": [
+    12,
+    "Under the same setting, our RPN method using ResNet-101 net significantly reduces the center-crop error to 13.3%."
+   ],
+   "cs_table_uncertainty": [
+    7,
+    "Table row: FitNet [35]\nHighway [42, 43]\nHighway [42, 43]; 19\n19\n32; 2.5M\n2.3M\n1.25M; error (%): 8.39\n7.54 (7.72±0.16)\n8.80"
+   ],
+   "cs_efficiency": [
+    3,
+    "The convolutional layers mostly have 3×3 filters and follow two simple design rules: (i) for the same output feature map size, the layers have the same number o"
+   ]
+  },
+  "defined": 9,
+  "undefined": [
+   "PASCAL",
+   "LOC",
+   "DET",
+   "MS",
+   "CLS",
+   "VLAD"
+  ],
+  "from_dictionary": [
+   [
+    "ResNet",
+    "residual network",
+    84
+   ],
+   [
+    "COCO",
+    "Common Objects in Context dataset",
+    35
+   ],
+   [
+    "R-CNN",
+    "region-based convolutional neural network",
+    28
+   ],
+   [
+    "mAP",
+    "mean average precision",
+    24
+   ],
+   [
+    "ILSVRC",
+    "ImageNet Large Scale Visual Recognition Challenge",
+    23
+   ],
+   [
+    "VOC",
+    "PASCAL Visual Object Classes dataset",
+    19
+   ],
+   [
+    "VGG",
+    "Visual Geometry Group network (Oxford)",
+    11
+   ],
+   [
+    "FLOP",
+    "floating-point operation",
+    8
+   ],
+   [
+    "FLOPs",
+    "floating-point operations",
+    8
+   ],
+   [
+    "IoU",
+    "intersection over union",
+    3
+   ],
+   [
+    "CNN",
+    "convolutional neural network",
+    2
+   ],
+   [
+    "GPU",
+    "graphics processing unit",
+    2
+   ],
+   [
+    "GT",
+    "ground truth",
+    2
+   ],
+   [
+    "RCNN",
+    "region-based convolutional neural network",
+    2
+   ],
+   [
+    "MNIST",
+    "Modified NIST handwritten digits dataset",
+    1
+   ],
+   [
+    "ReLU",
+    "rectified linear unit",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    2,
+    "We show that: 1) Our extremely deep residual nets are easy to optimize, but the counterpart “plain” nets (that simply stack layers) exhibit higher training erro"
+   ]
+  ],
+  "revisions": 14,
+  "claims": 7
+ },
+ "arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf": {
+  "field": "general",
+  "score": 34.2,
+  "standard_score": 34.2,
+  "items": {
+   "code": "missing",
+   "data": "missing",
+   "splits": "not_applicable",
+   "preprocessing": "present",
+   "hyper": "not_applicable",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "missing",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "partial",
+   "hardware": "partial",
+   "software": "missing",
+   "license": "present",
+   "limitations": "missing"
+  },
+  "cse_evidence": {},
+  "defined": 3,
+  "undefined": [
+   "UTC",
+   "GEO",
+   "LA",
+   "WA"
+  ],
+  "from_dictionary": [],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "The signal sweeps upwards in frequency from 35 to 250 Hz with a peak gravitational-wave strain of 1.0 × 10−21."
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "The signal was observed with a matched-filter signal-to-noise ratio of 24 and a false alarm rate estimated to be less than 1 event per 203 000 years, equivalent"
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "The source lies at a luminosity distance of 410þ160 −180 Mpc corresponding to a redshift z ¼ 0.09þ0.03 −0.04 ."
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "In the source frame, the initial black hole masses are 36þ5 −4 M⊙ and 29þ4 −4 M⊙, and the final black hole mass is 62þ4 −4 M⊙, with 3.0þ0.5 −0.5 M⊙c2 radiated i"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    7,
+    "The system reached a peak gravitational-wave luminosity of 3.6þ0.5 −0.4 × 1056 erg=s, equivalent to 200þ30 −20M⊙c2=s."
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "These observations demonstrate the existence of binary stellar-mass black hole systems."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    8,
+    "This improves on Solar System and binary pulsar bounds [98,99] by factors of a few and a thousand, respectively, but does not improve on the modeldependent boun"
+   ]
+  ],
+  "revisions": 16,
+  "claims": 8
+ },
+ "arxiv_1706.03762v7_attention-is-all-you-need.pdf": {
+  "field": "cse",
+  "score": 67.2,
+  "standard_score": 63.0,
+  "items": {
+   "code": "present",
+   "data": "present",
+   "splits": "partial",
+   "preprocessing": "missing",
+   "hyper": "present",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "missing",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "present",
+   "hardware": "present",
+   "software": "partial",
+   "license": "missing",
+   "limitations": "missing",
+   "cs_code_link": "present",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "present",
+   "cs_compute_budget": "present",
+   "cs_hyper_search": "present",
+   "cs_model_selection": "present",
+   "cs_model_size": "present",
+   "cs_baseline_setup": "missing",
+   "cs_table_uncertainty": "partial",
+   "cs_efficiency": "present"
+  },
+  "cse_evidence": {
+   "cs_code_link": [
+    10,
+    "The code we used to train and evaluate our models is available at https://github.com/ tensorflow/tensor2tensor."
+   ],
+   "cs_data_access": [
+    7,
+    "We trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million sentence pairs."
+   ],
+   "cs_hardware_spec": [
+    2,
+    "The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as t"
+   ],
+   "cs_compute_budget": [
+    1,
+    "On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on "
+   ],
+   "cs_hyper_search": [
+    8,
+    "These hyperparameters were chosen after experimentation on the development set."
+   ],
+   "cs_model_selection": [
+    8,
+    "These hyperparameters were chosen after experimentation on the development set."
+   ],
+   "cs_model_size": [
+    9,
+    "Table row: base; train\nN d d h d d P ϵ\nmodel ff k v drop ls steps: 6 512 2048 8 64 64 0.1 0.1 100K; PPL BLEU params\n(dev) (dev) ×106: 4.92 25.8 65"
+   ],
+   "cs_efficiency": [
+    6,
+    "Layer Type Complexity per Layer Sequential Maximum Path Length Operations Self-Attention O(n2 · d) O(1) O(1) Recurrent O(n · d2) O(n) O(n) Convolutional O(k · n"
+   ]
+  },
+  "defined": 1,
+  "undefined": [
+   "GNMT"
+  ],
+  "from_dictionary": [
+   [
+    "BLEU",
+    "Bilingual Evaluation Understudy (translation metric)",
+    17
+   ],
+   [
+    "WMT",
+    "Workshop/Conference on Machine Translation shared tasks",
+    8
+   ],
+   [
+    "GPU",
+    "graphics processing unit",
+    7
+   ],
+   [
+    "PPL",
+    "perplexity",
+    7
+   ],
+   [
+    "F1",
+    "F1 score (harmonic mean of precision and recall)",
+    5
+   ],
+   [
+    "RNN",
+    "recurrent neural network",
+    3
+   ],
+   [
+    "PE",
+    "positional encoding / processing element",
+    2
+   ],
+   [
+    "RL",
+    "reinforcement learning",
+    2
+   ],
+   [
+    "Adam",
+    "adaptive moment estimation (optimiser)",
+    1
+   ],
+   [
+    "FLOP",
+    "floating-point operation",
+    1
+   ],
+   [
+    "FLOPs",
+    "floating-point operations",
+    1
+   ],
+   [
+    "MoE",
+    "mixture of experts",
+    1
+   ],
+   [
+    "ReLU",
+    "rectified linear unit",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "significance_without_test",
+    "high",
+    1,
+    "Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time t"
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on "
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    2,
+    "The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as t"
+   ],
+   [
+    "significance_without_test",
+    "high",
+    2,
+    "The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as t"
+   ],
+   [
+    "significance_without_test",
+    "high",
+    10,
+    "For translation tasks, the Transformer can be trained significantly faster than architectures based on recurrent or convolutional layers."
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "The best performing models also connect the encoder and decoder through an attention mechanism."
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    1,
+    "The best performing models also connect the encoder and decoder through an attention mechanism."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time t"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training da"
+   ],
+   [
+    "generalization_narrow_evidence",
+    "medium",
+    1,
+    "We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training da"
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    2,
+    "The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as t"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    10,
+    "For translation tasks, the Transformer can be trained significantly faster than architectures based on recurrent or convolutional layers."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    10,
+    "On both WMT 2014 English-to-German and WMT 2014 English-to-French translation tasks, we achieve a new state of the art."
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    10,
+    "On both WMT 2014 English-to-German and WMT 2014 English-to-French translation tasks, we achieve a new state of the art."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    10,
+    "In the former task our best model outperforms even all previously reported ensembles."
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    10,
+    "In the former task our best model outperforms even all previously reported ensembles."
+   ]
+  ],
+  "revisions": 27,
+  "claims": 10
+ },
+ "arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf": {
+  "field": "cse",
+  "score": 83.6,
+  "standard_score": 87.0,
+  "items": {
+   "code": "present",
+   "data": "present",
+   "splits": "present",
+   "preprocessing": "present",
+   "hyper": "present",
+   "seeds": "partial",
+   "variance": "present",
+   "stat_test": "present",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "present",
+   "hardware": "present",
+   "software": "missing",
+   "license": "present",
+   "limitations": "present",
+   "cs_code_link": "present",
+   "cs_data_access": "present",
+   "cs_hardware_spec": "present",
+   "cs_compute_budget": "present",
+   "cs_hyper_search": "missing",
+   "cs_model_selection": "partial",
+   "cs_model_size": "present",
+   "cs_baseline_setup": "present",
+   "cs_table_uncertainty": "partial",
+   "cs_efficiency": "partial"
+  },
+  "cse_evidence": {
+   "cs_code_link": [
+    44,
+    "11https://github.com/openai/gpt-3/blob/master/overlap_frequency.md"
+   ],
+   "cs_data_access": [
+    8,
+    "Therefore, we took 3 steps to improve the average quality of our datasets: (1) we downloaded and filtered a version of CommonCrawl based on similarity to a rang"
+   ],
+   "cs_hardware_spec": [
+    9,
+    "All models were trained on V100 GPU’s on part of a high-bandwidth cluster provided by Microsoft."
+   ],
+   "cs_compute_budget": [
+    9,
+    "As a consequence, although GPT-3 3B is almost 10x larger than RoBERTa-Large (355M params), both models took roughly 50 petaflop/s-days of compute during pre-tra"
+   ],
+   "cs_model_selection": [
+    8,
+    "Therefore, we took 3 steps to improve the average quality of our datasets: (1) we downloaded and filtered a version of CommonCrawl based on similarity to a rang"
+   ],
+   "cs_model_size": [
+    1,
+    "Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its p"
+   ],
+   "cs_baseline_setup": [
+    17,
+    "For comparison a fine-tuned RoBERTA model achieves 79%, state-of-the-art is 84.6% achieved with a fine-tuned high capacity model (T5), and human performance on "
+   ],
+   "cs_efficiency": [
+    4,
+    "Figure 1.2: Larger models make increasingly efficient use of in-context information."
+   ]
+  },
+  "defined": 16,
+  "undefined": [
+   "PIQA",
+   "RWC",
+   "ARC",
+   "LAMBADA",
+   "DROP",
+   "RSR",
+   "KMH",
+   "XL",
+   "KKS",
+   "WSC",
+   "CB",
+   "NFL",
+   "RRS20",
+   "DCLT18",
+   "LPP",
+   "RACE",
+   "SBBC19",
+   "SPP",
+   "COPA",
+   "LCG",
+   "SSM",
+   "ZHR",
+   "BHT",
+   "BZB",
+   "CCE",
+   "DL15",
+   "DUCHAMP",
+   "GLT",
+   "GSL",
+   "HVD15",
+   "HYC01",
+   "HZJ",
+   "IDCBE19",
+   "KPR",
+   "LDL19",
+   "LGG",
+   "LOG",
+   "MARCEL",
+   "MCKS18",
+   "MKAT18"
+  ],
+  "from_dictionary": [
+   [
+    "F1",
+    "F1 score (harmonic mean of precision and recall)",
+    142
+   ],
+   [
+    "BLEU",
+    "Bilingual Evaluation Understudy (translation metric)",
+    136
+   ],
+   [
+    "SOTA",
+    "state of the art",
+    29
+   ],
+   [
+    "NLP",
+    "natural language processing",
+    18
+   ],
+   [
+    "NMT",
+    "neural machine translation",
+    8
+   ],
+   [
+    "RTE",
+    "Recognising Textual Entailment dataset",
+    8
+   ],
+   [
+    "BERT",
+    "Bidirectional Encoder Representations from Transformers",
+    7
+   ],
+   [
+    "SAT",
+    "Boolean satisfiability / the SAT exam",
+    7
+   ],
+   [
+    "QA",
+    "question answering",
+    5
+   ],
+   [
+    "GPU",
+    "graphics processing unit",
+    4
+   ],
+   [
+    "BPE",
+    "byte-pair encoding",
+    3
+   ],
+   [
+    "LM",
+    "language model",
+    3
+   ],
+   [
+    "ML",
+    "machine learning",
+    3
+   ],
+   [
+    "WMT",
+    "Workshop/Conference on Machine Translation shared tasks",
+    3
+   ],
+   [
+    "CHI",
+    "ACM Conference on Human Factors in Computing Systems",
+    2
+   ],
+   [
+    "RAG",
+    "retrieval-augmented generation",
+    2
+   ],
+   [
+    "SQuAD",
+    "Stanford Question Answering Dataset",
+    2
+   ],
+   [
+    "Adam",
+    "adaptive moment estimation (optimiser)",
+    1
+   ],
+   [
+    "AI",
+    "artificial intelligence",
+    1
+   ],
+   [
+    "CNN",
+    "convolutional neural network",
+    1
+   ],
+   [
+    "LR",
+    "learning rate / logistic regression",
+    1
+   ],
+   [
+    "LSTM",
+    "long short-term memory",
+    1
+   ],
+   [
+    "POS",
+    "part of speech",
+    1
+   ],
+   [
+    "RNN",
+    "recurrent neural network",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "unsupported_claim",
+    "high",
+    1,
+    "Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-t"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    4,
+    "While it has shown some initial promise, this approach still achieves results far inferior to fine-tuning – for example [RWC+19] achieves only 4% on Natural Que"
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    4,
+    "In recent years the capacity of transformer language models has increased substantially, from 100 million parameters [RNSS18], to 300 million parameters [DCLT18"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Recent work has demonstrated substantial gains on many NLP tasks and benchmarks by pre-training on a large corpus of text followed by fine-tuning on a specific "
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    1,
+    "Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-t"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with t"
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    4,
+    "While it has shown some initial promise, this approach still achieves results far inferior to fine-tuning – for example [RWC+19] achieves only 4% on Natural Que"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    5,
+    "Broadly, on NLP tasks GPT-3 achieves promising results in the zero-shot and one-shot settings, and in the the few-shot setting is sometimes competitive with or "
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    5,
+    "Broadly, on NLP tasks GPT-3 achieves promising results in the zero-shot and one-shot settings, and in the the few-shot setting is sometimes competitive with or "
+   ]
+  ],
+  "revisions": 16,
+  "claims": 11
+ },
+ "plos_pbio.1002106_the-extent-and-consequences-of-p.pdf": {
+  "field": "general",
+  "score": 34.2,
+  "standard_score": 34.2,
+  "items": {
+   "code": "missing",
+   "data": "present",
+   "splits": "not_applicable",
+   "preprocessing": "missing",
+   "hyper": "not_applicable",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "present",
+   "baselines": "missing",
+   "ablation": "missing",
+   "metrics": "missing",
+   "hardware": "missing",
+   "software": "missing",
+   "license": "present",
+   "limitations": "partial"
+  },
+  "cse_evidence": {},
+  "defined": 1,
+  "undefined": [],
+  "from_dictionary": [],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "comparison_without_baselines",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    3,
+    "When the true effect is strong, researchers are more likely to obtain very low p-values (e.g., p<0.001) than moderately low p-values (e.g., 0.01), and less like"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    3,
+    "If researchers p-hack and turn a truly nonsignificant result into a significant one, then the p-curve’s shape will be altered close to the perceived significanc"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    4,
+    "We chose p < 0.05 as the cutoff for our upper bin (following [3]), rather than p = 0.05 (see [46]) because we suspect that many authors do not regard p = 0.05 a"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    4,
+    "To do this, we used the proportion of p-values occurring in the upper bin for each discipline or meta-analysis (depending on the dataset being analysed) and ran"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    11,
+    "Over 50% of participants admitted to “failing to report all of a study’s dependent measures” and “deciding whether to collect more data after looking to see whe"
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "One type of bias, known as “p-hacking,” occurs when researchers collect or select data or statistical analyses until nonsignificant results become significant."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Here, we use text-mining to demonstrate that p-hacking is widespread throughout science."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "We then illustrate how one can test for p-hacking when performing a meta-analysis and show that, while p-hacking is probably common, its effect seems to be weak"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    11,
+    "Both approaches yielded similar results: evidential value for claims that the mean effect sizes for key study questions are nonzero—the conclusions researchers "
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    11,
+    "Amazingly, some animal ethics boards even encourage or mandate the termination of research if a significant result is obtained during the study, which is a part"
+   ]
+  ],
+  "revisions": 20,
+  "claims": 15
+ },
+ "plos_pmed.0020124_why-most-published-research-findings-are.pdf": {
+  "field": "general",
+  "score": 34.2,
+  "standard_score": 34.2,
+  "items": {
+   "code": "missing",
+   "data": "present",
+   "splits": "not_applicable",
+   "preprocessing": "missing",
+   "hyper": "not_applicable",
+   "seeds": "missing",
+   "variance": "missing",
+   "stat_test": "present",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "missing",
+   "hardware": "missing",
+   "software": "missing",
+   "license": "present",
+   "limitations": "partial"
+  },
+  "cse_evidence": {},
+  "defined": 1,
+  "undefined": [
+   "RCT"
+  ],
+  "from_dictionary": [],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "no_limitations",
+    "medium",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "There is increasing concern that most current published research fi ndings are false."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Simulations show that for most study designs and settings, it is more likely for a research claim to be false than true."
+   ]
+  ],
+  "revisions": 11,
+  "claims": 2
+ },
+ "pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf": {
+  "field": "general",
+  "score": 60.5,
+  "standard_score": 60.5,
+  "items": {
+   "code": "missing",
+   "data": "partial",
+   "splits": "not_applicable",
+   "preprocessing": "missing",
+   "hyper": "not_applicable",
+   "seeds": "present",
+   "variance": "present",
+   "stat_test": "present",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "partial",
+   "hardware": "present",
+   "software": "missing",
+   "license": "present",
+   "limitations": "present"
+  },
+  "cse_evidence": {},
+  "defined": 22,
+  "undefined": [
+   "MM",
+   "VO2",
+   "ZK",
+   "JN",
+   "KJ",
+   "VO",
+   "XF",
+   "LS",
+   "MET",
+   "QS",
+   "SS"
+  ],
+  "from_dictionary": [],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "Participants in HIIT condition performed 20 min of repeated 8 s cycling interspersed with 12 s rest intervals, and those in MVCT condition cycled continuously f"
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "Although MVCT group had a significant reduction in total body weight (TBW, −1.8%, p = 0.034), fat mass (FM, - 4.7%, p = 0.002) and percentage body fat (PBF, −2."
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    2,
+    "Currently, more than 35% of men and close to 40% of women are overweight or obese [1]."
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    11,
+    "The magnitudes of the improvement in _VO2peak as a result of the prescribed exercises were 0.7 ± 0.3 MET in HIIT and 1.1 ± 0.3 MET in MVCT, which seem to be eff"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    11,
+    "While total exercise energy expenditure has explained 18–30% of the reductions of body weight, BMI, FM and PBF, the lack of group differences suggests that the "
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    12,
+    "After the removal of these subjects from the analysis, similar reductions were still observed in circulating testosterone (p = 0.090, η2 = 0.24) and estradiol ("
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    2,
+    "For both conditions, exercise training led to a decline in resting testosterone and estradiol levels, but had no significant effect on blood lipids."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    2,
+    "Currently, more than 35% of men and close to 40% of women are overweight or obese [1]."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    3,
+    "Given that, with the same exercise volume, higher exercise intensity is more effective for improving aerobic capacity than lower exercise intensity [29], it is "
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    10,
+    "On the other hand, subjects in HIIT condition had higher PAES scores during training intervention, and they used half of the exercise time to achieve similar im"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    10,
+    "HIIT had significant higher scores than those of MVCT in any week of exercise intervention. *p < 0.05, **p < 0.01."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    11,
+    "According to the dose-response analyses, each 1-MET improvement in cardiorespiratory fitness was associated with 15% decrement in risk of cardiovascular disease"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    12,
+    "Therefore, it was suspected that HIIT would not be considered enjoyable by the sedentary overweight and obese subjects in this study, although Bartlett et al [2"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    12,
+    "We observed that PAES scores in HIIT were significantly higher than those measured in MVCT condition during the intervention, contrary to the findings reported "
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    13,
+    "Furthermore, when the PAES scores in the first two training sessions were compared, the continuous training group still had significantly lower scores than thos"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    13,
+    "In conclusion, the present study shows that when compared to MVCT, the HIIT exercise protocol implemented in this study is a more enjoyable and time-efficient a"
+   ]
+  ],
+  "revisions": 22,
+  "claims": 20
+ },
+ "pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf": {
+  "field": "general",
+  "score": 39.5,
+  "standard_score": 39.5,
+  "items": {
+   "code": "missing",
+   "data": "partial",
+   "splits": "not_applicable",
+   "preprocessing": "missing",
+   "hyper": "not_applicable",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "missing",
+   "baselines": "present",
+   "ablation": "partial",
+   "metrics": "partial",
+   "hardware": "missing",
+   "software": "missing",
+   "license": "present",
+   "limitations": "present"
+  },
+  "cse_evidence": {},
+  "defined": 10,
+  "undefined": [
+   "NH",
+   "ACR",
+   "SF",
+   "DL",
+   "BMI",
+   "FDRH",
+   "IDMS",
+   "COC",
+   "JH",
+   "JO"
+  ],
+  "from_dictionary": [],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    1,
+    "[8, 9] The healthcare burden is highest in early stages due to increased prevalence, affecting around 35% of those over 70 years."
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    1,
+    "[8, 9] The healthcare burden is highest in early stages due to increased prevalence, affecting around 35% of those over 70 years."
+   ],
+   [
+    "significance_without_test",
+    "high",
+    2,
+    "Data from the American National Health and Nutrition Examination Survey demonstrate that in the period 1999 to 2004 the prevalence of CKD stages 1 to 4 increase"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    9,
+    "This latter point has been very recently clarified as an epidemiological study in Morocco found that up to 30% of patients initially classified as CKD 3a using "
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "All stages of CKD are associated with increased risks of cardiovascular morbidity, premature mortality, and/or decreased quality of life."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Future research should evaluate intervention strategies deliverable at scale to delay the progression of CKD and improve CVD outcomes."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    8,
+    "These estimates indicate that CKD may be more common than diabetes, which has an estimated prevalence of 8�2%."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    9,
+    "Although percentage prevalence was higher in more developed areas projected worldwide population changes will increase the absolute numbers of people in develop"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    10,
+    "The high prevalence and the extensive existing evidence that intervention is effective in reducing CVD events demonstrates a need for national initiatives that "
+   ]
+  ],
+  "revisions": 18,
+  "claims": 12
+ },
+ "pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf": {
+  "field": "general",
+  "score": 36.8,
+  "standard_score": 36.8,
+  "items": {
+   "code": "missing",
+   "data": "partial",
+   "splits": "not_applicable",
+   "preprocessing": "missing",
+   "hyper": "not_applicable",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "missing",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "partial",
+   "hardware": "missing",
+   "software": "missing",
+   "license": "present",
+   "limitations": "present"
+  },
+  "cse_evidence": {},
+  "defined": 9,
+  "undefined": [
+   "FAO",
+   "MODIS",
+   "VV",
+   "CNJ",
+   "CSIRO",
+   "ECHAM4",
+   "SLP"
+  ],
+  "from_dictionary": [],
+  "gaps": [
+   [
+    "no_code",
+    "high",
+    null,
+    ""
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    2,
+    "It calls for ending deforestation from the production of agricultural commodities such as palm oil by no later than 2020 as part of a broader goal of reducing d"
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    2,
+    "It calls for ending deforestation from the production of agricultural commodities such as palm oil by no later than 2020 as part of a broader goal of reducing d"
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    13,
+    "Our estimate for Indonesia (54% from deforestation) is similar to a previous study (56%) [9], while our estimate for Malaysia (39% from deforestation) was lower"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Palm oil is the most widely traded vegetable oil globally, with demand projected to increase substantially in the future."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "The conversion to date, and future expansion, threatens biodiversity and increases greenhouse gas emissions."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "To guide interventions aimed at reducing tropical deforestation due to oil palm, we analysed recent expansions and modelled likely future ones."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "In Southeast Asia, 45% of sampled oil palm plantations came from areas that were forests in 1989."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "For South America, the percentage was 31%."
+   ]
+  ],
+  "revisions": 17,
+  "claims": 9
+ },
+ "pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf": {
+  "field": "cse",
+  "score": 67.2,
+  "standard_score": 73.9,
+  "items": {
+   "code": "present",
+   "data": "present",
+   "splits": "partial",
+   "preprocessing": "present",
+   "hyper": "present",
+   "seeds": "missing",
+   "variance": "present",
+   "stat_test": "missing",
+   "baselines": "present",
+   "ablation": "missing",
+   "metrics": "present",
+   "hardware": "present",
+   "software": "partial",
+   "license": "present",
+   "limitations": "present",
+   "cs_code_link": "present",
+   "cs_data_access": "present",
+   "cs_hardware_spec": "partial",
+   "cs_compute_budget": "missing",
+   "cs_hyper_search": "missing",
+   "cs_model_selection": "missing",
+   "cs_model_size": "present",
+   "cs_baseline_setup": "present",
+   "cs_table_uncertainty": "partial",
+   "cs_efficiency": "missing"
+  },
+  "cse_evidence": {
+   "cs_code_link": [
+    28,
+    "See https://github.com/KaimingHe/deep-residual-networks for some existing implementations of 2D residual neural network."
+   ],
+   "cs_data_access": [
+    1,
+    "Data Availability Statement: 1) The PDB25 list is available at http://dunbrack.fccc.edu/PISCES.php."
+   ],
+   "cs_hardware_spec": [
+    27,
+    "Currently we cannot apply more than 100 layers to our model due to insufficient memory of a GPU card (12G)."
+   ],
+   "cs_model_size": [
+    28,
+    "Further, a 2D convolutional neural network with a smaller window size also has a smaller number of parameters than a network with a larger window size."
+   ],
+   "cs_baseline_setup": [
+    31,
+    "When CCMpred- and MetaPSICOV-predicted contacts are used to build 3D models, we also use the secondary structure predicted by RaptorX-Property to warrant a fair"
+   ]
+  },
+  "defined": 10,
+  "undefined": [
+   "CAMEO",
+   "RMSD",
+   "PDB",
+   "CASP11",
+   "PSICOV",
+   "SD2",
+   "PDB70",
+   "BLAST",
+   "COV",
+   "JX",
+   "DOCX",
+   "NOE",
+   "RBO",
+   "DSSP",
+   "PDB25",
+   "SBD",
+   "SICOV",
+   "SW"
+  ],
+  "from_dictionary": [
+   [
+    "HMM",
+    "hidden Markov model",
+    5
+   ],
+   [
+    "F1",
+    "F1 score (harmonic mean of precision and recall)",
+    4
+   ],
+   [
+    "GPU",
+    "graphics processing unit",
+    4
+   ],
+   [
+    "ReLU",
+    "rectified linear unit",
+    1
+   ]
+  ],
+  "gaps": [
+   [
+    "unsupported_claim",
+    "high",
+    25,
+    "Our (blind) test results show that our method dramatically improves contact prediction, exceeding currently the best methods (e.g., CCMpred, Evfold, PSICOV and "
+   ],
+   [
+    "unsupported_claim",
+    "high",
+    25,
+    "Their average TMscore is no more than 0.17, which is the expected TMscore of any two randomly-chosen proteins."
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    26,
+    "Our method outperformed the 2nd best server iFold_1 by about 7.6% in terms of the total F1 score and the 3rd best server (i.e., an improved MetaPSICOV) by about"
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    26,
+    "Our test shows that a deep model with 9 and 30 layers have top L/10 accuracy ~0.1 and ~0.03 worse than a 60-layer model, respectively."
+   ],
+   [
+    "number_not_in_results",
+    "high",
+    26,
+    "This will improve the top L/k (k = 1, 2, 5, 10) contact prediction accuracy by 1–3% and accordingly the quality of the resultant 3D models by 0.01–0.02 in terms"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "By using very deep residual networks, we can accurately model contact occurrence patterns and complex sequence-structure relationship and thus, obtain higherqua"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    1,
+    "Our method greatly outperforms existing methods and leads to much more accurate contactassisted folding."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    2,
+    "Our method also achieved the highest F1 score on free-modeling targets in the latest CASP (Critical Assessment of Structure Prediction), although it was not ful"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    3,
+    "Our experimental results show that our method yields much better accuracy than existing methods and also result in much more accurate contact-assisted folding."
+   ],
+   [
+    "superlative_unsupported",
+    "medium",
+    25,
+    "Our (blind) test results show that our method dramatically improves contact prediction, exceeding currently the best methods (e.g., CCMpred, Evfold, PSICOV and "
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    25,
+    "Further, our experimental results also show that our contact-assisted models are much better than template-based models built from the training proteins of our "
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    25,
+    "Our method outperforms ECA due to a couple of reasons."
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    25,
+    "Our method uses a subset of protein features used by MetaPSICOV, but outperforms MetaPSICOV mainly because we explicitly model contact patterns (or high-order c"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    25,
+    "Second, our contact-assisted models also have better quality than homology models, so it is unlikely that our predicted contact maps are simply copied from the "
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    26,
+    "The depth of our deep model is as important as CCMpred, as evidenced by the fact that our deep method has much better accuracy than MetaPSICOV although we use a"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    26,
+    "An interesting finding is that although our training set contains only ~100 membrane proteins, our model works well for membrane proteins, much better than CCMp"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    26,
+    "This implies that the sequence-structure relationship learned by our model from non-membrane proteins can generalize well to membrane protein contact prediction"
+   ],
+   [
+    "generalization_narrow_evidence",
+    "medium",
+    26,
+    "This implies that the sequence-structure relationship learned by our model from non-membrane proteins can generalize well to membrane protein contact prediction"
+   ],
+   [
+    "unsupported_claim",
+    "medium",
+    26,
+    "This may be because that both soluble and membrane proteins share similar contact occurrence patterns in their contact maps and our deep method improves over pr"
+   ]
+  ],
+  "revisions": 30,
+  "claims": 25
+ }
+}

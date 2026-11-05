@@ -1,0 +1,585 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "a8368e08544c",
+    "title": "A dsRNA-binding mutant reveals only a minor role of exonuclease activity in interferon antagonism by the arenavirus nucleoprotein",
+    "n_pages": 28,
+    "source_name": "pmc_PMC9815661_a-dsrna-binding-mutant-reveals-only.pdf",
+    "warnings": [],
+    "n_sentences": 668
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "We found that expression of Tacaribe virus (TCRV) NP containing this RNA-binding H426A mutation was still able to efficiently block IFN-β promoter activity in response to Sendai virus infection, despite being strongly impaired in its exonuclease activity.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "This was in contrast to a conventional exonuclease active site mutant (E388A), which was impaired with respect to both exonuclease activity and IFN antagonism.",
+        "page": 1,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "However, efforts to analyze this contribution are complicated by the functional overlap between the exonuclease active site and a neighboring region involved in IKKε-binding and subsequent inhibition of IRF3 activation, which also plays an important role in IFN production.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 2
+        },
+        {
+          "text": "We found that expression of Tacaribe virus (TCRV) NP containing this RNA-binding H426A mutation was still able to efficiently block IFN-β promoter activity in response to Sendai virus infection, despite being strongly impaired in its exonuclease activity.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 5
+        }
+      ],
+      "approach": [
+        {
+          "text": "Finally, we generated a novel ExoN mutant based on mutation of H426A, which destabilizes binding of the non-substrate RNA strand without disrupting the ExoN active site or the region responsible for regulation of IKKε-binding/IRF3 inhibition.",
+          "page": 4,
+          "section": "introduction",
+          "sentence_id": 61
+        }
+      ],
+      "results": [
+        {
+          "text": "G389A, G389P, GPPT>DLQL or GPPT>GLQL) resulted in a marked increase in Gibb’s free energy values, suggesting reduced stability of these mutants compared to wild-type (Fig 1B).",
+          "page": 4,
+          "section": "results",
+          "sentence_id": 71
+        },
+        {
+          "text": "Interestingly, while protein expression levels based on transfection of an equivalent amount of plasmid was comparable for both the classical ExoN active site mutant (E388A) and the substrate RNA-binding mutant (H426A) (Fig 2, bottom panel and S2 Fig, panel A), for the other mutants affecting the active site-proximal loop, expression was markedly reduced.",
+          "page": 4,
+          "section": "results",
+          "sentence_id": 80
+        },
+        {
+          "text": "As expected, we found that all three mutants had a strongly reduced ExoN activity compared to TCRV NP (WT), with the GPPT>DLQL mutant showing a 97% loss of activity, the E388A mutant showing an 85% loss of activity, and the H426A mutant showing a 68% loss of activity.",
+          "page": 7,
+          "section": "results",
+          "sentence_id": 123
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Importantly, since the mutational approach used to generate the H426A mutant targeted substrate RNA-binding, it involves residues located away from the ExoN-proximal DIEG(R) motif associated with IKKε-binding/IRF3 inhibition (Fig 1), and as such it is reasonable to assume that it does not impact this mechanism.",
+          "page": 14,
+          "section": "discussion",
+          "sentence_id": 261
+        },
+        {
+          "text": "While it must be noted that IFN-β mRNA expression does not always correlate with levels of the bioactive protein, the only regulatory mechanisms described to date by which arenavirus NP regulates IFN-β production act at the transcriptional level (reviewed in [31]).",
+          "page": 15,
+          "section": "discussion",
+          "sentence_id": 275
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 8,
+      "text": "Further, in IFN-competent cells, the TCRV-H426A RNAbinding mutant showed more robust growth and delayed IFN-β mRNA upregulation compared to the TCRV-E388A active site mutant.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "generalization",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 272,
+          "page": 15,
+          "section": "discussion",
+          "quote": "This was despite the fact that, in contrast to wild-type TCRV and the RNA-binding mutant (H426A), the active site (E388A) mutant showed no detectable growth in IFN-competent A549 cells (Fig 6A).",
+          "score": 0.248,
+          "shared_numbers": [],
+          "shared_terms": [
+            "388",
+            "426",
+            "active",
+            "cell",
+            "growth",
+            "ifn-competent",
+            "mutant",
+            "show"
+          ],
+          "lexical": 0.308
+        },
+        {
+          "sentence_id": 188,
+          "page": 11,
+          "section": "other",
+          "quote": "Further, consistent with their impaired ExoN activity, both mutants showed marked impairment in their growth in IFN-competent A549 cells; however, growth of the H426A mutant was still significantly more robust than for the E388A mutant, for which no detectable growth was observed at all (Fig 6A, right panel).",
+          "score": 0.237,
+          "shared_numbers": [],
+          "shared_terms": [
+            "388",
+            "426",
+            "cell",
+            "further",
+            "growth",
+            "ifn-competent",
+            "mutant",
+            "robust"
+          ],
+          "lexical": 0.331
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.248,
+      "flags": [],
+      "confidence": 0.83,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 28,
+        "claim_zone_without_new_data": 29,
+        "fragment": 1
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 260,
+      "text": "However, despite these significant reductions in ExoN activity, the H426A mutant still efficiently suppressed IFN-β promoter activation in response to SeV infection (88% of WT inhibition levels, Fig 4).",
+      "page": 14,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "88",
+        "4"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 152,
+          "page": 9,
+          "section": "results",
+          "quote": "88% of WT inhibition; Fig 4, left panel).",
+          "score": 0.622,
+          "shared_numbers": [
+            "4",
+            "88"
+          ],
+          "shared_terms": [
+            "4",
+            "88",
+            "fig",
+            "inhibition",
+            "wt"
+          ],
+          "lexical": 0.277
+        },
+        {
+          "sentence_id": 153,
+          "page": 9,
+          "section": "results",
+          "quote": "This difference in IFN antagonism phenotype was observed despite equivalent expression of all NP mutants (Fig 4, right panel and S2 Fig, panel C).",
+          "score": 0.375,
+          "shared_numbers": [
+            "4"
+          ],
+          "shared_terms": [
+            "4",
+            "despite",
+            "fig",
+            "ifn",
+            "mutant"
+          ],
+          "lexical": 0.155
+        },
+        {
+          "sentence_id": 139,
+          "page": 8,
+          "section": "results",
+          "quote": "As expected, we could show robust inhibition of reporter expression following transfection of TCRV-NP (WT) either with or without a Flag-tag as well as another well described antagonist of IFN production, Ebola virus VP35 (Fig 4, left panel).",
+          "score": 0.359,
+          "shared_numbers": [
+            "4"
+          ],
+          "shared_terms": [
+            "4",
+            "fig",
+            "ifn",
+            "inhibition",
+            "wt"
+          ],
+          "lexical": 0.131
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.622,
+      "flags": [],
+      "confidence": 0.86,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {}
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 2,
+    "support": {
+      "strong": 1,
+      "moderate": 0,
+      "weak": 1,
+      "none": 0
+    },
+    "evidence_status": {
+      "found": 2,
+      "no_supporting_evidence": 0,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 42.1,
+    "band": "low",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 21,
+            "section": "other",
+            "quote": "Post-hoc tests were selected based on the dataset: Dunnett’s (comparison to a control), Tukey’s (all possible comparisons), or Sidak’s (selected comparisons), as indicated in the respective figure legends.",
+            "sentence_id": 409
+          }
+        ],
+        "advice": "Name every dataset with version/source and state how to obtain it."
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 6,
+            "section": "results",
+            "quote": "Means and standard deviations are shown from four independent replicates.",
+            "sentence_id": 108
+          },
+          {
+            "page": 8,
+            "section": "results",
+            "quote": "Data are shown as means and standard deviations of three independent replicates.",
+            "sentence_id": 146
+          },
+          {
+            "page": 9,
+            "section": "results",
+            "quote": "Data are shown as means and standard deviations of two independent replicates.",
+            "sentence_id": 166
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 6,
+            "section": "results",
+            "quote": "Statistical analysis was performed using a one-way ANOVA with Dunnett’s post-hoc test for differences compared to TCRV NP (WT)-Flag (50 ng) (ns–not significant, p 0.01, p 0.0001).",
+            "sentence_id": 109
+          },
+          {
+            "page": 8,
+            "section": "results",
+            "quote": "Statistical analysis was performed using two-way ANOVA with Tukey’s post-hoc test for differences compared to TCRV NP (WT)-Flag (indicated with stars; ns—not significant, p 0.05, p 0.01, p 0.001, p 0.0001) or between TCRV NP(E388A)-Flag, an",
+            "sentence_id": 147
+          },
+          {
+            "page": 9,
+            "section": "results",
+            "quote": "Statistical analysis was performed using one-way ANOVA with Dunnett’s post-hoc test for differences compared to the control without TCRV NP (-NP) (ns = not significant, p 0.01) or Tukey’s post-hoc test for differences compared to TCRV NP (W",
+            "sentence_id": 167
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Further, in IFN-competent cells, the TCRV-H426A RNAbinding mutant showed more robust growth and delayed IFN-β mRNA upregulation compared to the TCRV-E388A active site mutant.",
+            "sentence_id": 8
+          },
+          {
+            "page": 4,
+            "section": "introduction",
+            "quote": "The E388A and H426A mutants were further compared with respect to virus growth, mutation stability, ExoN activity and their ability to inhibit IFN-β production either in a reporter assay or during virus infection.",
+            "sentence_id": 62
+          },
+          {
+            "page": 4,
+            "section": "results",
+            "quote": "G389A, G389P, GPPT>DLQL or GPPT>GLQL) resulted in a marked increase in Gibb’s free energy values, suggesting reduced stability of these mutants compared to wild-type (Fig 1B).",
+            "sentence_id": 71
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 12,
+            "section": "other",
+            "quote": "Further examination of IFN-β production in A549 cells in response to infection with these viruses showed that recombinant rTCRV-WT, after producing a slight transient increase in IFN-β mRNA transcription at 4 hours post-infection (hpi), was",
+            "sentence_id": 202
+          }
+        ],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "front",
+            "quote": "PLoS Pathog 19(1): e1011049. https://doi.org/10.1371/journal.ppat.1011049 Editor: Susan R. Ross, University of Illinois at Chicago College of Medicine, UNITED STATES Received: July 18, 2022 Accepted: December 7, 2022 Published: January 5, 2",
+            "sentence_id": 12
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "Interestingly, however, it appears that only Z proteins of pathogenic arenaviruses, but not of apathogenic arenaviruses, are able to use this mechanism [14].",
+            "sentence_id": 33
+          },
+          {
+            "page": 10,
+            "section": "other",
+            "quote": "However, when the E388A mutation was introduced using only a single nucleotide change (GAG>GCG) we observed that the virus rapidly reverted to wild-type during further passaging/propagation (S6 Fig), despite these procedures being performed",
+            "sentence_id": 176
+          },
+          {
+            "page": 14,
+            "section": "discussion",
+            "quote": "Interestingly, however, mutation of the ExoN active site did not seem to result in",
+            "sentence_id": 264
+          }
+        ],
+        "advice": "Add a limitations section naming settings where the method fails."
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 1.0,
+        "score": 33.3
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 3.5,
+        "score": 63.6
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.0,
+        "score": 50.0
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.5,
+        "score": 25.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.5,
+        "score": 100.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 0.5,
+        "score": 50.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "no_limitations",
+      "severity": "medium",
+      "message": "No limitations section or discussion of failure cases was found.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Further, in IFN-competent cells, the TCRV-H426A RNAbinding mutant showed more robust growth and delayed IFN-β mRNA upregulation compared to the TCRV-E388A active site mutant."
+    },
+    {
+      "id": "G4",
+      "kind": "generalization_narrow_evidence",
+      "severity": "medium",
+      "message": "Generalisation/robustness claim, but only 0 evaluation dataset(s) detected (none named).",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Further, in IFN-competent cells, the TCRV-H426A RNAbinding mutant showed more robust growth and delayed IFN-β mRNA upregulation compared to the TCRV-E388A active site mutant."
+    }
+  ],
+  "datasets": [],
+  "metrics": [
+    "F1"
+  ]
+}

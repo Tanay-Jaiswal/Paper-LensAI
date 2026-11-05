@@ -1,0 +1,206 @@
+"""Markdown and standalone-HTML renderers for an Analysis."""
+from __future__ import annotations
+
+import html
+
+from .claims import coverage_text
+from .pipeline import Analysis
+from .revisions import revision_checklist
+
+BADGE = {"strong": "🟢 strong", "moderate": "🟡 moderate", "weak": "🟠 weak", "none": "🔴 none"}
+NUM_STATUS = {"inconsistent": "🔴 does not add up", "not_reproduced": "🟠 not reproduced", "consistent": "🟢 checks out"}
+
+
+def to_markdown(a: Analysis) -> str:
+    d = a.to_dict()
+    out = [f"# PaperLens report: {a.doc.title}", "",
+           f"*{a.doc.n_pages} pages · {len(a.claims)} claims · reproducibility {a.rubric['score']}/100 ({a.rubric['band']})*", ""]
+    if a.mode:
+        out += [f"*Checks: {a.mode['label']}. {a.mode['reason']}*" + (
+            f" *Standard 15-item score: {a.rubric['standard_score']}/100.*" if a.mode["field"] == "cse" else ""), ""]
+    if a.doc.warnings:
+        out += ["> **Warnings:** " + " ".join(a.doc.warnings), ""]
+    out += ["## Summary", ""]
+    for t in a.summary.get("tldr", []):
+        out.append(f"- {t['text']} *(p.{t['page']})*")
+    for facet, items in a.summary.get("facets", {}).items():
+        if items:
+            out += ["", f"**{facet.capitalize()}**"] + [f"- {i['text']} *(p.{i['page']})*" for i in items]
+    out += ["", "## Research Evidence Ledger", "",
+            "| ID | Claim | Page | Type | Support | Best evidence |", "|---|---|---|---|---|---|"]
+    for c in a.claims:
+        ev = c.evidence[0] if c.evidence else None
+        evs = f"p.{ev.page}: {ev.quote[:90]}…" if ev else (c.evidence_note or "No supporting evidence found")
+        cov = coverage_text(c.quantity_coverage) if ev else ""
+        if cov and c.quantity_coverage["missing"]:
+            evs += f" ({cov})"
+        out.append(f"| {c.id} | {c.text} | {c.page} | {c.claim_type} | {BADGE[c.support]} | {evs} |".replace("\n", " "))
+    out += ["", f"## Reproducibility: {a.rubric['score']}/100", "", f"_{a.rubric['formula']}_", "",
+            "| Item | Status | Weight | Evidence |", "|---|---|---|---|"]
+    for i in a.rubric["items"]:
+        ev = i["evidence"][0] if i["evidence"] else None
+        out.append(f"| {i['label']}{' (CS)' if i['key'].startswith('cs_') else ''} | {i['status']} | {i['weight']} | " +
+                   (f"p.{ev['page']}: {ev['quote'][:80]}…" if ev else i["advice"]) + " |")
+    out += ["", f"_{a.rubric['disclaimer']}_", "", "## Evidence gaps", ""]
+    if not a.gaps:
+        out.append("No gaps detected by the current rules.")
+    for g in a.gaps:
+        loc = f" (p.{g.page})" if g.page else ""
+        out.append(f"- **[{g.severity.upper()}] {g.kind}**{loc}: {g.message}" + (f' — "{g.quote}"' if g.quote else ""))
+    g = a.glossary
+    if g:
+        out += ["", "## Glossary (abbreviations defined by the paper)", ""]
+        out += [f"- **{d['abbr']}**: {d['long']} *(p.{d['page']})*" for d in g["defined"]] or ["None defined."]
+        if g.get("from_dictionary"):
+            out += ["", "Meanings from the built-in CS dictionary (not defined in the paper; standard meanings, the "
+                    "paper may differ):", ""]
+            out += [f"- **{d['abbr']}**: {d['long']}" + (" *(ambiguous)*" if d["ambiguous"] else "")
+                    + f" *(first p.{d['page']}, ×{d['uses']})*" for d in g["from_dictionary"]]
+        if g["undefined"]:
+            out += ["", "Used but never defined: " + ", ".join(u["abbr"] for u in g["undefined"]) + "."]
+    rev = revision_checklist(a)
+    out += ["", "## Revision checklist for the authors", ""]
+    if not rev:
+        out.append("No finding needs a revision.")
+    for x in rev:
+        loc = f" (p.{x['page']})" if x["page"] else ""
+        out.append(f"- [ ] **[{x['priority'].upper()}] {x['category']}**{loc}: {x['action']} {x['why']} *({x['source']})*")
+    r = a.citations
+    if r:
+        out += ["", "## Citation and reference checks", "",
+                f"*Style: {r['style']} · {r['n_entries']} entries · {r['n_citations']} in-text citations.*", ""]
+        if r["note"]:
+            out += [f"> {r['note']}", ""]
+        out += [f"- **[{f['severity'].upper()}] {f['kind']}**" + (f" (p.{f['page']})" if f["page"] else "") + f": {f['message']}"
+                for f in r["findings"]] or ["No citation or reference problem found by the rules."]
+    c = a.consistency
+    if c:
+        out += ["", "## Numbers check", "",
+                f"*{c['n_checked']} statements recomputed: {c['n_inconsistent']} do not add up, "
+                f"{c['n_not_reproduced']} not reproduced, {c['n_consistent']} check out.*", "", f"_{c['caveat']}_", ""]
+        if c["checks"]:
+            out += ["| ID | Result | Check | Recomputed | Printed | Page |", "|---|---|---|---|---|---|"]
+            for x in c["checks"]:
+                out.append(f"| {x['id']} | {NUM_STATUS[x['status']]} | {c['labels'].get(x['kind'], x['kind'])} | "
+                           f"{x['formula']} | {x['stated']} | {x['page']} |".replace("\n", " "))
+    return "\n".join(out) + "\n"
+
+
+_CSS = ("body{font:15px/1.5 system-ui,Segoe UI,sans-serif;max-width:1000px;margin:2rem auto;padding:0 1rem;color:#16202a}"
+        "h1{font-size:22px}h2{font-size:18px;margin-top:2rem;border-bottom:1px solid #e2e6ea;padding-bottom:4px}"
+        "table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;"
+        "padding:6px 8px;border-bottom:1px solid #e2e6ea}.m{color:#5d6b7a;font-size:13px}"
+        ".w{background:#fff6d6;border:1px solid #a67c00;border-radius:6px;padding:8px 12px;margin:8px 0}"
+        ".p{display:inline-block;border-radius:999px;padding:1px 9px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap}"
+        ".strong,.present,.low{background:#1a7f4b}.moderate,.partial,.medium{background:#a67c00}.weak{background:#c4620d}"
+        ".none,.missing,.high{background:#b3261e}.not_applicable{background:#5d6b7a}")
+
+
+def to_html(a: Analysis) -> str:
+    """Standalone HTML report (no scripts, no external files); the same content as the Markdown report."""
+    e = html.escape
+
+    def pill(k: str) -> str:
+        return f"<span class='p {e(k)}'>{e(k.replace('_', ' '))}</span>"
+
+    out = ["<!doctype html><html lang=en><meta charset=utf-8>", f"<title>PaperLens report: {e(a.doc.title)}</title>",
+           f"<style>{_CSS}</style><body>", f"<h1>PaperLens report: {e(a.doc.title)}</h1>",
+           f"<p class=m>{a.doc.n_pages} pages · {len(a.claims)} claims · reproducibility checklist "
+           f"{a.rubric['score']}/100 ({e(a.rubric['band'])}) · {len(a.gaps)} candidate evidence gaps</p>"]
+    if a.mode:
+        out.append(f"<p class=m>Checks: <b>{e(a.mode['label'])}</b>. {e(a.mode['reason'])}" + (
+            f" Standard 15-item score: {a.rubric['standard_score']}/100." if a.mode["field"] == "cse" else "") + "</p>")
+    out += [f"<div class=w>{e(w)}</div>" for w in a.doc.warnings]
+    out.append("<h2>Summary</h2><ul>")
+    out += [f"<li>{e(t['text'])} <span class=m>p.{t['page']}</span></li>" for t in a.summary.get("tldr", [])]
+    out.append("</ul>")
+    for facet, items in a.summary.get("facets", {}).items():
+        if items:
+            out.append(f"<p><b>{e(facet.capitalize())}</b></p><ul>" +
+                       "".join(f"<li>{e(i['text'])} <span class=m>p.{i['page']}</span></li>" for i in items) + "</ul>")
+    out.append("<h2>Research Evidence Ledger</h2><table><tr><th>ID</th><th>Claim</th><th>Support</th><th>Evidence</th></tr>")
+    for c in a.claims:
+        if c.evidence:
+            ev = "".join(f"<div><span class=m>p.{x.page}, {e(x.section)}, score {x.score}</span><br>{e(x.quote)}</div>"
+                         for x in c.evidence)
+            cov = coverage_text(c.quantity_coverage)
+            if cov:
+                ev += f"<div class=m>{e(cov)}</div>"
+        else:
+            ev = f"<b>{e(c.evidence_note or 'No supporting evidence found')}</b>"
+        out.append(f"<tr><td>{e(c.id)}</td><td>{e(c.text)}<div class=m>p.{c.page}, {e(c.section)}, {e(c.claim_type)}"
+                   f"{', hedged' if c.hedged else ''}</div></td><td>{pill(c.support)}</td><td>{ev}</td></tr>")
+    out.append(f"</table><h2>Reproducibility checklist: {a.rubric['score']}/100 ({e(a.rubric['band'])})</h2>"
+               f"<p class=w>{e(a.rubric['disclaimer'])}</p><p class=m>{e(a.rubric['formula'])}</p>"
+               "<table><tr><th>Item</th><th>Status</th><th>Weight</th><th>Evidence in paper / advice</th></tr>")
+    for i in a.rubric["items"]:
+        ev = i["evidence"][0] if i["evidence"] else None
+        cs = " <span class=m>(CS)</span>" if i["key"].startswith("cs_") else ""
+        out.append(f"<tr><td>{e(i['label'])}{cs}</td><td>{pill(i['status'])}</td><td>{i['weight']}</td><td>" +
+                   (f"<span class=m>p.{ev['page']}</span> {e(ev['quote'])}" if ev else f"<span class=m>{e(i['advice'])}</span>") +
+                   "</td></tr>")
+    out.append("</table><h2>Evidence gaps (candidates for a reviewer)</h2>")
+    if not a.gaps:
+        out.append("<p>No gaps detected by the current rules.</p>")
+    else:
+        out.append("<table><tr><th>Severity</th><th>Type</th><th>Detail</th><th>Page</th></tr>")
+        for g in a.gaps:
+            out.append(f"<tr><td>{pill(g.severity)}</td><td>{e(g.kind.replace('_', ' '))}</td><td>{e(g.message)}" +
+                       (f"<div class=m>“{e(g.quote)}”</div>" if g.quote else "") + f"</td><td>{g.page or '—'}</td></tr>")
+        out.append("</table>")
+    g = a.glossary
+    if g:
+        out.append(f"<h2>Glossary: {len(g['defined'])} abbreviations defined by the paper</h2><p class=m>{e(g['note'])}</p>")
+        if g["defined"]:
+            out.append("<table><tr><th>Abbreviation</th><th>Meaning</th><th>Page</th></tr>" + "".join(
+                f"<tr><td><b>{e(d['abbr'])}</b></td><td>{e(d['long'])}</td><td>{d['page']}</td></tr>" for d in g["defined"])
+                + "</table>")
+        if g.get("from_dictionary"):
+            out.append("<p><b>Meanings from the built-in CS dictionary</b> <span class=m>(not defined in the paper; "
+                       "standard meanings, the paper may mean something else)</span></p><table><tr><th>Abbreviation</th>"
+                       "<th>Dictionary meaning</th><th>First page</th></tr>" + "".join(
+                           f"<tr><td><b>{e(d['abbr'])}</b></td><td>{e(d['long'])}"
+                           f"{' <span class=m>(ambiguous)</span>' if d['ambiguous'] else ''}</td><td>{d['page']}</td></tr>"
+                           for d in g["from_dictionary"]) + "</table>")
+        if g["undefined"]:
+            out.append("<p class=m>Used but never defined: " + e(", ".join(u["abbr"] for u in g["undefined"])) + ".</p>")
+    rev = revision_checklist(a)
+    out.append(f"<h2>Revision checklist for the authors ({len(rev)})</h2>")
+    if not rev:
+        out.append("<p>No finding needs a revision.</p>")
+    else:
+        out.append("<table><tr><th>Priority</th><th>Area</th><th>What to change and why</th><th>Page</th></tr>")
+        for x in rev:
+            out.append(f"<tr><td>{pill(x['priority'])}</td><td>{e(x['category'])}</td><td><b>{e(x['action'])}</b>"
+                       f"<div>{e(x['why'])}</div>" + (f"<div class=m>“{e(x['quote'])}”</div>" if x["quote"] else "")
+                       + f"<div class=m>{e(x['id'])} · from {e(x['source'])}</div></td><td>{x['page'] or '—'}</td></tr>")
+        out.append("</table>")
+    r = a.citations
+    if r:
+        out.append(f"<h2>Citation and reference checks</h2><p class=m>Style: {e(r['style'])} · {r['n_entries']} entries · "
+                   f"{r['n_citations']} in-text citations. {e(r['caveat'])}</p>")
+        if r["note"]:
+            out.append(f"<div class=w>{e(r['note'])}</div>")
+        if r["findings"]:
+            out.append("<table><tr><th>Severity</th><th>Check</th><th>Detail</th><th>Page</th></tr>" + "".join(
+                f"<tr><td>{pill(f['severity'])}</td><td>{e(f['kind'].replace('_', ' '))}</td><td>{e(f['message'])}"
+                + (f"<div class=m>“{e(f['quote'])}”</div>" if f["quote"] else "") + f"</td><td>{f['page'] or '—'}</td></tr>"
+                for f in r["findings"]) + "</table>")
+        else:
+            out.append("<p>No citation or reference problem found by the rules.</p>")
+    c = a.consistency
+    if c:
+        out.append(f"<h2>Numbers check: {c['n_checked']} statements recomputed</h2><p class=m>{c['n_inconsistent']} do not "
+                   f"add up, {c['n_not_reproduced']} not reproduced, {c['n_consistent']} check out. {e(c['caveat'])}</p>")
+        if c["checks"]:
+            cls = {"inconsistent": "none", "not_reproduced": "weak", "consistent": "strong"}
+            out.append("<table><tr><th>Result</th><th>Check</th><th>Detail</th><th>Page</th></tr>")
+            for x in c["checks"]:
+                out.append(f"<tr><td><span class='p {cls[x['status']]}'>{e(NUM_STATUS[x['status']][2:])}</span></td>"
+                           f"<td>{e(c['labels'].get(x['kind'], x['kind']))}</td><td>{e(x['message'])}<div class=m>"
+                           f"Recomputed: {e(x['formula'])} · printed: {e(x['stated'])}</div><div class=m>“{e(x['quote'])}”"
+                           f"</div></td><td>{x['page']}</td></tr>")
+            out.append("</table>")
+    out.append("<p class=m>Generated by PaperLens AI. Ratings are lexical and numeric heuristics for a human reviewer, "
+               "not verdicts; check every quote against the cited page.</p></body></html>")
+    return "\n".join(out)

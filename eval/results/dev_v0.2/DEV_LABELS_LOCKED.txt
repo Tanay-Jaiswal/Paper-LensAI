@@ -1,0 +1,3 @@
+﻿AI-assisted development labels locked before scoring
+sha256: 9FF827B983805F85834DBB942F07A580AD980BF5C0353319EC56F072B406EBFC
+thresholds at labelling time: MIN_LEXICAL=0.30

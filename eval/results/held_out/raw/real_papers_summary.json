@@ -1,0 +1,624 @@
+[
+  {
+    "paper": "acl_2022.emnlp-main.200_setgner-general-named-entity-recognition-as.pdf",
+    "seconds": 1.32,
+    "title_extracted": "SetGNER: General Named Entity Recognition as Entity Set Generation",
+    "pages_paperlens": 12,
+    "pages_pymupdf": 12,
+    "warnings": [],
+    "n_sentences": 342,
+    "sections": {
+      "references": 150,
+      "experiments": 74,
+      "method": 37,
+      "introduction": 33,
+      "related": 12,
+      "other": 10,
+      "limitations": 10,
+      "abstract": 9,
+      "conclusion": 4,
+      "acknowledgments": 2,
+      "front": 1
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "2 Problem Formulation",
+      "3 Method",
+      "3.1 Word-level Encoder",
+      "Occurrence Detection",
+      "Entity Part Classification",
+      "3.3 Parallel Generation",
+      "Boundary-guided Initialization",
+      "Adaptive Position Embeddings",
+      "Decoding",
+      "Adaptive Beam-search",
+      "Inverse Generation Training",
+      "Joint Learning",
+      "4.1 Datasets and Evaluation Details",
+      "4.2 Implementation Details",
+      "4.3 Compared Methods",
+      "Discontinuous NER",
+      "Nested NER",
+      "Flat NER",
+      "4.5 Ablation Study",
+      "4.6 Analysis",
+      "4.6.1 Recognizing Overlapped Entities",
+      "4.6.2 Removing Entity Order Confounder",
+      "4.6.3 Capturing Right-boundaries",
+      "4.7 Inference Efficiency",
+      "5 Related Work",
+      "The seq2set NER model",
+      "6 Conclusion",
+      "Limitations",
+      "Acknowledgments",
+      "References",
+      "Profile of Datasets",
+      "Hyper-parameter Settings",
+      "Sensitivity Analysis",
+      "Compared Discriminative NER Models",
+      "Models for Discontinuous NER",
+      "Models for Nested NER",
+      "Models for Flat NER"
+    ],
+    "kinds": {
+      "meta": 1,
+      "text": 334,
+      "caption": 7
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 11,
+    "claim_sections": {
+      "abstract": 8,
+      "introduction": 3
+    },
+    "support": {
+      "none": 4,
+      "weak": 6,
+      "strong": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 11
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 11
+    },
+    "reproducibility_score": 60.9,
+    "rubric_not_applicable": [],
+    "n_gaps": 8,
+    "gap_kinds": {
+      "no_code": 1,
+      "unsupported_claim": 7
+    },
+    "datasets": [
+      "CADEC",
+      "CoNLL03",
+      "NER"
+    ],
+    "metrics": [
+      "accuracy",
+      "F1",
+      "precision",
+      "recall"
+    ]
+  },
+  {
+    "paper": "acl_2023.acl-long.100_white-box-multi-objective-adversarial-attack.pdf",
+    "seconds": 1.67,
+    "title_extracted": "White-Box Multi-Objective Adversarial Attack on Dialogue Generation",
+    "pages_paperlens": 15,
+    "pages_pymupdf": 15,
+    "warnings": [],
+    "n_sentences": 513,
+    "sections": {
+      "references": 264,
+      "experiments": 106,
+      "other": 68,
+      "introduction": 27,
+      "related": 16,
+      "abstract": 8,
+      "conclusion": 6,
+      "limitations": 6,
+      "ethics": 6,
+      "method": 4,
+      "front": 1,
+      "acknowledgments": 1
+    },
+    "headings": [
+      "Abstract",
+      "1 Introduction",
+      "2 Dialogue Adversarial Generation",
+      "2.1 Definition of DG Adversarial Samples",
+      "2.2 Multi-Objective Optimization",
+      "2.3 Search-based Adversarial Attack",
+      "Dataset",
+      "3.1 Experimental Setup",
+      "3.2 Overall Effectiveness",
+      "3.3 Ablation Study",
+      "3.4 Transferability",
+      "3.5 Case Study",
+      "4.1 Adversarial Attack",
+      "4.2 Dialogue Generation",
+      "5 Conclusions",
+      "Limitations",
+      "Ethics Statement",
+      "Acknowledgements",
+      "References",
+      "Additional Settings and Results",
+      "Method",
+      "For every submission:"
+    ],
+    "kinds": {
+      "meta": 2,
+      "text": 488,
+      "table": 15,
+      "caption": 8
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 7,
+    "claim_sections": {
+      "abstract": 3,
+      "introduction": 3,
+      "conclusion": 1
+    },
+    "support": {
+      "none": 5,
+      "weak": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 7
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 7
+    },
+    "reproducibility_score": 50.0,
+    "rubric_not_applicable": [],
+    "n_gaps": 13,
+    "gap_kinds": {
+      "unsupported_claim": 5,
+      "significance_without_test": 1,
+      "no_hyperparameters": 1,
+      "no_splits": 1,
+      "superlative_unsupported": 4,
+      "generalization_narrow_evidence": 1
+    },
+    "datasets": [
+      "Reddit"
+    ],
+    "metrics": [
+      "accuracy",
+      "BLEU",
+      "ROUGE-L",
+      "ROUGE"
+    ]
+  },
+  {
+    "paper": "arxiv_2303.00141v2_containing-a-spread-through-sequential-learning.pdf",
+    "seconds": 5.95,
+    "title_extracted": "Containing a spread through sequential learning: to exploit or to explore?",
+    "pages_paperlens": 66,
+    "pages_pymupdf": 66,
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 1203,
+    "sections": {
+      "introduction": 559,
+      "appendix": 404,
+      "references": 173,
+      "conclusion": 52,
+      "abstract": 14,
+      "front": 1
+    },
+    "headings": [
+      "Abstract",
+      "I. INTRODUCTION",
+      "VI. CONCLUSIONS AND FUTURE WORK",
+      "REFERENCES",
+      "APPENDIX"
+    ],
+    "kinds": {
+      "text": 1109,
+      "caption": 8,
+      "table": 72,
+      "meta": 14
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 13,
+    "claim_sections": {
+      "abstract": 4,
+      "introduction": 3,
+      "conclusion": 6
+    },
+    "support": {
+      "none": 10,
+      "strong": 2,
+      "weak": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 13
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 12
+    },
+    "reproducibility_score": 35.9,
+    "rubric_not_applicable": [],
+    "n_gaps": 15,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_hyperparameters": 1,
+      "significance_without_test": 2,
+      "unsupported_claim": 8,
+      "improvement_without_variance": 1,
+      "generalization_narrow_evidence": 2
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "arxiv_2303.00194v1_the-ionization-and-dynamics-of-the.pdf",
+    "seconds": 7.42,
+    "title_extracted": "The Ionization and Dynamics of the Makani Galactic Wind Submitted to ApJ ABSTRACT The Makani galaxy hosts the poster child of a galactic wind on scales of the circumgalactic medium. It consists of a t",
+    "pages_paperlens": 27,
+    "pages_pymupdf": 27,
+    "warnings": [],
+    "n_sentences": 552,
+    "sections": {
+      "discussion": 265,
+      "introduction": 104,
+      "results": 91,
+      "conclusion": 43,
+      "references": 36,
+      "abstract": 11,
+      "front": 2
+    },
+    "headings": [
+      "ABSTRACT",
+      "1. INTRODUCTION",
+      "Aperture 1",
+      "3. RESULTS",
+      "4. DISCUSSION",
+      "5. CONCLUSION",
+      "Software:",
+      "REFERENCES",
+      "Aperture 2",
+      "Aperture 3",
+      "Aperture 4",
+      "Aperture 5",
+      "Aperture 6",
+      "Aperture 7",
+      "Aperture 8",
+      "Aperture 9"
+    ],
+    "kinds": {
+      "text": 523,
+      "caption": 10,
+      "meta": 19
+    },
+    "pages_with_no_sentences": [
+      6
+    ],
+    "n_claims": 25,
+    "claim_sections": {
+      "abstract": 3,
+      "introduction": 3,
+      "discussion": 17,
+      "conclusion": 2
+    },
+    "support": {
+      "none": 6,
+      "strong": 12,
+      "moderate": 7
+    },
+    "claim_text_on_cited_page": {
+      "y": 25
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 25
+    },
+    "reproducibility_score": 42.1,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 9,
+    "gap_kinds": {
+      "no_code": 1,
+      "number_not_in_results": 1,
+      "unsupported_claim": 5,
+      "no_limitations": 1,
+      "generalization_narrow_evidence": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "copernicus_acp-21-8357-2021_isotopic-constraints-on-atmospheric-sulfate-formation.pdf",
+    "seconds": 4.61,
+    "title_extracted": "Isotopic constraints on atmospheric sulfate formation pathways in the Mt. Everest region, southern Tibetan Plateau",
+    "pages_paperlens": 20,
+    "pages_pymupdf": 20,
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract."
+    ],
+    "n_sentences": 559,
+    "sections": {
+      "references": 214,
+      "results": 160,
+      "method": 82,
+      "introduction": 51,
+      "conclusion": 39,
+      "abstract": 12,
+      "front": 1
+    },
+    "headings": [
+      "1 Introduction",
+      "2.1 Observation site and aerosol sampling",
+      "2.2 Chemical and isotopic analyses",
+      "2.3 Model description",
+      "2.4.1 Meteorological and BC data",
+      "2.4.2 O3 mixing ratios",
+      "2.4.3 Solar radiation and RH along with backward",
+      "3.1 Ionic characteristics and potential sulfate sources",
+      "3.3.1 Contribution of stratospheric intrusion",
+      "3.3.2 Importance of S(IV) + O3 oxidation pathway",
+      "3.3.3 Importance of atmospheric acidity for sulfate",
+      "3.3.4 Possible importance of atmospheric humidity on",
+      "4 Conclusions",
+      "References"
+    ],
+    "kinds": {
+      "meta": 115,
+      "text": 436,
+      "caption": 8
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 6,
+    "claim_sections": {
+      "abstract": 4,
+      "conclusion": 2
+    },
+    "support": {
+      "moderate": 1,
+      "strong": 3,
+      "weak": 2
+    },
+    "claim_text_on_cited_page": {
+      "y": 6
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 6
+    },
+    "reproducibility_score": 50.0,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 3,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1,
+      "unsupported_claim": 1
+    },
+    "datasets": [],
+    "metrics": [
+      "precision"
+    ]
+  },
+  {
+    "paper": "pmc_PMC7875335_overview-of-snakebite-in-brazil-possible.pdf",
+    "seconds": 2.11,
+    "title_extracted": "Overview of snakebite in Brazil: Possible drivers and a tool for risk mapping",
+    "pages_paperlens": 18,
+    "pages_pymupdf": 18,
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 513,
+    "sections": {
+      "references": 206,
+      "other": 183,
+      "discussion": 58,
+      "introduction": 31,
+      "abstract": 14,
+      "front": 9,
+      "acknowledgments": 7,
+      "conclusion": 5
+    },
+    "headings": [
+      "Abstract",
+      "Author summary",
+      "Introduction",
+      "Study overview",
+      "Data sources and processing",
+      "Data analysis",
+      "Descriptive and cluster analysis",
+      "Multivariate and drivers analysis",
+      "Discussion",
+      "Conclusion",
+      "Supporting information",
+      "Acknowledgments",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 443,
+      "meta": 36,
+      "table": 33,
+      "caption": 1
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 8,
+    "claim_sections": {
+      "abstract": 4,
+      "introduction": 1,
+      "discussion": 2,
+      "conclusion": 1
+    },
+    "support": {
+      "strong": 2,
+      "weak": 3,
+      "moderate": 2,
+      "none": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 8
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 7
+    },
+    "reproducibility_score": 42.1,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 8,
+    "gap_kinds": {
+      "no_code": 1,
+      "comparison_without_baselines": 1,
+      "number_not_in_results": 2,
+      "unsupported_claim": 4
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "pmc_PMC7875355_assessing-the-potential-impact-of-transmission.pdf",
+    "seconds": 2.1,
+    "title_extracted": "Assessing the potential impact of transmission during prolonged viral shedding on the effect of lockdown relaxation on COVID-19",
+    "pages_paperlens": 19,
+    "pages_pymupdf": 19,
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 423,
+    "sections": {
+      "other": 215,
+      "references": 112,
+      "discussion": 51,
+      "introduction": 27,
+      "front": 10,
+      "abstract": 7,
+      "acknowledgments": 1
+    },
+    "headings": [
+      "Abstract",
+      "Author summary",
+      "Introduction",
+      "Mathematical model",
+      "Model fitting and parameter estimation",
+      "Possibility of a chronically infected population",
+      "Impact of relaxation",
+      "Discussion",
+      "Supporting information",
+      "Acknowledgments",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 370,
+      "meta": 30,
+      "table": 23
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 6,
+    "claim_sections": {
+      "abstract": 5,
+      "discussion": 1
+    },
+    "support": {
+      "moderate": 2,
+      "weak": 2,
+      "none": 1,
+      "strong": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 6
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 6
+    },
+    "reproducibility_score": 65.8,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 4,
+    "gap_kinds": {
+      "unsupported_claim": 3,
+      "generalization_narrow_evidence": 1
+    },
+    "datasets": [],
+    "metrics": []
+  },
+  {
+    "paper": "pmc_PMC7886193_kinetochore-independent-mechanisms-of-sister-chromosome.pdf",
+    "seconds": 3.02,
+    "title_extracted": "Kinetochore-independent mechanisms of sister chromosome separation",
+    "pages_paperlens": 23,
+    "pages_pymupdf": 23,
+    "warnings": [],
+    "n_sentences": 745,
+    "sections": {
+      "other": 324,
+      "references": 251,
+      "discussion": 90,
+      "results": 29,
+      "introduction": 26,
+      "abstract": 11,
+      "front": 8,
+      "acknowledgments": 6
+    },
+    "headings": [
+      "Abstract",
+      "Author summary",
+      "Introduction",
+      "Results",
+      "Acentric sister separation occurs via three distinct patterns",
+      "Discussion",
+      "Fly stocks",
+      "Synthetic lethality screen",
+      "Microscopy and image acquisition",
+      "Measurements",
+      "Supporting information",
+      "Acknowledgments",
+      "Author Contributions",
+      "References"
+    ],
+    "kinds": {
+      "text": 628,
+      "meta": 81,
+      "table": 34,
+      "caption": 2
+    },
+    "pages_with_no_sentences": [],
+    "n_claims": 4,
+    "claim_sections": {
+      "abstract": 2,
+      "discussion": 2
+    },
+    "support": {
+      "weak": 3,
+      "strong": 1
+    },
+    "claim_text_on_cited_page": {
+      "y": 4
+    },
+    "evidence_quote_on_cited_page": {
+      "y": 4
+    },
+    "reproducibility_score": 36.8,
+    "rubric_not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "n_gaps": 4,
+    "gap_kinds": {
+      "no_code": 1,
+      "no_limitations": 1,
+      "unsupported_claim": 2
+    },
+    "datasets": [],
+    "metrics": []
+  }
+]

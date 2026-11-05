@@ -1,0 +1,90 @@
+[
+  {
+    "min_lexical": 0.0,
+    "real_claims": 97,
+    "returned": 97,
+    "coverage": 1.0,
+    "labelled": 83,
+    "unlabelled": 14,
+    "strict": 0.325,
+    "lenient": 0.699,
+    "fully_supported_claims": 27
+  },
+  {
+    "min_lexical": 0.15,
+    "real_claims": 97,
+    "returned": 92,
+    "coverage": 0.948,
+    "labelled": 78,
+    "unlabelled": 14,
+    "strict": 0.346,
+    "lenient": 0.744,
+    "fully_supported_claims": 27
+  },
+  {
+    "min_lexical": 0.2,
+    "real_claims": 97,
+    "returned": 84,
+    "coverage": 0.866,
+    "labelled": 73,
+    "unlabelled": 11,
+    "strict": 0.37,
+    "lenient": 0.795,
+    "fully_supported_claims": 27
+  },
+  {
+    "min_lexical": 0.25,
+    "real_claims": 97,
+    "returned": 71,
+    "coverage": 0.732,
+    "labelled": 70,
+    "unlabelled": 1,
+    "strict": 0.386,
+    "lenient": 0.8,
+    "fully_supported_claims": 27
+  },
+  {
+    "min_lexical": 0.3,
+    "real_claims": 97,
+    "returned": 62,
+    "coverage": 0.639,
+    "labelled": 62,
+    "unlabelled": 0,
+    "strict": 0.403,
+    "lenient": 0.79,
+    "fully_supported_claims": 25
+  },
+  {
+    "min_lexical": 0.35,
+    "real_claims": 97,
+    "returned": 54,
+    "coverage": 0.557,
+    "labelled": 54,
+    "unlabelled": 0,
+    "strict": 0.444,
+    "lenient": 0.815,
+    "fully_supported_claims": 24
+  },
+  {
+    "min_lexical": 0.4,
+    "real_claims": 97,
+    "returned": 50,
+    "coverage": 0.515,
+    "labelled": 50,
+    "unlabelled": 0,
+    "strict": 0.48,
+    "lenient": 0.82,
+    "fully_supported_claims": 24
+  },
+  {
+    "min_lexical": 0.5,
+    "real_claims": 97,
+    "returned": 42,
+    "coverage": 0.433,
+    "labelled": 42,
+    "unlabelled": 0,
+    "strict": 0.548,
+    "lenient": 0.786,
+    "fully_supported_claims": 23
+  }
+]

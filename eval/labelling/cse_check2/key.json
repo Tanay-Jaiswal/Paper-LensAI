@@ -1,0 +1,611 @@
+{
+ "meta": {
+  "name": "cse_check2",
+  "paperlens_version": "1.2.0",
+  "seed": 20261024,
+  "n": 100,
+  "papers_dir": "data\\cse_check2_papers"
+ },
+ "answers": {
+  "Q001": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_table_uncertainty",
+   "paperlens": "missing"
+  },
+  "Q002": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_efficiency",
+   "paperlens": "missing"
+  },
+  "Q003": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_data_access",
+   "paperlens": "partial"
+  },
+  "Q004": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_baseline_setup",
+   "paperlens": "partial"
+  },
+  "Q005": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_table_uncertainty",
+   "paperlens": "present"
+  },
+  "Q006": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_model_size",
+   "paperlens": "not_applicable"
+  },
+  "Q007": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_model_selection",
+   "paperlens": "not_applicable"
+  },
+  "Q008": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_hardware_spec",
+   "paperlens": "present"
+  },
+  "Q009": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_hardware_spec",
+   "paperlens": "missing"
+  },
+  "Q010": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_code_link",
+   "paperlens": "present"
+  },
+  "Q011": {
+   "type": "search",
+   "paper": "P4",
+   "claim_id": "C2",
+   "paperlens": "none"
+  },
+  "Q012": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_code_link",
+   "paperlens": "missing"
+  },
+  "Q013": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_hyper_search",
+   "paperlens": "not_applicable"
+  },
+  "Q014": {
+   "type": "evidence",
+   "paper": "P5",
+   "claim_id": "C2",
+   "paperlens": "weak"
+  },
+  "Q015": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_hardware_spec",
+   "paperlens": "present"
+  },
+  "Q016": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_model_selection",
+   "paperlens": "missing"
+  },
+  "Q017": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_data_access",
+   "paperlens": "partial"
+  },
+  "Q018": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_efficiency",
+   "paperlens": "present"
+  },
+  "Q019": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_baseline_setup",
+   "paperlens": "partial"
+  },
+  "Q020": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_table_uncertainty",
+   "paperlens": "missing"
+  },
+  "Q021": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_hardware_spec",
+   "paperlens": "missing"
+  },
+  "Q022": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_hyper_search",
+   "paperlens": "missing"
+  },
+  "Q023": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_model_size",
+   "paperlens": "missing"
+  },
+  "Q024": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_hyper_search",
+   "paperlens": "missing"
+  },
+  "Q025": {
+   "type": "search",
+   "paper": "P4",
+   "claim_id": "C1",
+   "paperlens": "none"
+  },
+  "Q026": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_hyper_search",
+   "paperlens": "partial"
+  },
+  "Q027": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_code_link",
+   "paperlens": "present"
+  },
+  "Q028": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_data_access",
+   "paperlens": "partial"
+  },
+  "Q029": {
+   "type": "search",
+   "paper": "P5",
+   "claim_id": "C5",
+   "paperlens": "none"
+  },
+  "Q030": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_hyper_search",
+   "paperlens": "partial"
+  },
+  "Q031": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_data_access",
+   "paperlens": "partial"
+  },
+  "Q032": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_code_link",
+   "paperlens": "missing"
+  },
+  "Q033": {
+   "type": "search",
+   "paper": "P8",
+   "claim_id": "C1",
+   "paperlens": "none"
+  },
+  "Q034": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_compute_budget",
+   "paperlens": "present"
+  },
+  "Q035": {
+   "type": "search",
+   "paper": "P7",
+   "claim_id": "C1",
+   "paperlens": "none"
+  },
+  "Q036": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_hyper_search",
+   "paperlens": "missing"
+  },
+  "Q037": {
+   "type": "search",
+   "paper": "P7",
+   "claim_id": "C3",
+   "paperlens": "none"
+  },
+  "Q038": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_efficiency",
+   "paperlens": "present"
+  },
+  "Q039": {
+   "type": "evidence",
+   "paper": "P7",
+   "claim_id": "C4",
+   "paperlens": "weak"
+  },
+  "Q040": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_model_size",
+   "paperlens": "not_applicable"
+  },
+  "Q041": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_compute_budget",
+   "paperlens": "missing"
+  },
+  "Q042": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_model_size",
+   "paperlens": "present"
+  },
+  "Q043": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_model_selection",
+   "paperlens": "missing"
+  },
+  "Q044": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_baseline_setup",
+   "paperlens": "present"
+  },
+  "Q045": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_code_link",
+   "paperlens": "missing"
+  },
+  "Q046": {
+   "type": "search",
+   "paper": "P2",
+   "claim_id": "C3",
+   "paperlens": "none"
+  },
+  "Q047": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_hardware_spec",
+   "paperlens": "present"
+  },
+  "Q048": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_compute_budget",
+   "paperlens": "missing"
+  },
+  "Q049": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_compute_budget",
+   "paperlens": "missing"
+  },
+  "Q050": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_table_uncertainty",
+   "paperlens": "missing"
+  },
+  "Q051": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_baseline_setup",
+   "paperlens": "partial"
+  },
+  "Q052": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_efficiency",
+   "paperlens": "partial"
+  },
+  "Q053": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_hyper_search",
+   "paperlens": "missing"
+  },
+  "Q054": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_code_link",
+   "paperlens": "missing"
+  },
+  "Q055": {
+   "type": "evidence",
+   "paper": "P7",
+   "claim_id": "C5",
+   "paperlens": "weak"
+  },
+  "Q056": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_compute_budget",
+   "paperlens": "missing"
+  },
+  "Q057": {
+   "type": "evidence",
+   "paper": "P2",
+   "claim_id": "C2",
+   "paperlens": "weak"
+  },
+  "Q058": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_hardware_spec",
+   "paperlens": "missing"
+  },
+  "Q059": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_model_selection",
+   "paperlens": "present"
+  },
+  "Q060": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_table_uncertainty",
+   "paperlens": "partial"
+  },
+  "Q061": {
+   "type": "search",
+   "paper": "P1",
+   "claim_id": "C1",
+   "paperlens": "none"
+  },
+  "Q062": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_table_uncertainty",
+   "paperlens": "not_applicable"
+  },
+  "Q063": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_efficiency",
+   "paperlens": "partial"
+  },
+  "Q064": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_model_size",
+   "paperlens": "missing"
+  },
+  "Q065": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_model_size",
+   "paperlens": "missing"
+  },
+  "Q066": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_data_access",
+   "paperlens": "present"
+  },
+  "Q067": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_compute_budget",
+   "paperlens": "partial"
+  },
+  "Q068": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_model_selection",
+   "paperlens": "not_applicable"
+  },
+  "Q069": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_baseline_setup",
+   "paperlens": "partial"
+  },
+  "Q070": {
+   "type": "search",
+   "paper": "P3",
+   "claim_id": "C1",
+   "paperlens": "none"
+  },
+  "Q071": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_model_selection",
+   "paperlens": "missing"
+  },
+  "Q072": {
+   "type": "evidence",
+   "paper": "P4",
+   "claim_id": "C6",
+   "paperlens": "weak"
+  },
+  "Q073": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_model_size",
+   "paperlens": "missing"
+  },
+  "Q074": {
+   "type": "checklist",
+   "paper": "P3",
+   "item": "cs_table_uncertainty",
+   "paperlens": "not_applicable"
+  },
+  "Q075": {
+   "type": "evidence",
+   "paper": "P5",
+   "claim_id": "C3",
+   "paperlens": "weak"
+  },
+  "Q076": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_model_selection",
+   "paperlens": "missing"
+  },
+  "Q077": {
+   "type": "evidence",
+   "paper": "P5",
+   "claim_id": "C1",
+   "paperlens": "weak"
+  },
+  "Q078": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_efficiency",
+   "paperlens": "missing"
+  },
+  "Q079": {
+   "type": "checklist",
+   "paper": "P2",
+   "item": "cs_table_uncertainty",
+   "paperlens": "missing"
+  },
+  "Q080": {
+   "type": "evidence",
+   "paper": "P7",
+   "claim_id": "C2",
+   "paperlens": "weak"
+  },
+  "Q081": {
+   "type": "checklist",
+   "paper": "P5",
+   "item": "cs_data_access",
+   "paperlens": "partial"
+  },
+  "Q082": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_baseline_setup",
+   "paperlens": "partial"
+  },
+  "Q083": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_hyper_search",
+   "paperlens": "not_applicable"
+  },
+  "Q084": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_code_link",
+   "paperlens": "missing"
+  },
+  "Q085": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_code_link",
+   "paperlens": "missing"
+  },
+  "Q086": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_data_access",
+   "paperlens": "partial"
+  },
+  "Q087": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_model_size",
+   "paperlens": "missing"
+  },
+  "Q088": {
+   "type": "search",
+   "paper": "P1",
+   "claim_id": "C2",
+   "paperlens": "none"
+  },
+  "Q089": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_baseline_setup",
+   "paperlens": "partial"
+  },
+  "Q090": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_model_selection",
+   "paperlens": "missing"
+  },
+  "Q091": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_baseline_setup",
+   "paperlens": "missing"
+  },
+  "Q092": {
+   "type": "checklist",
+   "paper": "P6",
+   "item": "cs_compute_budget",
+   "paperlens": "partial"
+  },
+  "Q093": {
+   "type": "evidence",
+   "paper": "P2",
+   "claim_id": "C4",
+   "paperlens": "weak"
+  },
+  "Q094": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_hardware_spec",
+   "paperlens": "present"
+  },
+  "Q095": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_efficiency",
+   "paperlens": "present"
+  },
+  "Q096": {
+   "type": "checklist",
+   "paper": "P4",
+   "item": "cs_hardware_spec",
+   "paperlens": "partial"
+  },
+  "Q097": {
+   "type": "checklist",
+   "paper": "P1",
+   "item": "cs_efficiency",
+   "paperlens": "present"
+  },
+  "Q098": {
+   "type": "checklist",
+   "paper": "P8",
+   "item": "cs_compute_budget",
+   "paperlens": "present"
+  },
+  "Q099": {
+   "type": "evidence",
+   "paper": "P2",
+   "claim_id": "C1",
+   "paperlens": "moderate"
+  },
+  "Q100": {
+   "type": "checklist",
+   "paper": "P7",
+   "item": "cs_data_access",
+   "paperlens": "present"
+  }
+ }
+}

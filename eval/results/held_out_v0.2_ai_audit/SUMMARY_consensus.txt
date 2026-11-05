@@ -1,0 +1,11 @@
+== eval/results/held_out_v0.2_ai_audit/consensus/held_out_audit_ai_consensus.csv
+valid: 33 rows, ids and original columns unchanged, labels permitted, blanks where required
+is_real_claim: {'y': 26, 'n': 7} | evidence_correct: {'p': 12, 'n': 3, 'y': 4} | blank: 14 | notes with 'unsure' or 'judgement call': 9
+AI-ASSISTED, not human ground truth:
+  claim precision:                      0.788 (26/33; 95% CI 0.62-0.89)
+  coverage on real claims:              0.731 (19/26; 95% CI 0.54-0.86)
+  abstention rate on real claims:       0.269 (7/26; 95% CI 0.14-0.46)
+  evidence precision, strict  (y):      0.211 (4/19; 95% CI 0.09-0.43)
+  evidence precision, lenient (y or p): 0.842 (16/19; 95% CI 0.62-0.94)
+  end-to-end (real claim with y), rows: 0.121 (4/33; 95% CI 0.05-0.27)
+  real claims with a y passage:         0.154 (4/26; 95% CI 0.06-0.34)

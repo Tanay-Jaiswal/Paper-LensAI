@@ -1,0 +1,564 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "1235461c37a5",
+    "title": "Neurocache: Efficient Vector Retrieval for Long-range Language Modeling",
+    "n_pages": 14,
+    "source_name": "acl_2024.naacl-long.50_neurocache-efficient-vector-retrieval-for-long.pdf",
+    "warnings": [],
+    "n_sentences": 431
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "Our experiments show the effectiveness of Neurocache both for models trained from scratch and for pre-trained models such as Llama2- 7B and Mistral-7B when enhanced with the cache mechanism.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "Notably, Neurocache enhances the maximum context length of models like Llama2-7B and Mistral-7B to 128K tokens.",
+        "page": 9,
+        "section": "conclusion"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "Neurocache improves upon previous methods by (1) storing compressed states, which reduces cache size; (2) performing a single retrieval operation per token which increases inference speed; and (3) extending the retrieval window to neighboring states, which improves both language modeling and downstream task accuracy.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 3
+        },
+        {
+          "text": "However, these approaches often struggle to utilize their extended contexts (Liu et al., 2023) fully.",
+          "page": 1,
+          "section": "introduction",
+          "sentence_id": 11
+        }
+      ],
+      "approach": [
+        {
+          "text": "In response to these challenges, we introduce Neurocache.",
+          "page": 1,
+          "section": "introduction",
+          "sentence_id": 14
+        },
+        {
+          "text": "This training, using a causal language modeling objective on a corpus of long documents, enables the models to efficiently utilize the Neurocache system.",
+          "page": 4,
+          "section": "method",
+          "sentence_id": 87
+        }
+      ],
+      "results": [
+        {
+          "text": "We also compare Neurocache with text retrieval methods and show improvements in single-document questionanswering and few-shot learning tasks.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 5
+        },
+        {
+          "text": "Neurocache advances over exiting methods by reducing the cache size through the storage of compressed states, performing a single retrieval operation per token to boost inference speed, and extending the retrieval window to include neighboring states for improved language modeling and downstream accuracy.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 17
+        },
+        {
+          "text": "For instance, in HotpotQA, Text Retrieval with the Mistral-7B model achieves the highest F1 score of 40.92.",
+          "page": 8,
+          "section": "results",
+          "sentence_id": 202
+        }
+      ],
+      "limitations": [
+        {
+          "text": "A notable limitation is Neurocache’s performance in multi-document scenarios, suggesting potential challenges in contexts that require integration of information from multiple sources.",
+          "page": 9,
+          "section": "limitations",
+          "sentence_id": 224
+        },
+        {
+          "text": "This limitation suggests that our current findings may not fully capture the model’s adaptability and efficiency in diverse application scenarios.",
+          "page": 9,
+          "section": "limitations",
+          "sentence_id": 231
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 3,
+      "text": "Neurocache improves upon previous methods by (1) storing compressed states, which reduces cache size; (2) performing a single retrieval operation per token which increases inference speed; and (3) extending the retrieval window to neighboring states, which improves both language modeling and downstream task accuracy.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [
+        "1",
+        "2",
+        "3"
+      ],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.74,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 30,
+        "table_row_without_matching_value": 2,
+        "caption_label_only": 2,
+        "claim_zone_without_new_data": 24,
+        "fragment": 2
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 5,
+      "text": "We also compare Neurocache with text retrieval methods and show improvements in single-document questionanswering and few-shot learning tasks.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 207,
+          "page": 9,
+          "section": "results",
+          "quote": "Neurocache excels in single-document and few-shot learning scenarios, while Text Retrieval methods have an edge in multi-document tasks.",
+          "score": 0.523,
+          "shared_numbers": [],
+          "shared_terms": [
+            "few-shot",
+            "learn",
+            "method",
+            "neurocache",
+            "retrieval",
+            "single-document",
+            "task",
+            "text"
+          ],
+          "lexical": 0.673
+        },
+        {
+          "sentence_id": 204,
+          "page": 8,
+          "section": "results",
+          "quote": "Few-shot Learning: In few-shot learning tasks like SAMSum and TREC, Neurocache shows strong performance, particularly indicated by improved Rouge-L scores in SAMSum.",
+          "score": 0.312,
+          "shared_numbers": [],
+          "shared_terms": [
+            "few-shot",
+            "learn",
+            "neurocache",
+            "task"
+          ],
+          "lexical": 0.352
+        },
+        {
+          "sentence_id": 138,
+          "page": 6,
+          "section": "other",
+          "quote": "These tasks cover a range of scenarios, including single-document questionanswering (QA), multi-document QA, and fewshot learning.",
+          "score": 0.29,
+          "shared_numbers": [],
+          "shared_terms": [
+            "learn",
+            "questionanswer",
+            "single-document",
+            "task"
+          ],
+          "lexical": 0.433
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.523,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {}
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 2,
+    "support": {
+      "strong": 0,
+      "moderate": 1,
+      "weak": 0,
+      "none": 1
+    },
+    "evidence_status": {
+      "found": 1,
+      "no_supporting_evidence": 1,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 58.7,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "We made the source code available under: https: //github.com/alisafaya/neurocache",
+            "sentence_id": 6
+          },
+          {
+            "page": 8,
+            "section": "other",
+            "quote": "As outlined by LongBench (Bai et al., 2023), the model’s task is to produce an answer given input 3https://huggingface.co/Yukang/ Llama-2-7b-longlora-16k-ft and context sequences.",
+            "sentence_id": 186
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "experiments",
+            "quote": "It is recognized as a standard benchmark for evaluating models on long-form text (Rae et al., 2020; Wu et al., 2022; Hutchins et al., 2022).",
+            "sentence_id": 108
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 8,
+            "section": "other",
+            "quote": "We split the documents into 2,048-token segments, processing them sequentially to populate the cache.",
+            "sentence_id": 182
+          }
+        ],
+        "advice": "State exact split sizes/seeds and what was used for tuning."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "introduction",
+            "quote": "Recent research by Xu et al. (2023) shows that retrieval-augmented models with shorter contexts (4K tokens) can match the performance of models with longer contexts (16K/32K tokens), maintaining efficiency during inference.",
+            "sentence_id": 12
+          },
+          {
+            "page": 1,
+            "section": "introduction",
+            "quote": "This emphasizes the potential of retrieval-augmented strategies in LLMs.",
+            "sentence_id": 13
+          },
+          {
+            "page": 3,
+            "section": "method",
+            "quote": "Cache Augmented Layers: Using the states Cret retrieved in the previous step.",
+            "sentence_id": 60
+          }
+        ],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 6,
+            "section": "method",
+            "quote": "The pre-training involves 100,000 steps with a batch size of 128 and a context size of 1,024.",
+            "sentence_id": 124
+          },
+          {
+            "page": 6,
+            "section": "method",
+            "quote": "Adafactor (Shazeer and Stern, 2018) is used for optimization, with a learning rate warming up over the first 1,000 steps, peaking at 2 × 10−2, and then decaying to 1 × 10−3.",
+            "sentence_id": 125
+          },
+          {
+            "page": 6,
+            "section": "other",
+            "quote": "Added weight matrices and adapter weights are trained on the PG-19 and LongPile datasets’ training splits for 25,000 steps, employing the Adam optimizer (Kingma and Ba, 2015) with a decaying learning rate of 1 × 10−4.",
+            "sentence_id": 132
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report standard deviation or confidence intervals, not single numbers."
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Back 'significant' claims with a named test and p-value or CI."
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Our experiments show the effectiveness of Neurocache both for models trained from scratch and for pre-trained models such as Llama2- 7B and Mistral-7B when enhanced with the cache mechanism.",
+            "sentence_id": 4
+          },
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "We also compare Neurocache with text retrieval methods and show improvements in single-document questionanswering and few-shot learning tasks.",
+            "sentence_id": 5
+          },
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "Our evaluation of Neurocache encompasses both models trained from scratch and established pretrained models such as Llama2-7B and Mistral-7B (Touvron et al., 2023b; Jiang et al., 2023), demonstrating its effectiveness in enhancing language ",
+            "sentence_id": 19
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 7,
+            "section": "other",
+            "quote": "Metrics include F1, Accuracy (Acc.), and Rouge-L (R-L).",
+            "sentence_id": 145
+          },
+          {
+            "page": 7,
+            "section": "other",
+            "quote": "2We use the rouge package: https://github.com/ pltrdy/rouge",
+            "sentence_id": 168
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 6,
+            "section": "other",
+            "quote": "This adaptation process consumes approximately 200 Nvidia A100 GPU Hours per model.",
+            "sentence_id": 134
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "introduction",
+            "quote": "This limitation becomes apparent in tasks that require understanding long documents, such as document summarization and academic literature review, where processing hundreds of thousands of tokens is necessary.",
+            "sentence_id": 9
+          },
+          {
+            "page": 9,
+            "section": "limitations",
+            "quote": "While Neurocache demonstrates progress in long document processing with language models, several limitations should be noted.",
+            "sentence_id": 220
+          },
+          {
+            "page": 9,
+            "section": "limitations",
+            "quote": "Our evaluation is confined to datasets like PG-19 and LongPile, and tasks from the LongBench suite.",
+            "sentence_id": 221
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Data": {
+        "weight": 5.0,
+        "earned": 3.5,
+        "score": 70.0
+      },
+      "Method": {
+        "weight": 2.0,
+        "earned": 2.0,
+        "score": 100.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 3.0,
+        "score": 75.0
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 1.0,
+        "score": 50.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim; its numbers (1, 2, 3) do not appear in results text.",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Neurocache improves upon previous methods by (1) storing compressed states, which reduces cache size; (2) performing a single retrieval operation per token which increases inference speed; and (3) extending the retrie..."
+    },
+    {
+      "id": "G2",
+      "kind": "improvement_without_variance",
+      "severity": "medium",
+      "message": "Improvement is reported as a single number with no variance, seeds or confidence interval.",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Neurocache improves upon previous methods by (1) storing compressed states, which reduces cache size; (2) performing a single retrieval operation per token which increases inference speed; and (3) extending the retrie..."
+    }
+  ],
+  "datasets": [
+    "LongPile",
+    "Pile",
+    "Qasper"
+  ],
+  "metrics": [
+    "accuracy",
+    "F1"
+  ]
+}

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/store/
+data/scifact/
+data/papers/*.pdf
+data/Papers/*.pdf
+data/held_out_papers/*.pdf
+report/
+data/held_out_v0.2_papers/*.pdf
+data/held_out_papers/
+data/cse_check_papers/*.pdf
+data/cse_check2_papers/*.pdf
+data/cse_check3_papers/*.pdf

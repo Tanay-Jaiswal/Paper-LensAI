@@ -1,0 +1,13 @@
+.git
+.venv
+.claude
+.pytest_cache
+**/__pycache__
+data
+report
+tests
+docs
+eval/results
+eval/table_truth
+eval/labelling
+*.bak

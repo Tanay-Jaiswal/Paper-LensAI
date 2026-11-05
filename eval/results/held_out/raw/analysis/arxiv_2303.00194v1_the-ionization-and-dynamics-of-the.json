@@ -1,0 +1,2150 @@
+{
+  "version": "0.1.0",
+  "document": {
+    "doc_id": "660facdd5c83",
+    "title": "The Ionization and Dynamics of the Makani Galactic Wind Submitted to ApJ ABSTRACT The Makani galaxy hosts the poster child of a galactic wind on scales of the circumgalactic medium. It consists of a t",
+    "n_pages": 27,
+    "source_name": "arxiv_2303.00194v1_the-ionization-and-dynamics-of-the.pdf",
+    "warnings": [],
+    "n_sentences": 552
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "Combining shock models, density-sensitive line ratios, and mass and velocity measurements, we estimate that the ionized mass and outflow rate in the Episode II wind could be as high as that of the molecular gas: M HII II ∼ M H2 II = (1 − 2) × 109 M⊙ and dM/dtHII II ∼ dM/dtH2 II = 170 − 250 M⊙ yr−1.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "The fast, inner wind extending to RII = 20 kpc— Episode II—is powered by a young starburst of age 7 Myr (Rupke et al. 2019) and star formation rate 224– 300 M⊙ yr−1 (Petter et al. 2020).",
+        "page": 16,
+        "section": "conclusion"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "The momentum and energy in the recent Episode II wind imply a momentum-driven flow (p “boost” ∼7) driven by the hot ejecta and radiation pressure from the Eddington-limited, compact starburst.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 9
+        },
+        {
+          "text": "The ionized mass of either wind episode is unknown, however, and since no other gas phases have yet been observed in the extended Episode I wind, we do not know its outflow rate.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 34
+        }
+      ],
+      "approach": [
+        {
+          "text": "It consists of a two-episode wind in which the slow, outer wind originated 400 Myr ago (Episode I; RI = 20 − 50 kpc) and the fast, inner wind is 7 Myr old (Episode II; RII = 0 − 20 kpc).",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 2
+        },
+        {
+          "text": "Here we present Keck optical spectra of the Makani outflow.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 4
+        }
+      ],
+      "results": [
+        {
+          "text": "(Using instead a parabolic fit increases the luminosity by 15%, but does not change the RMS and results in line ratios at the edge of the wind— r ∼ 50 kpc—that appear unphysical.) We calculate the electron density using the flux ratios [O II]3729/3726 and [S II]6716/6731, which are allowed to freely vary between physical limits (Sanders et al. 2016).",
+          "page": 5,
+          "section": "results",
+          "sentence_id": 131
+        },
+        {
+          "text": "This reduction of Na I D flux due to infilling is observed in other spatially-resolved observations (Rupke & Veilleux 2015).",
+          "page": 8,
+          "section": "results",
+          "sentence_id": 205
+        },
+        {
+          "text": "Using line ratios and the luminosity of recombination lines, we conclude that the ionized gas in the inner wind is energized by fast, vs = 400 km s−1 shocks moving through a low-density nH ∼ 10 cm−3 medium (Allen et al. 2008), consistent with earlier results (Perrotta et al. 2021).",
+          "page": 16,
+          "section": "conclusion",
+          "sentence_id": 476
+        }
+      ],
+      "limitations": [
+        {
+          "text": "For [S II]/Hα, the same low vs and low B fit best in the shock-only grid, but the shock+precursor grid does not overlap the observed values.",
+          "page": 10,
+          "section": "discussion",
+          "sentence_id": 256
+        },
+        {
+          "text": "The fast shock models cannot match the low observed ionization parameters from [O III]/[O II], even in the lower-ionization shocked region.",
+          "page": 10,
+          "section": "discussion",
+          "sentence_id": 258
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 4,
+      "text": "Here we present Keck optical spectra of the Makani outflow.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 240,
+          "page": 9,
+          "section": "discussion",
+          "quote": "Future rest-frame far-ultraviolet and mid-infrared spectra of Makani and its parent sample could distinguish among these possibilities.",
+          "score": 0.225,
+          "shared_numbers": [],
+          "shared_terms": [
+            "makani",
+            "spectra"
+          ]
+        },
+        {
+          "sentence_id": 119,
+          "page": 5,
+          "section": "results",
+          "quote": "The ESI spectra cover the full range of Balmer lines.",
+          "score": 0.221,
+          "shared_numbers": [],
+          "shared_terms": [
+            "spectra"
+          ]
+        },
+        {
+          "sentence_id": 166,
+          "page": 7,
+          "section": "results",
+          "quote": "Though [Ne V] emission is present, its luminosity is low compared to AGN (Rupke et al. 2019).",
+          "score": 0.216,
+          "shared_numbers": [],
+          "shared_terms": [
+            "present"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.225,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C2",
+      "sentence_id": 8,
+      "text": "The outer wind has slowed, so that dM/dtHII I ∼ 10 M⊙ yr−1, but it contains more ionized gas: M HII I = 5 × 109 M⊙.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "10",
+        "1",
+        "5"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 201,
+          "page": 8,
+          "section": "results",
+          "quote": "Though there is significant scatter, the observed E(B−V ) = 0.6−1.0 in ap1 and ap2 (Figure 4) are typically associated with 5–10× higher Weq on average.",
+          "score": 0.521,
+          "shared_numbers": [
+            "1",
+            "10",
+            "5"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "5"
+          ]
+        },
+        {
+          "sentence_id": 325,
+          "page": 12,
+          "section": "discussion",
+          "quote": "Ionized Wind Properties Ep Method Lwind Hα M ⟨vrad⟩ dM/dt p dp/dt E dE/dt erg s−1 M⊙ km s−1 M⊙ yr−1 dyn s dyn erg erg s−1 (1) (2) (3) (4) (5) (6) (7) (8) (9) (10) I 1a (2.25+2.25 −1.13)E+42 5.09E+09 7.59E+49 6.92E+33 6.90E+57 4.23E+41 I 1b 2.25E+42 5.09E+09 64.8 5.04E+50 2.45E+35 2.16E+58 1.58E+43 I 2.25E+42 5.09E+09 · · · · · · · · · · · · II 1a (5.75+3.52 −1.76)E+42 1.30E+09 2.70E+49 1.55E+34 7.27E+57 2.55E+42 II 1b 5.75E+42 1.30E+09 4.42E+50 2.55E+36 6.59E+58 8.77E+44 II 5.75E+42 1.30E+09 · · · · · · · · · · · · Note—Properties of the ionized wind for each episode are listed for three different methods of calculation, as described in Section 4.4.",
+          "score": 0.496,
+          "shared_numbers": [
+            "1",
+            "10",
+            "5"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "5",
+            "dm",
+            "i",
+            "ioniz",
+            "m",
+            "wind"
+          ]
+        },
+        {
+          "sentence_id": 422,
+          "page": 14,
+          "section": "discussion",
+          "quote": "At a radius of 10 kpc, Fgrav ∼ 1 × 1035 dyne for the 4 × 109 M⊙ of outflowing molecular and ionized gas we observe.",
+          "score": 0.482,
+          "shared_numbers": [
+            "1",
+            "10"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "109",
+            "gas",
+            "ioniz",
+            "m"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.521,
+      "flags": [],
+      "confidence": 0.8
+    },
+    {
+      "id": "C3",
+      "sentence_id": 9,
+      "text": "The momentum and energy in the recent Episode II wind imply a momentum-driven flow (p “boost” ∼7) driven by the hot ejecta and radiation pressure from the Eddington-limited, compact starburst.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [
+        "7"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 228,
+          "page": 9,
+          "section": "discussion",
+          "quote": "This is just below the estimated 7 Myr estimate of the most recent burst of star formation.",
+          "score": 0.486,
+          "shared_numbers": [
+            "7"
+          ],
+          "shared_terms": [
+            "7",
+            "recent"
+          ]
+        },
+        {
+          "sentence_id": 349,
+          "page": 12,
+          "section": "discussion",
+          "quote": "As an alternative method we assume the stellar population ages t∗ for Episodes I and II, 400 and 7 Myr, represent the times when all of the gas in each episode left the starburst (Method 2).",
+          "score": 0.477,
+          "shared_numbers": [
+            "7"
+          ],
+          "shared_terms": [
+            "7",
+            "episode",
+            "ii",
+            "starburst"
+          ]
+        },
+        {
+          "sentence_id": 328,
+          "page": 12,
+          "section": "discussion",
+          "quote": "For Episode II, we assume RII = 15 kpc, ne = 10−1000 cm−3, and t∗,II = 7 Myr.",
+          "score": 0.471,
+          "shared_numbers": [
+            "7"
+          ],
+          "shared_terms": [
+            "7",
+            "episode",
+            "ii"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.486,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C4",
+      "sentence_id": 72,
+      "text": "The SDSS spectrum is 26% higher in flux over 6500–9000 ˚A, but the difference rises smoothly with decreasing wavelength to 80% at 4000 ˚A. This flux difference is also observed in a 3′′ circular extraction from the KCWI data cube.",
+      "page": 3,
+      "section": "introduction",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "26",
+        "6500",
+        "9000",
+        "80",
+        "4000",
+        "3"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 121,
+          "page": 5,
+          "section": "results",
+          "quote": "The ratio steadily rises from about 1/3 in the center, to unity at 20 kpc, and finally to a maximum of 2 at r = 30 − 40 kpc.",
+          "score": 0.178,
+          "shared_numbers": [
+            "3"
+          ],
+          "shared_terms": [
+            "3",
+            "ris"
+          ]
+        },
+        {
+          "sentence_id": 141,
+          "page": 5,
+          "section": "results",
+          "quote": "The upper error bar is rather large (1.5–2.3 dex) on the ap4–ap5 measurements, however, due to the decreasing sensitivity of the line ratios to densities below ∼50 cm−3.",
+          "score": 0.168,
+          "shared_numbers": [
+            "3"
+          ],
+          "shared_terms": [
+            "3",
+            "decreas"
+          ]
+        },
+        {
+          "sentence_id": 199,
+          "page": 8,
+          "section": "results",
+          "quote": "Furthermore, if the Na I D and Fe II absorption lines are optically thick, the ratio of the observed covering factors is Cf,FeII/Cf,NaI ∼ 3−4, suggesting that Na I D is too shallow.",
+          "score": 0.155,
+          "shared_numbers": [
+            "3"
+          ],
+          "shared_terms": [
+            "3",
+            "observ"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.178,
+      "flags": [],
+      "confidence": 0.76
+    },
+    {
+      "id": "C5",
+      "sentence_id": 83,
+      "text": "The only aperture with a non-zero best-fit stellar attenuation is ap1, for which E(B − V )∗ = 0.3.",
+      "page": 3,
+      "section": "introduction",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "0.3"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 138,
+          "page": 5,
+          "section": "results",
+          "quote": "In ap1.1, densities are log(ne/cm−3) = 2.3+0.3 −0.6 and 2.3+0.2 −0.3 from [S II] and [O II], respectively.",
+          "score": 0.561,
+          "shared_numbers": [
+            "0.3"
+          ],
+          "shared_terms": [
+            "0.3",
+            "ap"
+          ]
+        },
+        {
+          "sentence_id": 128,
+          "page": 5,
+          "section": "results",
+          "quote": "We fit a linear relationship between 0 and 35 kpc (Figure 4) with an RMS of 0.3 dex.",
+          "score": 0.52,
+          "shared_numbers": [
+            "0.3"
+          ],
+          "shared_terms": [
+            "0.3"
+          ]
+        },
+        {
+          "sentence_id": 148,
+          "page": 7,
+          "section": "results",
+          "quote": "−2 −1 −2 −1 [OII] Hα −0.5 observed intrinsic Radius (kpc) −1.5 −1.0 −0.5 log([OII],obs/Ha,int) = −1.00 + 3.22E−02 (r/kpc) RMS = 0.30 dex Figure 4.",
+          "score": 0.5,
+          "shared_numbers": [
+            "0.3"
+          ],
+          "shared_terms": [
+            "1",
+            "e"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.561,
+      "flags": [],
+      "confidence": 0.7
+    },
+    {
+      "id": "C6",
+      "sentence_id": 104,
+      "text": "(In other apertures, the line is too faint to fit separately.) The most significant difference is that in ap1, the broad component in [O I] is redshifted compared to the broad component in other lines by ∆v = 350 km/s and narrower by ∆σ = 200 km/s (40% smaller).",
+      "page": 4,
+      "section": "introduction",
+      "claim_type": "generalization",
+      "hedged": false,
+      "numbers": [
+        "350",
+        "200",
+        "40"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 198,
+          "page": 8,
+          "section": "results",
+          "quote": "Thus vNaI − vFeII ∼−200 km s−1.",
+          "score": 0.344,
+          "shared_numbers": [
+            "200"
+          ],
+          "shared_terms": [
+            "1",
+            "200",
+            "km",
+            "s"
+          ]
+        },
+        {
+          "sentence_id": 260,
+          "page": 10,
+          "section": "discussion",
+          "quote": "The slow-shock models are consistent with the observed [S II]/Hα and [O I]/Hα at the highest model velocities, vs ∼ 200 km s−1, but produce values of [N II]/Hα that are too high at the same velocities.",
+          "score": 0.306,
+          "shared_numbers": [
+            "200"
+          ],
+          "shared_terms": [
+            "1",
+            "200",
+            "i",
+            "km",
+            "o",
+            "s",
+            "too"
+          ]
+        },
+        {
+          "sentence_id": 289,
+          "page": 11,
+          "section": "discussion",
+          "quote": "Farther from the host, the required shock velocities are lower, 200 km s−1, but these still align with the observed linewidths ⟨σ⟩I = 200 km s−1.",
+          "score": 0.303,
+          "shared_numbers": [
+            "200"
+          ],
+          "shared_terms": [
+            "1",
+            "200",
+            "i",
+            "km",
+            "s"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.344,
+      "flags": [],
+      "confidence": 0.91
+    },
+    {
+      "id": "C7",
+      "sentence_id": 218,
+      "text": "The slower decline of Na I D emission, based on the current ESI data, suggests emission-line infilling in the innermost region, reducing its flux by ∼0.6 dex (Section 3.2).",
+      "page": 9,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": true,
+      "numbers": [
+        "0.6"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 203,
+          "page": 8,
+          "section": "results",
+          "quote": "If this is due to infilling of emission by foreground absorption, Na I D should intrinsically be brighter in ap1 by a factor of a few (0.6 ± 0.2 dex).",
+          "score": 0.639,
+          "shared_numbers": [
+            "0.6"
+          ],
+          "shared_terms": [
+            "0.6",
+            "d",
+            "dex",
+            "emission",
+            "i",
+            "infill",
+            "na"
+          ]
+        },
+        {
+          "sentence_id": 139,
+          "page": 5,
+          "section": "results",
+          "quote": "The ap1.2 (higher σ, blueshifted) densities are 3.4+0.6 −0.4 and >4.0−0.9.",
+          "score": 0.488,
+          "shared_numbers": [
+            "0.6"
+          ],
+          "shared_terms": [
+            "0.6"
+          ]
+        },
+        {
+          "sentence_id": 138,
+          "page": 5,
+          "section": "results",
+          "quote": "In ap1.1, densities are log(ne/cm−3) = 2.3+0.3 −0.6 and 2.3+0.2 −0.3 from [S II] and [O II], respectively.",
+          "score": 0.481,
+          "shared_numbers": [
+            "0.6"
+          ],
+          "shared_terms": [
+            "0.6"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.639,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C8",
+      "sentence_id": 235,
+      "text": "We apply the highest-metallicity model relating the intrinsic values of [O III]5007/[O II] and Mg II2796/[O III]5007 (Xu et al. 2022) to yield F2796(intrinsic) = 2.92 × 10−16 erg s−1 cm−2 in the optically-thin, density-bounded case.",
+      "page": 9,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "5007",
+        "5007",
+        "2.92",
+        "1",
+        "2"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 179,
+          "page": 7,
+          "section": "results",
+          "quote": "The [O III] 4363/5007 line flux ratios in ap1 and ap1.2 are -1.1 dex.",
+          "score": 0.304,
+          "shared_numbers": [
+            "5007"
+          ],
+          "shared_terms": [
+            "1",
+            "5007",
+            "iii",
+            "o"
+          ]
+        },
+        {
+          "sentence_id": 282,
+          "page": 10,
+          "section": "discussion",
+          "quote": "The observed [O III] 4363/5007 ratio in ap1.2 is -1.1 dex, consistent with these high temperature (T ≳ 2 × 104 K; Section 3).",
+          "score": 0.295,
+          "shared_numbers": [
+            "2",
+            "5007"
+          ],
+          "shared_terms": [
+            "2",
+            "5007",
+            "iii",
+            "o"
+          ]
+        },
+        {
+          "sentence_id": 236,
+          "page": 9,
+          "section": "discussion",
+          "quote": "In a 1.′′5-diameter nuclear KCWI aperture, roughly corresponding to the footprint of ap1.1, we measure F2796(observed) = 0.70 × 10−16 erg s−1 cm−2.",
+          "score": 0.294,
+          "shared_numbers": [
+            "1",
+            "2"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "16",
+            "2",
+            "2796",
+            "cm",
+            "erg",
+            "f"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.304,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C9",
+      "sentence_id": 273,
+      "text": "At larger radius, the Hβ fluxes decrease to the range 10−4.3 to 10−5.7 erg s−1 cm−1, which suggests an increase in projection effects that mean these are lower limits; or a lower velocity and/or density at these radii.",
+      "page": 10,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": true,
+      "numbers": [
+        "10",
+        "4.3",
+        "10",
+        "5.7",
+        "1",
+        "1"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 276,
+          "page": 10,
+          "section": "discussion",
+          "quote": "The Hβ flux is also higher at 10−2.65 erg s−1 cm−1.",
+          "score": 0.308,
+          "shared_numbers": [
+            "1",
+            "10"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "cm",
+            "erg",
+            "flux",
+            "h",
+            "s"
+          ]
+        },
+        {
+          "sentence_id": 269,
+          "page": 10,
+          "section": "discussion",
+          "quote": "The resulting shock fluxes F shock Hβ in ap3–ap5 are approximately 10−4.0 to 10−3.7 erg s−1 cm−2.",
+          "score": 0.275,
+          "shared_numbers": [
+            "1",
+            "10"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "cm",
+            "erg",
+            "flux",
+            "h",
+            "s"
+          ]
+        },
+        {
+          "sentence_id": 303,
+          "page": 11,
+          "section": "discussion",
+          "quote": "At larger radii, in the extended, Episode I nebula, the line ratios and fluxes point to much lower ionized gas densities ne ≲ 10 cm−3.",
+          "score": 0.25,
+          "shared_numbers": [
+            "10"
+          ],
+          "shared_terms": [
+            "10",
+            "cm",
+            "density",
+            "flux",
+            "larger",
+            "lower",
+            "radii"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.308,
+      "flags": [],
+      "confidence": 1.0
+    },
+    {
+      "id": "C10",
+      "sentence_id": 274,
+      "text": "Lower velocity would be consistent, for instance, with the lower line ratios in ap6 and ap8 compared to ap3– ap5, but it seems probable that the gas density would also decrease with radius.",
+      "page": 10,
+      "section": "discussion",
+      "claim_type": "assertion",
+      "hedged": true,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 140,
+          "page": 5,
+          "section": "results",
+          "quote": "For ap4 and ap5, log(ne/cm−3) < 1 from both line ratios, in both apertures.",
+          "score": 0.245,
+          "shared_numbers": [],
+          "shared_terms": [
+            "3",
+            "5",
+            "ap",
+            "line",
+            "ratio"
+          ]
+        },
+        {
+          "sentence_id": 141,
+          "page": 5,
+          "section": "results",
+          "quote": "The upper error bar is rather large (1.5–2.3 dex) on the ap4–ap5 measurements, however, due to the decreasing sensitivity of the line ratios to densities below ∼50 cm−3.",
+          "score": 0.231,
+          "shared_numbers": [],
+          "shared_terms": [
+            "3",
+            "5",
+            "ap",
+            "density",
+            "line",
+            "ratio"
+          ]
+        },
+        {
+          "sentence_id": 171,
+          "page": 7,
+          "section": "results",
+          "quote": "Apertures ap3, ap4, and ap5 have similar [O I]/Hα and [O III]/[O II] as ap2, but with lower highionization line ratios ([O III]/Hβ), larger [S II]/Hα, and slightly smaller [N II]/Hα.",
+          "score": 0.224,
+          "shared_numbers": [],
+          "shared_terms": [
+            "3",
+            "5",
+            "ap",
+            "line",
+            "lower",
+            "ratio"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.245,
+      "flags": [],
+      "confidence": 0.71
+    },
+    {
+      "id": "C11",
+      "sentence_id": 275,
+      "text": "At r = 0–5 kpc, the high-velocity outflow component ap1.2 shows elevated [O III]/Hβ, [N II]/Hα and [O III]/[O II]; and lower [O I]/Hα and [S II]/Hα.",
+      "page": 10,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "0",
+        "5"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 287,
+          "page": 11,
+          "section": "discussion",
+          "quote": "(the outflow at radii 0–5 kpc), high shock velocities (300–400 km s−1) and an ionized precursor are needed.",
+          "score": 0.568,
+          "shared_numbers": [
+            "0",
+            "5"
+          ],
+          "shared_terms": [
+            "0",
+            "5",
+            "kpc",
+            "outflow",
+            "s"
+          ]
+        },
+        {
+          "sentence_id": 124,
+          "page": 5,
+          "section": "results",
+          "quote": "E(B − V ) decreases with increasing radius from a peak of 1.0 at r = 10 kpc to 0 at r > 25 kpc (Figure 4).",
+          "score": 0.407,
+          "shared_numbers": [
+            "0"
+          ],
+          "shared_terms": [
+            "0",
+            "kpc",
+            "r"
+          ]
+        },
+        {
+          "sentence_id": 125,
+          "page": 5,
+          "section": "results",
+          "quote": "The intrinsic [O II]/Hα flux ratio is near unity in ap1 and ap3, rising to a value of 2–5 in larger-radius apertures.",
+          "score": 0.406,
+          "shared_numbers": [
+            "5"
+          ],
+          "shared_terms": [
+            "5",
+            "ap",
+            "h",
+            "ii",
+            "o"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.568,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C12",
+      "sentence_id": 276,
+      "text": "The Hβ flux is also higher at 10−2.65 erg s−1 cm−1.",
+      "page": 10,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "10",
+        "2.65",
+        "1",
+        "1"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 269,
+          "page": 10,
+          "section": "discussion",
+          "quote": "The resulting shock fluxes F shock Hβ in ap3–ap5 are approximately 10−4.0 to 10−3.7 erg s−1 cm−2.",
+          "score": 0.585,
+          "shared_numbers": [
+            "1",
+            "10"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "cm",
+            "erg",
+            "flux",
+            "h",
+            "s"
+          ]
+        },
+        {
+          "sentence_id": 273,
+          "page": 10,
+          "section": "discussion",
+          "quote": "At larger radius, the Hβ fluxes decrease to the range 10−4.3 to 10−5.7 erg s−1 cm−1, which suggests an increase in projection effects that mean these are lower limits; or a lower velocity and/or density at these radii.",
+          "score": 0.547,
+          "shared_numbers": [
+            "1",
+            "10"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "cm",
+            "erg",
+            "flux",
+            "h",
+            "s"
+          ]
+        },
+        {
+          "sentence_id": 195,
+          "page": 8,
+          "section": "results",
+          "quote": "We now detect spatially-extended Na I D emission in ap1 and ap2, with fluxes and rest-frame equivalent widths of (3.2±0.2)×10−17 erg s−1 cm−2 and Weq = −0.49±0.05 ˚A in ap1 and (2.0±0.2)×10−17 erg s−1 cm−2 and Weq = −4.4 ± 0.5 ˚A in ap2.",
+          "score": 0.483,
+          "shared_numbers": [
+            "1"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "cm",
+            "erg",
+            "flux",
+            "s"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.585,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C13",
+      "sentence_id": 311,
+      "text": "The post-shock densities could be even higher, but higher values do not significantly change the results, as the lower-density pre-shock gas dominates the mass.",
+      "page": 11,
+      "section": "discussion",
+      "claim_type": "assertion",
+      "hedged": true,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 356,
+          "page": 12,
+          "section": "discussion",
+          "quote": "The remaining detected amounts of high-velocity gas do not contribute significantly to the mass, or mass outflow rate, of the outflow.",
+          "score": 0.201,
+          "shared_numbers": [],
+          "shared_terms": [
+            "gas",
+            "mas",
+            "significantly"
+          ]
+        },
+        {
+          "sentence_id": 139,
+          "page": 5,
+          "section": "results",
+          "quote": "The ap1.2 (higher σ, blueshifted) densities are 3.4+0.6 −0.4 and >4.0−0.9.",
+          "score": 0.194,
+          "shared_numbers": [],
+          "shared_terms": [
+            "density",
+            "higher"
+          ]
+        },
+        {
+          "sentence_id": 321,
+          "page": 11,
+          "section": "discussion",
+          "quote": "Using these luminosities and densities, we then calculate the ionized gas mass in each bin.",
+          "score": 0.177,
+          "shared_numbers": [],
+          "shared_terms": [
+            "density",
+            "gas",
+            "mas"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.201,
+      "flags": [],
+      "confidence": 0.74
+    },
+    {
+      "id": "C14",
+      "sentence_id": 318,
+      "text": "(E.g., v98% is the velocity at which 98% of the line flux is redshifted from this velocity, and so characterizes the maximum blueshift observed.) We compute the Hα flux and luminosity in each bin, applying our model for ([O II], observed)/(Hα, intrinsic) vs. radius and using the mean radius in each Voronoi bin.",
+      "page": 11,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "98"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 161,
+          "page": 7,
+          "section": "results",
+          "quote": "(Bottom) Correction from observed [O II] to intrinsic Hα vs. radius.",
+          "score": 0.197,
+          "shared_numbers": [],
+          "shared_terms": [
+            "h",
+            "ii",
+            "intrinsic",
+            "o",
+            "observ",
+            "radiu",
+            "vs"
+          ]
+        },
+        {
+          "sentence_id": 127,
+          "page": 5,
+          "section": "results",
+          "quote": "We do so by bootstrapping from the ESI measurements to estimate how the ratio ([O II], observed)/(Hα, intrinsic) changes with radius.",
+          "score": 0.165,
+          "shared_numbers": [],
+          "shared_terms": [
+            "h",
+            "ii",
+            "intrinsic",
+            "o",
+            "observ",
+            "radiu"
+          ]
+        },
+        {
+          "sentence_id": 158,
+          "page": 7,
+          "section": "results",
+          "quote": "(Lower middle) Variation of observed and intrinsic [O II]/Hα] flux ratio with distance from the host galaxy.",
+          "score": 0.161,
+          "shared_numbers": [],
+          "shared_terms": [
+            "flux",
+            "h",
+            "ii",
+            "intrinsic",
+            "o",
+            "observ"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.197,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C15",
+      "sentence_id": 336,
+      "text": "However, the preshock density in the Episode II shock model is lower than the density measured in the densest part of the wind, in ap1.2, by a factor of ∼100.",
+      "page": 12,
+      "section": "discussion",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "100"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 310,
+          "page": 11,
+          "section": "discussion",
+          "quote": "Using the estimated preshock densities and calculated maximum compression as a guideline, we assume ne = 10 and 1000 cm−3 preand post-shock for Episode I, and ne = 1 and 100 cm−3 for Episode II.",
+          "score": 0.576,
+          "shared_numbers": [
+            "100"
+          ],
+          "shared_terms": [
+            "100",
+            "density",
+            "episode",
+            "ii",
+            "preshock"
+          ]
+        },
+        {
+          "sentence_id": 197,
+          "page": 8,
+          "section": "results",
+          "quote": "First, a fit to Fe II 2585 ˚A gives a velocity at maximum depth of -100 km s−1 and a covering factor of 0.12, assuming it is optically thick.",
+          "score": 0.55,
+          "shared_numbers": [
+            "100"
+          ],
+          "shared_terms": [
+            "100",
+            "factor",
+            "ii"
+          ]
+        },
+        {
+          "sentence_id": 327,
+          "page": 12,
+          "section": "discussion",
+          "quote": "For Episode I, we assume a wind radius RI = 40 kpc, electron density ne = 1 − 100 cm−3, and time when the wind left the starburst (for Method 2) equal to the stellar population age t∗,I = 400 Myr.",
+          "score": 0.506,
+          "shared_numbers": [
+            "100"
+          ],
+          "shared_terms": [
+            "100",
+            "density",
+            "episode",
+            "wind"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.576,
+      "flags": [],
+      "confidence": 0.83
+    },
+    {
+      "id": "C16",
+      "sentence_id": 359,
+      "text": "Method 1a, in contrast, yields a flow rate 15–20× lower.",
+      "page": 12,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "1",
+        "15",
+        "20"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 344,
+          "page": 12,
+          "section": "discussion",
+          "quote": "First, we assume a single-radius wind for each episode, using RI = 40 kpc and RII = 15 kpc (Method 1).",
+          "score": 0.464,
+          "shared_numbers": [
+            "1",
+            "15"
+          ],
+          "shared_terms": [
+            "1",
+            "15",
+            "method"
+          ]
+        },
+        {
+          "sentence_id": 358,
+          "page": 12,
+          "section": "discussion",
+          "quote": "For Episode II, Method 1b (using v98%) is consistent with Method 2, due again to comparable ⟨vrad⟩ = 2279 km/s and RII/t∗,II = 15 kpc/7 Myr = 2090 km/s.",
+          "score": 0.433,
+          "shared_numbers": [
+            "1",
+            "15"
+          ],
+          "shared_terms": [
+            "1",
+            "15",
+            "method"
+          ]
+        },
+        {
+          "sentence_id": 121,
+          "page": 5,
+          "section": "results",
+          "quote": "The ratio steadily rises from about 1/3 in the center, to unity at 20 kpc, and finally to a maximum of 2 at r = 30 − 40 kpc.",
+          "score": 0.431,
+          "shared_numbers": [
+            "1",
+            "20"
+          ],
+          "shared_terms": [
+            "1",
+            "20"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.464,
+      "flags": [],
+      "confidence": 0.86
+    },
+    {
+      "id": "C17",
+      "sentence_id": 382,
+      "text": "This yields an Hα luminosity predicted from the radio/IR SFR of LSFR Hα = (2.6 − 3.5) × 1043 erg s−1, which is 3 − 4× larger than the observed luminosity of the nebula, Ltot Hα(Hα) = 9.4 × 1042 erg s−1 (Section 3).",
+      "page": 13,
+      "section": "discussion",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "2.6",
+        "3.5",
+        "1",
+        "3",
+        "4",
+        "9.4",
+        "1"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 130,
+          "page": 5,
+          "section": "results",
+          "quote": "The resulting total Hα luminosity is Ltot Hα = (9.4+6.0 −3.0) × 1042 erg s−1, where we calculate the error by applying the RMS dispersion at r > 5.5 kpc (the edge of ap1).",
+          "score": 0.421,
+          "shared_numbers": [
+            "1",
+            "3",
+            "9.4"
+          ],
+          "shared_terms": [
+            "1",
+            "1042",
+            "9.4",
+            "erg",
+            "h",
+            "ltot",
+            "luminosity",
+            "s"
+          ]
+        },
+        {
+          "sentence_id": 213,
+          "page": 8,
+          "section": "discussion",
+          "quote": "This difference is Lstarburst Hα = Ltot Hα − Lwind Hα = (9.4 − 8.0) × 1042 erg s−1 = 1.4 × 1042 erg s−1, 30% lower than the value measured from ap1.1.",
+          "score": 0.347,
+          "shared_numbers": [
+            "1",
+            "9.4"
+          ],
+          "shared_terms": [
+            "1",
+            "1042",
+            "9.4",
+            "erg",
+            "h",
+            "ltot",
+            "s"
+          ]
+        },
+        {
+          "sentence_id": 384,
+          "page": 13,
+          "section": "discussion",
+          "quote": "We can infer from the predicted Hα luminosity LSFR Hα and the Hα emission attributed to the starburst, Lstarburst Hα = 1.8 × 1042 erg s−1 (Section 4.1), that a fraction Lstarburst Hα /LSFR Hα ∼ 0.05 − 0.07 of the LyC is required to ionize the gas consistent with stellar photoionization (ap1.1).",
+          "score": 0.255,
+          "shared_numbers": [
+            "1"
+          ],
+          "shared_terms": [
+            "1",
+            "1042",
+            "erg",
+            "h",
+            "lsfr",
+            "luminosity",
+            "predict",
+            "s"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.421,
+      "flags": [],
+      "confidence": 0.83
+    },
+    {
+      "id": "C18",
+      "sentence_id": 387,
+      "text": "Thus, if the nebula were photoionized by the starburst rather than shocks, significant absorption of LyC by dust or a very recent SFR that is much lower would be necessary (Section 4.1).",
+      "page": 13,
+      "section": "discussion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 383,
+          "page": 13,
+          "section": "discussion",
+          "quote": "Photoionizing the entire nebula would require a significant fraction of the Lyman continuum to leak outside of the inner starburst region.",
+          "score": 0.187,
+          "shared_numbers": [],
+          "shared_terms": [
+            "nebula",
+            "photoioniz",
+            "significant",
+            "starburst"
+          ]
+        },
+        {
+          "sentence_id": 384,
+          "page": 13,
+          "section": "discussion",
+          "quote": "We can infer from the predicted Hα luminosity LSFR Hα and the Hα emission attributed to the starburst, Lstarburst Hα = 1.8 × 1042 erg s−1 (Section 4.1), that a fraction Lstarburst Hα /LSFR Hα ∼ 0.05 − 0.07 of the LyC is required to ionize the gas consistent with stellar photoionization (ap1.1).",
+          "score": 0.169,
+          "shared_numbers": [],
+          "shared_terms": [
+            "4.1",
+            "lyc",
+            "photoioniz",
+            "section",
+            "starburst"
+          ]
+        },
+        {
+          "sentence_id": 200,
+          "page": 8,
+          "section": "results",
+          "quote": "Second, neutral gas absorption in outflows is closely connected with the foreground dust column (Rupke & Veilleux 2015; Rupke et al. 2021).",
+          "score": 0.168,
+          "shared_numbers": [],
+          "shared_terms": [
+            "absorption",
+            "dust"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.187,
+      "flags": [],
+      "confidence": 0.71
+    },
+    {
+      "id": "C19",
+      "sentence_id": 394,
+      "text": "Episode II ionized wind The best-fitting model shock velocity is vs = 400 km s−1, which yields Lshock,II = 115Lwind Hα,II = 6.6 × 1044 erg s−1.",
+      "page": 13,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "400",
+        "1",
+        "115",
+        "6.6",
+        "1"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 288,
+          "page": 11,
+          "section": "discussion",
+          "quote": "These shock velocities align with the observed ⟨σ⟩II = 400 km s−1 (Rupke et al. 2019).",
+          "score": 0.359,
+          "shared_numbers": [
+            "1",
+            "400"
+          ],
+          "shared_terms": [
+            "1",
+            "400",
+            "ii",
+            "km",
+            "s",
+            "shock",
+            "velocity"
+          ]
+        },
+        {
+          "sentence_id": 287,
+          "page": 11,
+          "section": "discussion",
+          "quote": "(the outflow at radii 0–5 kpc), high shock velocities (300–400 km s−1) and an ionized precursor are needed.",
+          "score": 0.352,
+          "shared_numbers": [
+            "1",
+            "400"
+          ],
+          "shared_terms": [
+            "1",
+            "400",
+            "ioniz",
+            "km",
+            "s",
+            "shock",
+            "velocity"
+          ]
+        },
+        {
+          "sentence_id": 353,
+          "page": 12,
+          "section": "discussion",
+          "quote": "For Episode I, Method 1a (using v50%) yields a result consistent with Method 2, as the mean deprojected radial velocity ⟨vrad⟩ = 90 km/s is close to the velocity inferred from RI/t∗,I = 40 kpc/400 Myr = 97 km/s.",
+          "score": 0.343,
+          "shared_numbers": [
+            "1",
+            "400"
+          ],
+          "shared_terms": [
+            "1",
+            "400",
+            "episode",
+            "km",
+            "s",
+            "velocity",
+            "yield"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.359,
+      "flags": [],
+      "confidence": 0.8
+    },
+    {
+      "id": "C20",
+      "sentence_id": 412,
+      "text": "We find dp/dtHII+H2 II = 7 × (dp/dt∗ + dp/dtrad) for τeff,IR = 0.",
+      "page": 14,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "7",
+        "0"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 128,
+          "page": 5,
+          "section": "results",
+          "quote": "We fit a linear relationship between 0 and 35 kpc (Figure 4) with an RMS of 0.3 dex.",
+          "score": 0.342,
+          "shared_numbers": [
+            "0"
+          ],
+          "shared_terms": [
+            "0"
+          ]
+        },
+        {
+          "sentence_id": 275,
+          "page": 10,
+          "section": "discussion",
+          "quote": "At r = 0–5 kpc, the high-velocity outflow component ap1.2 shows elevated [O III]/Hβ, [N II]/Hα and [O III]/[O II]; and lower [O I]/Hα and [S II]/Hα.",
+          "score": 0.34,
+          "shared_numbers": [
+            "0"
+          ],
+          "shared_terms": [
+            "0",
+            "h",
+            "ii"
+          ]
+        },
+        {
+          "sentence_id": 124,
+          "page": 5,
+          "section": "results",
+          "quote": "E(B − V ) decreases with increasing radius from a peak of 1.0 at r = 10 kpc to 0 at r > 25 kpc (Figure 4).",
+          "score": 0.332,
+          "shared_numbers": [
+            "0"
+          ],
+          "shared_terms": [
+            "0"
+          ]
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.342,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C21",
+      "sentence_id": 422,
+      "text": "At a radius of 10 kpc, Fgrav ∼ 1 × 1035 dyne for the 4 × 109 M⊙ of outflowing molecular and ionized gas we observe.",
+      "page": 14,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "10",
+        "1",
+        "4"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 124,
+          "page": 5,
+          "section": "results",
+          "quote": "E(B − V ) decreases with increasing radius from a peak of 1.0 at r = 10 kpc to 0 at r > 25 kpc (Figure 4).",
+          "score": 0.473,
+          "shared_numbers": [
+            "1",
+            "10"
+          ],
+          "shared_terms": [
+            "10",
+            "4",
+            "kpc",
+            "radiu"
+          ]
+        },
+        {
+          "sentence_id": 325,
+          "page": 12,
+          "section": "discussion",
+          "quote": "Ionized Wind Properties Ep Method Lwind Hα M ⟨vrad⟩ dM/dt p dp/dt E dE/dt erg s−1 M⊙ km s−1 M⊙ yr−1 dyn s dyn erg erg s−1 (1) (2) (3) (4) (5) (6) (7) (8) (9) (10) I 1a (2.25+2.25 −1.13)E+42 5.09E+09 7.59E+49 6.92E+33 6.90E+57 4.23E+41 I 1b 2.25E+42 5.09E+09 64.8 5.04E+50 2.45E+35 2.16E+58 1.58E+43 I 2.25E+42 5.09E+09 · · · · · · · · · · · · II 1a (5.75+3.52 −1.76)E+42 1.30E+09 2.70E+49 1.55E+34 7.27E+57 2.55E+42 II 1b 5.75E+42 1.30E+09 4.42E+50 2.55E+36 6.59E+58 8.77E+44 II 5.75E+42 1.30E+09 · · · · · · · · · · · · Note—Properties of the ionized wind for each episode are listed for three different methods of calculation, as described in Section 4.4.",
+          "score": 0.46,
+          "shared_numbers": [
+            "1",
+            "10",
+            "4"
+          ],
+          "shared_terms": [
+            "1",
+            "10",
+            "4",
+            "ioniz",
+            "m"
+          ]
+        },
+        {
+          "sentence_id": 269,
+          "page": 10,
+          "section": "discussion",
+          "quote": "The resulting shock fluxes F shock Hβ in ap3–ap5 are approximately 10−4.0 to 10−3.7 erg s−1 cm−2.",
+          "score": 0.458,
+          "shared_numbers": [
+            "1",
+            "10",
+            "4"
+          ],
+          "shared_terms": [
+            "1",
+            "10"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.473,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C22",
+      "sentence_id": 442,
+      "text": "Increasing ne in the ionized gas, so that all of the Hα emission arises in the compressed, post-shock region (Section 4.3), would lower the mass, momenta, and energy in the ionized gas by a factor ∼50.",
+      "page": 15,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "50"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 131,
+          "page": 5,
+          "section": "results",
+          "quote": "(Using instead a parabolic fit increases the luminosity by 15%, but does not change the RMS and results in line ratios at the edge of the wind— r ∼ 50 kpc—that appear unphysical.) We calculate the electron density using the flux ratios [O II]3729/3726 and [S II]6716/6731, which are allowed to freely vary between physical limits (Sanders et al. 2016).",
+          "score": 0.498,
+          "shared_numbers": [
+            "50"
+          ],
+          "shared_terms": [
+            "50",
+            "increas"
+          ]
+        },
+        {
+          "sentence_id": 450,
+          "page": 15,
+          "section": "discussion",
+          "quote": "As discussed above, high-velocity gas from Episode I may have carried significant amounts of mass beyond rwind = 50 kpc, further into the CGM.",
+          "score": 0.485,
+          "shared_numbers": [
+            "50"
+          ],
+          "shared_terms": [
+            "50",
+            "gas",
+            "mas"
+          ]
+        },
+        {
+          "sentence_id": 141,
+          "page": 5,
+          "section": "results",
+          "quote": "The upper error bar is rather large (1.5–2.3 dex) on the ap4–ap5 measurements, however, due to the decreasing sensitivity of the line ratios to densities below ∼50 cm−3.",
+          "score": 0.482,
+          "shared_numbers": [
+            "50"
+          ],
+          "shared_terms": [
+            "50"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.498,
+      "flags": [],
+      "confidence": 0.86
+    },
+    {
+      "id": "C23",
+      "sentence_id": 457,
+      "text": "Thus, dE/dtHII I = 0.003Lshock,I, a significant discrepancy.",
+      "page": 15,
+      "section": "discussion",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "0.003"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 402,
+          "page": 14,
+          "section": "discussion",
+          "quote": "Even if we assume that 100% of this mechanical energy is thermalized into hot ejecta that then drives the outflow, the range of possible dE/dt∗ is ≲4% of dE/dtHII+H2 II .",
+          "score": 0.178,
+          "shared_numbers": [],
+          "shared_terms": [
+            "de",
+            "dthii"
+          ]
+        },
+        {
+          "sentence_id": 395,
+          "page": 13,
+          "section": "discussion",
+          "quote": "If we assume, based on their similar mass and dynamics, that the ionized and molecular components of the fast wind contribute similarly to the energy flow rate dE/dt, then dE/dtHII+H2 II =",
+          "score": 0.175,
+          "shared_numbers": [],
+          "shared_terms": [
+            "de",
+            "dthii"
+          ]
+        },
+        {
+          "sentence_id": 455,
+          "page": 15,
+          "section": "discussion",
+          "quote": "The radiated energy in the Episode I shocks is Lshock,I = 73LHα,I = 1.6 × 1044 erg s−1.",
+          "score": 0.163,
+          "shared_numbers": [],
+          "shared_terms": [
+            "i",
+            "lshock"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.178,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C24",
+      "sentence_id": 492,
+      "text": "They need significantly more momentum than is initially contained in the hot ejecta from the recent starburst, with a required boost of ∼7.",
+      "page": 16,
+      "section": "conclusion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [
+        "7"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 228,
+          "page": 9,
+          "section": "discussion",
+          "quote": "This is just below the estimated 7 Myr estimate of the most recent burst of star formation.",
+          "score": 0.528,
+          "shared_numbers": [
+            "7"
+          ],
+          "shared_terms": [
+            "7",
+            "recent"
+          ]
+        },
+        {
+          "sentence_id": 349,
+          "page": 12,
+          "section": "discussion",
+          "quote": "As an alternative method we assume the stellar population ages t∗ for Episodes I and II, 400 and 7 Myr, represent the times when all of the gas in each episode left the starburst (Method 2).",
+          "score": 0.47,
+          "shared_numbers": [
+            "7"
+          ],
+          "shared_terms": [
+            "7",
+            "starburst"
+          ]
+        },
+        {
+          "sentence_id": 412,
+          "page": 14,
+          "section": "discussion",
+          "quote": "We find dp/dtHII+H2 II = 7 × (dp/dt∗ + dp/dtrad) for τeff,IR = 0.",
+          "score": 0.449,
+          "shared_numbers": [
+            "7"
+          ],
+          "shared_terms": [
+            "7"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.528,
+      "flags": [],
+      "confidence": 0.81
+    },
+    {
+      "id": "C25",
+      "sentence_id": 499,
+      "text": "The energy contained in this flow is quite small, however, compared to the flux predicted to be radiated in the shocked gas, with dE/dtI = 0.003Lrad.",
+      "page": 16,
+      "section": "conclusion",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "0.003"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 457,
+          "page": 15,
+          "section": "discussion",
+          "quote": "Thus, dE/dtHII I = 0.003Lshock,I, a significant discrepancy.",
+          "score": 0.521,
+          "shared_numbers": [
+            "0.003"
+          ],
+          "shared_terms": [
+            "0.003",
+            "de"
+          ]
+        },
+        {
+          "sentence_id": 389,
+          "page": 13,
+          "section": "discussion",
+          "quote": "The mechanical energy flux that powers the shock is completely radiated by the cooling gas (Dopita & Sutherland 1996).",
+          "score": 0.16,
+          "shared_numbers": [],
+          "shared_terms": [
+            "energy",
+            "flux",
+            "gas",
+            "radiat",
+            "shock"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.521,
+      "flags": [],
+      "confidence": 0.75
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 25,
+    "support": {
+      "strong": 12,
+      "moderate": 7,
+      "weak": 0,
+      "none": 6
+    }
+  },
+  "reproducibility": {
+    "score": 42.1,
+    "band": "low",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 10,
+            "section": "discussion",
+            "quote": "We assume solar metallicity, and the benchmark model pre-shock density nH = 1 cm−3 (their model series M n1).",
+            "sentence_id": 253
+          }
+        ],
+        "advice": "Name every dataset with version/source and state how to obtain it."
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "We dithered ±1′′ along the slit between exposures.",
+            "sentence_id": 55
+          },
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "Apertures Label Size Radius f([O II])/10−16 kpc erg s−1 cm−2 (1) (2) (3) (4) ap1 1′′×1.′′54 0.05.5 7.74±0.26 ap2 1′′×1.′′54 9.35.0 2.30±0.08 ap3 1′′×1.′′54 9.35.0 1.50±0.11 ap4 1′′×1.′′54 20.24.1 0.75±0.03 ap5 1′′×1.′′54 20.64.4 1.41±0.03 a",
+            "sentence_id": 77
+          },
+          {
+            "page": 5,
+            "section": "results",
+            "quote": "The upper error bar is rather large (1.5–2.3 dex) on the ap4–ap5 measurements, however, due to the decreasing sensitivity of the line ratios to densities below ∼50 cm−3.",
+            "sentence_id": 141
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "results",
+            "quote": "We do so by bootstrapping from the ESI measurements to estimate how the ratio ([O II], observed)/(Hα, intrinsic) changes with radius.",
+            "sentence_id": 127
+          },
+          {
+            "page": 8,
+            "section": "discussion",
+            "quote": "We take this difference as an indication of the uncertainties in our methodology, which includes assigning fluxes among the starburst and wind Episodes I and II, bootstrapping from the KCWI [O II] data from the ESI meaurements, and the abso",
+            "sentence_id": 214
+          },
+          {
+            "page": 11,
+            "section": "discussion",
+            "quote": "Here we use our bootstrapped estimate of the spatially-resolved Hα luminosity of the wind (Section 3) to estimate the mass and dynamics of both the Episode I and II winds.",
+            "sentence_id": 314
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "We extract a 3′′×1′′ rectangular aperture centered on the galaxy to compare to the existing 3′′ diameter SDSS spectrum.",
+            "sentence_id": 71
+          },
+          {
+            "page": 4,
+            "section": "introduction",
+            "quote": "(In other apertures, the line is too faint to fit separately.) The most significant difference is that in ap1, the broad component in [O I] is redshifted compared to the broad component in other lines by ∆v = 350 km/s and narrower by ∆σ = 2",
+            "sentence_id": 104
+          },
+          {
+            "page": 7,
+            "section": "results",
+            "quote": "Though [Ne V] emission is present, its luminosity is low compared to AGN (Rupke et al. 2019).",
+            "sentence_id": 166
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 11,
+            "section": "discussion",
+            "quote": "We start with the Voronoi-binned, KCWI [O II] map and spatially delineate the Episode I and II winds using a velocity cut at v98% = −700 km s−1 (Rupke et al. 2019).",
+            "sentence_id": 315
+          },
+          {
+            "page": 16,
+            "section": "conclusion",
+            "quote": "We apply this model to the fully spatiallyresolved [O II] map of the nebula to compute LHα across the full nebula.",
+            "sentence_id": 486
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "results",
+            "quote": "We compute E(B − V ) from Hα/Hβ for Case B conditions using the Cardelli et al. (1989) extinction curve and RV = 3.1.",
+            "sentence_id": 123
+          },
+          {
+            "page": 9,
+            "section": "discussion",
+            "quote": "Using a standard calibration (Moustakas et al. 2006), we compute from Lstarburst Hα a SFR of 14 M⊙ yr−1.",
+            "sentence_id": 224
+          },
+          {
+            "page": 11,
+            "section": "discussion",
+            "quote": "(E.g., v98% is the velocity at which 98% of the line flux is redshifted from this velocity, and so characterizes the maximum blueshift observed.) We compute the Hα flux and luminosity in each bin, applying our model for ([O II], observed)/(",
+            "sentence_id": 318
+          }
+        ],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "results",
+            "quote": "However, the lines are separated by only 3 ˚A, leading to covariance among fit parameters.",
+            "sentence_id": 134
+          },
+          {
+            "page": 10,
+            "section": "discussion",
+            "quote": "However, the models cannot perfectly reproduce the combined [O III] 4363/5007 and [O III]/Hβ ratios, an ongoing problem (Dopita & Sutherland 1995; Allen et al. 2008).",
+            "sentence_id": 284
+          },
+          {
+            "page": 15,
+            "section": "discussion",
+            "quote": "However, these dusty gas phases appear only at the inner edge of the Episode I wind (Rupke et al. 2019).",
+            "sentence_id": 464
+          }
+        ],
+        "advice": "Add a limitations section naming settings where the method fails."
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 1.0,
+        "score": 33.3
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 3.5,
+        "score": 63.6
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.5,
+        "score": 25.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 0.5,
+        "score": 50.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "number_not_in_results",
+      "severity": "high",
+      "message": "Reported value(s) 26, 6500, 9000, 80 never appear in the experiments/results text or tables (possible abstract-body mismatch, or derived value that is not shown).",
+      "page": 3,
+      "claim_id": "C4",
+      "quote": "The SDSS spectrum is 26% higher in flux over 6500–9000 ˚A, but the difference rises smoothly with decreasing wavelength to 80% at 4000 ˚A. This flux difference is also observed in a 3′′ circular extraction from the KC..."
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "high",
+      "message": "No strong supporting passage found in the paper body for this claim; its numbers (98) do not appear in results text.",
+      "page": 11,
+      "claim_id": "C14",
+      "quote": "(E.g., v98% is the velocity at which 98% of the line flux is redshifted from this velocity, and so characterizes the maximum blueshift observed.) We compute the Hα flux and luminosity in each bin, applying our model f..."
+    },
+    {
+      "id": "G4",
+      "kind": "unsupported_claim",
+      "severity": "high",
+      "message": "No strong supporting passage found in the paper body for this claim; its numbers (0.003) do not appear in results text.",
+      "page": 15,
+      "claim_id": "C23",
+      "quote": "Thus, dE/dtHII I = 0.003Lshock,I, a significant discrepancy."
+    },
+    {
+      "id": "G5",
+      "kind": "no_limitations",
+      "severity": "medium",
+      "message": "No limitations section or discussion of failure cases was found.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G6",
+      "kind": "generalization_narrow_evidence",
+      "severity": "medium",
+      "message": "Generalisation/robustness claim, but only 0 evaluation dataset(s) detected (none named).",
+      "page": 4,
+      "claim_id": "C6",
+      "quote": "(In other apertures, the line is too faint to fit separately.) The most significant difference is that in ap1, the broad component in [O I] is redshifted compared to the broad component in other lines by ∆v = 350 km/s..."
+    },
+    {
+      "id": "G7",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 10,
+      "claim_id": "C10",
+      "quote": "Lower velocity would be consistent, for instance, with the lower line ratios in ap6 and ap8 compared to ap3– ap5, but it seems probable that the gas density would also decrease with radius."
+    },
+    {
+      "id": "G8",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 11,
+      "claim_id": "C13",
+      "quote": "The post-shock densities could be even higher, but higher values do not significantly change the results, as the lower-density pre-shock gas dominates the mass."
+    },
+    {
+      "id": "G9",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 13,
+      "claim_id": "C18",
+      "quote": "Thus, if the nebula were photoionized by the starburst rather than shocks, significant absorption of LyC by dust or a very recent SFR that is much lower would be necessary (Section 4.1)."
+    }
+  ],
+  "datasets": [],
+  "metrics": []
+}

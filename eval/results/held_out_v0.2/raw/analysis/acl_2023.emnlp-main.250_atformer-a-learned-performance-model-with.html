@@ -1,0 +1,58 @@
+<!doctype html><meta charset=utf-8><title>PaperLens report</title><body style='font:14px/1.5 system-ui;max-width:960px;margin:2rem auto;padding:0 1rem'><pre style='white-space:pre-wrap'># PaperLens report: ATFormer: A Learned Performance Model with Transfer Learning Across Devices for Deep Learning Tensor Programs
+
+*15 pages · 2 claims · reproducibility 54.3/100 (moderate)*
+
+## Summary
+
+- Furthermore, ATFormer with pre-trained parameters can quickly adapt to different workloads and hardware via transfer learning. *(p.1)*
+- Additionally, we will explore more universal and efficient methods for optimizing tensor programs with ATFormer. *(p.9)*
+
+**Problem**
+- However, this progress has been accompanied by a significant increase in the number of operators and, consequently, the computational complexity of DNNs. *(p.1)*
+
+**Approach**
+- We believe that the simplicity of our method will attract more research attention to the field of tensor operator optimization, further enhancing training and inference efficiency. *(p.4)*
+
+**Results**
+- While compilation-based methods with performance models can provide dynamic and suitable code optimization, they suffer from a large design space exploration with rough measurement accuracy and poor transferability among different hardware platforms. *(p.1)*
+- Compared with state-of-the-arts, ATFormer can predict the optimal implementation of tensor operators to reduce inference time with minimal effort on modern DNN benchmarks. *(p.1)*
+- Through transfer learning, ATFormer achieves faster-converged latency and superior transferability across different hardware platforms, outperforming previous state-of-the-art benchmarks. *(p.9)*
+
+## Research Evidence Ledger
+
+| ID | Claim | Page | Type | Support | Best evidence |
+|---|---|---|---|---|---|
+| C1 | Compared with state-of-the-arts, ATFormer can predict the optimal implementation of tensor operators to reduce inference time with minimal effort on modern DNN benchmarks. | 1 | assertion | 🔴 none | No supporting evidence found |
+| C2 | Through transfer learning, ATFormer achieves faster-converged latency and superior transferability across different hardware platforms, outperforming previous state-of-the-art benchmarks. | 9 | comparison | 🔴 none | No supporting evidence found |
+
+## Reproducibility: 54.3/100
+
+_100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums_
+
+| Item | Status | Weight | Evidence |
+|---|---|---|---|
+| Code available | missing | 3.0 | Publish code (with a permanent link) and trained checkpoints. |
+| Datasets named and accessible | partial | 2.0 | p.1: Compared with state-of-the-arts, ATFormer can predict the optimal implementation… |
+| Train/validation/test splits specified | partial | 2.0 | p.4: As for the computation layer, a set of feature statements E ∈ RL×Dout should be … |
+| Preprocessing described | missing | 1.0 | Describe cleaning, tokenisation and augmentation steps. |
+| Hyperparameters reported | present | 2.0 | p.5: We report the the end-to-end inference latency with batch size 1 on RTX 2080Ti.… |
+| Seeds / multiple runs | missing | 2.0 | Run with several seeds and report how many. |
+| Variance / uncertainty reported | present | 2.0 | p.2: To enhance their performance, an ensemble learning approach is typically employe… |
+| Statistical significance test | missing | 1.5 | Back &#x27;significant&#x27; claims with a named test and p-value or CI. |
+| Baselines described | present | 2.0 | p.1: Compared with state-of-the-arts, ATFormer can predict the optimal implementation… |
+| Ablation / component analysis | present | 1.0 | p.12: We also provide a detailed ablation study of the model architecture, accuracy, l… |
+| Evaluation metrics defined | partial | 1.0 | p.1: While compilation-based methods with performance models can provide dynamic and … |
+| Compute / hardware reported | present | 1.0 | p.1: As a result, it has become increasingly challenging to efficiently deploy DNNs w… |
+| Software / library versions | present | 1.0 | p.12: We use TVM v0.8dev in TenSet (Zheng et al., 2021), LLVM 11.0, and CUDA 11.0 for … |
+| Licence / ethics statement | missing | 0.5 | State data/model licences and ethical considerations. |
+| Limitations discussed | present | 1.0 | p.1: To overcome the limitations, mainstream searchbased tensor compilers (Chen et al… |
+
+_Measures what the paper reports (checklist coverage), not whether results actually reproduce._
+
+## Evidence gaps
+
+- **[HIGH] no_code**: No code or implementation link is given.
+- **[HIGH] unsupported_claim** (p.9): No strong supporting passage found in the paper body for this claim. — &quot;Through transfer learning, ATFormer achieves faster-converged latency and superior transferability across different hardware platforms, outperforming previous state-of-the-art benchmarks.&quot;
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim. — &quot;Compared with state-of-the-arts, ATFormer can predict the optimal implementation of tensor operators to reduce inference time with minimal effort on modern DNN benchmarks.&quot;
+- **[MEDIUM] superlative_unsupported** (p.9): Superlative claim with no clear head-to-head comparison in the results. — &quot;Through transfer learning, ATFormer achieves faster-converged latency and superior transferability across different hardware platforms, outperforming previous state-of-the-art benchmarks.&quot;
+</pre></body>

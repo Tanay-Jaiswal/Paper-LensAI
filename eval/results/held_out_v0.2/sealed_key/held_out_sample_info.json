@@ -1,0 +1,62 @@
+{
+  "seed": 20261012,
+  "target": 60,
+  "min_per_paper": 3,
+  "population_claims": 33,
+  "sampled": 33,
+  "method": "per-paper quota by largest remainder (proportional to claim count, floor 3); within each paper, quota split across support levels by largest remainder; simple random draw inside each cell",
+  "per_paper": {
+    "acl_2023.emnlp-main.250_atformer-a-learned-performance-model-with.pdf": {
+      "claims": 2,
+      "sampled": 2
+    },
+    "acl_2024.acl-long.150_itd-large-language-models-can-teach.pdf": {
+      "claims": 5,
+      "sampled": 5
+    },
+    "acl_2024.naacl-long.50_neurocache-efficient-vector-retrieval-for-long.pdf": {
+      "claims": 2,
+      "sampled": 2
+    },
+    "arxiv_2403.00204v1_la-4-co-4-x-x.pdf": {
+      "claims": 5,
+      "sampled": 5
+    },
+    "arxiv_2403.00209v2_chartreformer-natural-language-driven-chart-image.pdf": {
+      "claims": 2,
+      "sampled": 2
+    },
+    "arxiv_2403.00947v1_history-dependence-shapes-causal-inference-of.pdf": {
+      "claims": 2,
+      "sampled": 2
+    },
+    "doi_10.5194-gmd-16-3029-2023_technical-descriptions-of-the-experimental-dynamical.pdf": {
+      "claims": 5,
+      "sampled": 5
+    },
+    "doi_10.7554-elife.76927_the-rna-helicase-ddx39b-activates-foxp3.pdf": {
+      "claims": 1,
+      "sampled": 1
+    },
+    "pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf": {
+      "claims": 7,
+      "sampled": 7
+    },
+    "pmc_PMC9815661_a-dsrna-binding-mutant-reveals-only.pdf": {
+      "claims": 2,
+      "sampled": 2
+    }
+  },
+  "support_population": {
+    "none": 10,
+    "weak": 13,
+    "strong": 6,
+    "moderate": 4
+  },
+  "support_sample": {
+    "none": 10,
+    "weak": 13,
+    "strong": 6,
+    "moderate": 4
+  }
+}

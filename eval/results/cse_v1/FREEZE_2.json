@@ -1,0 +1,24 @@
+{
+  "frozen_utc": "2026-10-23T15:58:37Z",
+  "files": {
+    "paperlens/__init__.py": "3b2118b4865a38d916f1e064a7c65640d4aab98e1329530452288b364d668bfd",
+    "paperlens/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "paperlens/api.py": "0f358e7df663c7ed4e9ab648964fa689d27725aab0e8a7fabc29e7244f3b0cb5",
+    "paperlens/claims.py": "cf2010ae8fd514766323feb20d63d756414c85e779e688899572d3b66bc00af5",
+    "paperlens/cli.py": "77b924eb59d3e1947bea8c8b1541bb37c912bc4ac1e350c1ba6c3c965328ff45",
+    "paperlens/compare.py": "c2403387245136910e9146632e85c511beee3a7102ab241db4c6acefe28f59af",
+    "paperlens/consistency.py": "a123638610ab1ff944f3074cd455fbe2d831e3510857b6cb0bca49d81ce1d864",
+    "paperlens/cse_terms.py": "75dd40c5e9c00f9590a7dec4e3bb715a9088f15e5c5116d8793d40e39439bc14",
+    "paperlens/field.py": "e35baba0516d10b2d072725d9f6b43743930da9ed935794e9bc8738e2d41f575",
+    "paperlens/gaps.py": "b7137161b794a4deefe3772def6917af548040fae082d97153c0759689e7e2d9",
+    "paperlens/glossary.py": "5031f2f1fb2e4d40eec1fd5cb37066acf90695e2e4282ce12672f0ec95008a5b",
+    "paperlens/ingest.py": "22137b79051cabc81033a12a367e173546a246de0a03ba391e66088001f9ef14",
+    "paperlens/models.py": "b08ee4dc6cbd4d66b65d2894db2d58089692506e763e7a3ff01d239f6e04d1b5",
+    "paperlens/pipeline.py": "8686006b3d3b70ee4c31efcf2eadd3c959d1f3f3be3380517196ec0d4dad2561",
+    "paperlens/report.py": "4fa36cc99270e5096a10326c60315934652e903bc7a022d8f8aed6ef23bf3129",
+    "paperlens/reproducibility.py": "c37c1e9422ec109f0e3d6e4c3c66df2e8f471bd5656aba94dd2ef9b04bf3ce64",
+    "paperlens/revisions.py": "2faf0f90e1d7dac4e7dc39e39ba05e689228467393512b2b2e41fe79306e31d0",
+    "paperlens/summarize.py": "b6b34734f56762a042e0dba6828db7ab7c04891f13cd107950826441ca9893a8",
+    "paperlens/textutils.py": "5ea35fc05b138e08cb6fc8ca3ec44701fddd6b57d667c756da35e995bb4d6af5"
+  }
+}

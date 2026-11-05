@@ -1,0 +1,470 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "7c716c5fea75",
+    "title": "ChartReformer: Natural Language-Driven Chart Image Editing",
+    "n_pages": 18,
+    "source_name": "arxiv_2403.00209v2_chartreformer-natural-language-driven-chart-image.pdf",
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract."
+    ],
+    "n_sentences": 254
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "Instead of predicting the plotting code, the key in this method is that we allow the model to comprehend the chart and reason over the prompt to generate the corresponding underlying data table and visual attributes for new charts, enabling a precise and stable editing result.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "By generating edited charts in a decomposed form that includes both the data table and visual attributes, ChartReformer enables precise, natural language-driven edits across style, layout, format, and data-centric modifications.",
+        "page": 13,
+        "section": "conclusion"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "Chart visualizations are essential for data interpretation and communication; however, most charts are only accessible in image format and lack the corresponding data tables and supplementary information, making it difficult to alter their appearance for different scenarios of application.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 1
+        },
+        {
+          "text": "However, for chart editing tasks, [12] still rely on input visual-",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 23
+        }
+      ],
+      "approach": [
+        {
+          "text": "To eliminate the need for original underlying data and information to perform chart editing, we propose ChartReformer, a natural language-driven chart image editing solution that directly edits the charts from the input images with the given instruction prompts.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 2
+        },
+        {
+          "text": "To close this gap, we introduce ChartReformer, which edits chart images from natural language prompts without any prior knowledge of the underlying data and original plot settings.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 25
+        }
+      ],
+      "results": [
+        {
+          "text": "The experiments show promising results for the natural language-driven chart image editing.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 5
+        },
+        {
+          "text": "This approach predicting and adjusting the embedded visual attributes and data under original chart images enables the creation of customized chart images through a re-plotter without explicitly predicting the plotting code, producing and delivering robust and stable chart editing results.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 28
+        },
+        {
+          "text": "Our experiments demonstrate promising results, highlighting ChartReformer’s potential to enhance chart accessibility and adaptability for diverse applications.",
+          "page": 13,
+          "section": "conclusion",
+          "sentence_id": 181
+        }
+      ],
+      "limitations": []
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 2,
+      "text": "To eliminate the need for original underlying data and information to perform chart editing, we propose ChartReformer, a natural language-driven chart image editing solution that directly edits the charts from the input images with the given instruction prompts.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 27,
+        "caption_label_only": 4,
+        "fragment": 3,
+        "claim_zone_without_new_data": 26
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 4,
+      "text": "To generalize ChartReformer, we define and standardize the chart editing category and generate the ChartCraft dataset, covering style, layout, format, and data-centric edits.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "generalization",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 14,
+        "table_row_without_matching_value": 11,
+        "caption_label_only": 5,
+        "fragment": 4,
+        "claim_zone_without_new_data": 26
+      }
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 2,
+    "support": {
+      "strong": 0,
+      "moderate": 0,
+      "weak": 0,
+      "none": 2
+    },
+    "evidence_status": {
+      "found": 0,
+      "no_supporting_evidence": 2,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 47.8,
+    "band": "low",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Our datasets and model are available at: https://github.com/pengyu965/ChartReformer.",
+            "sentence_id": 6
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 9,
+            "section": "experiments",
+            "quote": "To the best of our knowledge, no existing dataset related to chart editing is publicly available1.",
+            "sentence_id": 135
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 11,
+            "section": "experiments",
+            "quote": "Table 3 shows the results of ChartReformer on our test set consisting of 5.5K samples across different edit types.",
+            "sentence_id": 160
+          }
+        ],
+        "advice": "State exact split sizes/seeds and what was used for tuning."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "other",
+            "quote": "Critical operations include range filtering to focus on specific data segments, series filtering to highlight particular data series, and adding new data series or data points to enrich the visualization.",
+            "sentence_id": 82
+          },
+          {
+            "page": 13,
+            "section": "discussion",
+            "quote": "One way to handle such queries is to use a preprocessing module (for instance, a decoder-only language model), which could be used to better interpret and simplify them into a series of simply chained edit prompts that ChartReformer can han",
+            "sentence_id": 177
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report all hyperparameters, how they were tuned and the search ranges."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report standard deviation or confidence intervals, not single numbers."
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Back 'significant' claims with a named test and p-value or CI."
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 9,
+            "section": "other",
+            "quote": "Chart Editing We fine-tune the pretrained model on paired images and edit prompts, totally 88k samples, enabling it to interpret prompts and adjust data and visual properties accordingly.",
+            "sentence_id": 131
+          },
+          {
+            "page": 9,
+            "section": "experiments",
+            "quote": "We use ChartLlama as a baseline for comparison.",
+            "sentence_id": 134
+          },
+          {
+            "page": 9,
+            "section": "experiments",
+            "quote": "Our replotting process is heurstic, therefore, comparing those with ground truth reflect the performance 1 Based on current information, the dataset developed by ChartLlama [5] has not yet been formally published",
+            "sentence_id": 142
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "Suitable evaluation metrics are designed for such tasks. – Provide ChartCraft datasets that span major edit categories, including style, format, layout, and data-centric edits.",
+            "sentence_id": 32
+          },
+          {
+            "page": 10,
+            "section": "experiments",
+            "quote": "We use the Relative Mapping Similarity (RMS) from [10], and Visual Attribute Edit score (VAES) to evaluate the accuracy of underlyting data table and visual attributes prediction, respectively.",
+            "sentence_id": 149
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "These limitations become particularly acute in scenarios where source data are lost or unavailable, highlighting the need for more flexible and accessible editing techniques.",
+            "sentence_id": 20
+          },
+          {
+            "page": 6,
+            "section": "other",
+            "quote": "We propose ChartReformer, a method that de-renders charts into underlying data and visual attributes to address these limitations for chart editing.",
+            "sentence_id": 91
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Data": {
+        "weight": 5.0,
+        "earned": 4.0,
+        "score": 80.0
+      },
+      "Method": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 3.0,
+        "score": 75.0
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_hyperparameters",
+      "severity": "high",
+      "message": "Training hyperparameters are not reported.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C2",
+      "quote": "To generalize ChartReformer, we define and standardize the chart editing category and generate the ChartCraft dataset, covering style, layout, format, and data-centric edits."
+    },
+    {
+      "id": "G3",
+      "kind": "generalization_narrow_evidence",
+      "severity": "medium",
+      "message": "Generalisation/robustness claim, but only 1 evaluation dataset(s) detected (ChartCraft).",
+      "page": 1,
+      "claim_id": "C2",
+      "quote": "To generalize ChartReformer, we define and standardize the chart editing category and generate the ChartCraft dataset, covering style, layout, format, and data-centric edits."
+    }
+  ],
+  "datasets": [
+    "ChartCraft"
+  ],
+  "metrics": [
+    "accuracy",
+    "F1",
+    "precision",
+    "recall",
+    "exact match"
+  ]
+}

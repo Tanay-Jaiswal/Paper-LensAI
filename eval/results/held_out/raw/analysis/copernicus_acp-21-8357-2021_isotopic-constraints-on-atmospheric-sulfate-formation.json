@@ -1,0 +1,846 @@
+{
+  "version": "0.1.0",
+  "document": {
+    "doc_id": "327fcd9a225e",
+    "title": "Isotopic constraints on atmospheric sulfate formation pathways in the Mt. Everest region, southern Tibetan Plateau",
+    "n_pages": 20,
+    "source_name": "copernicus_acp-21-8357-2021_isotopic-constraints-on-atmospheric-sulfate-formation.pdf",
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract."
+    ],
+    "n_sentences": 559
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "In this study, we report observations of sulfate concentrations and 117O(SO2− 4 ) in aerosol samples collected from the Mt.",
+        "page": 14,
+        "section": "conclusion"
+      },
+      {
+        "text": "Intriguingly, a seasonal variation of 117O(SO2− 4 )SAS with high values during the monsoon (warm) season and low values in the pre-monsoon (cold) season was observed in this study, which is opposite to that of 117O(NO− 3 ) measured from the same aerosol samples as well as that of 117O(SO2− 4 )SAS observed from the polar regions.",
+        "page": 14,
+        "section": "conclusion"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "This high 117O in non-dust sulfate found in this region clearly indicates the important role of the S(IV)+O3 pathway in atmospheric sulfate formation promoted by conditions of high cloud water pH.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 11
+        },
+        {
+          "text": "Overall, our study provides an observational constraint on atmospheric acidity in altering sulfate formation pathways, particularly in dust-rich environments, and such identification of key processes provides an important basis for a better understanding of the sulfur cycle in the TP.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 12
+        }
+      ],
+      "approach": [
+        {
+          "text": "With these expectations, here, for the first time, we present relatively long term 117O observations in atmospheric sulfate as well as its concentrations in this region, which is also an important addition to the global sulfate isotope dataset.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 57
+        }
+      ],
+      "results": [
+        {
+          "text": "The results show that, if the cloud water pH is fixed to 4.5, the modeled monthlymean 117O(SO2− 4 )SAS values range from 0.5 ‰ to 0.7 ‰ during the sampling period (April to September), significantly lower than the observed monthly weighted average 117O(SO2− 4 )SAS values with a range of 1.0 ‰ to 2.1 ‰ in the Mt.",
+          "page": 13,
+          "section": "results",
+          "sentence_id": 278
+        },
+        {
+          "text": "The above results show that the consideration of variable cloud water pH significantly improved the model’s ability to simulate the 117O(SO2− 4 )SAS in the Mt.",
+          "page": 13,
+          "section": "results",
+          "sentence_id": 286
+        },
+        {
+          "text": "Everest region would facilitate the heterogeneous SO2 oxidation by O3 on the alkaline dust surface, which increases the overall fraction of the S(IV) + O3 reaction and results in relatively higher 117O(SO2− 4 )SAS values in the monsoon season than that in the pre-monsoon season.",
+          "page": 14,
+          "section": "results",
+          "sentence_id": 300
+        }
+      ],
+      "limitations": []
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 1,
+      "text": "This work is distributed under the Creative Commons Attribution 4.0 License.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "4"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 146,
+          "page": 6,
+          "section": "results",
+          "quote": "Over the entire sampling campaign, concentrations of the main water-soluble ionic species (e.g., SO2− 4 , NO− 3 , Ca2+, K+) extracted from TSP samples in the Mt.",
+          "score": 0.45,
+          "shared_numbers": [
+            "4"
+          ],
+          "shared_terms": []
+        },
+        {
+          "sentence_id": 148,
+          "page": 6,
+          "section": "results",
+          "quote": "That is, concentrations in the pre-monsoon seasons are 3– 4 times higher than those during the monsoon season.",
+          "score": 0.45,
+          "shared_numbers": [
+            "4"
+          ],
+          "shared_terms": []
+        },
+        {
+          "sentence_id": 151,
+          "page": 6,
+          "section": "results",
+          "quote": "Everest region is far from human activities and is one of the most pristine areas in the world, we observed much higher sulfate concentrations ([SO2− 4 ]), with an average of 9.4±7.6 nmolm−3 during the sampling period in this region, than those in the polar regions.",
+          "score": 0.45,
+          "shared_numbers": [
+            "4"
+          ],
+          "shared_terms": []
+        }
+      ],
+      "support": "moderate",
+      "support_score": 0.45,
+      "flags": [],
+      "confidence": 0.8
+    },
+    {
+      "id": "C2",
+      "sentence_id": 7,
+      "text": "Here, we report the 117O values in atmospheric sulfate collected at a remote site in the Mt.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [
+        "117"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 204,
+          "page": 9,
+          "section": "results",
+          "quote": "Concentrations and 117O values of atmospheric sulfate collected in the Mt.",
+          "score": 0.857,
+          "shared_numbers": [
+            "117"
+          ],
+          "shared_terms": [
+            "117",
+            "atmospheric",
+            "collect",
+            "mt",
+            "o",
+            "sulfate",
+            "valu"
+          ]
+        },
+        {
+          "sentence_id": 223,
+          "page": 10,
+          "section": "results",
+          "quote": "An asterisk (*) represents 117O values measured from bulk atmospheric sulfate, which will bias these 117O observations low; the remaining stand for 117O values in SAS.",
+          "score": 0.656,
+          "shared_numbers": [
+            "117"
+          ],
+          "shared_terms": [
+            "117",
+            "atmospheric",
+            "o",
+            "sulfate",
+            "valu"
+          ]
+        },
+        {
+          "sentence_id": 159,
+          "page": 6,
+          "section": "results",
+          "quote": "Since Ca2+ is a typical tracer of crustal materials (dust) (Ram et al., 2010; Kang et al., 2000), here we use a mass ratio (k) of SO2− to Ca2+ to correct sulfate concentrations and 117O values for non-dust sulfate (nd-SO2− 4 ) which can be regarded as secondary atmospheric sulfate (SAS).",
+          "score": 0.645,
+          "shared_numbers": [
+            "117"
+          ],
+          "shared_terms": [
+            "117",
+            "atmospheric",
+            "here",
+            "o",
+            "sulfate",
+            "valu"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.857,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C3",
+      "sentence_id": 9,
+      "text": "Throughout the sampling campaign (April–September 2018), the 117O in non-dust sulfate show an average of 1.7‰ ± 0.5 ‰, which is higher than most existing data on modern atmospheric sulfate.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "117",
+        "1.7",
+        "0.5"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 241,
+          "page": 11,
+          "section": "results",
+          "quote": "The high 117O(SO2− 4 )SAS values with an average of 1.7‰±0.5 ‰ in the Mt.",
+          "score": 0.607,
+          "shared_numbers": [
+            "0.5",
+            "1.7",
+            "117"
+          ],
+          "shared_terms": [
+            "0.5",
+            "1.7",
+            "117",
+            "average",
+            "o"
+          ]
+        },
+        {
+          "sentence_id": 198,
+          "page": 8,
+          "section": "results",
+          "quote": "Everest region range from 0.5 ‰ to 2.9 ‰ with an average of 1.5‰ ± 0.5 ‰ (weighted averaged at 1.3‰ ± 0.5 ‰), while for 117O(SO2− 4 )SAS, the values increased from 0.5 ‰ in the pre-monsoon season to a maximum of 3.0 ‰ in the monsoon season with an average of 1.7‰±0.5 ‰ (weighted averaged at 1.4‰ ± 0.7 ‰).",
+          "score": 0.589,
+          "shared_numbers": [
+            "0.5",
+            "1.7",
+            "117"
+          ],
+          "shared_terms": [
+            "0.5",
+            "1.7",
+            "117",
+            "average",
+            "o"
+          ]
+        },
+        {
+          "sentence_id": 200,
+          "page": 8,
+          "section": "results",
+          "quote": "In the pre-monsoon season (n = 13), the 117O(SO2− 4 )SAS values fell in the range from 0.5 ‰ to 1.7 ‰ with an average of 1.4% ± 0.5 ‰ (weighted averaged at 1.2‰ ± 0.6 ‰), which is obviously lower than that of 2.0‰±0.5 ‰ (weighted averaged at 1.9‰±0.7 ‰) in the monsoon season (n = 11) with a range from 1.3 ‰ to 3.0 ‰ (Fig. 4a).",
+          "score": 0.562,
+          "shared_numbers": [
+            "0.5",
+            "1.7",
+            "117"
+          ],
+          "shared_terms": [
+            "0.5",
+            "1.7",
+            "117",
+            "average",
+            "o"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.607,
+      "flags": [],
+      "confidence": 1.0
+    },
+    {
+      "id": "C4",
+      "sentence_id": 12,
+      "text": "Overall, our study provides an observational constraint on atmospheric acidity in altering sulfate formation pathways, particularly in dust-rich environments, and such identification of key processes provides an important basis for a better understanding of the sulfur cycle in the TP.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 289,
+          "page": 13,
+          "section": "results",
+          "quote": "Everest region, in turn, highlights observational evidence that atmospheric acidity plays an important role in controlling sulfate formation pathways, particularly for dust-rich environments.",
+          "score": 0.338,
+          "shared_numbers": [],
+          "shared_terms": [
+            "acidity",
+            "atmospheric",
+            "dust-rich",
+            "environment",
+            "form",
+            "important",
+            "observational",
+            "particularly"
+          ]
+        },
+        {
+          "sentence_id": 272,
+          "page": 12,
+          "section": "results",
+          "quote": "Consequently, our findings provide an important observational basis for better constraints on the importance of pH in sulfate formation pathways.",
+          "score": 0.324,
+          "shared_numbers": [],
+          "shared_terms": [
+            "basi",
+            "better",
+            "constraint",
+            "form",
+            "important",
+            "observational",
+            "pathway",
+            "sulfate"
+          ]
+        },
+        {
+          "sentence_id": 292,
+          "page": 13,
+          "section": "results",
+          "quote": "Consequently, an accurate estimate of cloud water pH in the model simulation and elucidation of its relation to atmospheric sulfate formation are necessary for precise model forecasts, and observations of 117O(SO2− 4 )SAS are important constraints on model validation.",
+          "score": 0.182,
+          "shared_numbers": [],
+          "shared_terms": [
+            "atmospheric",
+            "constraint",
+            "form",
+            "important",
+            "sulfate"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.338,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C5",
+      "sentence_id": 310,
+      "text": "Everest region is higher than the published data reported from the Earth’s midlatitude continents which have relatively lower 117O(SO2− 4 ) values (1.0‰ ± 0.7 ‰).",
+      "page": 14,
+      "section": "conclusion",
+      "claim_type": "comparison",
+      "hedged": false,
+      "numbers": [
+        "117",
+        "4",
+        "1",
+        "0.7"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 209,
+          "page": 9,
+          "section": "results",
+          "quote": "These observations indicate that atmospheric sulfate over much of the Earth’s mid-latitude continents today appear to have relatively lower 117O values (averaged at 1.0‰ ± 0.7 ‰, n = 225) than those observed from the polar regions (averaged at 1.6‰ ± 0.6 ‰, n = 128).",
+          "score": 0.714,
+          "shared_numbers": [
+            "0.7",
+            "1",
+            "117"
+          ],
+          "shared_terms": [
+            "0.7",
+            "1.0",
+            "117",
+            "continent",
+            "earth",
+            "lower",
+            "o",
+            "region"
+          ]
+        },
+        {
+          "sentence_id": 278,
+          "page": 13,
+          "section": "results",
+          "quote": "The results show that, if the cloud water pH is fixed to 4.5, the modeled monthlymean 117O(SO2− 4 )SAS values range from 0.5 ‰ to 0.7 ‰ during the sampling period (April to September), significantly lower than the observed monthly weighted average 117O(SO2− 4 )SAS values with a range of 1.0 ‰ to 2.1 ‰ in the Mt.",
+          "score": 0.618,
+          "shared_numbers": [
+            "0.7",
+            "1",
+            "117",
+            "4"
+          ],
+          "shared_terms": [
+            "0.7",
+            "1.0",
+            "117",
+            "2",
+            "4",
+            "lower",
+            "o",
+            "valu"
+          ]
+        },
+        {
+          "sentence_id": 198,
+          "page": 8,
+          "section": "results",
+          "quote": "Everest region range from 0.5 ‰ to 2.9 ‰ with an average of 1.5‰ ± 0.5 ‰ (weighted averaged at 1.3‰ ± 0.5 ‰), while for 117O(SO2− 4 )SAS, the values increased from 0.5 ‰ in the pre-monsoon season to a maximum of 3.0 ‰ in the monsoon season with an average of 1.7‰±0.5 ‰ (weighted averaged at 1.4‰ ± 0.7 ‰).",
+          "score": 0.529,
+          "shared_numbers": [
+            "0.7",
+            "117",
+            "4"
+          ],
+          "shared_terms": [
+            "0.7",
+            "117",
+            "2",
+            "4",
+            "everest",
+            "o",
+            "region",
+            "valu"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.714,
+      "flags": [],
+      "confidence": 1.0
+    },
+    {
+      "id": "C6",
+      "sentence_id": 314,
+      "text": "As illustrated in Fig. 8, we propose that the S(IV) oxidation by O3 in South Asia as well as during long-range transport over the Himalayas contributes significantly to the sulfate levels in the Mt.",
+      "page": 14,
+      "section": "conclusion",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 274,
+          "page": 13,
+          "section": "results",
+          "quote": "Schematic illustration of South Asia-sourced sulfate aerosols as well as their formation mechanism in the troposphere during the long-range cross-border transport over the Himalayas, which contribute significantly to the sulfate levels in the Mt.",
+          "score": 0.412,
+          "shared_numbers": [],
+          "shared_terms": [
+            "dur",
+            "himalaya",
+            "level",
+            "long-range",
+            "mt",
+            "significantly",
+            "south",
+            "sulfate"
+          ]
+        },
+        {
+          "sentence_id": 271,
+          "page": 12,
+          "section": "results",
+          "quote": "and during the long-range transport should contribute significantly to the observed sulfate in the Mt.",
+          "score": 0.323,
+          "shared_numbers": [],
+          "shared_terms": [
+            "dur",
+            "long-range",
+            "mt",
+            "significantly",
+            "sulfate",
+            "transport"
+          ]
+        },
+        {
+          "sentence_id": 190,
+          "page": 8,
+          "section": "results",
+          "quote": "Thus, it is reasonable to suggest that combustion sources in South Asia contribute significantly to the atmospheric sulfate level in the Mt.",
+          "score": 0.307,
+          "shared_numbers": [],
+          "shared_terms": [
+            "asia",
+            "level",
+            "mt",
+            "significantly",
+            "south",
+            "sulfate"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.412,
+      "flags": [],
+      "confidence": 0.66
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 6,
+    "support": {
+      "strong": 3,
+      "moderate": 1,
+      "weak": 2,
+      "none": 0
+    }
+  },
+  "reproducibility": {
+    "score": 50.0,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "With these expectations, here, for the first time, we present relatively long term 117O observations in atmospheric sulfate as well as its concentrations in this region, which is also an important addition to the global sulfate isotope data",
+            "sentence_id": 57
+          },
+          {
+            "page": 6,
+            "section": "method",
+            "quote": "This dataset was obtained from GAW/WDCRG (Global Atmosphere Watch programme/World Data Centre for Reactive Gases) and hosted by EBAS data infrastructure at NILU (the Norwegian Institute for Air Research).",
+            "sentence_id": 136
+          },
+          {
+            "page": 15,
+            "section": "conclusion",
+            "quote": "molangma Station for Atmospheric and Environmental Observation and Research, Chinese Academy of Sciences, for their valuable help with field sampling and supplying the meteorological dataset.",
+            "sentence_id": 333
+          }
+        ],
+        "advice": "Name every dataset with version/source and state how to obtain it."
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "method",
+            "quote": "The 1σ precision of corrected 117O was ±0.1 ‰ based on replicate analyses (n = 20) of the standard B (117O(SO2− 4 ) = 2.4 ‰) with five independent runs of this study.",
+            "sentence_id": 103
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "Throughout the sampling campaign (April–September 2018), the 117O in non-dust sulfate show an average of 1.7‰ ± 0.5 ‰, which is higher than most existing data on modern atmospheric sulfate.",
+            "sentence_id": 9
+          },
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "Laboratory experiments demonstrated that the mass-independent sulfate in the troposphere mainly originates from oxygen atom transfer from O3 (117O = 25.6‰ ± 1.3 ‰ for bulk tropospheric O3; Ishino et al., 2017; Savarino et al., 2000; Vicars ",
+            "sentence_id": 44
+          },
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "Based on the transfer of the 117O signature from the oxidant to the produced sulfate (Savarino et al., 2000), 117O values of sulfate formed via the main oxidation pathways are as follows: SO2 + OH → 117O(SO2− 4 ) = 0‰, (R1) S(IV) + O3 → 117",
+            "sentence_id": 45
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 6,
+            "section": "results",
+            "quote": "Thus, mineral dust is considered to be the only significant source of primary sulfate in our study due to frequently occurring dust storms (Fig. 3) as well as the significant correlations between SO2− and Ca2+ in both seasons (r = 0.825, p ",
+            "sentence_id": 158
+          },
+          {
+            "page": 8,
+            "section": "results",
+            "quote": "As shown in Fig. 2c, the [nd-SO2− 4 ] showed a consistent seasonality similar to [BC] during the sampling period, especially for the pre-monsoon season, during which time a significant correlation (r = 0.806, p < 0.01) exists.",
+            "sentence_id": 187
+          },
+          {
+            "page": 8,
+            "section": "results",
+            "quote": "As a marker of biomass burning, [K+] also showed significant correlations with [nd-SO2− 4 ] in both seasons (r = 0.858, p < 0.01 for the pre-monsoon season; r = 0.977, p < 0.01 for the monsoon season) (Fig. 2d).",
+            "sentence_id": 189
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "By comparing in situ observations with modeling results, the missing processes involved in sulfate formation can be quantified.",
+            "sentence_id": 50
+          },
+          {
+            "page": 6,
+            "section": "results",
+            "quote": "In addition, the contribution of primary sulfate emitted from anthropogenic activity has been considered to be insignificant as compared to those from the secondary sulfate produced through oxidation of SO2 (Berresheim et al., 1995).",
+            "sentence_id": 157
+          },
+          {
+            "page": 8,
+            "section": "results",
+            "quote": "3.2 117O signatures of sulfate and comparison with other sites As listed in Table 1, the 117O(SO2− 4 )bulk values in the Mt.",
+            "sentence_id": 197
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 4,
+            "section": "method",
+            "quote": "Figure 1. (a) A map showing the geographic location of the sampling site (QOMS, red star) with clustered 5 d backward trajectories of air masses arriving at QOMS during different seasons in 2018 (black lines stand for the pre-monsoon season",
+            "sentence_id": 74
+          },
+          {
+            "page": 4,
+            "section": "method",
+            "quote": "This heating procedure, which would not lead to measurable oxygen isotopic exchanges (Xie et al., 2016), is important in our study because organic contaminants may reduce the precision and accuracy of 117O measurements via consuming O2 prod",
+            "sentence_id": 88
+          },
+          {
+            "page": 5,
+            "section": "method",
+            "quote": "The 1σ precision of corrected 117O was ±0.1 ‰ based on replicate analyses (n = 20) of the standard B (117O(SO2− 4 ) = 2.4 ‰) with five independent runs of this study.",
+            "sentence_id": 103
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "This work is distributed under the Creative Commons Attribution 4.0 License.",
+            "sentence_id": 1
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Add a limitations section naming settings where the method fails."
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 1.0,
+        "score": 33.3
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 5.5,
+        "score": 100.0
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.5,
+        "score": 100.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 0.0,
+        "score": 0.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "no_limitations",
+      "severity": "medium",
+      "message": "No limitations section or discussion of failure cases was found.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C4",
+      "quote": "Overall, our study provides an observational constraint on atmospheric acidity in altering sulfate formation pathways, particularly in dust-rich environments, and such identification of key processes provides an impor..."
+    }
+  ],
+  "datasets": [],
+  "metrics": [
+    "precision"
+  ]
+}

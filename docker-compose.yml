@@ -1,0 +1,16 @@
+# Run the container locally or on a server: docker compose up --build   then open http://localhost:8000
+services:
+  paperlens:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      PAPERLENS_HOSTED: "1"
+      # PAPERLENS_PASSWORD: "choose-a-shared-password"     # uncomment to ask every visitor for a password
+      # PAPERLENS_AI_SECOND_OPINION: "1"                   # optional AI second opinion; also build with INSTALL_AI=1
+      # ANTHROPIC_API_KEY: "..."                           # needed only for the AI second opinion
+    volumes:
+      - paperlens-data:/data
+    restart: unless-stopped
+volumes:
+  paperlens-data:

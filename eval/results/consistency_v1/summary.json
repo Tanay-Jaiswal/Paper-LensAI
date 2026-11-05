@@ -1,0 +1,41 @@
+{
+  "folders": {
+    "Papers": {
+      "papers": 16,
+      "papers_with_checks": 3,
+      "checks": 25,
+      "consistent": 22,
+      "inconsistent": 0,
+      "not_reproduced": 3
+    },
+    "held_out_papers": {
+      "papers": 8,
+      "papers_with_checks": 3,
+      "checks": 50,
+      "consistent": 41,
+      "inconsistent": 1,
+      "not_reproduced": 8
+    },
+    "held_out_v0.2_papers": {
+      "papers": 11,
+      "papers_with_checks": 2,
+      "checks": 26,
+      "consistent": 23,
+      "inconsistent": 3,
+      "not_reproduced": 0
+    }
+  },
+  "kinds": {
+    "table_row_total": 10,
+    "table_column_total": 23,
+    "f1_harmonic_mean": 34,
+    "table_row_average": 8,
+    "ci_contains_estimate": 11,
+    "percent_of_count": 15
+  },
+  "status": {
+    "consistent": 86,
+    "not_reproduced": 11,
+    "inconsistent": 4
+  }
+}

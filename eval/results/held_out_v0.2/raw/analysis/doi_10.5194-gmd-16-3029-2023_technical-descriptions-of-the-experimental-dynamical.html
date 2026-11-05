@@ -1,0 +1,63 @@
+<!doctype html><meta charset=utf-8><title>PaperLens report</title><body style='font:14px/1.5 system-ui;max-width:960px;margin:2rem auto;padding:0 1rem'><pre style='white-space:pre-wrap'># PaperLens report: Technical descriptions of the experimental dynamical downscaling simulations over North America by the CAM–MPAS variable-resolution model
+
+*53 pages · 5 claims · reproducibility 63.2/100 (moderate)*
+
+&gt; **Warnings:** No &#x27;Abstract&#x27; heading detected; treated the front matter as the abstract. No results/experiments section detected; evidence linking will be weak.
+
+## Summary
+
+- To understand sources of uncertainties in global variable-resolution (VR) dynamical downscaling, we produced a regional climate dataset using the Model for Prediction Across Scales (MPAS; dynamical core version 4.0) coupled to the Community Atmosphere Model (CAM; version 5.4), which we refer to as CAM–MPAS hereafter. *(p.1)*
+- K. Sakaguchi et al.: Technical descriptions of the experimental dynamical downscaling simulations Figure 13. *(p.24)*
+
+**Problem**
+- However, limited by computing resources and model structures, climate projections produced by global climate and Earth system models, including those in the most recent Coupled Model Intercomparison Project Phase 6 (CMIP6; Eyring et al., 2016), are mostly available at grid spacing of 100–150 km. *(p.2)*
+- Few studies have compared limited-area and global VR dynamical downscaling approaches at the climate timescale (Hagos et al., 2013; Huang et al., 2016; Xu et al., 2018, 2021), making such comparisons an important element of the HyperFACETS project. *(p.3)*
+
+**Results**
+- However, few attempts (e.g., Wilby et al., 2000) have been made to compare different statistical and dynamical downscaling methods under the same experimental protocol to reduce the factors confounding interpretation of the results. *(p.2)*
+- Dynamical downscaling usually refers to numerical simulations over a limited-area domain to achieve a higher resolution than those of global climate models (e.g., Giorgi and Mearns, 1991; Giorgi, 2019). *(p.2)*
+- Having both limited-area and VR models in a coordinated project may also facilitate interactions between global and regional climate modeling communities, which could accelerate model development and workflow improvement to further reduce uncertainties in the regional climate dataset. *(p.25)*
+
+## Research Evidence Ledger
+
+| ID | Claim | Page | Type | Support | Best evidence |
+|---|---|---|---|---|---|
+| C1 | This work is distributed under the Creative Commons Attribution 4.0 License. | 1 | result | 🔴 none | No supporting evidence found |
+| C2 | The CAM–MPAS model is configured with VR meshes featuring higher resolutions over North America as well as quasi-uniform-resolution meshes across the globe. | 1 | assertion | 🟠 weak | p.14: Here, we do not compare the simulation cost of the CAM–MPAS VR configurations against regi… |
+| C3 | Within the refined domain, precipitation statistics improve with higher resolutions, and such statistical inference is verified to be negligibly influenced by horizontal remapping during post-processing. | 1 | assertion | 🔴 none | No supporting evidence found |
+| C4 | Limited ( ≈ 50% slower) through- Published by Copernicus Publications on behalf of the European Geosciences Union. | 1 | result | 🟠 weak | p.46: Publisher’s note: Copernicus Publications remains neutral with regard to jurisdictional cl… |
+| C5 | Having both limited-area and VR models in a coordinated project may also facilitate interactions between global and regional climate modeling communities, which could accelerate model development and workflow improvement to further reduce uncertainties in the regional climate dataset. | 25 | assertion | 🔴 none | No supporting evidence found |
+
+## Reproducibility: 63.2/100
+
+_100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums_
+
+| Item | Status | Weight | Evidence |
+|---|---|---|---|
+| Code available | present | 3.0 | p.46: The official version of the CESM model is available as a public-domain software … |
+| Datasets named and accessible | present | 2.0 | p.4: Their characteristics are documented in detail by Bogenschutz et al. (2018), and… |
+| Train/validation/test splits specified | not_applicable | 2.0 | Not scored: no model training was detected in this paper. |
+| Preprocessing described | present | 1.0 | p.41: The topography-related spatial variability seems to be filtered out and does not… |
+| Hyperparameters reported | not_applicable | 2.0 | Not scored: no model training was detected in this paper. |
+| Seeds / multiple runs | missing | 2.0 | Run with several seeds and report how many. |
+| Variance / uncertainty reported | present | 2.0 | p.12: Mean (mm d−1), variance (mm2 d−2), kurtosis, and selected percentiles (mm d−1) o… |
+| Statistical significance test | missing | 1.5 | Back &#x27;significant&#x27; claims with a named test and p-value or CI. |
+| Baselines described | present | 2.0 | p.2: These downscaling approaches have been compared to inform methodological develop… |
+| Ablation / component analysis | missing | 1.0 | Show which components drive the gains. |
+| Evaluation metrics defined | partial | 1.0 | p.10: The order of the vertical vs. horizontal interpolation is not expected to be imp… |
+| Compute / hardware reported | present | 1.0 | p.17: For example, two new systems being deployed to HPC centers in the United States … |
+| Software / library versions | missing | 1.0 | Pin library versions or provide an environment file. |
+| Licence / ethics statement | present | 0.5 | p.1: This work is distributed under the Creative Commons Attribution 4.0 License.… |
+| Limitations discussed | missing | 1.0 | Add a limitations section naming settings where the method fails. |
+
+_Measures what the paper reports (checklist coverage), not whether results actually reproduce._
+
+## Evidence gaps
+
+- **[HIGH] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim; its numbers (4) do not appear in results text. — &quot;This work is distributed under the Creative Commons Attribution 4.0 License.&quot;
+- **[MEDIUM] no_limitations**: No limitations section or discussion of failure cases was found.
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim (only weak lexical overlap). — &quot;The CAM–MPAS model is configured with VR meshes featuring higher resolutions over North America as well as quasi-uniform-resolution meshes across the globe.&quot;
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim. — &quot;Within the refined domain, precipitation statistics improve with higher resolutions, and such statistical inference is verified to be negligibly influenced by horizontal remapping during post-processing.&quot;
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim (only weak lexical overlap); its numbers (50) do not appear in results text. — &quot;Limited ( ≈ 50% slower) through- Published by Copernicus Publications on behalf of the European Geosciences Union.&quot;
+- **[MEDIUM] unsupported_claim** (p.25): No strong supporting passage found in the paper body for this claim. — &quot;Having both limited-area and VR models in a coordinated project may also facilitate interactions between global and regional climate modeling communities, which could accelerate model development and workflow improvem...&quot;
+</pre></body>

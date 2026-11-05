@@ -1,0 +1,52 @@
+﻿paper,claim_id,support,top_label,claimed,top,rank_order_set,complementary_set,missing
+acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf,C3,moderate,p,1.5 4.6 5.1 7.7 80.5 83.1 86.7 93.2,4.6,4.6 80.5,4.6 80.5,1.5 5.1 7.7 83.1 86.7 93.2
+arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf,C1,strong,,4.8 5.8,4.8 5.8,4.8 5.8,4.8 5.8,
+arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf,C2,strong,y,0.4 126,0.4 126,0.4 126,0.4 126,
+arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf,C3,moderate,y,1.7e-9 5.9,5.9,5.9,5.9,1.7e-9
+arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf,C4,moderate,,4.6 4.8,4.8,4.8,4.6 4.8,
+arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf,C5,strong,,4.8 5.9 68 95,4.8 5.9 95,4.8 5.9 95,4.8 5.9 68 95,
+arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf,C6,strong,,68 95,95,95,95,68
+arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf,C3,strong,y,152,152,152,152,
+arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf,C4,strong,y,3.57,3.57,3.57,3.57,
+arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf,C5,strong,y,28,28,28,28,
+arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf,C1,moderate,n,1e-21 250 35,35,35,35,1e-21 250
+arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf,C2,moderate,p,203 24 5.1,203,203 24 5.1,203 24 5.1,
+arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf,C3,strong,y,0.04 0.09 180 410,0.04 0.09 180 410,0.04 0.09 180 410,0.04 0.09 180 410,
+arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf,C4,strong,p,0.5 29 36 62,0.5,0.5 36 62,0.5 36 62,29
+arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf,C5,strong,,90,90,90,90,
+arxiv_1706.03762v7_attention-is-all-you-need.pdf,C4,strong,y,28.4,28.4,28.4,28.4,
+arxiv_1706.03762v7_attention-is-all-you-need.pdf,C5,moderate,p,3.5 41.8,3.5,3.5,3.5,41.8
+arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf,C3,strong,n,10 175,175,175,175,10
+arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf,C8,moderate,,1.5 100 11 17 19 300,19,17 19,17 19,1.5 100 11 300
+arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf,C10,moderate,p,81.5 84 85,85,85,85,81.5 84
+arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf,C11,strong,y,64.3 68 71.2,64.3 68 71.2,64.3 68 71.2,64.3 68 71.2,
+plos_pbio.1002106_the-extent-and-consequences-of-p.pdf,C7,strong,,0.05,0.05,0.05,0.05,
+plos_pbio.1002106_the-extent-and-consequences-of-p.pdf,C8,strong,,0.05,0.05,0.05,0.05,
+plos_pbio.1002106_the-extent-and-consequences-of-p.pdf,C9,moderate,,0.005 0.04 0.045 0.05,0.045 0.05,0.045 0.05,0.045 0.05,0.005 0.04
+plos_pbio.1002106_the-extent-and-consequences-of-p.pdf,C11,strong,,95,95,95,95,
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C1,moderate,,12 20 40 60 80,12,12 40,12 40,20 60 80
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C2,strong,,0.01 0.41 10.3 9.1,10.3 9.1,10.3 9.1,10.3 9.1,0.01 0.41
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C3,strong,y,0.002 0.016 0.034 1.8 2.9 4.7,0.002 0.016,0.002 0.016,0.002 0.016,0.034 1.8 2.9 4.7
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C6,weak,,35 40,,,,35 40
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C7,moderate,,13,,,,13
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C9,strong,n,20,20,20,20,
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C11,weak,,0.01 0.05,,,,0.01 0.05
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C12,weak,,15,,,,15
+pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf,C14,moderate,p,15,,15,15,
+pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf,C2,strong,p,95,95,95,95,
+pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf,C3,strong,y,15 29 30 59 60 89 90,15 29 30 59 60 89 90,15 29 30 59 60 89 90,15 29 30 59 60 89 90,
+pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf,C4,strong,y,11 13,11,11,11,13
+pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf,C9,moderate,n,52 66.7 7202,52,52,52,66.7 7202
+pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf,C4,weak,y,45,,,,45
+pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf,C5,weak,y,31,,,,31
+pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf,C9,strong,y,30,30,30,30,
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C3,moderate,n,0.21 0.3 0.47 0.59 0.77 10 105 398 76,105 398 76,105 398 76,10 105 398 76,0.21 0.3 0.47 0.59 0.77
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C4,strong,y,0.6 203 579 62 79,0.6 203 579 62 79,0.6 203 579 62 79,0.6 203 579 62 79,
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C6,strong,y,0.5 10 208 398,0.5 10 208 398,0.5 10 208 398,0.5 10 208 398,
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C7,moderate,p,0.3 125 140 182 217 260 462,182,140 182 217,140 182 217,0.3 125 260 462
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C15,weak,n,0.17,,,,0.17
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C16,moderate,n,10 7.6,,,,10 7.6
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C18,moderate,n,0.03 0.1 10 30 60,10,10,0.03 10 60,0.1 30
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C22,moderate,,0.01 0.02 10,,,10,0.01 0.02
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C24,strong,y,60 70,60,60,60,70
+pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf,C25,moderate,,100 1001,100,100,100,1001

@@ -1,0 +1,19 @@
+{
+  "frozen_utc": "2026-10-11T19:42:55Z",
+  "files": {
+    "paperlens/__init__.py": "8de398884494fa78a1c5df07c26b64e918a7ba7a4c3e9b73effdd3b77682cf57",
+    "paperlens/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "paperlens/api.py": "c85a580eca7f2fb0c809000625f274abf69005b29aeb373176e28e405b277006",
+    "paperlens/claims.py": "b816e4cc4dbb1a90dac35404319364460a255c18e9fd84cdde2565b6d3508cbe",
+    "paperlens/cli.py": "5084092ee93feef0b4fdefa938e404f598204c300719d968628c16e6ed718c24",
+    "paperlens/compare.py": "e35f1d4749eb03b7aed060536bcca1a827f12d35c41e5130bd112c8ee4ee763e",
+    "paperlens/gaps.py": "18f66cc251113d38deeaa3f77882002cc7279951cb1b01f45e82a71215c4705d",
+    "paperlens/ingest.py": "a4ddd96cbb0196369710ba9c5db11948666d05dee817dcace90040ca66de868f",
+    "paperlens/models.py": "b3d4a0e9d73948a651758ffb9100df98c2967ba1302708036303c14e44e9cfa8",
+    "paperlens/pipeline.py": "32e722682784c7ad7faf5caf9aec37aa04e5b144c99f20961dbd8e9bad6ba3ce",
+    "paperlens/report.py": "3db85e3ee2cd20301fb3d16b89f8bf2c68b5c6ff13470f0ab6764f06738a797d",
+    "paperlens/reproducibility.py": "fef8ff83bc32d3304d59f6a0fd106a374163170f43626c5e50a8a7204d1f7b9f",
+    "paperlens/summarize.py": "b6b34734f56762a042e0dba6828db7ab7c04891f13cd107950826441ca9893a8",
+    "paperlens/textutils.py": "b5a27a489f24ea3a734a41d2f687c3a80a7f7b3e0fdd8d5f4cbb38eb404135aa"
+  }
+}

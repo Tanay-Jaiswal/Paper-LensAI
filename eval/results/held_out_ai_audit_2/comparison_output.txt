@@ -1,0 +1,11 @@
+﻿is_real_claim:                   n=45  raw agreement 45/45 = 1.000  Cohen's kappa 1.000  | pass1 {'y': 37, 'n': 8}  pass2 {'y': 37, 'n': 8}
+evidence_correct blank or not:   n=45  raw agreement 45/45 = 1.000  Cohen's kappa 1.000  | pass1 {'labelled': 37, 'blank': 8}  pass2 {'labelled': 37, 'blank': 8}
+evidence_correct y/p/n (both):   n=37  raw agreement 36/37 = 0.973  Cohen's kappa 0.957  | pass1 {'p': 17, 'y': 6, 'n': 14}  pass2 {'p': 16, 'y': 6, 'n': 15}
+evidence_correct strict y vs not: n=37  raw agreement 37/37 = 1.000  Cohen's kappa 1.000  | pass1 {'not-y': 31, 'y': 6}  pass2 {'not-y': 31, 'y': 6}
+
+Disagreements:
+row 23 (arXiv:2303.00194v1 C10): pass1 claim=y evidence=p | pass2 claim=y evidence=n
+   pass1 note: [AI-assisted label] Hedged interpretation of own results (lower velocity / density at large radius). Evidence gives low electron density in ap4 and ap5 only: related to the density part, does not address ap6/ap8 line ratios. Unsure between p and n.
+   pass2 note: Hedged interpretation: lower velocity consistent with 'lower line ratios in ap6 and ap8 compared to ap3-ap5'. Evidence 'For ap4 and ap5, log(ne/cm-3) < 1' says nothing about ap6/ap8 line ratios or a decrease of density with radius.
+
+rows flagged unsure/borderline: pass1 ['10', '16', '17', '20', '21', '23', '25', '26'] | pass2 ['16', '17']

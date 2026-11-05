@@ -1,0 +1,17 @@
+acl_2020.acl-main.442_beyond-accuracy-behavioral    3.8s pages= 11 sents=  434 claims=  2 support={'none': 1, 'weak': 1}
+acl_2020.emnlp-main.609_fact-or-fiction-verifyin    4.1s pages= 17 sents=  588 claims=  8 support={'none': 7, 'weak': 1}
+acl_N19-1423_bert-pre-training-of-deep-bidirecti    3.2s pages= 16 sents=  636 claims=  5 support={'weak': 1, 'none': 3, 'moderate': 1}
+acl_P02-1040_bleu-a-method-for-automatic-evaluat    1.2s pages=  8 sents=  233 claims=  2 support={'none': 2}
+arxiv_1207.7214v2_observation-of-a-new-particle-    9.0s pages= 38 sents=  868 claims=  5 support={'strong': 3, 'moderate': 2}
+arxiv_1412.6980v9_adam-a-method-for-stochastic-o    2.4s pages= 15 sents=  302 claims=  3 support={'none': 1, 'weak': 2}
+arxiv_1512.03385v1_deep-residual-learning-for-im    4.5s pages= 12 sents=  710 claims=  7 support={'none': 2, 'weak': 2, 'strong': 3}
+arxiv_1602.03837v1_observation-of-gravitational-    4.2s pages= 16 sents=  454 claims=  8 support={'moderate': 2, 'strong': 3, 'weak': 1, 'none': 2}
+arxiv_1706.03762v7_attention-is-all-you-need.pdf    2.0s pages= 15 sents=  344 claims= 10 support={'weak': 5, 'none': 3, 'strong': 1, 'moderate': 1}
+arxiv_2005.14165v4_language-models-are-few-shot-   18.3s pages= 75 sents= 1816 claims= 11 support={'none': 4, 'strong': 4, 'weak': 1, 'moderate': 2}
+plos_pbio.1002106_the-extent-and-consequences-of    2.3s pages= 15 sents=  435 claims= 15 support={'none': 11, 'strong': 3, 'moderate': 1}
+plos_pmed.0020124_why-most-published-research-fi    1.8s pages=  6 sents=  337 claims=  2 support={'weak': 2}
+pmc_PMC4930190_comparison-of-high-intensity-inte    3.4s pages= 16 sents=  462 claims= 20 support={'moderate': 4, 'strong': 3, 'weak': 9, 'none': 4}
+pmc_PMC4934905_global-prevalence-of-chronic-kidn    3.3s pages= 18 sents=  806 claims= 12 support={'none': 6, 'strong': 3, 'moderate': 2, 'weak': 1}
+pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf       3.0s pages= 19 sents=  545 claims=  9 support={'none': 4, 'weak': 3, 'strong': 2}
+pmc_PMC5249242_accurate-de-novo-prediction-of-pr    6.1s pages= 34 sents=  842 claims= 25 support={'none': 8, 'moderate': 7, 'strong': 4, 'weak': 6}
+16 papers, 0 crashed, 144 claim rows -> eval\results\dev_v1.1

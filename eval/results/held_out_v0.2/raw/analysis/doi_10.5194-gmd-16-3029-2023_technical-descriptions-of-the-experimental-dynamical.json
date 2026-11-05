@@ -1,0 +1,626 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "10edf3834250",
+    "title": "Technical descriptions of the experimental dynamical downscaling simulations over North America by the CAM–MPAS variable-resolution model",
+    "n_pages": 53,
+    "source_name": "doi_10.5194-gmd-16-3029-2023_technical-descriptions-of-the-experimental-dynamical.pdf",
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract.",
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 946
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "To understand sources of uncertainties in global variable-resolution (VR) dynamical downscaling, we produced a regional climate dataset using the Model for Prediction Across Scales (MPAS; dynamical core version 4.0) coupled to the Community Atmosphere Model (CAM; version 5.4), which we refer to as CAM–MPAS hereafter.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "K. Sakaguchi et al.: Technical descriptions of the experimental dynamical downscaling simulations Figure 13.",
+        "page": 24,
+        "section": "conclusion"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "However, limited by computing resources and model structures, climate projections produced by global climate and Earth system models, including those in the most recent Coupled Model Intercomparison Project Phase 6 (CMIP6; Eyring et al., 2016), are mostly available at grid spacing of 100–150 km.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 19
+        },
+        {
+          "text": "Few studies have compared limited-area and global VR dynamical downscaling approaches at the climate timescale (Hagos et al., 2013; Huang et al., 2016; Xu et al., 2018, 2021), making such comparisons an important element of the HyperFACETS project.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 46
+        }
+      ],
+      "approach": [],
+      "results": [
+        {
+          "text": "However, few attempts (e.g., Wilby et al., 2000) have been made to compare different statistical and dynamical downscaling methods under the same experimental protocol to reduce the factors confounding interpretation of the results.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 24
+        },
+        {
+          "text": "Dynamical downscaling usually refers to numerical simulations over a limited-area domain to achieve a higher resolution than those of global climate models (e.g., Giorgi and Mearns, 1991; Giorgi, 2019).",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 28
+        },
+        {
+          "text": "Having both limited-area and VR models in a coordinated project may also facilitate interactions between global and regional climate modeling communities, which could accelerate model development and workflow improvement to further reduce uncertainties in the regional climate dataset.",
+          "page": 25,
+          "section": "conclusion",
+          "sentence_id": 488
+        }
+      ],
+      "limitations": []
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 1,
+      "text": "This work is distributed under the Creative Commons Attribution 4.0 License.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "4"
+      ],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.8,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 31,
+        "fragment": 3,
+        "claim_zone_without_new_data": 26
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 7,
+      "text": "The CAM–MPAS model is configured with VR meshes featuring higher resolutions over North America as well as quasi-uniform-resolution meshes across the globe.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 292,
+          "page": 14,
+          "section": "other",
+          "quote": "Here, we do not compare the simulation cost of the CAM–MPAS VR configurations against regional models but instead focus on how the cost of CAM–MPAS simulations differs between the UR and VR grids and between the lower and higher resolutions.",
+          "score": 0.254,
+          "shared_numbers": [],
+          "shared_terms": [
+            "cam",
+            "configur",
+            "higher",
+            "model",
+            "mpa",
+            "resolution",
+            "vr"
+          ],
+          "lexical": 0.359
+        },
+        {
+          "sentence_id": 129,
+          "page": 6,
+          "section": "other",
+          "quote": "The 12–46 km VR mesh is obtained from the MPAS mesh archive and has a circular and slightly smaller (by ≈ 30%) high-resolution domain than the other two VR grids but still covers the most of North America (Fig. 1f).",
+          "score": 0.228,
+          "shared_numbers": [],
+          "shared_terms": [
+            "america",
+            "mesh",
+            "mpa",
+            "north",
+            "vr"
+          ],
+          "lexical": 0.332
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.254,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 30,
+        "claim_zone_without_new_data": 28
+      }
+    },
+    {
+      "id": "C3",
+      "sentence_id": 14,
+      "text": "Within the refined domain, precipitation statistics improve with higher resolutions, and such statistical inference is verified to be negligibly influenced by horizontal remapping during post-processing.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.86,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 35,
+        "claim_zone_without_new_data": 25
+      }
+    },
+    {
+      "id": "C4",
+      "sentence_id": 15,
+      "text": "Limited ( ≈ 50% slower) through- Published by Copernicus Publications on behalf of the European Geosciences Union.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "result",
+      "hedged": false,
+      "numbers": [
+        "50"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 663,
+          "page": 46,
+          "section": "appendix",
+          "quote": "Publisher’s note: Copernicus Publications remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.",
+          "score": 0.187,
+          "shared_numbers": [],
+          "shared_terms": [
+            "copernicu",
+            "public",
+            "publish"
+          ],
+          "lexical": 0.337
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.187,
+      "flags": [],
+      "confidence": 0.8,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 33,
+        "symbols_or_numbers": 2,
+        "claim_zone_without_new_data": 24
+      }
+    },
+    {
+      "id": "C5",
+      "sentence_id": 488,
+      "text": "Having both limited-area and VR models in a coordinated project may also facilitate interactions between global and regional climate modeling communities, which could accelerate model development and workflow improvement to further reduce uncertainties in the regional climate dataset.",
+      "page": 25,
+      "section": "conclusion",
+      "claim_type": "assertion",
+      "hedged": true,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.66,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 32,
+        "claim_zone_without_new_data": 28
+      }
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 5,
+    "support": {
+      "strong": 0,
+      "moderate": 0,
+      "weak": 2,
+      "none": 3
+    },
+    "evidence_status": {
+      "found": 2,
+      "no_supporting_evidence": 3,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 63.2,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 46,
+            "section": "appendix",
+            "quote": "The official version of the CESM model is available as a public-domain software from the project website (https:// www.cesm.ucar.edu/models/, Sacks et al., 2020).",
+            "sentence_id": 652
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 4,
+            "section": "other",
+            "quote": "Their characteristics are documented in detail by Bogenschutz et al. (2018), and a variety of diagnostic plots are publicly available (Atmosphere Model Working Group, 2015).",
+            "sentence_id": 81
+          },
+          {
+            "page": 8,
+            "section": "other",
+            "quote": "These input data are available from the CESM data repository (CESM Software Engineering Group, 2014).",
+            "sentence_id": 167
+          },
+          {
+            "page": 9,
+            "section": "other",
+            "quote": "All of the input data required to reproduce our simulations are publicly available (see the “Code and data availability” section).",
+            "sentence_id": 180
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 41,
+            "section": "appendix",
+            "quote": "The topography-related spatial variability seems to be filtered out and does not affect the regional average time series.",
+            "sentence_id": 609
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 12,
+            "section": "other",
+            "quote": "Mean (mm d−1), variance (mm2 d−2), kurtosis, and selected percentiles (mm d−1) of daily precipitation sampled from the centraleastern United States (30–47◦ N, 85–105◦ W) on the original and remapped grids with grid spacings similar to the o",
+            "sentence_id": 241
+          },
+          {
+            "page": 12,
+            "section": "other",
+            "quote": "Model, grid Mean Variance Kurtosis 95th 99th 99.9th 99.99th VR50-200 original grid 2.02 30.35 65.71 10.19 26.87 60.17 97.30 VR50-200 to NAM-44i 2.00 28.04 57.34 10.08 26.17 56.43 89.37 VR25-100 original grid 2.10 32.37 57.00 10.81 28.27 60.",
+            "sentence_id": 246
+          },
+          {
+            "page": 12,
+            "section": "other",
+            "quote": "The variance loss due to remapping is typically ≈ 6 %– 8 % for daily precipitation.",
+            "sentence_id": 247
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Back 'significant' claims with a named test and p-value or CI."
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "These downscaling approaches have been compared to inform methodological development and to provide uncertainty information for users of the downscaled climate data (e.g., Wood et al., 2004; Fowler et al., 2007; Trzaska and Schnarr, 2014; S",
+            "sentence_id": 23
+          },
+          {
+            "page": 10,
+            "section": "other",
+            "quote": "We do not conduct the hist experiment with CAM–MPAS, as our principal goal is to assess the credibility of dynamically downscaled climate by the CAM–MPAS atmosphere model in comparison to observational and other downscaled data, which, at a",
+            "sentence_id": 203
+          },
+          {
+            "page": 10,
+            "section": "other",
+            "quote": "To facilitate comparison with other regional models in the NA-CORDEX model archive, the model output on MPAS’s unstructured mesh is remapped to a standard latitude– longitude regional grid defined by the NA-CORDEX project (the so-called NAM",
+            "sentence_id": 214
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 10,
+            "section": "other",
+            "quote": "The order of the vertical vs. horizontal interpolation is not expected to be important for the accuracy of subsequent analyses (Trenberth, 1995).",
+            "sentence_id": 221
+          },
+          {
+            "page": 11,
+            "section": "other",
+            "quote": "As shown in Fig. 5a, the global annual mean precipitation (3.004 mm d−1) is nearly identical (to the accuracy of",
+            "sentence_id": 239
+          },
+          {
+            "page": 31,
+            "section": "appendix",
+            "quote": "Despite the lower clock frequency, KNL’s Xeon Phi processor performs 32 double-precision floating-point operations per second (FLOPS) per cycle compared with 8 FLOPS per cycle by Edison’s Ivy Bridge processor.",
+            "sentence_id": 547
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 17,
+            "section": "other",
+            "quote": "For example, two new systems being deployed to HPC centers in the United States – Perlmutter to NERSC (NERSC, 2022) and Derecho to the NCAR-Wyoming Supercomputing Center (NCAR Research Computing, 2022) – share such characteristics in their ",
+            "sentence_id": 350
+          },
+          {
+            "page": 31,
+            "section": "appendix",
+            "quote": "The Cori Haswell (HW) and Edison systems at NERSC feature the same processor family (Intel Xeon processor) on more traditional, massively parallel distributed memory architectures with fewer cores of higher CPU frequencies and larger memory",
+            "sentence_id": 527
+          },
+          {
+            "page": 31,
+            "section": "appendix",
+            "quote": "The transition to many-core architecture has occurred in multiple HPC facilities, motivated by better energy efficiency (Allen et al., 2018; Loft, 2020) and preparation of user applications for more extreme many-core architecture with GPU s",
+            "sentence_id": 529
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "abstract",
+            "quote": "This work is distributed under the Creative Commons Attribution 4.0 License.",
+            "sentence_id": 1
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Add a limitations section naming settings where the method fails."
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 2.0,
+        "score": 36.4
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 1.0,
+        "score": 50.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.5,
+        "score": 100.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 0.0,
+        "score": 0.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "unsupported_claim",
+      "severity": "high",
+      "message": "No strong supporting passage found in the paper body for this claim; its numbers (4) do not appear in results text.",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "This work is distributed under the Creative Commons Attribution 4.0 License."
+    },
+    {
+      "id": "G2",
+      "kind": "no_limitations",
+      "severity": "medium",
+      "message": "No limitations section or discussion of failure cases was found.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G3",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C2",
+      "quote": "The CAM–MPAS model is configured with VR meshes featuring higher resolutions over North America as well as quasi-uniform-resolution meshes across the globe."
+    },
+    {
+      "id": "G4",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C3",
+      "quote": "Within the refined domain, precipitation statistics improve with higher resolutions, and such statistical inference is verified to be negligibly influenced by horizontal remapping during post-processing."
+    },
+    {
+      "id": "G5",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap); its numbers (50) do not appear in results text.",
+      "page": 1,
+      "claim_id": "C4",
+      "quote": "Limited ( ≈ 50% slower) through- Published by Copernicus Publications on behalf of the European Geosciences Union."
+    },
+    {
+      "id": "G6",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 25,
+      "claim_id": "C5",
+      "quote": "Having both limited-area and VR models in a coordinated project may also facilitate interactions between global and regional climate modeling communities, which could accelerate model development and workflow improvem..."
+    }
+  ],
+  "datasets": [],
+  "metrics": []
+}

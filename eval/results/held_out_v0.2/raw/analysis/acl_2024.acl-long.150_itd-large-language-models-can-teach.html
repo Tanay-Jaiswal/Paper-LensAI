@@ -1,0 +1,70 @@
+<!doctype html><meta charset=utf-8><title>PaperLens report</title><body style='font:14px/1.5 system-ui;max-width:960px;margin:2rem auto;padding:0 1rem'><pre style='white-space:pre-wrap'># PaperLens report: ItD: Large Language Models Can Teach Themselves Induction through Deduction
+
+*13 pages · 5 claims · reproducibility 51.1/100 (moderate)*
+
+## Summary
+
+- The ItD framework is composed of two main components: a Deductive Data Generation module to generate induction data and a Naive Bayesian Induction module to optimize the fine-tuning and decoding of LLMs. *(p.1)*
+- Moreover, we verify the effectiveness of Deductive Data Generation and Naive Bayesian Induction. *(p.9)*
+
+**Problem**
+- The Induction task is an important task in Natural Language Processing (NLP) and the mastery of the induction ability is an important sign of intelligence (Peirce, 1868; Lake et al., 2017; Chollet, 2019). *(p.1)*
+- For a given induction task, ItD first proposes Deductive Data Generation to leverage the deductive capability of the LLMs to generate a set of task data (x, y, f), which is simple yet effective and does not rely on human annotations or any larger LLMs’ assistance. *(p.2)*
+
+**Approach**
+- In this paper, we propose a novel framework, Induction through Deduction (ItD), to enable the LLMs to teach themselves induction through deduction. *(p.1)*
+- Specifically, this novel technique fine-tunes the LLM to predict f conditioned on single pair x, y (p(f|x, y)) instead of n pairs (p(f|{xi, yi}n i=1)). *(p.2)*
+
+**Results**
+- Recent works mainly adopt “post processes” paradigms to improve the performance of LLMs on induction (e.g., the hypothesis search &amp; refinement methods), but their performance is still constrained by the inherent inductive capability of the LLMs. *(p.1)*
+- Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively. *(p.1)*
+- More experiment results support that ItD can be effectively applied to LLMs of different sizes, and a more powerful deductor can further improve the performance of ItD. *(p.9)*
+
+**Limitations**
+- It does not involve planning and may likely fall into local optima. *(p.9)*
+- We leave further exploration of these directions as future work. *(p.9)*
+
+## Research Evidence Ledger
+
+| ID | Claim | Page | Type | Support | Best evidence |
+|---|---|---|---|---|---|
+| C1 | Recent works mainly adopt “post processes” paradigms to improve the performance of LLMs on induction (e.g., the hypothesis search &amp; refinement methods), but their performance is still constrained by the inherent inductive capability of the LLMs. | 1 | assertion | 🔴 none | No supporting evidence found |
+| C2 | In this paper, we propose a novel framework, Induction through Deduction (ItD), to enable the LLMs to teach themselves induction through deduction. | 1 | contribution | 🟠 weak | p.3: In this section, we introduce ItD, a framework for empowering the induction capability of … |
+| C3 | Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively. | 1 | comparison | 🟢 strong | p.6: As shown in Table 1, ItD is significantly superior to all existing methods on both dataset… |
+| C4 | We find out that directly fine-tuning the LLMs with the IO prompt (§2.2) used in the previous methods (Honovich et al., 2022; Wang et al., 2023; Qiu et al., 2023) cannot effectively leverage the observed samples (as shown in Figure 5). | 2 | result | 🟠 weak | p.3: As the induction task offers the model n observed samples at a time, it is natural to orga… |
+| C5 | We conduct a series of experiments on two types of induction datasets and verify that ItD is superior to existing methods in empowering the inductive capability of LLMs. | 9 | assertion | 🟠 weak | p.6: These results verify that ItD is better than previous methods in empowering the inductive … |
+
+## Reproducibility: 51.1/100
+
+_100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums_
+
+| Item | Status | Weight | Evidence |
+|---|---|---|---|
+| Code available | present | 3.0 | p.1: The data and code of this paper can be found at https://github.com/forangel2014/… |
+| Datasets named and accessible | present | 2.0 | p.9: All experiments are conducted on publicly available datasets.… |
+| Train/validation/test splits specified | partial | 2.0 | p.3: The complete task data D of task T is then split into an induction set Din and a… |
+| Preprocessing described | present | 1.0 | p.5: For the Qn i=1 p(f|xi, yi), we modify the ordinary beam search decoding process … |
+| Hyperparameters reported | missing | 2.0 | Report all hyperparameters, how they were tuned and the search ranges. |
+| Seeds / multiple runs | missing | 2.0 | Run with several seeds and report how many. |
+| Variance / uncertainty reported | missing | 2.0 | Report standard deviation or confidence intervals, not single numbers. |
+| Statistical significance test | missing | 1.5 | Back &#x27;significant&#x27; claims with a named test and p-value or CI. |
+| Baselines described | present | 2.0 | p.1: Our empirical results showcase the effectiveness of ItD on two induction benchma… |
+| Ablation / component analysis | present | 1.0 | p.1: Our ablation study verifies the effectiveness of two key modules of ItD.… |
+| Evaluation metrics defined | partial | 1.0 | p.1: The task of Induction aims to discover consistent transformations from a set of … |
+| Compute / hardware reported | missing | 1.0 | State hardware, runtime and total compute budget. |
+| Software / library versions | missing | 1.0 | Pin library versions or provide an environment file. |
+| Licence / ethics statement | partial | 0.5 | p.9: Thus there is no data privacy concern.… |
+| Limitations discussed | present | 1.0 | p.2: To tackle such a limitation, work like Hypothesis Search (Wang et al., 2023) pro… |
+
+_Measures what the paper reports (checklist coverage), not whether results actually reproduce._
+
+## Evidence gaps
+
+- **[HIGH] no_hyperparameters**: Training hyperparameters are not reported.
+- **[HIGH] number_not_in_results** (p.1): Reported value(s) 36 never appear in the experiments/results text or tables (possible abstract-body mismatch, or derived value that is not shown). — &quot;Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively.&quot;
+- **[HIGH] number_not_in_results** (p.2): Reported value(s) 2.2 never appear in the experiments/results text or tables (possible abstract-body mismatch, or derived value that is not shown). — &quot;We find out that directly fine-tuning the LLMs with the IO prompt (§2.2) used in the previous methods (Honovich et al., 2022; Wang et al., 2023; Qiu et al., 2023) cannot effectively leverage the observed samples (as s...&quot;
+- **[MEDIUM] unsupported_claim** (p.1): No strong supporting passage found in the paper body for this claim. — &quot;Recent works mainly adopt “post processes” paradigms to improve the performance of LLMs on induction (e.g., the hypothesis search &amp; refinement methods), but their performance is still constrained by the inherent induc...&quot;
+- **[MEDIUM] improvement_without_variance** (p.1): Improvement is reported as a single number with no variance, seeds or confidence interval. — &quot;Our empirical results showcase the effectiveness of ItD on two induction benchmarks, achieving relative performance improvement of 36% and 10% compared with previous state-of-the-art, respectively.&quot;
+- **[MEDIUM] unsupported_claim** (p.2): No strong supporting passage found in the paper body for this claim (only weak lexical overlap); its numbers (2.2) do not appear in results text. — &quot;We find out that directly fine-tuning the LLMs with the IO prompt (§2.2) used in the previous methods (Honovich et al., 2022; Wang et al., 2023; Qiu et al., 2023) cannot effectively leverage the observed samples (as s...&quot;
+- **[MEDIUM] unsupported_claim** (p.9): No strong supporting passage found in the paper body for this claim (only weak lexical overlap). — &quot;We conduct a series of experiments on two types of induction datasets and verify that ItD is superior to existing methods in empowering the inductive capability of LLMs.&quot;
+</pre></body>

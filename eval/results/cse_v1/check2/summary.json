@@ -1,0 +1,340 @@
+{
+ "arxiv_2505.00232v1_scaling-on-device-gpu-inference-for.pdf": {
+  "detected_field": "cse",
+  "detection": {
+   "field": "cse",
+   "vocab_sentences": 129,
+   "body_sentences": 223,
+   "vocab_share": 0.578,
+   "venue_references": 8,
+   "reference_entries": 147,
+   "venue_share": 0.054,
+   "rule": "CSE when at least 9% of body sentences use computing vocabulary or at least 8% of reference entries (of 5 or more) cite computing venues."
+  },
+  "general_score": 46.7,
+  "cse_score": 44.9,
+  "cse_standard_score": 46.7,
+  "glossary_general": {
+   "defined": 0,
+   "undefined": 27
+  },
+  "glossary_cse": {
+   "defined": 0,
+   "undefined": 20,
+   "from_dictionary": 14,
+   "ambiguous": 0
+  },
+  "cs_items": {
+   "cs_code_link": "missing",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "present",
+   "cs_compute_budget": "missing",
+   "cs_hyper_search": "not_applicable",
+   "cs_model_selection": "not_applicable",
+   "cs_model_size": "not_applicable",
+   "cs_baseline_setup": "missing",
+   "cs_table_uncertainty": "partial",
+   "cs_efficiency": "present"
+  },
+  "cs_gaps": [],
+  "revisions_general": 25,
+  "revisions_cse": 30
+ },
+ "arxiv_2505.00263v1_enronqa-towards-personalized-rag-over-private.pdf": {
+  "detected_field": "cse",
+  "detection": {
+   "field": "cse",
+   "vocab_sentences": 123,
+   "body_sentences": 519,
+   "vocab_share": 0.237,
+   "venue_references": 83,
+   "reference_entries": 251,
+   "venue_share": 0.331,
+   "rule": "CSE when at least 9% of body sentences use computing vocabulary or at least 8% of reference entries (of 5 or more) cite computing venues."
+  },
+  "general_score": 67.4,
+  "cse_score": 56.2,
+  "cse_standard_score": 67.4,
+  "glossary_general": {
+   "defined": 2,
+   "undefined": 14
+  },
+  "glossary_cse": {
+   "defined": 2,
+   "undefined": 13,
+   "from_dictionary": 5,
+   "ambiguous": 0
+  },
+  "cs_items": {
+   "cs_code_link": "missing",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "missing",
+   "cs_compute_budget": "missing",
+   "cs_hyper_search": "partial",
+   "cs_model_selection": "present",
+   "cs_model_size": "missing",
+   "cs_baseline_setup": "partial",
+   "cs_table_uncertainty": "missing",
+   "cs_efficiency": "missing"
+  },
+  "cs_gaps": [],
+  "revisions_general": 9,
+  "revisions_cse": 18
+ },
+ "arxiv_2505.00268v2_consistency-in-language-models-current-landscape.pdf": {
+  "detected_field": "cse",
+  "detection": {
+   "field": "cse",
+   "vocab_sentences": 28,
+   "body_sentences": 138,
+   "vocab_share": 0.203,
+   "venue_references": 69,
+   "reference_entries": 185,
+   "venue_share": 0.373,
+   "rule": "CSE when at least 9% of body sentences use computing vocabulary or at least 8% of reference entries (of 5 or more) cite computing venues."
+  },
+  "general_score": 23.9,
+  "cse_score": 21.8,
+  "cse_standard_score": 23.9,
+  "glossary_general": {
+   "defined": 5,
+   "undefined": 1
+  },
+  "glossary_cse": {
+   "defined": 5,
+   "undefined": 0,
+   "from_dictionary": 6,
+   "ambiguous": 0
+  },
+  "cs_items": {
+   "cs_code_link": "missing",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "missing",
+   "cs_compute_budget": "missing",
+   "cs_hyper_search": "missing",
+   "cs_model_selection": "missing",
+   "cs_model_size": "missing",
+   "cs_baseline_setup": "partial",
+   "cs_table_uncertainty": "not_applicable",
+   "cs_efficiency": "partial"
+  },
+  "cs_gaps": [],
+  "revisions_general": 14,
+  "revisions_cse": 23
+ },
+ "arxiv_2505.00278v2_deco-defect-aware-modeling-with-contrasting.pdf": {
+  "detected_field": "cse",
+  "detection": {
+   "field": "cse",
+   "vocab_sentences": 25,
+   "body_sentences": 234,
+   "vocab_share": 0.107,
+   "venue_references": 6,
+   "reference_entries": 93,
+   "venue_share": 0.065,
+   "rule": "CSE when at least 9% of body sentences use computing vocabulary or at least 8% of reference entries (of 5 or more) cite computing venues."
+  },
+  "general_score": 56.5,
+  "cse_score": 49.2,
+  "cse_standard_score": 56.5,
+  "glossary_general": {
+   "defined": 8,
+   "undefined": 9
+  },
+  "glossary_cse": {
+   "defined": 8,
+   "undefined": 8,
+   "from_dictionary": 5,
+   "ambiguous": 0
+  },
+  "cs_items": {
+   "cs_code_link": "missing",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "partial",
+   "cs_compute_budget": "missing",
+   "cs_hyper_search": "missing",
+   "cs_model_selection": "missing",
+   "cs_model_size": "missing",
+   "cs_baseline_setup": "partial",
+   "cs_table_uncertainty": "present",
+   "cs_efficiency": "partial"
+  },
+  "cs_gaps": [],
+  "revisions_general": 11,
+  "revisions_cse": 20
+ },
+ "arxiv_2505.00284v3_lightemma-a-longitudinal-evaluation-of-vision.pdf": {
+  "detected_field": "cse",
+  "detection": {
+   "field": "cse",
+   "vocab_sentences": 40,
+   "body_sentences": 199,
+   "vocab_share": 0.201,
+   "venue_references": 31,
+   "reference_entries": 81,
+   "venue_share": 0.383,
+   "rule": "CSE when at least 9% of body sentences use computing vocabulary or at least 8% of reference entries (of 5 or more) cite computing venues."
+  },
+  "general_score": 50.0,
+  "cse_score": 50.0,
+  "cse_standard_score": 50.0,
+  "glossary_general": {
+   "defined": 5,
+   "undefined": 4
+  },
+  "glossary_cse": {
+   "defined": 5,
+   "undefined": 2,
+   "from_dictionary": 4,
+   "ambiguous": 0
+  },
+  "cs_items": {
+   "cs_code_link": "present",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "present",
+   "cs_compute_budget": "partial",
+   "cs_hyper_search": "missing",
+   "cs_model_selection": "missing",
+   "cs_model_size": "missing",
+   "cs_baseline_setup": "present",
+   "cs_table_uncertainty": "missing",
+   "cs_efficiency": "present"
+  },
+  "cs_gaps": [
+   {
+    "id": "G7",
+    "kind": "sota_single_run",
+    "severity": "medium",
+    "message": "State-of-the-art or 'best' claim, but no seeds, repeated runs or spread are reported, so a single lucky run cannot be ruled out.",
+    "page": 1,
+    "claim_id": "C1",
+    "quote": "A prevailing assumption is that successive VLM generations will continually improve driving performance and eventually outperform state-of-the-art methods."
+   }
+  ],
+  "revisions_general": 14,
+  "revisions_cse": 21
+ },
+ "arxiv_2505.00321v1_edge-large-ai-models-revolutionizing-6g.pdf": {
+  "detected_field": "cse",
+  "detection": {
+   "field": "cse",
+   "vocab_sentences": 65,
+   "body_sentences": 197,
+   "vocab_share": 0.33,
+   "venue_references": 1,
+   "reference_entries": 27,
+   "venue_share": 0.037,
+   "rule": "CSE when at least 9% of body sentences use computing vocabulary or at least 8% of reference entries (of 5 or more) cite computing venues."
+  },
+  "general_score": 38.0,
+  "cse_score": 41.1,
+  "cse_standard_score": 38.0,
+  "glossary_general": {
+   "defined": 11,
+   "undefined": 4
+  },
+  "glossary_cse": {
+   "defined": 11,
+   "undefined": 4,
+   "from_dictionary": 5,
+   "ambiguous": 0
+  },
+  "cs_items": {
+   "cs_code_link": "missing",
+   "cs_data_access": "partial",
+   "cs_hardware_spec": "present",
+   "cs_compute_budget": "partial",
+   "cs_hyper_search": "partial",
+   "cs_model_selection": "missing",
+   "cs_model_size": "present",
+   "cs_baseline_setup": "partial",
+   "cs_table_uncertainty": "not_applicable",
+   "cs_efficiency": "present"
+  },
+  "cs_gaps": [],
+  "revisions_general": 16,
+  "revisions_cse": 22
+ },
+ "arxiv_2505.00393v2_s3and-efficient-subgraph-similarity-search-under.pdf": {
+  "detected_field": "cse",
+  "detection": {
+   "field": "cse",
+   "vocab_sentences": 164,
+   "body_sentences": 449,
+   "vocab_share": 0.365,
+   "venue_references": 22,
+   "reference_entries": 250,
+   "venue_share": 0.088,
+   "rule": "CSE when at least 9% of body sentences use computing vocabulary or at least 8% of reference entries (of 5 or more) cite computing venues."
+  },
+  "general_score": 65.2,
+  "cse_score": 67.8,
+  "cse_standard_score": 65.2,
+  "glossary_general": {
+   "defined": 5,
+   "undefined": 22
+  },
+  "glossary_cse": {
+   "defined": 5,
+   "undefined": 21,
+   "from_dictionary": 4,
+   "ambiguous": 0
+  },
+  "cs_items": {
+   "cs_code_link": "present",
+   "cs_data_access": "present",
+   "cs_hardware_spec": "present",
+   "cs_compute_budget": "present",
+   "cs_hyper_search": "not_applicable",
+   "cs_model_selection": "not_applicable",
+   "cs_model_size": "not_applicable",
+   "cs_baseline_setup": "partial",
+   "cs_table_uncertainty": "missing",
+   "cs_efficiency": "present"
+  },
+  "cs_gaps": [],
+  "revisions_general": 7,
+  "revisions_cse": 9
+ },
+ "arxiv_2505.00455v4_data-therapist-eliciting-domain-knowledge-from.pdf": {
+  "detected_field": "cse",
+  "detection": {
+   "field": "cse",
+   "vocab_sentences": 101,
+   "body_sentences": 517,
+   "vocab_share": 0.195,
+   "venue_references": 13,
+   "reference_entries": 189,
+   "venue_share": 0.069,
+   "rule": "CSE when at least 9% of body sentences use computing vocabulary or at least 8% of reference entries (of 5 or more) cite computing venues."
+  },
+  "general_score": 43.5,
+  "cse_score": 39.1,
+  "cse_standard_score": 43.5,
+  "glossary_general": {
+   "defined": 6,
+   "undefined": 11
+  },
+  "glossary_cse": {
+   "defined": 6,
+   "undefined": 9,
+   "from_dictionary": 6,
+   "ambiguous": 0
+  },
+  "cs_items": {
+   "cs_code_link": "missing",
+   "cs_data_access": "present",
+   "cs_hardware_spec": "missing",
+   "cs_compute_budget": "present",
+   "cs_hyper_search": "missing",
+   "cs_model_selection": "missing",
+   "cs_model_size": "missing",
+   "cs_baseline_setup": "partial",
+   "cs_table_uncertainty": "missing",
+   "cs_efficiency": "missing"
+  },
+  "cs_gaps": [],
+  "revisions_general": 11,
+  "revisions_cse": 19
+ }
+}

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PaperLens labelling</title>
+<style>
+:root{--ink:#1d1f1c;--muted:#5c615a;--rule:#d8d0bf;--paper:#f5f1e8;--sheet:#fbf9f4;--accent:#1f5a4b;--warn:#85650f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Segoe UI",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+h1{font:600 24px/1.2 Georgia,serif;margin:0 0 4px}
+.muted{color:var(--muted)}.small{font-size:13.5px}
+.box{background:var(--sheet);border:1px solid var(--rule);padding:16px 18px;margin:14px 0}
+blockquote{margin:8px 0;padding:6px 12px;border-left:3px solid var(--accent);background:#fff;font:16px/1.55 Georgia,serif}
+label.opt{display:block;padding:7px 10px;border:1px solid var(--rule);margin:6px 0;background:#fff;cursor:pointer}
+label.opt:has(input:checked){border-color:var(--accent);background:rgba(31,90,75,.08)}
+input[type=text],textarea{width:100%;font:inherit;padding:6px 8px;border:1px solid var(--rule);background:#fff}
+button{font:600 14px "Segoe UI",sans-serif;padding:8px 14px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+button.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+button:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar{height:6px;background:#e6e0d2;margin:6px 0 2px}.bar i{display:block;height:100%;background:var(--accent)}
+.warn{border-left:3px solid var(--warn);padding:6px 10px;background:#fff6d6}
+table{border-collapse:collapse;width:100%;font-size:14px}td,th{border-bottom:1px solid var(--rule);padding:4px 6px;text-align:left}
+</style>
+</head>
+<body>
+<main>
+<h1>PaperLens labelling</h1>
+<p class="muted small" id="meta"></p>
+<div class="box" id="start">
+  <p><strong>Thank you for helping.</strong> You will answer short questions about research papers. Open each paper
+  (links below), find the answer in the paper, and choose the option that fits. There are no trick questions, and
+  "can't tell" is a fine answer. PaperLens's own answers are hidden on purpose: please do not look them up.</p>
+  <p>Your answers are saved in this browser as you go. When you finish (or need to stop), click <strong>Download my
+  answers</strong> and send the file back.</p>
+  <p><label>Your name or initials (so two people's answers can be compared):<br><input type="text" id="who" maxlength="40"></label></p>
+  <details><summary>The papers</summary><table id="papers"></table></details>
+</div>
+<div class="box" id="card" hidden></div>
+<div class="row">
+  <button class="ghost" id="prev">Previous</button><button id="next">Save and next</button>
+  <span class="small muted" id="progress"></span>
+</div>
+<div class="bar"><i id="bar" style="width:0"></i></div>
+<p class="row" style="margin-top:18px"><button class="ghost" id="dl">Download my answers (CSV)</button>
+  <span class="small muted">Saved automatically in this browser only.</span></p>
+</main>
+<script>
+"use strict";
+const DATA = /*__DATA__*/null;
+const items = DATA.items, papers = Object.fromEntries(DATA.papers.map((p) => [p.paper, p]));
+const KEY = "paperlens-labels-" + DATA.meta.name + "-" + DATA.meta.seed;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+let state = {who: "", answers: {}, pos: 0};
+try { state = Object.assign(state, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (_) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) {} };
+document.getElementById("meta").textContent = `${DATA.meta.n} questions on ${DATA.papers.length} papers · sheet ${DATA.meta.name}`;
+document.getElementById("papers").innerHTML = "<tr><th>Paper</th><th>Title</th><th>Pages</th></tr>" + DATA.papers.map((p) =>
+  `<tr><td>${esc(p.paper)}</td><td>${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}<div class="small muted">${esc(p.file)}</div></td><td>${p.pages}</td></tr>`).join("");
+const who = document.getElementById("who");
+who.value = state.who || ""; who.oninput = () => { state.who = who.value.trim(); save(); };
+
+function render() {
+  const q = items[state.pos], a = state.answers[q.id] || {}, p = papers[q.paper];
+  let h = `<p class="small muted">${esc(q.id)} · paper ${esc(q.paper)}: ${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}</p>`;
+  if (q.claim) h += `<p class="small"><strong>Claim</strong> (page ${q.claim_page})</p><blockquote>${esc(q.claim)}</blockquote>`;
+  if (q.passage) h += `<p class="small"><strong>Passage</strong> (page ${q.passage_page})</p><blockquote>${esc(q.passage)}</blockquote>`;
+  h += `<p><strong>${esc(q.question)}</strong></p>` + q.options.map((o) =>
+    `<label class="opt"><input type="radio" name="ans" value="${esc(o)}"${a.answer === o ? " checked" : ""}> ${esc(o)}</label>`).join("");
+  if (q.ask_page) h += `<p class="small"><label>Page where you found it (optional): <input type="text" id="pg" value="${esc(a.page || "")}" maxlength="20"></label></p>`;
+  h += `<p class="small"><label>Note (optional): <textarea id="note" rows="2" maxlength="500">${esc(a.note || "")}</textarea></label></p>`;
+  if (!state.who) h += `<p class="warn small">Please enter your name or initials above before you start.</p>`;
+  const card = document.getElementById("card"); card.hidden = false; card.innerHTML = h;
+  const done = items.filter((x) => state.answers[x.id] && state.answers[x.id].answer).length;
+  document.getElementById("progress").textContent = `Question ${state.pos + 1} of ${items.length} · ${done} answered`;
+  document.getElementById("bar").style.width = (100 * done / items.length) + "%";
+  document.getElementById("prev").disabled = state.pos === 0;
+  document.getElementById("next").textContent = state.pos === items.length - 1 ? "Save" : "Save and next";
+}
+function store() {
+  const q = items[state.pos], sel = document.querySelector('input[name="ans"]:checked');
+  const pg = document.getElementById("pg"), note = document.getElementById("note");
+  if (sel || (note && note.value) || (pg && pg.value)) state.answers[q.id] = {answer: sel ? sel.value : "", page: pg ? pg.value.trim() : "", note: note ? note.value.trim() : ""};
+  save();
+}
+document.getElementById("next").onclick = () => { store(); if (state.pos < items.length - 1) state.pos++; save(); render(); window.scrollTo(0, 0); };
+document.getElementById("prev").onclick = () => { store(); if (state.pos > 0) state.pos--; save(); render(); };
+document.getElementById("dl").onclick = () => {
+  store();
+  const cell = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const rows = [["id", "paper", "type", "labeller", "answer", "page_found", "note"]].concat(items.map((q) => {
+    const a = state.answers[q.id] || {};
+    return [q.id, q.paper, q.type, state.who, a.answer || "", a.page || "", a.note || ""];
+  }));
+  const blob = new Blob(["﻿" + rows.map((r) => r.map(cell).join(",")).join("\r\n")], {type: "text/csv"});
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `labels-${DATA.meta.name}-${(state.who || "anonymous").replace(/[^A-Za-z0-9_-]+/g, "_")}.csv`;
+  link.click();
+};
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,508 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "d9fe75efde11",
+    "title": "The RNA helicase DDX39B activates FOXP3 RNA splicing to control T regulatory cell fate",
+    "n_pages": 25,
+    "source_name": "doi_10.7554-elife.76927_the-rna-helicase-ddx39b-activates-foxp3.pdf",
+    "warnings": [
+      "No 'Abstract' heading detected; treated the front matter as the abstract."
+    ],
+    "n_sentences": 758
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "Consistent with such a role we show that DDX39B controls the expression of many MS susceptibility genes and important immune-related genes.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "Splicing of FOXP3 introns, which belong to a previously unrecognized type of introns with C-rich polypyrimidine tracts, was exquisitely sensitive to DDX39B levels.",
+        "page": 1,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "Consistent with such a role we show that DDX39B controls the expression of many MS susceptibility genes and important immune-related genes.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 3
+        },
+        {
+          "text": "Given the importance of FOXP3 in autoimmunity, this work cements DDX39B as an important guardian of immune tolerance.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 7
+        }
+      ],
+      "approach": [],
+      "results": [
+        {
+          "text": "treatment (Figure 1—figure supplement 1 and Supplementary file 1), which was consistent with Sh3 treatment reducing DDX39B RNA levels more profoundly (Supplementary file 1) and DDX39B protein levels more consistently (Galarza-Muñoz et al., 2017).",
+          "page": 3,
+          "section": "results",
+          "sentence_id": 29
+        },
+        {
+          "text": "Indeed, FOXP3 transcripts were among 122 high confidence targets of DDX39B significantly reduced in CD4+ T cells from both donors 1 and 4 with both Sh3 and Sh5 (Figure 1— figure supplement 4, Supplementary file 1).",
+          "page": 4,
+          "section": "results",
+          "sentence_id": 64
+        },
+        {
+          "text": "These results indicate that the C-rich py tract of FOXP3 intron 11 is highly dependent on the DDX39B ATPase activity and this unique dependency may distinguish its",
+          "page": 12,
+          "section": "results",
+          "sentence_id": 254
+        }
+      ],
+      "limitations": [
+        {
+          "text": "This suggests that once bound to the branchpoint sequence and py tract in these C-rich introns, the U2 snRNP-U2AF complex does not require further remodeling by DDX39B.",
+          "page": 14,
+          "section": "discussion",
+          "sentence_id": 288
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 3,
+      "text": "Consistent with such a role we show that DDX39B controls the expression of many MS susceptibility genes and important immune-related genes.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 56,
+          "page": 4,
+          "section": "results",
+          "quote": "Expression of 421 of these MS susceptibility genes was detected in our RNAseq data and expression of 41 of these was significantly altered by DDX39B depletion (e.g.",
+          "score": 0.336,
+          "shared_numbers": [],
+          "shared_terms": [
+            "39",
+            "b",
+            "ddx",
+            "expression",
+            "gen",
+            "ms",
+            "susceptibility"
+          ],
+          "lexical": 0.374
+        },
+        {
+          "sentence_id": 35,
+          "page": 3,
+          "section": "results",
+          "quote": "(B) Examples of MS susceptibility genes differentially expressed upon DDX39B knockdown.",
+          "score": 0.329,
+          "shared_numbers": [],
+          "shared_terms": [
+            "39",
+            "b",
+            "ddx",
+            "gen",
+            "ms",
+            "susceptibility"
+          ],
+          "lexical": 0.355
+        },
+        {
+          "sentence_id": 37,
+          "page": 3,
+          "section": "results",
+          "quote": "(C) Enrichment analysis of MS susceptibility genes in DEGs following DDX39B depletion.",
+          "score": 0.321,
+          "shared_numbers": [],
+          "shared_terms": [
+            "39",
+            "b",
+            "ddx",
+            "gen",
+            "ms",
+            "susceptibility"
+          ],
+          "lexical": 0.345
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.336,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {}
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 1,
+    "support": {
+      "strong": 0,
+      "moderate": 0,
+      "weak": 1,
+      "none": 0
+    },
+    "evidence_status": {
+      "found": 1,
+      "no_supporting_evidence": 0,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 65.8,
+    "band": "moderate",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 16,
+            "section": "method",
+            "quote": "Subsequently, we used the minimum value of change percent spliced in at 95% confidence interval value (MV|dPSI|; https://github.com/vastgroup/vast-tools, copy archived at swh:1:rev:fb87ceb4379cd9fbd- 36fc402e4a3429567021548; Irimia, 2023) t",
+            "sentence_id": 351
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 21,
+            "section": "reproducibility",
+            "quote": "All data are available in the main text or supplementary materials.",
+            "sentence_id": 475
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 15,
+            "section": "method",
+            "quote": "After 72 hr, supernatants were collected, filtered through 0.45 mm filters and concentrated to 6 mL in Amicon Ultra 100 K centrifugal filter units (Millipore Sigma).",
+            "sentence_id": 325
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "results",
+            "quote": "In all figures the error bars indicate standard deviation. *: p<0.05, **: p<0.01, ***: p<0.001 and ****: p<0.0001.",
+            "sentence_id": 42
+          },
+          {
+            "page": 5,
+            "section": "results",
+            "quote": "Error bars indicate SEM except for NTC in Donor 10 where error bars represent range due to loss of one replicate sample; *: p<0.05, **: p<0.01, ***: p<0.001 and ****: p<0.0001.",
+            "sentence_id": 98
+          },
+          {
+            "page": 16,
+            "section": "method",
+            "quote": "Subsequently, we used the minimum value of change percent spliced in at 95% confidence interval value (MV|dPSI|; https://github.com/vastgroup/vast-tools, copy archived at swh:1:rev:fb87ceb4379cd9fbd- 36fc402e4a3429567021548; Irimia, 2023) t",
+            "sentence_id": 351
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "results",
+            "quote": "The observed overlap of 41 (Magenta arrow) demonstrates substantial enrichment (empirical p=0.00013).",
+            "sentence_id": 39
+          },
+          {
+            "page": 3,
+            "section": "results",
+            "quote": "In all figures the error bars indicate standard deviation. *: p<0.05, **: p<0.01, ***: p<0.001 and ****: p<0.0001.",
+            "sentence_id": 42
+          },
+          {
+            "page": 4,
+            "section": "results",
+            "quote": "This overlap meant that DDX39B differentially expressed genes (DEG) were highly enriched among MS susceptibility genes (p=0.00013; Figure 1C and Figure 1—figure supplement 2).",
+            "sentence_id": 58
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 4,
+            "section": "results",
+            "quote": "In contrast, there was no significant overlap when the directional pairing was flipped to compare MS pathogenic genes with those downregulated by DDX39B knockdown (p=0.7), or MS protective genes with those upregulated by DDX39B knockdown (p",
+            "sentence_id": 61
+          },
+          {
+            "page": 8,
+            "section": "results",
+            "quote": "tracts Since removal of FOXP3 introns was sensitive to DDX39B levels and since FOXP3 is on the X chromosome, we compared FOXP3 splice sites to those found in introns of other protein coding genes on the X chromosome.",
+            "sentence_id": 144
+          },
+          {
+            "page": 11,
+            "section": "results",
+            "quote": "When 500 randomly selected unaffected introns were compared to 397 introns with increased retention upon DDX39B knockdown with Sh3 in either donor 1 or 4 we found no difference in the 5’ splice site maximum entropy score and a modest but st",
+            "sentence_id": 216
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "results",
+            "quote": "The heat map shows expression of five genes between control (NTC) and DDX39B depleted (Sh3) CD4+ T cells.",
+            "sentence_id": 36
+          },
+          {
+            "page": 16,
+            "section": "method",
+            "quote": "The study by the International Multiple Sclerosis Genetics (IMSG) Consortium (Patsopoulos et al., 2019) identified single nucleotide polymorphisms (SNPs) genetically and/or functionally associated with increased MS risk, from which a map of",
+            "sentence_id": 352
+          },
+          {
+            "page": 21,
+            "section": "other",
+            "quote": "Connectivity Map analysis of the DDX39B KD.",
+            "sentence_id": 462
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 1,
+            "section": "front",
+            "quote": "*For correspondence: ssbradri@utmb.edu (SB); maragarc@utmb.edu (MAG-B) †These authors contributed equally to this work Present address: ‡Quivira Trce, League, United States; §The Trudeau Institute, Algonquin Ave, New York, United States Com",
+            "sentence_id": 8
+          },
+          {
+            "page": 12,
+            "section": "results",
+            "quote": "U2AF2 binds DDX39B, which licenses the U2AF-mediated recruitment of U2 snRNP to the neighboring branchpoint sequence to form the pre-splicesome (Shen et al., 2008).",
+            "sentence_id": 247
+          },
+          {
+            "page": 14,
+            "section": "method",
+            "quote": "Blood samples were collected at Duke University following the institutional IRB protocol (# Pro00070584) and buffy coats were purchased from the New York Blood Center.",
+            "sentence_id": 300
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Add a limitations section naming settings where the method fails."
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 3.5,
+        "score": 63.6
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.5,
+        "score": 100.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 0.0,
+        "score": 0.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_limitations",
+      "severity": "medium",
+      "message": "No limitations section or discussion of failure cases was found.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Consistent with such a role we show that DDX39B controls the expression of many MS susceptibility genes and important immune-related genes."
+    }
+  ],
+  "datasets": [
+    "RNAseq"
+  ],
+  "metrics": []
+}

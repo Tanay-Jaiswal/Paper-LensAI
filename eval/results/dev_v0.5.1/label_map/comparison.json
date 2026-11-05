@@ -1,0 +1,94 @@
+{
+ "common_claims": 141,
+ "common_set": {
+  "old": {
+   "claims": 141,
+   "claims_without_label": 0,
+   "real_claims": 97,
+   "returned": 59,
+   "returned_without_label": 0,
+   "labelled_returned": 59,
+   "strict_y": 22,
+   "lenient_yp": 48,
+   "strict": [
+    0.373,
+    0.26,
+    0.5
+   ],
+   "lenient": [
+    0.814,
+    0.7,
+    0.89
+   ],
+   "coverage": [
+    0.608,
+    0.51,
+    0.7
+   ]
+  },
+  "new": {
+   "claims": 141,
+   "claims_without_label": 0,
+   "real_claims": 97,
+   "returned": 59,
+   "returned_without_label": 0,
+   "labelled_returned": 59,
+   "strict_y": 22,
+   "lenient_yp": 47,
+   "strict": [
+    0.373,
+    0.26,
+    0.5
+   ],
+   "lenient": [
+    0.797,
+    0.68,
+    0.88
+   ],
+   "coverage": [
+    0.608,
+    0.51,
+    0.7
+   ]
+  }
+ },
+ "whole_old": {
+  "claims": 147,
+  "claims_without_label": 1,
+  "real_claims": 99,
+  "returned": 61,
+  "returned_without_label": 0,
+  "labelled_returned": 61,
+  "strict_y": 24,
+  "lenient_yp": 50,
+  "strict": "not computed: unlabelled items remain",
+  "lenient": "not computed: unlabelled items remain",
+  "coverage": "not computed: unlabelled items remain"
+ },
+ "whole_new": {
+  "claims": 144,
+  "claims_without_label": 0,
+  "real_claims": 99,
+  "returned": 61,
+  "returned_without_label": 0,
+  "labelled_returned": 61,
+  "strict_y": 23,
+  "lenient_yp": 49,
+  "strict": [
+   0.377,
+   0.27,
+   0.5
+  ],
+  "lenient": [
+   0.803,
+   0.69,
+   0.88
+  ],
+  "coverage": [
+   0.616,
+   0.52,
+   0.71
+  ]
+ },
+ "same_top_passage_on_common": 135
+}

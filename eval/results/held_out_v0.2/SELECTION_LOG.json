@@ -1,0 +1,248 @@
+{
+  "started_utc": "2026-10-12T07:11:57Z",
+  "finished_utc": "2026-10-12T07:18:03Z",
+  "planned_candidates": 13,
+  "obtained": 11,
+  "rules": [
+    {
+      "rule": "A1",
+      "rule_text": "first CC BY 4.0 paper with primary category cs.CV submitted from 2024-03-01 (arXiv)",
+      "examined": [
+        {
+          "identifier": "arXiv:2403.00209v2",
+          "title": "ChartReformer: Natural Language-Driven Chart Image Editing",
+          "outcome": "ok",
+          "filename": "arxiv_2403.00209v2_chartreformer-natural-language-driven-chart-image.pdf",
+          "pdf_url": "https://arxiv.org/pdf/2403.00209v2",
+          "pages": 18,
+          "bytes": 10721088,
+          "sha256": "bd00c5c8659849470d4d40e49f3a4940b1e2edc378395f5ee431f421db782f25",
+          "title_words_found_on_p1_2": "7/7",
+          "retrieved_utc": "2026-10-12T07:12:31Z"
+        }
+      ],
+      "result": "selected arXiv:2403.00209v2"
+    },
+    {
+      "rule": "A2",
+      "rule_text": "first CC BY 4.0 paper with primary category cond-mat.mtrl-sci submitted from 2024-03-01 (arXiv)",
+      "examined": [
+        {
+          "identifier": "arXiv:2403.00204v1",
+          "title": "La$_4$Co$_4$X (X = Pb, Bi, Sb): a demonstration of antagonistic pairs as a route to quasi-low dimensional ternary compounds",
+          "outcome": "ok",
+          "filename": "arxiv_2403.00204v1_la-4-co-4-x-x.pdf",
+          "pdf_url": "https://arxiv.org/pdf/2403.00204v1",
+          "pages": 25,
+          "bytes": 6528367,
+          "sha256": "38a029bbb4b8089e5916391d58657090ed706dd4c5630d1dfbcfa7f854c00c4c",
+          "title_words_found_on_p1_2": "9/9",
+          "retrieved_utc": "2026-10-12T07:12:52Z"
+        }
+      ],
+      "result": "selected arXiv:2403.00204v1"
+    },
+    {
+      "rule": "A3",
+      "rule_text": "first CC BY 4.0 paper with primary category q-bio.NC submitted from 2024-03-01 (arXiv)",
+      "examined": [
+        {
+          "identifier": "arXiv:2403.00947v1",
+          "title": "History-dependence shapes causal inference of brain-behaviour relationships",
+          "outcome": "ok",
+          "filename": "arxiv_2403.00947v1_history-dependence-shapes-causal-inference-of.pdf",
+          "pdf_url": "https://arxiv.org/pdf/2403.00947v1",
+          "pages": 24,
+          "bytes": 2190181,
+          "sha256": "c7a56a556796538aac9cb14d17ebc67cc92571f793577f8383410749b4287926",
+          "title_words_found_on_p1_2": "8/8",
+          "retrieved_utc": "2026-10-12T07:13:08Z"
+        }
+      ],
+      "result": "selected arXiv:2403.00947v1"
+    },
+    {
+      "rule": "A4",
+      "rule_text": "first CC BY 4.0 paper with primary category econ.EM submitted from 2024-03-01 (arXiv)",
+      "examined": [
+        {
+          "identifier": "arXiv:2403.00458v2",
+          "title": "Electric vehicle pricing and battery costs: A misaligned assumption",
+          "outcome": "ok",
+          "filename": "arxiv_2403.00458v2_electric-vehicle-pricing-and-battery-costs.pdf",
+          "pdf_url": "https://arxiv.org/pdf/2403.00458v2",
+          "pages": 55,
+          "bytes": 1496274,
+          "sha256": "60bfb4d233582615fab6eb843b0ba584c28077a9e0200d00b1ef3ac0ffa2390c",
+          "title_words_found_on_p1_2": "6/8",
+          "retrieved_utc": "2026-10-12T07:13:30Z"
+        }
+      ],
+      "result": "selected arXiv:2403.00458v2"
+    },
+    {
+      "rule": "B1",
+      "rule_text": "ACL Anthology paper 2024.acl-long.150",
+      "examined": [
+        {
+          "identifier": "ACL:2024.acl-long.150",
+          "title": "ItD: Large Language Models Can Teach Themselves Induction through Deduction",
+          "outcome": "ok",
+          "filename": "acl_2024.acl-long.150_itd-large-language-models-can-teach.pdf",
+          "pdf_url": "https://aclanthology.org/2024.acl-long.150.pdf",
+          "pages": 13,
+          "bytes": 703339,
+          "sha256": "a45bb2606b1252842a685d6b0cbaad5f3a6e3b8ee0d18a2dde1946e84359e36f",
+          "title_words_found_on_p1_2": "10/10",
+          "retrieved_utc": "2026-10-12T07:13:47Z"
+        }
+      ],
+      "result": "selected ACL:2024.acl-long.150"
+    },
+    {
+      "rule": "B2",
+      "rule_text": "ACL Anthology paper 2023.emnlp-main.250",
+      "examined": [
+        {
+          "identifier": "ACL:2023.emnlp-main.250",
+          "title": "ATFormer: A Learned Performance Model with Transfer Learning Across Devices for Deep Learning Tensor Programs",
+          "outcome": "ok",
+          "filename": "acl_2023.emnlp-main.250_atformer-a-learned-performance-model-with.pdf",
+          "pdf_url": "https://aclanthology.org/2023.emnlp-main.250.pdf",
+          "pages": 15,
+          "bytes": 1799391,
+          "sha256": "1ce48565c6478773c4d583e43efb3c774729fcde9e240984b3178dbbe3224f24",
+          "title_words_found_on_p1_2": "14/14",
+          "retrieved_utc": "2026-10-12T07:14:03Z"
+        }
+      ],
+      "result": "selected ACL:2023.emnlp-main.250"
+    },
+    {
+      "rule": "B3",
+      "rule_text": "ACL Anthology paper 2024.naacl-long.50",
+      "examined": [
+        {
+          "identifier": "ACL:2024.naacl-long.50",
+          "title": "Neurocache: Efficient Vector Retrieval for Long-range Language Modeling",
+          "outcome": "ok",
+          "filename": "acl_2024.naacl-long.50_neurocache-efficient-vector-retrieval-for-long.pdf",
+          "pdf_url": "https://aclanthology.org/2024.naacl-long.50.pdf",
+          "pages": 14,
+          "bytes": 940597,
+          "sha256": "c811fa1d34242f474f544b29bbd5b32d35be85f5427a3b6ca02729a26acf758c",
+          "title_words_found_on_p1_2": "9/9",
+          "retrieved_utc": "2026-10-12T07:14:15Z"
+        }
+      ],
+      "result": "selected ACL:2024.naacl-long.50"
+    },
+    {
+      "rule": "C1",
+      "rule_text": "first CC BY research article of 2023 in PLoS Pathog by first publication date, lowest PMCID (Europe PMC)",
+      "examined": [
+        {
+          "identifier": "PMC9815661",
+          "title": "A dsRNA-binding mutant reveals only a minor role of exonuclease activity in interferon antagonism by the arenavirus nucleoprotein",
+          "outcome": "ok",
+          "filename": "pmc_PMC9815661_a-dsrna-binding-mutant-reveals-only.pdf",
+          "pdf_url": "https://journals.plos.org/plospathogens/article/file?id=10.1371/journal.ppat.1011049&type=printable",
+          "pages": 28,
+          "bytes": 2396843,
+          "sha256": "db5fe9dfadeb7481f0ae4800bfb28b07cc9eee0e0befb7e11cb761aace8a17e7",
+          "title_words_found_on_p1_2": "14/14",
+          "retrieved_utc": "2026-10-12T07:14:41Z"
+        }
+      ],
+      "result": "selected PMC9815661"
+    },
+    {
+      "rule": "C2",
+      "rule_text": "first CC BY research article of 2023 in PLoS One by first publication date, lowest PMCID (Europe PMC)",
+      "examined": [
+        {
+          "identifier": "PMC10659152",
+          "title": "A comparison of intima media thickness in the common carotid artery, the bulb and plaque area as predictions of incident atherosclerotic events",
+          "outcome": "failed",
+          "errors": [
+            "HTTP 403 for https://europepmc.org/articles/PMC10659152?pdf=render",
+            "HTTP 404 for https://journals.plos.org/plosone/article/file?id=&type=printable"
+          ]
+        }
+      ],
+      "result": "download failed for PMC10659152; not replaced"
+    },
+    {
+      "rule": "C3",
+      "rule_text": "first CC BY research article of 2023 in PLoS Med by first publication date, lowest PMCID (Europe PMC)",
+      "examined": [
+        {
+          "identifier": "PMC9810159",
+          "title": "Effectiveness of a peer educator-coordinated preference-based differentiated service delivery model on viral suppression among young people living with HIV in Lesotho: The PEBRA cluster-randomized trial",
+          "outcome": "ok",
+          "filename": "pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.pdf",
+          "pdf_url": "https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1004150&type=printable",
+          "pages": 16,
+          "bytes": 977286,
+          "sha256": "b9785cf6ab32bc19430a84d18db51bfbc9a60161c7255cb51381552f22173692",
+          "title_words_found_on_p1_2": "24/24",
+          "retrieved_utc": "2026-10-12T07:15:24Z"
+        }
+      ],
+      "result": "selected PMC9810159"
+    },
+    {
+      "rule": "D1",
+      "rule_text": "first CC BY journal-article of June 2023 in eLife by publication date, then DOI (Crossref)",
+      "examined": [
+        {
+          "identifier": "doi:10.7554/elife.76927",
+          "title": "The RNA helicase DDX39B activates FOXP3 RNA splicing to control T regulatory cell fate",
+          "outcome": "ok",
+          "filename": "doi_10.7554-elife.76927_the-rna-helicase-ddx39b-activates-foxp3.pdf",
+          "pdf_url": "https://cdn.elifesciences.org/articles/76927/elife-76927-v1.pdf",
+          "pages": 25,
+          "bytes": 4189387,
+          "sha256": "56e06eda4fef2979bce58173b6f11cc3291251b8722c0cb2de809baf41cd636a",
+          "title_words_found_on_p1_2": "12/12",
+          "retrieved_utc": "2026-10-12T07:15:40Z"
+        }
+      ],
+      "result": "selected doi:10.7554/elife.76927"
+    },
+    {
+      "rule": "D2",
+      "rule_text": "first CC BY journal-article of June 2023 in Nature Communications by publication date, then DOI (Crossref)",
+      "examined": [
+        {
+          "identifier": "doi:10.1038/s41467-023-37979-8",
+          "title": "The blood proteome of imminent lung cancer diagnosis",
+          "outcome": "failed",
+          "errors": [
+            "not a PDF (starts with b'<!DOCTYPE ht') for https://www.nature.com/articles/s41467-023-37979-8.pdf"
+          ]
+        }
+      ],
+      "result": "download failed for doi:10.1038/s41467-023-37979-8; not replaced"
+    },
+    {
+      "rule": "D3",
+      "rule_text": "first CC BY journal-article of June 2023 in Geoscientific Model Development by publication date, then DOI (Crossref)",
+      "examined": [
+        {
+          "identifier": "doi:10.5194/gmd-16-3029-2023",
+          "title": "Technical descriptions of the experimental dynamical downscaling simulations over North America by the CAM–MPAS variable-resolution model",
+          "outcome": "ok",
+          "filename": "doi_10.5194-gmd-16-3029-2023_technical-descriptions-of-the-experimental-dynamical.pdf",
+          "pdf_url": "https://gmd.copernicus.org/articles/16/3029/2023/gmd-16-3029-2023.pdf",
+          "pages": 53,
+          "bytes": 34914849,
+          "sha256": "b4dccf940425cdffac332caf09add02673ed414dd3c6c24956741d8dfb035a91",
+          "title_words_found_on_p1_2": "16/16",
+          "retrieved_utc": "2026-10-12T07:18:03Z"
+        }
+      ],
+      "result": "selected doi:10.5194/gmd-16-3029-2023"
+    }
+  ]
+}

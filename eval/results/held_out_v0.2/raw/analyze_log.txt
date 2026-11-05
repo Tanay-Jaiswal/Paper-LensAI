@@ -1,0 +1,44 @@
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+ATFormer: A Learned Performance Model with Transfer Learning Across Devices for Deep Learning Tensor Programs
+  claims: 2  reproducibility: 54.3/100  gaps: 4
+  wrote eval\results\held_out_v0.2\raw\analysis/acl_2023.emnlp-main.250_atformer-a-learned-performance-model-with.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+ItD: Large Language Models Can Teach Themselves Induction through Deduction
+  claims: 5  reproducibility: 51.1/100  gaps: 7
+  wrote eval\results\held_out_v0.2\raw\analysis/acl_2024.acl-long.150_itd-large-language-models-can-teach.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+Neurocache: Efficient Vector Retrieval for Long-range Language Modeling
+  claims: 2  reproducibility: 58.7/100  gaps: 2
+  wrote eval\results\held_out_v0.2\raw\analysis/acl_2024.naacl-long.50_neurocache-efficient-vector-retrieval-for-long.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+La4Co4X (X = Pb, Bi, Sb): a demonstration of antagonistic pairs as a route to quasi-low dimensional ternary compounds
+  claims: 5  reproducibility: 13.2/100  gaps: 7
+  wrote eval\results\held_out_v0.2\raw\analysis/arxiv_2403.00204v1_la-4-co-4-x-x.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+ChartReformer: Natural Language-Driven Chart Image Editing
+  claims: 2  reproducibility: 47.8/100  gaps: 3
+  wrote eval\results\held_out_v0.2\raw\analysis/arxiv_2403.00209v2_chartreformer-natural-language-driven-chart-image.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+Title: Electric vehicle pricing and ba2ery costs: A misaligned assump:on? Authors: Lucas Woodley1,2, Chung Yi See1, Vasco Rato Santos3, Megan Yeo1, Daniel Palmer4, Sebas:an Nosenzo5, and Ashley Nunes1
+  claims: 0  reproducibility: 31.6/100  gaps: 2
+  wrote eval\results\held_out_v0.2\raw\analysis/arxiv_2403.00458v2_electric-vehicle-pricing-and-battery-costs.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+History-dependence shapes causal inference of brain-behaviour relationships
+  claims: 2  reproducibility: 76.3/100  gaps: 2
+  wrote eval\results\held_out_v0.2\raw\analysis/arxiv_2403.00947v1_history-dependence-shapes-causal-inference-of.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+Technical descriptions of the experimental dynamical downscaling simulations over North America by the CAM–MPAS variable-resolution model
+  claims: 5  reproducibility: 63.2/100  gaps: 6
+  wrote eval\results\held_out_v0.2\raw\analysis/doi_10.5194-gmd-16-3029-2023_technical-descriptions-of-the-experimental-dynamical.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+The RNA helicase DDX39B activates FOXP3 RNA splicing to control T regulatory cell fate
+  claims: 1  reproducibility: 65.8/100  gaps: 2
+  wrote eval\results\held_out_v0.2\raw\analysis/doi_10.7554-elife.76927_the-rna-helicase-ddx39b-activates-foxp3.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+Effectiveness of a peer educator-coordinated preference-based differentiated service delivery model on viral suppression among young people living with HIV in Lesotho: The PEBRA cluster-randomized tri
+  claims: 7  reproducibility: 63.2/100  gaps: 1
+  wrote eval\results\held_out_v0.2\raw\analysis/pmc_PMC9810159_effectiveness-of-a-peer-educator-coordinated.(json|md|html)
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+A dsRNA-binding mutant reveals only a minor role of exonuclease activity in interferon antagonism by the arenavirus nucleoprotein
+  claims: 2  reproducibility: 42.1/100  gaps: 4
+  wrote eval\results\held_out_v0.2\raw\analysis/pmc_PMC9815661_a-dsrna-binding-mutant-reveals-only.(json|md|html)

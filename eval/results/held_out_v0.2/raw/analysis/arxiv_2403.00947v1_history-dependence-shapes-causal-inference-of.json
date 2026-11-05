@@ -1,0 +1,527 @@
+{
+  "version": "0.2.0-dev",
+  "document": {
+    "doc_id": "d8f8b5393992",
+    "title": "History-dependence shapes causal inference of brain-behaviour relationships",
+    "n_pages": 24,
+    "source_name": "arxiv_2403.00947v1_history-dependence-shapes-causal-inference-of.pdf",
+    "warnings": [],
+    "n_sentences": 473
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "Simple model systems are then simulated to show how different assumptions about history-dependence can lead to spurious correlations and statistical properties of data distributions that are typically unaccounted for.",
+        "page": 1,
+        "section": "abstract"
+      },
+      {
+        "text": "We then consider this problem from an interventionist perspective, showing that interventions can only be guaranteed to remedy the spurious correlation problem when the latent dynamics between the intervention and measured processes are known a priori, and the effect of the intervention is invariant at the chosen level of analysis.",
+        "page": 1,
+        "section": "abstract"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "We then consider this problem from an interventionist perspective, showing that interventions can only be guaranteed to remedy the spurious correlation problem when the latent dynamics between the intervention and measured processes are known a priori, and the effect of the intervention is invariant at the chosen level of analysis.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 6
+        },
+        {
+          "text": "When deconstructing the history-dependence of data that is traditionally aligned to a common event in a repeated task and treated as an ensemble, one is essentially asking to what degree observed variability can be explained by considering a given process not as a collection of independent events, but as different elements of unique sequences.",
+          "page": 2,
+          "section": "introduction",
+          "sentence_id": 21
+        }
+      ],
+      "approach": [
+        {
+          "text": "In doing so, we propose a fundamental limitation on the ability to falsify the distinction between inherent randomness and variability arising from history dependence.",
+          "page": 3,
+          "section": "introduction",
+          "sentence_id": 27
+        }
+      ],
+      "results": [
+        {
+          "text": "We use this approach to deducing causal relationships to ask if, and under what conditions, knowledge about the latent dynamics between an experimentally controlled intervention and a measured process can reduce the impact of spurious correlations in autocorrelated data.",
+          "page": 13,
+          "section": "results",
+          "sentence_id": 184
+        },
+        {
+          "text": "Additionally, as can be seen in Fig 4C, when the experiment length is increased to 1000 trials, the number of significant mediation results increases, as was the case when correlating two independent random walks.",
+          "page": 13,
+          "section": "results",
+          "sentence_id": 193
+        },
+        {
+          "text": "From this analysis, it can be seen that the inclusion of an experimentally controlled variable can reduce the problem of spurious correlations, but only if this variable (or any variables between the intervention and the causal effect on the measured variables) influences the measured processes through a path in the system that is itself not autocorrelated.",
+          "page": 13,
+          "section": "results",
+          "sentence_id": 195
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Perhaps unsurprisingly, the problem of spurious regression was first analyzed in the context of econometrics (Granger and Newbold, 1974), where trends are not isolated and repeated in a laboratory, but analyzed and forecast as the system, which we concede cannot be controlled experimentally, evolves.",
+          "page": 16,
+          "section": "discussion",
+          "sentence_id": 238
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 3,
+      "text": "Here we argue that undecidability about the ground-truth of history-dependence is a general computational property of systems that exchange information with its environment, and show that the resulting uncertainty has a direct impact on causal inference.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 236,
+          "page": 16,
+          "section": "discussion",
+          "quote": "In this paper, we have argued for the computational undecidability of ground-truth history-dependence, and used model systems where history-dependence can be controlled in order to detail the assumptions about history-dependence required to make causal statements about the relationship between neural and behavioural processes.",
+          "score": 0.242,
+          "shared_numbers": [],
+          "shared_terms": [
+            "about",
+            "causal",
+            "computational",
+            "ground-truth",
+            "history-dependence",
+            "system",
+            "undecidability"
+          ],
+          "lexical": 0.309
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.242,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "found",
+      "evidence_note": "",
+      "rejected": {
+        "below_relevance_threshold": 27,
+        "fragment": 2,
+        "claim_zone_without_new_data": 29,
+        "table_row_without_matching_value": 1
+      }
+    },
+    {
+      "id": "C2",
+      "sentence_id": 6,
+      "text": "We then consider this problem from an interventionist perspective, showing that interventions can only be guaranteed to remedy the spurious correlation problem when the latent dynamics between the intervention and measured processes are known a priori, and the effect of the intervention is invariant at the chosen level of analysis.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.68,
+      "evidence_status": "no_supporting_evidence",
+      "evidence_note": "No supporting evidence found",
+      "rejected": {
+        "below_relevance_threshold": 31,
+        "table_row_without_matching_value": 1,
+        "claim_zone_without_new_data": 26,
+        "fragment": 1,
+        "boilerplate": 1
+      }
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 2,
+    "support": {
+      "strong": 0,
+      "moderate": 0,
+      "weak": 1,
+      "none": 1
+    },
+    "evidence_status": {
+      "found": 1,
+      "no_supporting_evidence": 1,
+      "no_searchable_text": 0
+    },
+    "thresholds": {
+      "min_lexical": 0.3,
+      "min_lexical_with_quantity": 0.12,
+      "min_content_tokens": 6,
+      "max_non_prose": 0.5,
+      "caption_min_lexical": 0.45,
+      "restatement_jaccard": 0.6,
+      "restatement_containment": 0.8
+    }
+  },
+  "reproducibility": {
+    "score": 76.3,
+    "band": "high",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [
+      "splits",
+      "hyper"
+    ],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 21,
+            "section": "reproducibility",
+            "quote": "Code to run the simulations is available at https://github.com/BJCaie/Ergodicity/",
+            "sentence_id": 323
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 21,
+            "section": "reproducibility",
+            "quote": "Code to run the simulations is available at https://github.com/BJCaie/Ergodicity/",
+            "sentence_id": 323
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "not_applicable",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Not scored: no model training was detected in this paper."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 7,
+            "section": "results",
+            "quote": "Theoretical Distribution Physical Process Sampled Process Position Time A 100 trials 200 trials 300 trials 400 trials B C D Figure 2: Non-Ergodicity in a Simple Model of History-Dependence.",
+            "sentence_id": 91
+          },
+          {
+            "page": 12,
+            "section": "results",
+            "quote": "1000 Trials, Static Intervention ϕ .7 ϕ .7 1000 Trials, Dynamic Intervention corr I-B corr N-B corr I-N Mediation 100 Trials, Static Intervention 100 Trials, Dynamic Intervention I B N c a b A Is Id B N B C Figure 4: Latent dynamics between",
+            "sentence_id": 176
+          },
+          {
+            "page": 12,
+            "section": "results",
+            "quote": "The plots are shown for static (left) and auto-correlated latent dynamics (right) for 100 trials (top) and 1000 trials (bottom) as a function of the φ parameter (set to be equal for N and B).",
+            "sentence_id": 181
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "In neuroscience, it is common to collect many trials of a similar behaviour, upon which one will find variability (Gold and Shadlen, 2007; Huk et al., 2018) – the study of history-dependence asks to what degree previous trials are predictiv",
+            "sentence_id": 19
+          },
+          {
+            "page": 6,
+            "section": "results",
+            "quote": "Mathematically, E[Xt] = t X i=1 E[Zi] = 0 (4) However, the variance of the random walk does not stay constant across time.",
+            "sentence_id": 76
+          },
+          {
+            "page": 6,
+            "section": "results",
+            "quote": "The variance of the random walk is given by: Var[Xt] = t X i=1 Var[Zi] = t · σ 2 (5) Where Var[Xt] represents the variance of the random walk at time t, and σ2 is the variance of each individual step.",
+            "sentence_id": 77
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 12,
+            "section": "results",
+            "quote": "Significance testing for mediation analyses can then be performed in several ways, for example a Sobel test, where a mediation effect is significant if both c supports a significant relationship and a mediation score is significant, using a",
+            "sentence_id": 183
+          },
+          {
+            "page": 13,
+            "section": "results",
+            "quote": "Defining the latent dynamics of the null intervention allows us to simulate a false positive distribution, but this does not allow us to compare the distribution of mediation p-values to what may be expected in the case where a true effect ",
+            "sentence_id": 197
+          },
+          {
+            "page": 14,
+            "section": "results",
+            "quote": "p-value C -2 2 0 .0 0.1 0.5 F variance Regression coefficient p-value trials WC WA RC RA Causal random walk Acausal random walk Causal white noise I B N Acausal white noise B 0.1 0.5 variance E D ...",
+            "sentence_id": 201
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 13,
+            "section": "results",
+            "quote": "To this end, we simulate N and B independently for 1000 experiments, and compute the correlation as a function of φ, as before, to get a baseline regression for each experiment.",
+            "sentence_id": 185
+          },
+          {
+            "page": 15,
+            "section": "method",
+            "quote": "To confirm that the reported p-values were representative of the actual regression coefficients in the mediation test, we plotted the mean and standard deviations of the direct regression coefficient c (intervention onto behaviour) as a fun",
+            "sentence_id": 221
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 5,
+            "section": "introduction",
+            "quote": "What are the consequences of this fundamental limitation in the accuracy of systems identification on open systems, where there is a fundamental asymmetry between past and future, such as those likely to explain the neural control of behavi",
+            "sentence_id": 61
+          },
+          {
+            "page": 7,
+            "section": "results",
+            "quote": "For simplicity, assume that the true value of the process is the mean of a normal distribution, where the variance σ of that distribution is the precision with which one may directly sample from the underlying random walk.",
+            "sentence_id": 99
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 13,
+            "section": "results",
+            "quote": "To this end, we simulate N and B independently for 1000 experiments, and compute the correlation as a function of φ, as before, to get a baseline regression for each experiment.",
+            "sentence_id": 185
+          },
+          {
+            "page": 13,
+            "section": "results",
+            "quote": "However, here we then consider N as a mediator between I and B; thus, we also compute two additional regressions I −− > N and I −− > B, in order to compute the Sobel test for the presence of a mediating relationship between I, N, and B. Fig",
+            "sentence_id": 186
+          },
+          {
+            "page": 20,
+            "section": "discussion",
+            "quote": "Instead, they may conclude that in order to study person-specific (sometimes called low-N designs) brain-behaviour relationships, many different repeated measures of sessions are required (as B.F. Skinner said, “It is more useful to study o",
+            "sentence_id": 308
+          }
+        ],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "In doing so, we propose a fundamental limitation on the ability to falsify the distinction between inherent randomness and variability arising from history dependence.",
+            "sentence_id": 27
+          },
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "Importantly, rather than simply providing a limitation on our understanding of a generative model of a living organism, we claim that uncertainty about the ground-truth history-dependence of a system has material consequences on causal infe",
+            "sentence_id": 28
+          },
+          {
+            "page": 5,
+            "section": "introduction",
+            "quote": "What are the consequences of this fundamental limitation in the accuracy of systems identification on open systems, where there is a fundamental asymmetry between past and future, such as those likely to explain the neural control of behavi",
+            "sentence_id": 61
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 3.0,
+        "score": 100.0
+      },
+      "Data": {
+        "weight": 3.0,
+        "earned": 2.0,
+        "score": 66.7
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 5.5,
+        "score": 100.0
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.5,
+        "score": 25.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 1,
+      "claim_id": "C1",
+      "quote": "Here we argue that undecidability about the ground-truth of history-dependence is a general computational property of systems that exchange information with its environment, and show that the resulting uncertainty has..."
+    },
+    {
+      "id": "G2",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C2",
+      "quote": "We then consider this problem from an interventionist perspective, showing that interventions can only be guaranteed to remedy the spurious correlation problem when the latent dynamics between the intervention and mea..."
+    }
+  ],
+  "datasets": [],
+  "metrics": [
+    "precision"
+  ]
+}

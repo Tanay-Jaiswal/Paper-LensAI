@@ -1,0 +1,5 @@
+Annotations locked before the parser was scored against them
+file: eval/table_truth/tables.json
+sha256: 366843a1cef469c4b6bdc9cba29e38a8c1c082b0942e2543d08297fd1e8b6bcc
+locked_utc: 2026-10-13T08:23:18Z
+annotator: AI assistant, from rendered page images; not human-verified

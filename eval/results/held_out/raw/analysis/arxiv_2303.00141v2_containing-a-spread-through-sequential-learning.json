@@ -1,0 +1,1120 @@
+{
+  "version": "0.1.0",
+  "document": {
+    "doc_id": "224ab8b6327e",
+    "title": "Containing a spread through sequential learning: to exploit or to explore?",
+    "n_pages": 66,
+    "source_name": "arxiv_2303.00141v2_containing-a-spread-through-sequential-learning.pdf",
+    "warnings": [
+      "No results/experiments section detected; evidence linking will be weak."
+    ],
+    "n_sentences": 1203
+  },
+  "summary": {
+    "tldr": [
+      {
+        "text": "We now consider the second assumption, ie, Assumption 1, in which we assume that the nodes’ states ζ(t − g) (in the posterior probability space on day t − g) are independent.",
+        "page": 35,
+        "section": "conclusion"
+      },
+      {
+        "text": "That is, in the process of propagating information back to time t − g, we are assuming that there is no further correlation between time t−g−1 and time t−g worthwhile to exploit given observations at time t.",
+        "page": 35,
+        "section": "conclusion"
+      }
+    ],
+    "facets": {
+      "problem": [
+        {
+          "text": "These policies, however, need knowledge about the nodes’ infection probabilities which are dynamically changing and have to be learned by sequential testing.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 7
+        },
+        {
+          "text": "However, from Figure 11 (right), the Real-data Network II often has more components (subgraphs) than the Realdata Network I. Thus, exploitation may become confined within some components (subgraphs), and fail to locate infectious nodes elsewhere, and exploration becomes more effective in presence of a large number of components.",
+          "page": 32,
+          "section": "introduction",
+          "sentence_id": 563
+        }
+      ],
+      "approach": [
+        {
+          "text": "We develop a message-passing framework for this purpose and, building on that, show novel tradeoffs between exploitation of knowledge through rewardbased heuristics and exploration of the unknown through a carefully designed probabilistic testing.",
+          "page": 1,
+          "section": "abstract",
+          "sentence_id": 8
+        },
+        {
+          "text": "Different from [51], [52], our approach is model-based and we observe novel exploration-exploitation tradeoffs that arise not due to a lack of knowledge about the model or network, but rather because the set of infected nodes is unknown and evolves with time.",
+          "page": 5,
+          "section": "introduction",
+          "sentence_id": 71
+        }
+      ],
+      "results": [
+        {
+          "text": "Conditioning all probabilities in (12) on {Y (τ)}t τ=1, we obtain the following forward-update rule (see Appendix A) ui(t + 1) = wi(t) × Pi {wj(t)}j∈∂+ i (t) .",
+          "page": 16,
+          "section": "introduction",
+          "sentence_id": 292
+        },
+        {
+          "text": "Vector ei(t − 1) is the posterior probability of node i at time t − 1, after obtaining the history of observations up to and including time t.",
+          "page": 16,
+          "section": "introduction",
+          "sentence_id": 300
+        },
+        {
+          "text": "Specifically to obtain Equation (5) we have assumed that the state of the nodes are independent.",
+          "page": 36,
+          "section": "conclusion",
+          "sentence_id": 622
+        }
+      ],
+      "limitations": [
+        {
+          "text": "This assumption does not impose independence on the state of the nodes, but only in the posterior space at a specific time.",
+          "page": 35,
+          "section": "conclusion",
+          "sentence_id": 599
+        },
+        {
+          "text": "Note that it is a strong assumption and clearly does not hold in general but it has been resorted to for only one step in the entire framework.",
+          "page": 36,
+          "section": "conclusion",
+          "sentence_id": 621
+        }
+      ]
+    },
+    "method": "extractive: verbatim sentences, cue-based facet selection + TextRank centrality"
+  },
+  "ledger": [
+    {
+      "id": "C1",
+      "sentence_id": 4,
+      "text": "In this work, through an active learning approach, we design testing and isolation strategies to contain the spread and minimize the cumulative infections under a given test budget.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 1097,
+          "page": 61,
+          "section": "appendix",
+          "quote": "The cumulative infections is at least min{aN, N} in the end.",
+          "score": 0.148,
+          "shared_numbers": [],
+          "shared_terms": [
+            "cumulative",
+            "infection"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.148,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C2",
+      "sentence_id": 5,
+      "text": "We prove that the objective can be optimized, with performance guarantees, by greedily selecting the nodes to test.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 1000,
+          "page": 56,
+          "section": "appendix",
+          "quote": "We first prove the following facts.",
+          "score": 0.138,
+          "shared_numbers": [],
+          "shared_terms": [
+            "prove"
+          ]
+        },
+        {
+          "sentence_id": 1040,
+          "page": 58,
+          "section": "appendix",
+          "quote": "We first prove the following Claims.",
+          "score": 0.138,
+          "shared_numbers": [],
+          "shared_terms": [
+            "prove"
+          ]
+        },
+        {
+          "sentence_id": 1047,
+          "page": 59,
+          "section": "appendix",
+          "quote": "Now, we prove the lemma by contradiction.",
+          "score": 0.138,
+          "shared_numbers": [],
+          "shared_terms": [
+            "prove"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.138,
+      "flags": [],
+      "confidence": 0.68
+    },
+    {
+      "id": "C3",
+      "sentence_id": 8,
+      "text": "We develop a message-passing framework for this purpose and, building on that, show novel tradeoffs between exploitation of knowledge through rewardbased heuristics and exploration of the unknown through a carefully designed probabilistic testing.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [],
+      "support": "none",
+      "support_score": 0.0,
+      "flags": [],
+      "confidence": 0.86
+    },
+    {
+      "id": "C4",
+      "sentence_id": 10,
+      "text": "We provably show the necessity of exploration in a stylized network and show through simulations that exploration can outperform exploitation in various synthetic and realdata networks depending on the parameters of the network and the spread.",
+      "page": 1,
+      "section": "abstract",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 1119,
+          "page": 62,
+          "section": "appendix",
+          "quote": "(64) Step 4.The exploitation process of the specific exploration policy.",
+          "score": 0.128,
+          "shared_numbers": [],
+          "shared_terms": [
+            "exploit",
+            "explor"
+          ]
+        },
+        {
+          "sentence_id": 984,
+          "page": 55,
+          "section": "appendix",
+          "quote": "Repeating the process, we can compute the estimated probability vectors of nodes and apply the exploration and exploitation policies.",
+          "score": 0.12,
+          "shared_numbers": [],
+          "shared_terms": [
+            "exploit",
+            "explor"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.128,
+      "flags": [],
+      "confidence": 0.83
+    },
+    {
+      "id": "C5",
+      "sentence_id": 71,
+      "text": "Different from [51], [52], our approach is model-based and we observe novel exploration-exploitation tradeoffs that arise not due to a lack of knowledge about the model or network, but rather because the set of infected nodes is unknown and evolves with time.",
+      "page": 5,
+      "section": "introduction",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 801,
+          "page": 41,
+          "section": "appendix",
+          "quote": "After testing, positive nodes in Kπ(t) would not infect others because they are quarantined, and negative nodes would not infect others due to the model assumptions.",
+          "score": 0.167,
+          "shared_numbers": [],
+          "shared_terms": [
+            "because",
+            "due",
+            "infect",
+            "model",
+            "nod"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.167,
+      "flags": [],
+      "confidence": 0.82
+    },
+    {
+      "id": "C6",
+      "sentence_id": 373,
+      "text": "To trade off the impact of backward updating and the reduction of computation complexity, we propose an α-linking backward updating algorithm in Appendix A, where Algorithm 4 is applied on a random subgraph with fewer edges.",
+      "page": 21,
+      "section": "introduction",
+      "claim_type": "contribution",
+      "hedged": false,
+      "numbers": [
+        "4"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 1055,
+          "page": 59,
+          "section": "appendix",
+          "quote": "Step 3: Consider the computation of {ui(t)}i based on Algorithm 4.",
+          "score": 0.49,
+          "shared_numbers": [
+            "4"
+          ],
+          "shared_terms": [
+            "4",
+            "algorithm",
+            "comput"
+          ]
+        },
+        {
+          "sentence_id": 975,
+          "page": 54,
+          "section": "appendix",
+          "quote": "Recall that we use Assumption 1 in the proposed algorithm (Algorithm 4), and the Naive approach in Remark 2 does not have the backward step, so both approaches do not capture the correlations among nodes.",
+          "score": 0.478,
+          "shared_numbers": [
+            "4"
+          ],
+          "shared_terms": [
+            "4",
+            "algorithm",
+            "backward"
+          ]
+        },
+        {
+          "sentence_id": 959,
+          "page": 52,
+          "section": "appendix",
+          "quote": "Day 0: No tests on day 0, the prior probabilities are updated by the forward step (Step 2 in Algorithm 4).",
+          "score": 0.476,
+          "shared_numbers": [
+            "4"
+          ],
+          "shared_terms": [
+            "4",
+            "algorithm",
+            "updat"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.49,
+      "flags": [],
+      "confidence": 0.64
+    },
+    {
+      "id": "C7",
+      "sentence_id": 443,
+      "text": "We did not consider the case where 100 percent individuals are infected because given the recovery rate (and the topology), the spread may not reach every node.",
+      "page": 24,
+      "section": "introduction",
+      "claim_type": "result",
+      "hedged": true,
+      "numbers": [
+        "100"
+      ],
+      "evidence": [
+        {
+          "sentence_id": 1109,
+          "page": 62,
+          "section": "appendix",
+          "quote": "In Theorem 3, we set p0 ≥ 99/100.",
+          "score": 0.468,
+          "shared_numbers": [
+            "100"
+          ],
+          "shared_terms": [
+            "100"
+          ]
+        },
+        {
+          "sentence_id": 1057,
+          "page": 59,
+          "section": "appendix",
+          "quote": "In event I2, since the transmission probability β = 1, then all nodes are infected at most N days because there is no recovery.",
+          "score": 0.127,
+          "shared_numbers": [],
+          "shared_terms": [
+            "because",
+            "infect",
+            "recovery"
+          ]
+        }
+      ],
+      "support": "strong",
+      "support_score": 0.468,
+      "flags": [],
+      "confidence": 0.76
+    },
+    {
+      "id": "C8",
+      "sentence_id": 584,
+      "text": "In particular, we showed that reward based policies that make decisions based on nodes’ estimated infection probabilities can be arbitrarily sub-optimal while incorporating simple forms of exploration can boost their performance by a constant factor.",
+      "page": 34,
+      "section": "conclusion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 984,
+          "page": 55,
+          "section": "appendix",
+          "quote": "Repeating the process, we can compute the estimated probability vectors of nodes and apply the exploration and exploitation policies.",
+          "score": 0.184,
+          "shared_numbers": [],
+          "shared_terms": [
+            "estimat",
+            "explor",
+            "nod",
+            "policy",
+            "probability"
+          ]
+        },
+        {
+          "sentence_id": 1092,
+          "page": 61,
+          "section": "appendix",
+          "quote": "Under the RbEx policy, the algorithm always tests the nodes with maximum rewards.",
+          "score": 0.134,
+          "shared_numbers": [],
+          "shared_terms": [
+            "nod",
+            "policy",
+            "reward"
+          ]
+        },
+        {
+          "sentence_id": 1099,
+          "page": 61,
+          "section": "appendix",
+          "quote": "Consider the exploration process of the specific exploration policy.",
+          "score": 0.125,
+          "shared_numbers": [],
+          "shared_terms": [
+            "explor",
+            "policy"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.184,
+      "flags": [],
+      "confidence": 0.66
+    },
+    {
+      "id": "C9",
+      "sentence_id": 585,
+      "text": "Motivated by this finding, we devised exploration policies that probabilistically test nodes according to their rewards and numerically showed that when (i) the unregulated delay, (ii) the global clustering coefficient, or (iii) the average shortest path length increase, exploration becomes more beneficial as it provides better estimates of the nodes’ probabilities of infection.",
+      "page": 34,
+      "section": "conclusion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 984,
+          "page": 55,
+          "section": "appendix",
+          "quote": "Repeating the process, we can compute the estimated probability vectors of nodes and apply the exploration and exploitation policies.",
+          "score": 0.136,
+          "shared_numbers": [],
+          "shared_terms": [
+            "estimat",
+            "explor",
+            "nod",
+            "policy",
+            "probability"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.136,
+      "flags": [],
+      "confidence": 0.84
+    },
+    {
+      "id": "C10",
+      "sentence_id": 592,
+      "text": "Our framework can be extended to incorporate delay and/or error in test results in a relatively straightforward manner (an outline of the extension incorporating a delay is given in Appendix A), but generalizing the performance guarantees for the proposed policies in these cases forms a direction of future research.",
+      "page": 34,
+      "section": "conclusion",
+      "claim_type": "generalization",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 889,
+          "page": 47,
+          "section": "appendix",
+          "quote": "The idea and the derivations can be generalized in a straightforward manner to larger g.",
+          "score": 0.163,
+          "shared_numbers": [],
+          "shared_terms": [
+            "generaliz",
+            "manner",
+            "straightforward"
+          ]
+        },
+        {
+          "sentence_id": 978,
+          "page": 54,
+          "section": "appendix",
+          "quote": "One can extend the framework to a more realistic case where testing results are not able to be obtained on the same day, but will be obtained after a delay a.",
+          "score": 0.15,
+          "shared_numbers": [],
+          "shared_terms": [
+            "delay",
+            "extend",
+            "framework",
+            "test"
+          ]
+        },
+        {
+          "sentence_id": 980,
+          "page": 54,
+          "section": "appendix",
+          "quote": "The extended framework is summarized as follows.",
+          "score": 0.124,
+          "shared_numbers": [],
+          "shared_terms": [
+            "extend",
+            "framework"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.163,
+      "flags": [],
+      "confidence": 0.66
+    },
+    {
+      "id": "C11",
+      "sentence_id": 602,
+      "text": "But increase in g significantly increases the computation time.",
+      "page": 35,
+      "section": "conclusion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 885,
+          "page": 47,
+          "section": "appendix",
+          "quote": "In a sense, in the process of propagating information back to time t − g, we are assuming that there is no further correlation between time t − g − 1 and time t − g worthwhile to exploit given observations at time t.",
+          "score": 0.264,
+          "shared_numbers": [],
+          "shared_terms": [
+            "g",
+            "time"
+          ]
+        },
+        {
+          "sentence_id": 873,
+          "page": 47,
+          "section": "appendix",
+          "quote": "backwards, and for computation tractability, we continue under the following assumption where g = 1.",
+          "score": 0.261,
+          "shared_numbers": [],
+          "shared_terms": [
+            "comput",
+            "g"
+          ]
+        },
+        {
+          "sentence_id": 972,
+          "page": 53,
+          "section": "appendix",
+          "quote": "The infected node may have recovered by the end of time t = 1 and this is reflected in the posterior probabilities computed.",
+          "score": 0.239,
+          "shared_numbers": [],
+          "shared_terms": [
+            "comput",
+            "time"
+          ]
+        }
+      ],
+      "support": "weak",
+      "support_score": 0.264,
+      "flags": [],
+      "confidence": 0.84
+    },
+    {
+      "id": "C12",
+      "sentence_id": 610,
+      "text": "But introduction of additional states significantly increases the computation time,",
+      "page": 35,
+      "section": "conclusion",
+      "claim_type": "assertion",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 972,
+          "page": 53,
+          "section": "appendix",
+          "quote": "The infected node may have recovered by the end of time t = 1 and this is reflected in the posterior probabilities computed.",
+          "score": 0.199,
+          "shared_numbers": [],
+          "shared_terms": [
+            "comput",
+            "time"
+          ]
+        },
+        {
+          "sentence_id": 800,
+          "page": 41,
+          "section": "appendix",
+          "quote": "Then, on day t + 1, Cπ(t + 1) increases (comparing to Cπ(t)) only because some susceptible nodes are infected by infectious nodes and are in the latent state for the first time.",
+          "score": 0.167,
+          "shared_numbers": [],
+          "shared_terms": [
+            "increas",
+            "time"
+          ]
+        },
+        {
+          "sentence_id": 950,
+          "page": 52,
+          "section": "appendix",
+          "quote": "The graphical model of states and observations (right) in Remark 2.",
+          "score": 0.158,
+          "shared_numbers": [],
+          "shared_terms": [
+            "stat"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.199,
+      "flags": [],
+      "confidence": 0.66
+    },
+    {
+      "id": "C13",
+      "sentence_id": 619,
+      "text": "Generalizing our framework to obtain approximation guarantees when contact networks can only be partially observed constitutes a direction of future research.",
+      "page": 36,
+      "section": "conclusion",
+      "claim_type": "generalization",
+      "hedged": false,
+      "numbers": [],
+      "evidence": [
+        {
+          "sentence_id": 978,
+          "page": 54,
+          "section": "appendix",
+          "quote": "One can extend the framework to a more realistic case where testing results are not able to be obtained on the same day, but will be obtained after a delay a.",
+          "score": 0.144,
+          "shared_numbers": [],
+          "shared_terms": [
+            "framework",
+            "obtain"
+          ]
+        },
+        {
+          "sentence_id": 857,
+          "page": 46,
+          "section": "appendix",
+          "quote": "This is because “future” observations were available in ˜Pi({ej(t−1)}j∈∂+ i (t−1)).",
+          "score": 0.136,
+          "shared_numbers": [],
+          "shared_terms": [
+            "future",
+            "observ"
+          ]
+        }
+      ],
+      "support": "none",
+      "support_score": 0.144,
+      "flags": [],
+      "confidence": 0.84
+    }
+  ],
+  "ledger_stats": {
+    "n_claims": 13,
+    "support": {
+      "strong": 2,
+      "moderate": 0,
+      "weak": 1,
+      "none": 10
+    }
+  },
+  "reproducibility": {
+    "score": 35.9,
+    "band": "low",
+    "formula": "100 * sum(weight * credit) / sum(weight); credit: present=1, partial=0.5, missing=0; not_applicable items are left out of both sums",
+    "not_applicable": [],
+    "items": [
+      {
+        "key": "code",
+        "label": "Code available",
+        "category": "Artifacts",
+        "weight": 3.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Publish code (with a permanent link) and trained checkpoints."
+      },
+      {
+        "key": "data",
+        "label": "Datasets named and accessible",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 25,
+            "section": "introduction",
+            "quote": "j) Real-data Network II.: We consider a publicly available dataset on human social interactions collected specifically for modeling infectious disease dynamics [66], [67], [68].",
+            "sentence_id": 467
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "splits",
+        "label": "Train/validation/test splits specified",
+        "category": "Data",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 46,
+            "section": "appendix",
+            "quote": "To get ˜Pi {ej(t−1)}j∈∂+ i (t−1) , we split the nodes V(t) into two classes of nodes: (i) nodes who do not get new observations and (ii) nodes who get new observations. ˜Pi({ej(t−1)}j∈∂+ i (t−1)) is obtained by the following rules.",
+            "sentence_id": 858
+          },
+          {
+            "page": 50,
+            "section": "appendix",
+            "quote": "Consider node i, Y (t) can be split into Y i,1(t) and Y i,2(t), where Y i,1(t) is the observations of the set O(t)∩∂+ i (t−1), and Y i,2(t) is the observations of the rest of the nodes.",
+            "sentence_id": 921
+          }
+        ],
+        "advice": "State exact split sizes/seeds and what was used for tuning."
+      },
+      {
+        "key": "preprocessing",
+        "label": "Preprocessing described",
+        "category": "Data",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Describe cleaning, tokenisation and augmentation steps."
+      },
+      {
+        "key": "hyper",
+        "label": "Hyperparameters reported",
+        "category": "Method",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report all hyperparameters, how they were tuned and the search ranges."
+      },
+      {
+        "key": "seeds",
+        "label": "Seeds / multiple runs",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 25,
+            "section": "introduction",
+            "quote": "The transmission probability of the spread is set to β = 0.4 and the number of initial seed is n0 = 3.",
+            "sentence_id": 447
+          },
+          {
+            "page": 25,
+            "section": "introduction",
+            "quote": "The transmission probability of the spread is set to β = 0.04 and the number of initial seed is n0 = 3.",
+            "sentence_id": 454
+          },
+          {
+            "page": 25,
+            "section": "introduction",
+            "quote": "The transmission probability of the spread is set to β = 0.04 and the number of initial seed is n0 = 3.",
+            "sentence_id": 458
+          }
+        ],
+        "advice": "Run with several seeds and report how many."
+      },
+      {
+        "key": "variance",
+        "label": "Variance / uncertainty reported",
+        "category": "Statistics",
+        "weight": 2.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Report standard deviation or confidence intervals, not single numbers."
+      },
+      {
+        "key": "stat_test",
+        "label": "Statistical significance test",
+        "category": "Statistics",
+        "weight": 1.5,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Back 'significant' claims with a named test and p-value or CI."
+      },
+      {
+        "key": "baselines",
+        "label": "Baselines described",
+        "category": "Evaluation",
+        "weight": 2.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 22,
+            "section": "introduction",
+            "quote": "This is an improvement by a factor of at least a b in comparison to the RbEx strategy.",
+            "sentence_id": 398
+          },
+          {
+            "page": 22,
+            "section": "introduction",
+            "quote": "We also identify benchmark policies which represent the extreme ends of the tradeoff between exploration and exploitation to compare with the policies we propose and assess the performance enhancements brought about by judicious combination",
+            "sentence_id": 406
+          },
+          {
+            "page": 23,
+            "section": "introduction",
+            "quote": "c) Benchmark policies: We will compare the proposed policies with 4 benchmark policies.",
+            "sentence_id": 420
+          }
+        ],
+        "advice": ""
+      },
+      {
+        "key": "ablation",
+        "label": "Ablation / component analysis",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Show which components drive the gains."
+      },
+      {
+        "key": "metrics",
+        "label": "Evaluation metrics defined",
+        "category": "Evaluation",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 9,
+            "section": "introduction",
+            "quote": "(2) Recall that σi(t), the state of node i on day t, is a random variable and unknown.",
+            "sentence_id": 168
+          },
+          {
+            "page": 10,
+            "section": "introduction",
+            "quote": "Recall that Kπ(t) be the set of nodes that are tested at time t.",
+            "sentence_id": 188
+          },
+          {
+            "page": 13,
+            "section": "introduction",
+            "quote": "Recall that S(·; t) is a supermodular function, then the amount of newly infectious nodes incurred by the set Kπ(t), S(Kπ(t); t), is larger than the sum of the amount of newly infectious nodes by every individual node in Kπ(t), i.e., P i∈Kπ",
+            "sentence_id": 233
+          }
+        ],
+        "advice": "Define every metric and the averaging scheme (micro/macro)."
+      },
+      {
+        "key": "hardware",
+        "label": "Compute / hardware reported",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 18,
+            "section": "introduction",
+            "quote": "(17) We finally present our Backward-Forward Algorithm to sequentially compute estimates {ui(t)}i in Algorithm 4.",
+            "sentence_id": 330
+          },
+          {
+            "page": 19,
+            "section": "introduction",
+            "quote": "Update ei(t − 1) by (16), (17), and then compute wi(t) by (14).",
+            "sentence_id": 339
+          },
+          {
+            "page": 19,
+            "section": "introduction",
+            "quote": "Compute ui(t + 1) by (13).",
+            "sentence_id": 341
+          }
+        ],
+        "advice": "State hardware, runtime and total compute budget."
+      },
+      {
+        "key": "software",
+        "label": "Software / library versions",
+        "category": "Resources",
+        "weight": 1.0,
+        "status": "missing",
+        "credit": 0.0,
+        "evidence": [],
+        "advice": "Pin library versions or provide an environment file."
+      },
+      {
+        "key": "license",
+        "label": "Licence / ethics statement",
+        "category": "Ethics",
+        "weight": 0.5,
+        "status": "partial",
+        "credit": 0.5,
+        "evidence": [
+          {
+            "page": 36,
+            "section": "conclusion",
+            "quote": "This tracking may also generate concerns about privacy which is beyond the scope of this paper.",
+            "sentence_id": 617
+          }
+        ],
+        "advice": "State data/model licences and ethical considerations."
+      },
+      {
+        "key": "limitations",
+        "label": "Limitations discussed",
+        "category": "Honesty",
+        "weight": 1.0,
+        "status": "present",
+        "credit": 1.0,
+        "evidence": [
+          {
+            "page": 2,
+            "section": "introduction",
+            "quote": "Public health systems need to judiciously decide who should be tested and isolated in presence of limitations on the number of individuals who can be tested and isolated on a given day.",
+            "sentence_id": 18
+          },
+          {
+            "page": 3,
+            "section": "introduction",
+            "quote": "While relatively practical, they have two main shortcomings, as implemented today: (i) They are not able to prioritize nodes based on their likelihood of being infected (beyond the coarse notion of contact or lack thereof).",
+            "sentence_id": 48
+          },
+          {
+            "page": 4,
+            "section": "introduction",
+            "quote": "This may be a fundamental limitation of contact tracing.",
+            "sentence_id": 54
+          }
+        ],
+        "advice": ""
+      }
+    ],
+    "categories": {
+      "Artifacts": {
+        "weight": 3.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Data": {
+        "weight": 5.0,
+        "earned": 3.0,
+        "score": 60.0
+      },
+      "Method": {
+        "weight": 2.0,
+        "earned": 0.0,
+        "score": 0.0
+      },
+      "Statistics": {
+        "weight": 5.5,
+        "earned": 1.0,
+        "score": 18.2
+      },
+      "Evaluation": {
+        "weight": 4.0,
+        "earned": 2.5,
+        "score": 62.5
+      },
+      "Resources": {
+        "weight": 2.0,
+        "earned": 0.5,
+        "score": 25.0
+      },
+      "Ethics": {
+        "weight": 0.5,
+        "earned": 0.25,
+        "score": 50.0
+      },
+      "Honesty": {
+        "weight": 1.0,
+        "earned": 1.0,
+        "score": 100.0
+      }
+    },
+    "disclaimer": "Measures what the paper reports (checklist coverage), not whether results actually reproduce."
+  },
+  "gaps": [
+    {
+      "id": "G1",
+      "kind": "no_code",
+      "severity": "high",
+      "message": "No code or implementation link is given.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G2",
+      "kind": "no_hyperparameters",
+      "severity": "high",
+      "message": "Training hyperparameters are not reported.",
+      "page": null,
+      "claim_id": null,
+      "quote": ""
+    },
+    {
+      "id": "G3",
+      "kind": "significance_without_test",
+      "severity": "high",
+      "message": "Uses 'significant' but no statistical test (t-test, bootstrap, p-value, CI) is reported.",
+      "page": 35,
+      "claim_id": "C11",
+      "quote": "But increase in g significantly increases the computation time."
+    },
+    {
+      "id": "G4",
+      "kind": "significance_without_test",
+      "severity": "high",
+      "message": "Uses 'significant' but no statistical test (t-test, bootstrap, p-value, CI) is reported.",
+      "page": 35,
+      "claim_id": "C12",
+      "quote": "But introduction of additional states significantly increases the computation time,"
+    },
+    {
+      "id": "G5",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C2",
+      "quote": "We prove that the objective can be optimized, with performance guarantees, by greedily selecting the nodes to test."
+    },
+    {
+      "id": "G6",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 1,
+      "claim_id": "C4",
+      "quote": "We provably show the necessity of exploration in a stylized network and show through simulations that exploration can outperform exploitation in various synthetic and realdata networks depending on the parameters of t..."
+    },
+    {
+      "id": "G7",
+      "kind": "improvement_without_variance",
+      "severity": "medium",
+      "message": "Improvement is reported as a single number with no variance, seeds or confidence interval.",
+      "page": 21,
+      "claim_id": "C6",
+      "quote": "To trade off the impact of backward updating and the reduction of computation complexity, we propose an α-linking backward updating algorithm in Appendix A, where Algorithm 4 is applied on a random subgraph with fewer..."
+    },
+    {
+      "id": "G8",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 34,
+      "claim_id": "C8",
+      "quote": "In particular, we showed that reward based policies that make decisions based on nodes’ estimated infection probabilities can be arbitrarily sub-optimal while incorporating simple forms of exploration can boost their ..."
+    },
+    {
+      "id": "G9",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 34,
+      "claim_id": "C9",
+      "quote": "Motivated by this finding, we devised exploration policies that probabilistically test nodes according to their rewards and numerically showed that when (i) the unregulated delay, (ii) the global clustering coefficien..."
+    },
+    {
+      "id": "G10",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 34,
+      "claim_id": "C10",
+      "quote": "Our framework can be extended to incorporate delay and/or error in test results in a relatively straightforward manner (an outline of the extension incorporating a delay is given in Appendix A), but generalizing the p..."
+    },
+    {
+      "id": "G11",
+      "kind": "generalization_narrow_evidence",
+      "severity": "medium",
+      "message": "Generalisation/robustness claim, but only 0 evaluation dataset(s) detected (none named).",
+      "page": 34,
+      "claim_id": "C10",
+      "quote": "Our framework can be extended to incorporate delay and/or error in test results in a relatively straightforward manner (an outline of the extension incorporating a delay is given in Appendix A), but generalizing the p..."
+    },
+    {
+      "id": "G12",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim (only weak lexical overlap).",
+      "page": 35,
+      "claim_id": "C11",
+      "quote": "But increase in g significantly increases the computation time."
+    },
+    {
+      "id": "G13",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 35,
+      "claim_id": "C12",
+      "quote": "But introduction of additional states significantly increases the computation time,"
+    },
+    {
+      "id": "G14",
+      "kind": "unsupported_claim",
+      "severity": "medium",
+      "message": "No strong supporting passage found in the paper body for this claim.",
+      "page": 36,
+      "claim_id": "C13",
+      "quote": "Generalizing our framework to obtain approximation guarantees when contact networks can only be partially observed constitutes a direction of future research."
+    },
+    {
+      "id": "G15",
+      "kind": "generalization_narrow_evidence",
+      "severity": "medium",
+      "message": "Generalisation/robustness claim, but only 0 evaluation dataset(s) detected (none named).",
+      "page": 36,
+      "claim_id": "C13",
+      "quote": "Generalizing our framework to obtain approximation guarantees when contact networks can only be partially observed constitutes a direction of future research."
+    }
+  ],
+  "datasets": [],
+  "metrics": []
+}

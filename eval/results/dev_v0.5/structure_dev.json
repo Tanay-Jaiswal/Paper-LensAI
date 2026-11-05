@@ -1,0 +1,259 @@
+{
+  "abstract": {
+    "acl_2020.acl-main.442_beyond-accuracy-behavioral-testing-of-nlp.pdf": {
+      "n_sentences": 6,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf": {
+      "n_sentences": 7,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf": {
+      "n_sentences": 5,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "acl_P02-1040_bleu-a-method-for-automatic-evaluation.pdf": {
+      "n_sentences": 4,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf": {
+      "n_sentences": 10,
+      "pages": [
+        1,
+        2
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "arxiv_1412.6980v9_adam-a-method-for-stochastic-optimization.pdf": {
+      "n_sentences": 8,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf": {
+      "n_sentences": 11,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf": {
+      "n_sentences": 9,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": [
+        "No 'Abstract' heading detected; treated the first prose paragraph of page 1 as the abstract."
+      ]
+    },
+    "arxiv_1706.03762v7_attention-is-all-you-need.pdf": {
+      "n_sentences": 7,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf": {
+      "n_sentences": 10,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "plos_pbio.1002106_the-extent-and-consequences-of-p.pdf": {
+      "n_sentences": 5,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "plos_pmed.0020124_why-most-published-research-findings-are.pdf": {
+      "n_sentences": 6,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf": {
+      "n_sentences": 11,
+      "pages": [
+        1,
+        2
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf": {
+      "n_sentences": 12,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf": {
+      "n_sentences": 16,
+      "pages": [
+        1
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    },
+    "pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf": {
+      "n_sentences": 14,
+      "pages": [
+        1,
+        2
+      ],
+      "start_ok": true,
+      "end_ok": true,
+      "contains_start": true,
+      "contains_end": true,
+      "abstract_warning": []
+    }
+  },
+  "headings": {
+    "arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf": {
+      "bookmarks": 31,
+      "found": 30,
+      "detected": 33,
+      "detected_in_bookmarks": 30,
+      "missed": [
+        "6 H->WW(*)->evmuv channel"
+      ],
+      "extra": [
+        "ATLAS 2011 - 2012",
+        "Acknowledgements",
+        "Abstract"
+      ]
+    },
+    "arxiv_1706.03762v7_attention-is-all-you-need.pdf": {
+      "bookmarks": 22,
+      "found": 21,
+      "detected": 25,
+      "detected_in_bookmarks": 21,
+      "missed": [
+        "Results"
+      ],
+      "extra": [
+        "Acknowledgements",
+        "Label Smoothing",
+        "Abstract",
+        "Residual Dropout"
+      ]
+    },
+    "arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf": {
+      "bookmarks": 32,
+      "found": 32,
+      "detected": 55,
+      "detected_in_bookmarks": 32,
+      "missed": [],
+      "extra": [
+        "6.2.3 Religion",
+        "Initial training set filtering",
+        "Overlap methodology",
+        "6.2.2 Race",
+        "Acknowledgements",
+        "Overlap results",
+        "3.1.4 StoryCloze",
+        "6.2.1 Gender",
+        "3.9.2 Word Scrambling and Manipulation Tasks",
+        "3.9.4 News Article Generation",
+        "Contributions",
+        "6.2.4 Future Bias and Fairness Challenges",
+        "3.1.1 Language Modeling",
+        "3.9.6 Correcting English Grammar",
+        "3.9.5 Learning and Using Novel Words",
+        "3.9.3 SAT Analogies",
+        "Abstract",
+        "3.1.2 LAMBADA",
+        "6.1.1 Potential Misuse Applications",
+        "3.9.1 Arithmetic",
+        "3.1.3 HellaSwag",
+        "6.1.2 Threat Actor Analysis",
+        "6.1.3 External Incentive Structures"
+      ]
+    }
+  },
+  "totals": {
+    "papers": 16,
+    "abstract_start_ok": 16,
+    "abstract_end_ok": 16,
+    "abstract_both_ok": 16,
+    "papers_with_bookmarks": 3,
+    "bookmarks": 85,
+    "bookmarks_found": 83,
+    "headings_detected": 113,
+    "headings_detected_in_bookmarks": 83
+  }
+}

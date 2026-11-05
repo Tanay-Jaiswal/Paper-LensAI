@@ -1,0 +1,13 @@
+# Render blueprint (https://render.com/docs/blueprint-spec). Nothing is deployed until you connect the repository in
+# Render and apply this file yourself. See docs/DEPLOY.md.
+services:
+  - type: web
+    name: paperlens
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: PAPERLENS_HOSTED
+        value: "1"
+      - key: PAPERLENS_PASSWORD
+        sync: false          # Render asks for the value when the blueprint is applied

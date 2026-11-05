@@ -1,0 +1,21 @@
+{
+  "_note": "Abstract boundaries of the 16 DEVELOPMENT papers in data/Papers. AI-assisted labels: written on 2026-10-12 by the session that changed the parser, from the PDFs' raw text layer (pymupdf get_text), not by a person. 'start' and 'end' are the first and last words of the true abstract; comparison is on letters and digits only. Not held-out data; the parser was tuned on these same papers.",
+  "abstracts": {
+    "acl_2020.acl-main.442_beyond-accuracy-behavioral-testing-of-nlp.pdf": {"start": "Although measuring held-out accuracy has been", "end": "as many bugs as users without it."},
+    "acl_2020.emnlp-main.609_fact-or-fiction-verifying-scientific-claims.pdf": {"start": "We introduce scientific claim verification", "end": "available at https://scifact.apps.allenai.org."},
+    "acl_N19-1423_bert-pre-training-of-deep-bidirectional.pdf": {"start": "We introduce a new language representation model called BERT", "end": "(5.1 point absolute improvement)."},
+    "acl_P02-1040_bleu-a-method-for-automatic-evaluation.pdf": {"start": "Human evaluations of machine translation are extensive", "end": "need for quick or frequent evaluations."},
+    "arxiv_1207.7214v2_observation-of-a-new-particle-in.pdf": {"start": "A search for the Standard Model Higgs boson in proton-proton collisions", "end": "production and decay of the Standard Model Higgs boson."},
+    "arxiv_1412.6980v9_adam-a-method-for-stochastic-optimization.pdf": {"start": "We introduce Adam, an algorithm for first-order", "end": "a variant of Adam based on the infinity norm."},
+    "arxiv_1512.03385v1_deep-residual-learning-for-image-recognition.pdf": {"start": "Deeper neural networks are more difficult to train", "end": "COCO detection, and COCO segmentation."},
+    "arxiv_1602.03837v1_observation-of-gravitational-waves-from-a.pdf": {"start": "On September 14, 2015 at 09:50:45 UTC the two detectors", "end": "the first observation of a binary black hole merger."},
+    "arxiv_1706.03762v7_attention-is-all-you-need.pdf": {"start": "The dominant sequence transduction models are based on", "end": "both with large and limited training data."},
+    "arxiv_2005.14165v4_language-models-are-few-shot-learners.pdf": {"start": "Recent work has demonstrated substantial gains on many NLP tasks", "end": "of this finding and of GPT-3 in general."},
+    "plos_pbio.1002106_the-extent-and-consequences-of-p.pdf": {"start": "A focus on novel, confirmatory, and statistically significant results", "end": "scientific consensuses drawn from meta-analyses."},
+    "plos_pmed.0020124_why-most-published-research-findings-are.pdf": {"start": "There is increasing concern that most current published research findings are false", "end": "for the conduct and interpretation of research."},
+    "pmc_PMC4930190_comparison-of-high-intensity-interval-training.pdf": {"start": "The aim of this study was to compare the effects of 5-week", "end": "maintaining the body weight among sedentary individuals."},
+    "pmc_PMC4934905_global-prevalence-of-chronic-kidney-disease.pdf": {"start": "Chronic kidney disease (CKD) is a global health burden", "end": "delay the progression of CKD and improve CVD outcomes."},
+    "pmc_PMC4963098_the-impacts-of-oil-palm-on.pdf": {"start": "Palm oil is the most widely traded vegetable oil globally", "end": "in ways that protect biodiversity-rich ecosystems."},
+    "pmc_PMC5249242_accurate-de-novo-prediction-of-protein.pdf": {"start": "Protein contacts contain key information for the understanding", "end": "http://raptorx.uchicago.edu/ContactMap/"}
+  }
+}
